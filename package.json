@@ -4,7 +4,9 @@
   "description": "Debt free tradeschool back-end",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.js --ext js,graphql --exec babel-node",
+    "get-schema": "graphql get-schema -p prisma"
   },
   "repository": {
     "type": "git",
@@ -17,10 +19,15 @@
   },
   "homepage": "https://github.com/Revitalized-Playground/Back-End#readme",
   "dependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
     "bcryptjs": "^2.4.3",
     "graphql-cli": "^3.0.14",
     "graphql-yoga": "^1.18.3",
     "jsonwebtoken": "^8.5.1",
     "prisma-binding": "^2.3.16"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
   }
 }
