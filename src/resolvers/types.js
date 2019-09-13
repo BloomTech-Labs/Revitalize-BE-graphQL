@@ -1,3 +1,7 @@
-export const User = {};
+const User = {};
+const Project = {}
 
-export const Project = {}
+export const Types = {
+    User,
+    Project
+}

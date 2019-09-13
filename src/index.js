@@ -1,15 +1,22 @@
 import { GraphQLServer } from 'graphql-yoga';
 
-// Types
-import types from './resolvers/types';
+// Queries
+import { Query } from './resolvers/queries';
+console.log(Query)
+// Mutations
+import { Mutation } from './resolvers/mutations';
 
-// Prisma connection
+// Types
+import {Types} from './resolvers/types';
+
 import prisma from './prisma';
 
 const server = new GraphQLServer({
     typeDefs: './src/schema.graphql',
     resolvers: {
-        ...types,
+        Query,
+        Mutation,
+        ...Types,
     },
     context(req) {
         return {
