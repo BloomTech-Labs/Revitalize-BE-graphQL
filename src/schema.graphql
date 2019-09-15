@@ -1,19 +1,18 @@
-
 # Queries
 type Query {
-    users(query: String): [User!]!
-    user(id: Int!): User!
-    projects(query: String): [Project!]!
-    project(id: Int!): [Project!]!
+	users(query: String): [User!]!
+	user(id: ID!): User!
+	projects(query: String): [Project!]!
+	project(id: ID!): [Project!]!
 }
 
 # Mutations
 type Mutation {
-    createUser(data: CreateUserInput): AuthPayload!
+	createUser(data: CreateUserInput): AuthPayload!
 	loginUser(data: LoginUserInput): AuthPayload!
 	deleteUser(id: ID!): User!
 	updateUser(id: ID!, data: UpdateUserInput): User!
-    createProject(data: CreateProjectInput): Project!
+	createProject(data: CreateProjectInput): Project!
 	deleteProject(id: ID!): Project!
 	updateProject(id: ID!, data: UpdateProjectInput): Project!
 }
@@ -27,31 +26,31 @@ enum MutationType {
 
 # User
 type User {
-  id: ID!
-  firstName: String
-  lastName: String
-  email: String!
-  password: String!
-  profileImage: String
-  city: String
-  zip: String
-  address: String
-  state: String
-  aptNumber: String
-  projects: [Project!]
+	id: ID!
+	firstName: String
+	lastName: String
+	email: String!
+	password: String!
+	profileImage: String
+	city: String
+	zip: String
+	address: String
+	state: String
+	aptNumber: String
+	projects: [Project!]!
 }
 
 input CreateUserInput {
-    firstName: String
-    lastName: String
-    email: String!
-    password: String!
-    profileImage: String
-    city: String
-    zip: String
-    address: String
-    state: String
-    aptNumber: String
+	firstName: String
+	lastName: String
+	email: String!
+	password: String!
+	profileImage: String
+	city: String
+	zip: String
+	address: String
+	state: String
+	aptNumber: String
 }
 
 input LoginUserInput {
@@ -61,15 +60,15 @@ input LoginUserInput {
 
 input UpdateUserInput {
 	firstName: String
-    lastName: String
-    email: String
-    password: String
-    profileImage: String
-    city: String
-    zip: String
-    address: String
-    state: String
-    aptNumber: String
+	lastName: String
+	email: String
+	password: String
+	profileImage: String
+	city: String
+	zip: String
+	address: String
+	state: String
+	aptNumber: String
 }
 
 # Returned auth payload type
@@ -79,36 +78,37 @@ type AuthPayload {
 }
 
 type Project {
-  id: ID!
-  user: User!
-  name: String!
-  description: String!
-  address: String!
-  state: String!
-  zip: String!
-  city: String!
-  goalAmount: Float!
-  amountFunded: Float!
+	id: ID!
+	user: User!
+	name: String!
+	description: String!
+	address: String!
+	state: String!
+	zip: String!
+	city: String!
+	goalAmount: Float!
+	amountFunded: Float!
 }
 
 input CreateProjectInput {
-  name: String!
-  description: String!
-  address: String!
-  state: String!
-  zip: String!
-  city: String!
-  goalAmount: Float!
-  amountFunded: Float
+	user: ID!
+	name: String!
+	description: String!
+	address: String!
+	state: String!
+	zip: String!
+	city: String!
+	goalAmount: Float!
+	amountFunded: Float
 }
 
 input UpdateProjectInput {
-    name: String
-    description: String
-    address: String
-    state: String
-    zip: String
-    city: String
-    goalAmount: Float
-    amountFunded: Float
+	name: String
+	description: String
+	address: String
+	state: String
+	zip: String
+	city: String
+	goalAmount: Float
+	amountFunded: Float
 }

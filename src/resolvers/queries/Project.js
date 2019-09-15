@@ -1,5 +1,5 @@
 export const Project = {
-	projects(parent, args, { prisma }, info) {
+	async projects(parent, args, { prisma }, info) {
 		const opArgs = {};
 
 		if (opArgs) {
@@ -19,14 +19,21 @@ export const Project = {
 					},
 					{
 						city_contains: args.query
-					},
-					{
-						goalAmount_contains: args.query
 					}
 				]
 			};
 		}
 
-		return prisma.query.projects(opArgs, info);
+		return await prisma.query.projects(opArgs, info);
+	},
+	async project(parent, args, { prisma }, info) {
+		return await prisma.query.project(
+			{
+				where: {
+					id: args.id
+				}
+			},
+			info
+		);
 	}
 };

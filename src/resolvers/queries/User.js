@@ -1,5 +1,5 @@
 export const User = {
-    users(parent, args, { prisma }, info) {
+	users(parent, args, { prisma }, info) {
 		const opArgs = {};
 
 		if (args.query) {
@@ -17,4 +17,14 @@ export const User = {
 
 		return prisma.query.users(opArgs, info);
 	},
-}
+	user(parent, args, { prisma }, info) {
+		return prisma.query.user(
+			{
+				where: {
+					id: args.id
+				}
+			},
+			info
+		);
+	}
+};

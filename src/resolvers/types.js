@@ -1,7 +1,7 @@
 const User = {};
-const Project = {}
+const Project = {};
 
 export const Types = {
-    User,
-    Project
-}
+	User,
+	Project
+};

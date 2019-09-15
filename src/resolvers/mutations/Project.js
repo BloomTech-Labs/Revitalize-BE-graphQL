@@ -1,6 +1,6 @@
 export const Project = {
-	creatProject(parent, args, { prisma }, info) {
-		return prisma.mutation.creatProject(
+	createProject(parent, args, { prisma }, info) {
+		return prisma.mutation.createProject(
 			{
 				data: {
 					name: args.data.name,
@@ -21,8 +21,8 @@ export const Project = {
 			info
 		);
 	},
-	deletProject(parent, args, { prisma }, info) {
-		return prisma.mutation.deletProject(
+	deleteProject(parent, args, { prisma }, info) {
+		return prisma.mutation.deleteProject(
 			{
 				where: {
 					id: args.id
@@ -31,8 +31,8 @@ export const Project = {
 			info
 		);
 	},
-	updatProject(parent, args, { prisma }, info) {
-		return prisma.mutation.updatProject(
+	updateProject(parent, args, { prisma }, info) {
+		return prisma.mutation.updateProject(
 			{
 				where: {
 					id: args.id
