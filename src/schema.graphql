@@ -91,7 +91,6 @@ type Project {
 }
 
 input CreateProjectInput {
-	user: ID!
 	name: String!
 	description: String!
 	address: String!

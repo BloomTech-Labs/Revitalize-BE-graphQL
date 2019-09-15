@@ -1,5 +1,9 @@
+import { getUserId } from '../../utils/getUserId';
+
 export const Project = {
-	createProject(parent, args, { prisma }, info) {
+	createProject(parent, args, { prisma, request }, info) {
+		const userId = getUserId(request);
+
 		return prisma.mutation.createProject(
 			{
 				data: {
@@ -13,7 +17,7 @@ export const Project = {
 					amountFunded: args.data.amountFunded,
 					user: {
 						connect: {
-							id: args.data.user
+							id: userId
 						}
 					}
 				}
