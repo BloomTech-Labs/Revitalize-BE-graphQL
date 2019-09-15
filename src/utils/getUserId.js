@@ -4,7 +4,7 @@ export function getUserId(request, requireAuth = true) {
 	const header = request.request.headers.authorization;
 
 	if (header) {
-		const token = header.split(' ')[1];
+		const token = header.replace('Bearer ', '');
 		const decoded = jwt.verify(token, 'thisisasecret');
 		return decoded.userId;
 	}
