@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
+import { generateToken } from '../../utils/generateToken';
 import { getUserId } from '../../utils/getUserId';
 
 export const User = {
@@ -17,7 +17,7 @@ export const User = {
 			}
 		});
 
-		return { user, token: jwt.sign({ userId: user.id }, 'thisisasecret', { expiresIn: '7d' }) };
+		return { user, token: generateToken(user.id) };
 	},
 	async loginUser(parent, args, { prisma }, info) {
 		const user = await prisma.query.user({
@@ -36,7 +36,7 @@ export const User = {
 			throw new Error('Unable to login');
 		}
 
-		return { user, token: jwt.sign({ userId: user.id }, 'thisisasecret') };
+		return { user, token: generateToken(user.id) };
 	},
 	async updateUser(parent, args, { prisma, request }, info) {
 		const userId = getUserId(request);
