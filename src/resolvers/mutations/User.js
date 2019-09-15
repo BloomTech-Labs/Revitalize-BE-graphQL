@@ -17,7 +17,7 @@ export const User = {
 			}
 		});
 
-		return { user, token: jwt.sign({ userId: user.id }, 'thisisasecret') };
+		return { user, token: jwt.sign({ userId: user.id }, 'thisisasecret', { expiresIn: '7d' }) };
 	},
 	async loginUser(parent, args, { prisma }, info) {
 		const user = await prisma.query.user({
