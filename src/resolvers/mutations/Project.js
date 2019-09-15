@@ -25,7 +25,14 @@ export const Project = {
 			info
 		);
 	},
-	deleteProject(parent, args, { prisma }, info) {
+	async deleteProject(parent, args, { prisma, request }, info) {
+		const userId = getUserId(request);
+		const userProjectExists = await prisma.exists.Project({ id: args.id, user: { id: userId } });
+
+		if (!userProjectExists) {
+			throw new Error('Sorry, but there was an error while trying to delete that project');
+		}
+
 		return prisma.mutation.deleteProject(
 			{
 				where: {
@@ -35,7 +42,14 @@ export const Project = {
 			info
 		);
 	},
-	updateProject(parent, args, { prisma }, info) {
+	async updateProject(parent, args, { prisma }, info) {
+		const userId = getUserId(request);
+		const userProjectExists = await prisma.exists.Project({ id: args.id, user: { id: userId } });
+
+		if (!userProjectExists) {
+			throw new Error('Sorry, but there was an error while trying to delete that project');
+		}
+
 		return prisma.mutation.updateProject(
 			{
 				where: {

@@ -2,6 +2,7 @@
 type Query {
 	users(query: String): [User!]!
 	user(id: ID!): User!
+	me: User!
 	projects(query: String): [Project!]!
 	project(id: ID!): [Project!]!
 }
@@ -12,7 +13,7 @@ type Mutation {
 	loginUser(data: LoginUserInput): AuthPayload!
 	deleteUser: User!
 	updateUser(data: UpdateUserInput): User!
-	createProject(data: CreateProjectInput): Project!
+	createProject(data: CreateProjectInput!): Project!
 	deleteProject(id: ID!): Project!
 	updateProject(id: ID!, data: UpdateProjectInput): Project!
 }
@@ -29,7 +30,7 @@ type User {
 	id: ID!
 	firstName: String
 	lastName: String
-	email: String!
+	email: String
 	password: String!
 	profileImage: String
 	city: String

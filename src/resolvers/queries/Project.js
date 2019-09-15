@@ -1,4 +1,7 @@
+import { getUserId } from '../../utils/getUserId';
+
 export const Project = {
+	// WIP
 	async projects(parent, args, { prisma }, info) {
 		const opArgs = {};
 
