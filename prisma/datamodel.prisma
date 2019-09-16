@@ -3,7 +3,7 @@ type User {
   firstName: String
   lastName: String
   email: String! @unique
-  password: String!
+  password: String
   profileImage: String
   city: String
   zip: String
