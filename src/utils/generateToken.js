@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
 
 export function generateToken(userId) {
-	return jwt.sign({ userId }, 'thisisasecret', { expiresIn: '7d' });
+	return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '7d' });
 }
