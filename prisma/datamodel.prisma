@@ -1,9 +1,40 @@
-type User {
+type UserAccount {
   id: ID! @id
-  firstName: String
-  lastName: String
   email: String! @unique
   password: String
+  profile: UserProfile!
+}
+
+type GoogleAccount {
+  id: ID! @id
+  accountId: ID!
+  profile: UserProfile!
+}
+
+type FacebookAccount {
+  id: ID! @id
+  accountId: ID!
+  profile: UserProfile!
+}
+
+type TwitterAccount {
+  id: ID! @id
+  accountId: ID!
+  profile: UserProfile!
+}
+
+enum AccountType {
+  UserAccount
+  GoogleAccount
+  FacebookAccount
+  TwitterAccount
+}
+
+type UserProfile {
+  id: ID! @id
+  user: AccountType!
+  firstName: String
+  lastName: String
   profileImage: String
   city: String
   zip: String
@@ -15,7 +46,7 @@ type User {
 
 type Project {
   id: ID! @id
-  user: User!
+  profile: UserProfile!
   name: String!
   description: String!
   address: String!
