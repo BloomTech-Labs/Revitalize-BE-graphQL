@@ -7,7 +7,8 @@
     "start": "node dist/index.js",
     "heroku-postbuild": "babel src --out-dir dist --copy-files",
     "dev": "env-cmd -f ./config/dev.env nodemon src/index.js --ext js,graphql --exec babel-node",
-    "get-schema": "env-cmd -f ./config/dev.env graphql get-schema -p prisma"
+    "get-schema": "env-cmd -f ./config/dev.env graphql get-schema -p prisma",
+    "test": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,10 @@
     "graphql-cli": "^3.0.14",
     "graphql-yoga": "^1.18.3",
     "jsonwebtoken": "^8.5.1",
+    "passport": "^0.4.0",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-twitter-oauth2": "^2.1.1",
     "prisma-binding": "^2.3.16"
   },
   "devDependencies": {
