@@ -1,5 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Tue Sep 17 2019 09:33:26 GMT-0700 (Pacific Daylight Time)
+# timestamp: Tue Sep 17 2019 10:15:49 GMT-0700 (Pacific Daylight Time)
 
 enum AccountType {
   UserAccount
@@ -1595,7 +1595,7 @@ type UserAccount implements Node {
   id: ID!
   email: String!
   password: String
-  profile: UserProfile!
+  profile: UserProfile
 }
 
 """A connection to a list of items."""
@@ -1612,7 +1612,7 @@ input UserAccountCreateInput {
   id: ID
   email: String!
   password: String
-  profile: UserProfileCreateOneInput!
+  profile: UserProfileCreateOneInput
 }
 
 """An edge in a connection."""
@@ -1679,7 +1679,7 @@ input UserAccountSubscriptionWhereInput {
 input UserAccountUpdateInput {
   email: String
   password: String
-  profile: UserProfileUpdateOneRequiredInput
+  profile: UserProfileUpdateOneInput
 }
 
 input UserAccountUpdateManyMutationInput {
@@ -2012,6 +2012,15 @@ input UserProfileUpdateManyMutationInput {
   address: String
   state: String
   aptNumber: String
+}
+
+input UserProfileUpdateOneInput {
+  create: UserProfileCreateInput
+  connect: UserProfileWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: UserProfileUpdateDataInput
+  upsert: UserProfileUpsertNestedInput
 }
 
 input UserProfileUpdateOneRequiredInput {

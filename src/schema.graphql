@@ -36,7 +36,7 @@ type UserAccount {
   id: ID!
   email: String!
   password: String
-  profile: UserProfile!
+  profile: UserProfile
 }
 
 input UserAccountInput {
@@ -65,7 +65,7 @@ type TwitterAccount {
   profile: UserProfile!
 }
 
-type ExternalAccountAuthInput {
+input ExternalAccountAuthInput {
 	accountId: ID!
 }
 

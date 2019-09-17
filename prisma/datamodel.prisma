@@ -2,25 +2,21 @@ type UserAccount {
   id: ID! @id
   email: String! @unique
   password: String
-  profile: UserProfile!
 }
 
 type GoogleAccount {
   id: ID! @id
   accountId: ID! @unique
-  profile: UserProfile!
 }
 
 type FacebookAccount {
   id: ID! @id
   accountId: ID! @unique
-  profile: UserProfile!
 }
 
 type TwitterAccount {
   id: ID! @id
   accountId: ID! @unique
-  profile: UserProfile!
 }
 
 type UserProfile {

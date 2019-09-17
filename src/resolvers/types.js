@@ -1,6 +1,6 @@
 import { getUserId } from '../utils/getUserId';
 
-const User = {
+const UserProfile = {
 	email: {
 		fragment: 'fragment userId on User { id }',
 		resolve(parent, args, { request }, info) {
@@ -18,6 +18,6 @@ const User = {
 const Project = {};
 
 export const Types = {
-	User,
+	UserProfile,
 	Project
 };

@@ -3,18 +3,27 @@ import { getUserId } from '../../utils/getUserId';
 import { hashPassword } from '../../utils/hashPassword';
 import bcrypt from 'bcryptjs';
 
-export const User = {
+export const UserProfile = {
 	async createUser(parent, args, { prisma }, info) {
 		const password = await hashPassword(args.data.password);
+		const email = args.data.email
+		console.log(prisma.mutation)
 
-		const user = prisma.mutation.createUser({
+		const user = await prisma.mutation.createUserAccount({
 			data: {
-				...args.data,
+				email,
 				password
 			}
 		});
 
-		return { user, token: generateToken(user.id) };
+		const profile = await prisma.mutation.createUserProfile({
+			data: {
+				email,
+				user: UserAccountType
+			}
+		})
+
+		return { profile, token: generateToken(user.id) };
 	},
 	async loginUser(parent, args, { prisma }, info) {
 		const user = await prisma.query.user({
