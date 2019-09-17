@@ -23,16 +23,9 @@ type TwitterAccount {
   profile: UserProfile!
 }
 
-enum AccountType {
-  UserAccount
-  GoogleAccount
-  FacebookAccount
-  TwitterAccount
-}
-
 type UserProfile {
   id: ID! @id
-  user: AccountType!
+  userAccountId: ID!
   email: String! @unique
   firstName: String
   lastName: String
@@ -55,5 +48,5 @@ type Project {
   zip: String!
   city: String!
   goalAmount: Float!
-  amountFunded: Float!
+  amountFunded: Float! @default(value: 0)
 }
