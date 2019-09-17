@@ -12,9 +12,7 @@ type Mutation {
 	# Auth
 	createUser(data: UserAccountInput!): AuthPayload!
 	loginUser(data: UserAccountInput!): AuthPayload!
-	loginGoogleUser(data: ExternalAccountAuthInput!): AuthPayload!
-	loginFacebookUser(data: ExternalAccountAuthInput!): AuthPayload!
-	loginTwitterUser(data: ExternalAccountAuthInput!): AuthPayload!
+	loginExternalAccount(data: ExternalAccountAuthInput!): AuthPayload!
 
 	# User
 	updateUser(data: UpdateUserInput): UserAccount!
@@ -36,7 +34,6 @@ type UserAccount {
   id: ID!
   email: String!
   password: String
-  profile: UserProfile
 }
 
 input UserAccountInput {
@@ -44,25 +41,10 @@ input UserAccountInput {
 	password: String!
 }
 
-# GoogleAccount
-type GoogleAccount {
+# ExternalAccount
+type ExternalAccount {
   id: ID!
   accountId: ID!
-  profile: UserProfile!
-}
-
-# FacebookAccount
-type FacebookAccount {
-  id: ID!
-  accountId: ID!
-  profile: UserProfile!
-}
-
-# TwitterAccount
-type TwitterAccount {
-  id: ID!
-  accountId: ID!
-  profile: UserProfile!
 }
 
 input ExternalAccountAuthInput {
@@ -72,7 +54,7 @@ input ExternalAccountAuthInput {
 # User
 type UserProfile {
   id: ID!
-  user: AccountType!
+  userAccountId: ID!
   email: String!
   firstName: String
   lastName: String
@@ -165,16 +147,8 @@ enum MutationType {
 	DELETED
 }
 
-enum AccountType {
-  UserAccount
-  GoogleAccount
-  FacebookAccount
-  TwitterAccount
-}
-
-
 # Returned auth payload type
 type AuthPayload {
 	token: String!
-	user: UserProfile!
+	profile: UserProfile!
 }

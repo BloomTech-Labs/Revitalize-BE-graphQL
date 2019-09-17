@@ -4,17 +4,7 @@ type UserAccount {
   password: String
 }
 
-type GoogleAccount {
-  id: ID! @id
-  accountId: ID! @unique
-}
-
-type FacebookAccount {
-  id: ID! @id
-  accountId: ID! @unique
-}
-
-type TwitterAccount {
+type ExternalAccount {
   id: ID! @id
   accountId: ID! @unique
 }

@@ -1,19 +1,11 @@
 # source: http://localhost:4466
-# timestamp: Tue Sep 17 2019 12:05:56 GMT-0700 (Pacific Daylight Time)
+# timestamp: Tue Sep 17 2019 12:16:53 GMT-0700 (Pacific Daylight Time)
 
-type AggregateFacebookAccount {
-  count: Int!
-}
-
-type AggregateGoogleAccount {
+type AggregateExternalAccount {
   count: Int!
 }
 
 type AggregateProject {
-  count: Int!
-}
-
-type AggregateTwitterAccount {
   count: Int!
 }
 
@@ -30,63 +22,63 @@ type BatchPayload {
   count: Long!
 }
 
-type FacebookAccount implements Node {
+type ExternalAccount implements Node {
   id: ID!
   accountId: ID!
 }
 
 """A connection to a list of items."""
-type FacebookAccountConnection {
+type ExternalAccountConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [FacebookAccountEdge]!
-  aggregate: AggregateFacebookAccount!
+  edges: [ExternalAccountEdge]!
+  aggregate: AggregateExternalAccount!
 }
 
-input FacebookAccountCreateInput {
+input ExternalAccountCreateInput {
   id: ID
   accountId: ID!
 }
 
 """An edge in a connection."""
-type FacebookAccountEdge {
+type ExternalAccountEdge {
   """The item at the end of the edge."""
-  node: FacebookAccount!
+  node: ExternalAccount!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum FacebookAccountOrderByInput {
+enum ExternalAccountOrderByInput {
   id_ASC
   id_DESC
   accountId_ASC
   accountId_DESC
 }
 
-type FacebookAccountPreviousValues {
+type ExternalAccountPreviousValues {
   id: ID!
   accountId: ID!
 }
 
-type FacebookAccountSubscriptionPayload {
+type ExternalAccountSubscriptionPayload {
   mutation: MutationType!
-  node: FacebookAccount
+  node: ExternalAccount
   updatedFields: [String!]
-  previousValues: FacebookAccountPreviousValues
+  previousValues: ExternalAccountPreviousValues
 }
 
-input FacebookAccountSubscriptionWhereInput {
+input ExternalAccountSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [FacebookAccountSubscriptionWhereInput!]
+  AND: [ExternalAccountSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [FacebookAccountSubscriptionWhereInput!]
+  OR: [ExternalAccountSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [FacebookAccountSubscriptionWhereInput!]
+  NOT: [ExternalAccountSubscriptionWhereInput!]
 
   """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
@@ -105,26 +97,26 @@ input FacebookAccountSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: FacebookAccountWhereInput
+  node: ExternalAccountWhereInput
 }
 
-input FacebookAccountUpdateInput {
+input ExternalAccountUpdateInput {
   accountId: ID
 }
 
-input FacebookAccountUpdateManyMutationInput {
+input ExternalAccountUpdateManyMutationInput {
   accountId: ID
 }
 
-input FacebookAccountWhereInput {
+input ExternalAccountWhereInput {
   """Logical AND on all given filters."""
-  AND: [FacebookAccountWhereInput!]
+  AND: [ExternalAccountWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [FacebookAccountWhereInput!]
+  OR: [ExternalAccountWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [FacebookAccountWhereInput!]
+  NOT: [ExternalAccountWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -207,189 +199,7 @@ input FacebookAccountWhereInput {
   accountId_not_ends_with: ID
 }
 
-input FacebookAccountWhereUniqueInput {
-  id: ID
-  accountId: ID
-}
-
-type GoogleAccount implements Node {
-  id: ID!
-  accountId: ID!
-}
-
-"""A connection to a list of items."""
-type GoogleAccountConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [GoogleAccountEdge]!
-  aggregate: AggregateGoogleAccount!
-}
-
-input GoogleAccountCreateInput {
-  id: ID
-  accountId: ID!
-}
-
-"""An edge in a connection."""
-type GoogleAccountEdge {
-  """The item at the end of the edge."""
-  node: GoogleAccount!
-
-  """A cursor for use in pagination."""
-  cursor: String!
-}
-
-enum GoogleAccountOrderByInput {
-  id_ASC
-  id_DESC
-  accountId_ASC
-  accountId_DESC
-}
-
-type GoogleAccountPreviousValues {
-  id: ID!
-  accountId: ID!
-}
-
-type GoogleAccountSubscriptionPayload {
-  mutation: MutationType!
-  node: GoogleAccount
-  updatedFields: [String!]
-  previousValues: GoogleAccountPreviousValues
-}
-
-input GoogleAccountSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [GoogleAccountSubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [GoogleAccountSubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [GoogleAccountSubscriptionWhereInput!]
-
-  """The subscription event gets dispatched when it's listed in mutation_in"""
-  mutation_in: [MutationType!]
-
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
-
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
-
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: GoogleAccountWhereInput
-}
-
-input GoogleAccountUpdateInput {
-  accountId: ID
-}
-
-input GoogleAccountUpdateManyMutationInput {
-  accountId: ID
-}
-
-input GoogleAccountWhereInput {
-  """Logical AND on all given filters."""
-  AND: [GoogleAccountWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [GoogleAccountWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [GoogleAccountWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  accountId: ID
-
-  """All values that are not equal to given value."""
-  accountId_not: ID
-
-  """All values that are contained in given list."""
-  accountId_in: [ID!]
-
-  """All values that are not contained in given list."""
-  accountId_not_in: [ID!]
-
-  """All values less than the given value."""
-  accountId_lt: ID
-
-  """All values less than or equal the given value."""
-  accountId_lte: ID
-
-  """All values greater than the given value."""
-  accountId_gt: ID
-
-  """All values greater than or equal the given value."""
-  accountId_gte: ID
-
-  """All values containing the given string."""
-  accountId_contains: ID
-
-  """All values not containing the given string."""
-  accountId_not_contains: ID
-
-  """All values starting with the given string."""
-  accountId_starts_with: ID
-
-  """All values not starting with the given string."""
-  accountId_not_starts_with: ID
-
-  """All values ending with the given string."""
-  accountId_ends_with: ID
-
-  """All values not ending with the given string."""
-  accountId_not_ends_with: ID
-}
-
-input GoogleAccountWhereUniqueInput {
+input ExternalAccountWhereUniqueInput {
   id: ID
   accountId: ID
 }
@@ -405,39 +215,27 @@ scalar Long
 
 type Mutation {
   createUserAccount(data: UserAccountCreateInput!): UserAccount!
-  createGoogleAccount(data: GoogleAccountCreateInput!): GoogleAccount!
-  createFacebookAccount(data: FacebookAccountCreateInput!): FacebookAccount!
-  createTwitterAccount(data: TwitterAccountCreateInput!): TwitterAccount!
+  createExternalAccount(data: ExternalAccountCreateInput!): ExternalAccount!
   createUserProfile(data: UserProfileCreateInput!): UserProfile!
   createProject(data: ProjectCreateInput!): Project!
   updateUserAccount(data: UserAccountUpdateInput!, where: UserAccountWhereUniqueInput!): UserAccount
-  updateGoogleAccount(data: GoogleAccountUpdateInput!, where: GoogleAccountWhereUniqueInput!): GoogleAccount
-  updateFacebookAccount(data: FacebookAccountUpdateInput!, where: FacebookAccountWhereUniqueInput!): FacebookAccount
-  updateTwitterAccount(data: TwitterAccountUpdateInput!, where: TwitterAccountWhereUniqueInput!): TwitterAccount
+  updateExternalAccount(data: ExternalAccountUpdateInput!, where: ExternalAccountWhereUniqueInput!): ExternalAccount
   updateUserProfile(data: UserProfileUpdateInput!, where: UserProfileWhereUniqueInput!): UserProfile
   updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
   deleteUserAccount(where: UserAccountWhereUniqueInput!): UserAccount
-  deleteGoogleAccount(where: GoogleAccountWhereUniqueInput!): GoogleAccount
-  deleteFacebookAccount(where: FacebookAccountWhereUniqueInput!): FacebookAccount
-  deleteTwitterAccount(where: TwitterAccountWhereUniqueInput!): TwitterAccount
+  deleteExternalAccount(where: ExternalAccountWhereUniqueInput!): ExternalAccount
   deleteUserProfile(where: UserProfileWhereUniqueInput!): UserProfile
   deleteProject(where: ProjectWhereUniqueInput!): Project
   upsertUserAccount(where: UserAccountWhereUniqueInput!, create: UserAccountCreateInput!, update: UserAccountUpdateInput!): UserAccount!
-  upsertGoogleAccount(where: GoogleAccountWhereUniqueInput!, create: GoogleAccountCreateInput!, update: GoogleAccountUpdateInput!): GoogleAccount!
-  upsertFacebookAccount(where: FacebookAccountWhereUniqueInput!, create: FacebookAccountCreateInput!, update: FacebookAccountUpdateInput!): FacebookAccount!
-  upsertTwitterAccount(where: TwitterAccountWhereUniqueInput!, create: TwitterAccountCreateInput!, update: TwitterAccountUpdateInput!): TwitterAccount!
+  upsertExternalAccount(where: ExternalAccountWhereUniqueInput!, create: ExternalAccountCreateInput!, update: ExternalAccountUpdateInput!): ExternalAccount!
   upsertUserProfile(where: UserProfileWhereUniqueInput!, create: UserProfileCreateInput!, update: UserProfileUpdateInput!): UserProfile!
   upsertProject(where: ProjectWhereUniqueInput!, create: ProjectCreateInput!, update: ProjectUpdateInput!): Project!
   updateManyUserAccounts(data: UserAccountUpdateManyMutationInput!, where: UserAccountWhereInput): BatchPayload!
-  updateManyGoogleAccounts(data: GoogleAccountUpdateManyMutationInput!, where: GoogleAccountWhereInput): BatchPayload!
-  updateManyFacebookAccounts(data: FacebookAccountUpdateManyMutationInput!, where: FacebookAccountWhereInput): BatchPayload!
-  updateManyTwitterAccounts(data: TwitterAccountUpdateManyMutationInput!, where: TwitterAccountWhereInput): BatchPayload!
+  updateManyExternalAccounts(data: ExternalAccountUpdateManyMutationInput!, where: ExternalAccountWhereInput): BatchPayload!
   updateManyUserProfiles(data: UserProfileUpdateManyMutationInput!, where: UserProfileWhereInput): BatchPayload!
   updateManyProjects(data: ProjectUpdateManyMutationInput!, where: ProjectWhereInput): BatchPayload!
   deleteManyUserAccounts(where: UserAccountWhereInput): BatchPayload!
-  deleteManyGoogleAccounts(where: GoogleAccountWhereInput): BatchPayload!
-  deleteManyFacebookAccounts(where: FacebookAccountWhereInput): BatchPayload!
-  deleteManyTwitterAccounts(where: TwitterAccountWhereInput): BatchPayload!
+  deleteManyExternalAccounts(where: ExternalAccountWhereInput): BatchPayload!
   deleteManyUserProfiles(where: UserProfileWhereInput): BatchPayload!
   deleteManyProjects(where: ProjectWhereInput): BatchPayload!
   executeRaw(database: PrismaDatabase, query: String!): Json!
@@ -1356,21 +1154,15 @@ input ProjectWhereUniqueInput {
 
 type Query {
   userAccounts(where: UserAccountWhereInput, orderBy: UserAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserAccount]!
-  googleAccounts(where: GoogleAccountWhereInput, orderBy: GoogleAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GoogleAccount]!
-  facebookAccounts(where: FacebookAccountWhereInput, orderBy: FacebookAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FacebookAccount]!
-  twitterAccounts(where: TwitterAccountWhereInput, orderBy: TwitterAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [TwitterAccount]!
+  externalAccounts(where: ExternalAccountWhereInput, orderBy: ExternalAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ExternalAccount]!
   userProfiles(where: UserProfileWhereInput, orderBy: UserProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserProfile]!
   projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
   userAccount(where: UserAccountWhereUniqueInput!): UserAccount
-  googleAccount(where: GoogleAccountWhereUniqueInput!): GoogleAccount
-  facebookAccount(where: FacebookAccountWhereUniqueInput!): FacebookAccount
-  twitterAccount(where: TwitterAccountWhereUniqueInput!): TwitterAccount
+  externalAccount(where: ExternalAccountWhereUniqueInput!): ExternalAccount
   userProfile(where: UserProfileWhereUniqueInput!): UserProfile
   project(where: ProjectWhereUniqueInput!): Project
   userAccountsConnection(where: UserAccountWhereInput, orderBy: UserAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserAccountConnection!
-  googleAccountsConnection(where: GoogleAccountWhereInput, orderBy: GoogleAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GoogleAccountConnection!
-  facebookAccountsConnection(where: FacebookAccountWhereInput, orderBy: FacebookAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FacebookAccountConnection!
-  twitterAccountsConnection(where: TwitterAccountWhereInput, orderBy: TwitterAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TwitterAccountConnection!
+  externalAccountsConnection(where: ExternalAccountWhereInput, orderBy: ExternalAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExternalAccountConnection!
   userProfilesConnection(where: UserProfileWhereInput, orderBy: UserProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserProfileConnection!
   projectsConnection(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectConnection!
 
@@ -1383,193 +1175,9 @@ type Query {
 
 type Subscription {
   userAccount(where: UserAccountSubscriptionWhereInput): UserAccountSubscriptionPayload
-  googleAccount(where: GoogleAccountSubscriptionWhereInput): GoogleAccountSubscriptionPayload
-  facebookAccount(where: FacebookAccountSubscriptionWhereInput): FacebookAccountSubscriptionPayload
-  twitterAccount(where: TwitterAccountSubscriptionWhereInput): TwitterAccountSubscriptionPayload
+  externalAccount(where: ExternalAccountSubscriptionWhereInput): ExternalAccountSubscriptionPayload
   userProfile(where: UserProfileSubscriptionWhereInput): UserProfileSubscriptionPayload
   project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
-}
-
-type TwitterAccount implements Node {
-  id: ID!
-  accountId: ID!
-}
-
-"""A connection to a list of items."""
-type TwitterAccountConnection {
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """A list of edges."""
-  edges: [TwitterAccountEdge]!
-  aggregate: AggregateTwitterAccount!
-}
-
-input TwitterAccountCreateInput {
-  id: ID
-  accountId: ID!
-}
-
-"""An edge in a connection."""
-type TwitterAccountEdge {
-  """The item at the end of the edge."""
-  node: TwitterAccount!
-
-  """A cursor for use in pagination."""
-  cursor: String!
-}
-
-enum TwitterAccountOrderByInput {
-  id_ASC
-  id_DESC
-  accountId_ASC
-  accountId_DESC
-}
-
-type TwitterAccountPreviousValues {
-  id: ID!
-  accountId: ID!
-}
-
-type TwitterAccountSubscriptionPayload {
-  mutation: MutationType!
-  node: TwitterAccount
-  updatedFields: [String!]
-  previousValues: TwitterAccountPreviousValues
-}
-
-input TwitterAccountSubscriptionWhereInput {
-  """Logical AND on all given filters."""
-  AND: [TwitterAccountSubscriptionWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [TwitterAccountSubscriptionWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [TwitterAccountSubscriptionWhereInput!]
-
-  """The subscription event gets dispatched when it's listed in mutation_in"""
-  mutation_in: [MutationType!]
-
-  """
-  The subscription event gets only dispatched when one of the updated fields names is included in this list
-  """
-  updatedFields_contains: String
-
-  """
-  The subscription event gets only dispatched when all of the field names included in this list have been updated
-  """
-  updatedFields_contains_every: [String!]
-
-  """
-  The subscription event gets only dispatched when some of the field names included in this list have been updated
-  """
-  updatedFields_contains_some: [String!]
-  node: TwitterAccountWhereInput
-}
-
-input TwitterAccountUpdateInput {
-  accountId: ID
-}
-
-input TwitterAccountUpdateManyMutationInput {
-  accountId: ID
-}
-
-input TwitterAccountWhereInput {
-  """Logical AND on all given filters."""
-  AND: [TwitterAccountWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [TwitterAccountWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [TwitterAccountWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  accountId: ID
-
-  """All values that are not equal to given value."""
-  accountId_not: ID
-
-  """All values that are contained in given list."""
-  accountId_in: [ID!]
-
-  """All values that are not contained in given list."""
-  accountId_not_in: [ID!]
-
-  """All values less than the given value."""
-  accountId_lt: ID
-
-  """All values less than or equal the given value."""
-  accountId_lte: ID
-
-  """All values greater than the given value."""
-  accountId_gt: ID
-
-  """All values greater than or equal the given value."""
-  accountId_gte: ID
-
-  """All values containing the given string."""
-  accountId_contains: ID
-
-  """All values not containing the given string."""
-  accountId_not_contains: ID
-
-  """All values starting with the given string."""
-  accountId_starts_with: ID
-
-  """All values not starting with the given string."""
-  accountId_not_starts_with: ID
-
-  """All values ending with the given string."""
-  accountId_ends_with: ID
-
-  """All values not ending with the given string."""
-  accountId_not_ends_with: ID
-}
-
-input TwitterAccountWhereUniqueInput {
-  id: ID
-  accountId: ID
 }
 
 type UserAccount implements Node {
