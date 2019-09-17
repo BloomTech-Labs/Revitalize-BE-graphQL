@@ -18,22 +18,22 @@ export const server = new GraphQLServer({
 	fragmentReplacements
 });
 
-server.express.use(passport.initialize());
+// server.express.use(passport.initialize());
 
-server.express.get(
-	'/auth/google',
-	passport.authenticate('google', {
-		scope: ['profile', 'email']
-	})
-);
+// server.express.get(
+// 	'/auth/google',
+// 	passport.authenticate('google', {
+// 		scope: ['profile', 'email']
+// 	})
+// );
 
-server.express.get(
-	'/auth/google/callback',
-	passport.authenticate('google', { failureRedirect: '/login' }),
-	(req, res) => {
-		res.redirect('/');
-	}
-);
+// server.express.get(
+// 	'/auth/google/callback',
+// 	passport.authenticate('google', { failureRedirect: '/login' }),
+// 	(req, res) => {
+// 		res.redirect('/');
+// 	}
+// );
 
 server.start({ port: process.env.PORT }, () => {
 	console.log(`GraphQL server is now running http://localhost:${process.env.PORT}`);

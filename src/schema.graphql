@@ -10,15 +10,15 @@ type Query {
 # Mutations
 type Mutation {
 	# Auth
-	createUser(data: CreateUserInput!): AuthPayload!
-	loginUser(data: LoginUserInput!): AuthPayload!
-	loginGoogleUser(data: GoogleAccountInput!): AuthPayload!
-	loginFacebookUser(data: FacebookAccountInput!): AuthPayload!
-	loginTwitterUser(data: TwitterAccountInput!): AuthPayload!
+	createUser(data: UserAccountInput!): AuthPayload!
+	loginUser(data: UserAccountInput!): AuthPayload!
+	loginGoogleUser(data: ExternalAccountAuthInput!): AuthPayload!
+	loginFacebookUser(data: ExternalAccountAuthInput!): AuthPayload!
+	loginTwitterUser(data: ExternalAccountAuthInput!): AuthPayload!
 
 	# User
-	updateUser(data: UpdateUserInput): User!
-	deleteUser: User!
+	updateUser(data: UpdateUserInput): UserAccount!
+	deleteUser: UserAccount!
 
 	# Profile
 	createProfile(date: CreateUserProfileInput!): UserProfile!
@@ -39,7 +39,7 @@ type UserAccount {
   profile: UserProfile!
 }
 
-input LoginUserAccountInput {
+input UserAccountInput {
 	email: String!
 	password: String!
 }
@@ -65,6 +65,10 @@ type TwitterAccount {
   profile: UserProfile!
 }
 
+type ExternalAccountAuthInput {
+	accountId: ID!
+}
+
 # User
 type UserProfile {
   id: ID!
@@ -85,6 +89,19 @@ input CreateUserProfileInput {
 	firstName: String
 	lastName: String
 	email: String!
+	profileImage: String
+	city: String
+	zip: String
+	address: String
+	state: String
+	aptNumber: String
+}
+
+
+input UpdateUserProfileInput {
+	firstName: String
+	lastName: String
+	email: String
 	profileImage: String
 	city: String
 	zip: String
