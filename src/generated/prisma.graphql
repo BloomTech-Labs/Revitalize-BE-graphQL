@@ -1,12 +1,5 @@
 # source: http://localhost:4466
-# timestamp: Tue Sep 17 2019 10:15:49 GMT-0700 (Pacific Daylight Time)
-
-enum AccountType {
-  UserAccount
-  GoogleAccount
-  FacebookAccount
-  TwitterAccount
-}
+# timestamp: Tue Sep 17 2019 12:05:56 GMT-0700 (Pacific Daylight Time)
 
 type AggregateFacebookAccount {
   count: Int!
@@ -40,7 +33,6 @@ type BatchPayload {
 type FacebookAccount implements Node {
   id: ID!
   accountId: ID!
-  profile: UserProfile!
 }
 
 """A connection to a list of items."""
@@ -56,7 +48,6 @@ type FacebookAccountConnection {
 input FacebookAccountCreateInput {
   id: ID
   accountId: ID!
-  profile: UserProfileCreateOneInput!
 }
 
 """An edge in a connection."""
@@ -119,7 +110,6 @@ input FacebookAccountSubscriptionWhereInput {
 
 input FacebookAccountUpdateInput {
   accountId: ID
-  profile: UserProfileUpdateOneRequiredInput
 }
 
 input FacebookAccountUpdateManyMutationInput {
@@ -215,7 +205,6 @@ input FacebookAccountWhereInput {
 
   """All values not ending with the given string."""
   accountId_not_ends_with: ID
-  profile: UserProfileWhereInput
 }
 
 input FacebookAccountWhereUniqueInput {
@@ -226,7 +215,6 @@ input FacebookAccountWhereUniqueInput {
 type GoogleAccount implements Node {
   id: ID!
   accountId: ID!
-  profile: UserProfile!
 }
 
 """A connection to a list of items."""
@@ -242,7 +230,6 @@ type GoogleAccountConnection {
 input GoogleAccountCreateInput {
   id: ID
   accountId: ID!
-  profile: UserProfileCreateOneInput!
 }
 
 """An edge in a connection."""
@@ -305,7 +292,6 @@ input GoogleAccountSubscriptionWhereInput {
 
 input GoogleAccountUpdateInput {
   accountId: ID
-  profile: UserProfileUpdateOneRequiredInput
 }
 
 input GoogleAccountUpdateManyMutationInput {
@@ -401,7 +387,6 @@ input GoogleAccountWhereInput {
 
   """All values not ending with the given string."""
   accountId_not_ends_with: ID
-  profile: UserProfileWhereInput
 }
 
 input GoogleAccountWhereUniqueInput {
@@ -423,38 +408,38 @@ type Mutation {
   createGoogleAccount(data: GoogleAccountCreateInput!): GoogleAccount!
   createFacebookAccount(data: FacebookAccountCreateInput!): FacebookAccount!
   createTwitterAccount(data: TwitterAccountCreateInput!): TwitterAccount!
-  createProject(data: ProjectCreateInput!): Project!
   createUserProfile(data: UserProfileCreateInput!): UserProfile!
+  createProject(data: ProjectCreateInput!): Project!
   updateUserAccount(data: UserAccountUpdateInput!, where: UserAccountWhereUniqueInput!): UserAccount
   updateGoogleAccount(data: GoogleAccountUpdateInput!, where: GoogleAccountWhereUniqueInput!): GoogleAccount
   updateFacebookAccount(data: FacebookAccountUpdateInput!, where: FacebookAccountWhereUniqueInput!): FacebookAccount
   updateTwitterAccount(data: TwitterAccountUpdateInput!, where: TwitterAccountWhereUniqueInput!): TwitterAccount
-  updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
   updateUserProfile(data: UserProfileUpdateInput!, where: UserProfileWhereUniqueInput!): UserProfile
+  updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
   deleteUserAccount(where: UserAccountWhereUniqueInput!): UserAccount
   deleteGoogleAccount(where: GoogleAccountWhereUniqueInput!): GoogleAccount
   deleteFacebookAccount(where: FacebookAccountWhereUniqueInput!): FacebookAccount
   deleteTwitterAccount(where: TwitterAccountWhereUniqueInput!): TwitterAccount
-  deleteProject(where: ProjectWhereUniqueInput!): Project
   deleteUserProfile(where: UserProfileWhereUniqueInput!): UserProfile
+  deleteProject(where: ProjectWhereUniqueInput!): Project
   upsertUserAccount(where: UserAccountWhereUniqueInput!, create: UserAccountCreateInput!, update: UserAccountUpdateInput!): UserAccount!
   upsertGoogleAccount(where: GoogleAccountWhereUniqueInput!, create: GoogleAccountCreateInput!, update: GoogleAccountUpdateInput!): GoogleAccount!
   upsertFacebookAccount(where: FacebookAccountWhereUniqueInput!, create: FacebookAccountCreateInput!, update: FacebookAccountUpdateInput!): FacebookAccount!
   upsertTwitterAccount(where: TwitterAccountWhereUniqueInput!, create: TwitterAccountCreateInput!, update: TwitterAccountUpdateInput!): TwitterAccount!
-  upsertProject(where: ProjectWhereUniqueInput!, create: ProjectCreateInput!, update: ProjectUpdateInput!): Project!
   upsertUserProfile(where: UserProfileWhereUniqueInput!, create: UserProfileCreateInput!, update: UserProfileUpdateInput!): UserProfile!
+  upsertProject(where: ProjectWhereUniqueInput!, create: ProjectCreateInput!, update: ProjectUpdateInput!): Project!
   updateManyUserAccounts(data: UserAccountUpdateManyMutationInput!, where: UserAccountWhereInput): BatchPayload!
   updateManyGoogleAccounts(data: GoogleAccountUpdateManyMutationInput!, where: GoogleAccountWhereInput): BatchPayload!
   updateManyFacebookAccounts(data: FacebookAccountUpdateManyMutationInput!, where: FacebookAccountWhereInput): BatchPayload!
   updateManyTwitterAccounts(data: TwitterAccountUpdateManyMutationInput!, where: TwitterAccountWhereInput): BatchPayload!
-  updateManyProjects(data: ProjectUpdateManyMutationInput!, where: ProjectWhereInput): BatchPayload!
   updateManyUserProfiles(data: UserProfileUpdateManyMutationInput!, where: UserProfileWhereInput): BatchPayload!
+  updateManyProjects(data: ProjectUpdateManyMutationInput!, where: ProjectWhereInput): BatchPayload!
   deleteManyUserAccounts(where: UserAccountWhereInput): BatchPayload!
   deleteManyGoogleAccounts(where: GoogleAccountWhereInput): BatchPayload!
   deleteManyFacebookAccounts(where: FacebookAccountWhereInput): BatchPayload!
   deleteManyTwitterAccounts(where: TwitterAccountWhereInput): BatchPayload!
-  deleteManyProjects(where: ProjectWhereInput): BatchPayload!
   deleteManyUserProfiles(where: UserProfileWhereInput): BatchPayload!
+  deleteManyProjects(where: ProjectWhereInput): BatchPayload!
   executeRaw(database: PrismaDatabase, query: String!): Json!
 }
 
@@ -521,7 +506,7 @@ input ProjectCreateInput {
   zip: String!
   city: String!
   goalAmount: Float!
-  amountFunded: Float!
+  amountFunded: Float
   profile: UserProfileCreateOneWithoutProjectsInput!
 }
 
@@ -539,7 +524,7 @@ input ProjectCreateWithoutProfileInput {
   zip: String!
   city: String!
   goalAmount: Float!
-  amountFunded: Float!
+  amountFunded: Float
 }
 
 """An edge in a connection."""
@@ -1374,20 +1359,20 @@ type Query {
   googleAccounts(where: GoogleAccountWhereInput, orderBy: GoogleAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [GoogleAccount]!
   facebookAccounts(where: FacebookAccountWhereInput, orderBy: FacebookAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [FacebookAccount]!
   twitterAccounts(where: TwitterAccountWhereInput, orderBy: TwitterAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [TwitterAccount]!
-  projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
   userProfiles(where: UserProfileWhereInput, orderBy: UserProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserProfile]!
+  projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
   userAccount(where: UserAccountWhereUniqueInput!): UserAccount
   googleAccount(where: GoogleAccountWhereUniqueInput!): GoogleAccount
   facebookAccount(where: FacebookAccountWhereUniqueInput!): FacebookAccount
   twitterAccount(where: TwitterAccountWhereUniqueInput!): TwitterAccount
-  project(where: ProjectWhereUniqueInput!): Project
   userProfile(where: UserProfileWhereUniqueInput!): UserProfile
+  project(where: ProjectWhereUniqueInput!): Project
   userAccountsConnection(where: UserAccountWhereInput, orderBy: UserAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserAccountConnection!
   googleAccountsConnection(where: GoogleAccountWhereInput, orderBy: GoogleAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GoogleAccountConnection!
   facebookAccountsConnection(where: FacebookAccountWhereInput, orderBy: FacebookAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): FacebookAccountConnection!
   twitterAccountsConnection(where: TwitterAccountWhereInput, orderBy: TwitterAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TwitterAccountConnection!
-  projectsConnection(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectConnection!
   userProfilesConnection(where: UserProfileWhereInput, orderBy: UserProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserProfileConnection!
+  projectsConnection(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -1401,14 +1386,13 @@ type Subscription {
   googleAccount(where: GoogleAccountSubscriptionWhereInput): GoogleAccountSubscriptionPayload
   facebookAccount(where: FacebookAccountSubscriptionWhereInput): FacebookAccountSubscriptionPayload
   twitterAccount(where: TwitterAccountSubscriptionWhereInput): TwitterAccountSubscriptionPayload
-  project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
   userProfile(where: UserProfileSubscriptionWhereInput): UserProfileSubscriptionPayload
+  project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
 }
 
 type TwitterAccount implements Node {
   id: ID!
   accountId: ID!
-  profile: UserProfile!
 }
 
 """A connection to a list of items."""
@@ -1424,7 +1408,6 @@ type TwitterAccountConnection {
 input TwitterAccountCreateInput {
   id: ID
   accountId: ID!
-  profile: UserProfileCreateOneInput!
 }
 
 """An edge in a connection."""
@@ -1487,7 +1470,6 @@ input TwitterAccountSubscriptionWhereInput {
 
 input TwitterAccountUpdateInput {
   accountId: ID
-  profile: UserProfileUpdateOneRequiredInput
 }
 
 input TwitterAccountUpdateManyMutationInput {
@@ -1583,7 +1565,6 @@ input TwitterAccountWhereInput {
 
   """All values not ending with the given string."""
   accountId_not_ends_with: ID
-  profile: UserProfileWhereInput
 }
 
 input TwitterAccountWhereUniqueInput {
@@ -1595,7 +1576,6 @@ type UserAccount implements Node {
   id: ID!
   email: String!
   password: String
-  profile: UserProfile
 }
 
 """A connection to a list of items."""
@@ -1612,7 +1592,6 @@ input UserAccountCreateInput {
   id: ID
   email: String!
   password: String
-  profile: UserProfileCreateOneInput
 }
 
 """An edge in a connection."""
@@ -1679,7 +1658,6 @@ input UserAccountSubscriptionWhereInput {
 input UserAccountUpdateInput {
   email: String
   password: String
-  profile: UserProfileUpdateOneInput
 }
 
 input UserAccountUpdateManyMutationInput {
@@ -1816,7 +1794,6 @@ input UserAccountWhereInput {
 
   """All values not ending with the given string."""
   password_not_ends_with: String
-  profile: UserProfileWhereInput
 }
 
 input UserAccountWhereUniqueInput {
@@ -1826,7 +1803,7 @@ input UserAccountWhereUniqueInput {
 
 type UserProfile implements Node {
   id: ID!
-  user: AccountType!
+  userAccountId: ID!
   email: String!
   firstName: String
   lastName: String
@@ -1851,7 +1828,7 @@ type UserProfileConnection {
 
 input UserProfileCreateInput {
   id: ID
-  user: AccountType!
+  userAccountId: ID!
   email: String!
   firstName: String
   lastName: String
@@ -1864,11 +1841,6 @@ input UserProfileCreateInput {
   projects: ProjectCreateManyWithoutProfileInput
 }
 
-input UserProfileCreateOneInput {
-  create: UserProfileCreateInput
-  connect: UserProfileWhereUniqueInput
-}
-
 input UserProfileCreateOneWithoutProjectsInput {
   create: UserProfileCreateWithoutProjectsInput
   connect: UserProfileWhereUniqueInput
@@ -1876,7 +1848,7 @@ input UserProfileCreateOneWithoutProjectsInput {
 
 input UserProfileCreateWithoutProjectsInput {
   id: ID
-  user: AccountType!
+  userAccountId: ID!
   email: String!
   firstName: String
   lastName: String
@@ -1900,8 +1872,8 @@ type UserProfileEdge {
 enum UserProfileOrderByInput {
   id_ASC
   id_DESC
-  user_ASC
-  user_DESC
+  userAccountId_ASC
+  userAccountId_DESC
   email_ASC
   email_DESC
   firstName_ASC
@@ -1924,7 +1896,7 @@ enum UserProfileOrderByInput {
 
 type UserProfilePreviousValues {
   id: ID!
-  user: AccountType!
+  userAccountId: ID!
   email: String!
   firstName: String
   lastName: String
@@ -1973,22 +1945,8 @@ input UserProfileSubscriptionWhereInput {
   node: UserProfileWhereInput
 }
 
-input UserProfileUpdateDataInput {
-  user: AccountType
-  email: String
-  firstName: String
-  lastName: String
-  profileImage: String
-  city: String
-  zip: String
-  address: String
-  state: String
-  aptNumber: String
-  projects: ProjectUpdateManyWithoutProfileInput
-}
-
 input UserProfileUpdateInput {
-  user: AccountType
+  userAccountId: ID
   email: String
   firstName: String
   lastName: String
@@ -2002,7 +1960,7 @@ input UserProfileUpdateInput {
 }
 
 input UserProfileUpdateManyMutationInput {
-  user: AccountType
+  userAccountId: ID
   email: String
   firstName: String
   lastName: String
@@ -2012,22 +1970,6 @@ input UserProfileUpdateManyMutationInput {
   address: String
   state: String
   aptNumber: String
-}
-
-input UserProfileUpdateOneInput {
-  create: UserProfileCreateInput
-  connect: UserProfileWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
-  update: UserProfileUpdateDataInput
-  upsert: UserProfileUpsertNestedInput
-}
-
-input UserProfileUpdateOneRequiredInput {
-  create: UserProfileCreateInput
-  connect: UserProfileWhereUniqueInput
-  update: UserProfileUpdateDataInput
-  upsert: UserProfileUpsertNestedInput
 }
 
 input UserProfileUpdateOneRequiredWithoutProjectsInput {
@@ -2038,7 +1980,7 @@ input UserProfileUpdateOneRequiredWithoutProjectsInput {
 }
 
 input UserProfileUpdateWithoutProjectsDataInput {
-  user: AccountType
+  userAccountId: ID
   email: String
   firstName: String
   lastName: String
@@ -2048,11 +1990,6 @@ input UserProfileUpdateWithoutProjectsDataInput {
   address: String
   state: String
   aptNumber: String
-}
-
-input UserProfileUpsertNestedInput {
-  update: UserProfileUpdateDataInput!
-  create: UserProfileCreateInput!
 }
 
 input UserProfileUpsertWithoutProjectsInput {
@@ -2109,16 +2046,46 @@ input UserProfileWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  user: AccountType
+  userAccountId: ID
 
   """All values that are not equal to given value."""
-  user_not: AccountType
+  userAccountId_not: ID
 
   """All values that are contained in given list."""
-  user_in: [AccountType!]
+  userAccountId_in: [ID!]
 
   """All values that are not contained in given list."""
-  user_not_in: [AccountType!]
+  userAccountId_not_in: [ID!]
+
+  """All values less than the given value."""
+  userAccountId_lt: ID
+
+  """All values less than or equal the given value."""
+  userAccountId_lte: ID
+
+  """All values greater than the given value."""
+  userAccountId_gt: ID
+
+  """All values greater than or equal the given value."""
+  userAccountId_gte: ID
+
+  """All values containing the given string."""
+  userAccountId_contains: ID
+
+  """All values not containing the given string."""
+  userAccountId_not_contains: ID
+
+  """All values starting with the given string."""
+  userAccountId_starts_with: ID
+
+  """All values not starting with the given string."""
+  userAccountId_not_starts_with: ID
+
+  """All values ending with the given string."""
+  userAccountId_ends_with: ID
+
+  """All values not ending with the given string."""
+  userAccountId_not_ends_with: ID
   email: String
 
   """All values that are not equal to given value."""
