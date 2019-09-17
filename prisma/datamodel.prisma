@@ -7,19 +7,19 @@ type UserAccount {
 
 type GoogleAccount {
   id: ID! @id
-  accountId: ID!
+  accountId: ID! @unique
   profile: UserProfile!
 }
 
 type FacebookAccount {
   id: ID! @id
-  accountId: ID!
+  accountId: ID! @unique
   profile: UserProfile!
 }
 
 type TwitterAccount {
   id: ID! @id
-  accountId: ID!
+  accountId: ID! @unique
   profile: UserProfile!
 }
 
@@ -33,6 +33,7 @@ enum AccountType {
 type UserProfile {
   id: ID! @id
   user: AccountType!
+  email: String! @unique
   firstName: String
   lastName: String
   profileImage: String

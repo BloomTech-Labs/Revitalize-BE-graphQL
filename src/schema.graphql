@@ -1,62 +1,96 @@
 # Queries
 type Query {
-	users(query: String): [User!]!
-	user(id: ID!): User!
-	me: User!
+	profiles(query: String): [UserProfile!]!
+	profile(id: ID!): UserProfile!
+	me: UserProfile!
 	projects(query: String): [Project!]!
 	project(id: ID!): [Project!]!
 }
 
 # Mutations
 type Mutation {
-	createUser(data: CreateUserInput): AuthPayload!
-	loginUser(data: LoginUserInput): AuthPayload!
-	deleteUser: User!
+	# Auth
+	createUser(data: CreateUserInput!): AuthPayload!
+	loginUser(data: LoginUserInput!): AuthPayload!
+	loginGoogleUser(data: GoogleAccountInput!): AuthPayload!
+	loginFacebookUser(data: FacebookAccountInput!): AuthPayload!
+	loginTwitterUser(data: TwitterAccountInput!): AuthPayload!
+
+	# User
 	updateUser(data: UpdateUserInput): User!
+	deleteUser: User!
+
+	# Profile
+	createProfile(date: CreateUserProfileInput!): UserProfile!
+	updateProfile(data: UpdateUserProfileInput!): UserProfile!
+	deleteProfile: UserProfile!
+
+	# Project
 	createProject(data: CreateProjectInput!): Project!
 	deleteProject(id: ID!): Project!
 	updateProject(id: ID!, data: UpdateProjectInput): Project!
 }
 
-# Enums
-enum MutationType {
-	CREATED
-	UPDATED
-	DELETED
+# UserAccount
+type UserAccount {
+  id: ID!
+  email: String!
+  password: String
+  profile: UserProfile!
+}
+
+input LoginUserAccountInput {
+	email: String!
+	password: String!
+}
+
+# GoogleAccount
+type GoogleAccount {
+  id: ID!
+  accountId: ID!
+  profile: UserProfile!
+}
+
+# FacebookAccount
+type FacebookAccount {
+  id: ID!
+  accountId: ID!
+  profile: UserProfile!
+}
+
+# TwitterAccount
+type TwitterAccount {
+  id: ID!
+  accountId: ID!
+  profile: UserProfile!
 }
 
 # User
-type User {
-	id: ID!
+type UserProfile {
+  id: ID!
+  user: AccountType!
+  email: String!
+  firstName: String
+  lastName: String
+  profileImage: String
+  city: String
+  zip: String
+  address: String
+  state: String
+  aptNumber: String
+  projects: [Project!]
+}
+
+input CreateUserProfileInput {
 	firstName: String
 	lastName: String
-	email: String
-	password: String
+	email: String!
 	profileImage: String
 	city: String
 	zip: String
 	address: String
 	state: String
 	aptNumber: String
-	projects: [Project!]!
-}
-
-input CreateUserInput {
-	firstName: String
-	lastName: String
-	email: String!
-	password: String!
-	profileImage: String
-	city: String
-	zip: String
-	address: String
-	state: String
-	aptNumber: String
-}
-
-input LoginUserInput {
-	email: String!
-	password: String!
 }
 
 input UpdateUserInput {
@@ -72,23 +106,17 @@ input UpdateUserInput {
 	aptNumber: String
 }
 
-# Returned auth payload type
-type AuthPayload {
-	token: String!
-	user: User!
-}
-
 type Project {
-	id: ID!
-	user: User!
-	name: String!
-	description: String!
-	address: String!
-	state: String!
-	zip: String!
-	city: String!
-	goalAmount: Float!
-	amountFunded: Float!
+  id: ID!
+  profile: UserProfile!
+  name: String!
+  description: String!
+  address: String!
+  state: String!
+  zip: String!
+  city: String!
+  goalAmount: Float!
+  amountFunded: Float!
 }
 
 input CreateProjectInput {
@@ -99,7 +127,7 @@ input CreateProjectInput {
 	zip: String!
 	city: String!
 	goalAmount: Float!
-	amountFunded: Float
+	amountFunded: Float!
 }
 
 input UpdateProjectInput {
@@ -111,4 +139,25 @@ input UpdateProjectInput {
 	city: String
 	goalAmount: Float
 	amountFunded: Float
+}
+
+# Enums
+enum MutationType {
+	CREATED
+	UPDATED
+	DELETED
+}
+
+enum AccountType {
+  UserAccount
+  GoogleAccount
+  FacebookAccount
+  TwitterAccount
+}
+
+
+# Returned auth payload type
+type AuthPayload {
+	token: String!
+	user: UserProfile!
 }
