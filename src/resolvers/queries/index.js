@@ -1,7 +1,7 @@
-import { User } from './User';
+import { UserProfile } from './UserProfile';
 import { Project } from './Project';
 
 export const Query = {
-	...User,
+	...UserProfile,
 	...Project
 };

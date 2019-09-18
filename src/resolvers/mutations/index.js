@@ -1,7 +1,11 @@
-import { User } from './User';
+import { UserAccount } from './UserAccount';
+import { ExternalAccount } from './ExternalAccount'
+import { UserProfile } from './UserProfile';
 import { Project } from './Project';
 
 export const Mutation = {
-	...User,
+	...UserAccount,
+	...ExternalAccount,
+	...UserProfile,
 	...Project
 };

@@ -1,17 +1,207 @@
 # source: http://localhost:4466
-# timestamp: Fri Sep 13 2019 14:52:04 GMT-0700 (Pacific Daylight Time)
+# timestamp: Tue Sep 17 2019 13:38:25 GMT-0700 (Pacific Daylight Time)
+
+type AggregateExternalAccount {
+  count: Int!
+}
 
 type AggregateProject {
   count: Int!
 }
 
-type AggregateUser {
+type AggregateUserAccount {
+  count: Int!
+}
+
+type AggregateUserProfile {
   count: Int!
 }
 
 type BatchPayload {
   """The number of nodes that have been affected by the Batch operation."""
   count: Long!
+}
+
+type ExternalAccount implements Node {
+  id: ID!
+  accountId: ID!
+}
+
+"""A connection to a list of items."""
+type ExternalAccountConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ExternalAccountEdge]!
+  aggregate: AggregateExternalAccount!
+}
+
+input ExternalAccountCreateInput {
+  id: ID
+  accountId: ID!
+}
+
+"""An edge in a connection."""
+type ExternalAccountEdge {
+  """The item at the end of the edge."""
+  node: ExternalAccount!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum ExternalAccountOrderByInput {
+  id_ASC
+  id_DESC
+  accountId_ASC
+  accountId_DESC
+}
+
+type ExternalAccountPreviousValues {
+  id: ID!
+  accountId: ID!
+}
+
+type ExternalAccountSubscriptionPayload {
+  mutation: MutationType!
+  node: ExternalAccount
+  updatedFields: [String!]
+  previousValues: ExternalAccountPreviousValues
+}
+
+input ExternalAccountSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ExternalAccountSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ExternalAccountSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ExternalAccountSubscriptionWhereInput!]
+
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: ExternalAccountWhereInput
+}
+
+input ExternalAccountUpdateInput {
+  accountId: ID
+}
+
+input ExternalAccountUpdateManyMutationInput {
+  accountId: ID
+}
+
+input ExternalAccountWhereInput {
+  """Logical AND on all given filters."""
+  AND: [ExternalAccountWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [ExternalAccountWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [ExternalAccountWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  accountId: ID
+
+  """All values that are not equal to given value."""
+  accountId_not: ID
+
+  """All values that are contained in given list."""
+  accountId_in: [ID!]
+
+  """All values that are not contained in given list."""
+  accountId_not_in: [ID!]
+
+  """All values less than the given value."""
+  accountId_lt: ID
+
+  """All values less than or equal the given value."""
+  accountId_lte: ID
+
+  """All values greater than the given value."""
+  accountId_gt: ID
+
+  """All values greater than or equal the given value."""
+  accountId_gte: ID
+
+  """All values containing the given string."""
+  accountId_contains: ID
+
+  """All values not containing the given string."""
+  accountId_not_contains: ID
+
+  """All values starting with the given string."""
+  accountId_starts_with: ID
+
+  """All values not starting with the given string."""
+  accountId_not_starts_with: ID
+
+  """All values ending with the given string."""
+  accountId_ends_with: ID
+
+  """All values not ending with the given string."""
+  accountId_not_ends_with: ID
+}
+
+input ExternalAccountWhereUniqueInput {
+  id: ID
+  accountId: ID
 }
 
 """Raw JSON value"""
@@ -24,17 +214,29 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
-  createUser(data: UserCreateInput!): User!
+  createUserAccount(data: UserAccountCreateInput!): UserAccount!
+  createExternalAccount(data: ExternalAccountCreateInput!): ExternalAccount!
+  createUserProfile(data: UserProfileCreateInput!): UserProfile!
   createProject(data: ProjectCreateInput!): Project!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateUserAccount(data: UserAccountUpdateInput!, where: UserAccountWhereUniqueInput!): UserAccount
+  updateExternalAccount(data: ExternalAccountUpdateInput!, where: ExternalAccountWhereUniqueInput!): ExternalAccount
+  updateUserProfile(data: UserProfileUpdateInput!, where: UserProfileWhereUniqueInput!): UserProfile
   updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
-  deleteUser(where: UserWhereUniqueInput!): User
+  deleteUserAccount(where: UserAccountWhereUniqueInput!): UserAccount
+  deleteExternalAccount(where: ExternalAccountWhereUniqueInput!): ExternalAccount
+  deleteUserProfile(where: UserProfileWhereUniqueInput!): UserProfile
   deleteProject(where: ProjectWhereUniqueInput!): Project
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertUserAccount(where: UserAccountWhereUniqueInput!, create: UserAccountCreateInput!, update: UserAccountUpdateInput!): UserAccount!
+  upsertExternalAccount(where: ExternalAccountWhereUniqueInput!, create: ExternalAccountCreateInput!, update: ExternalAccountUpdateInput!): ExternalAccount!
+  upsertUserProfile(where: UserProfileWhereUniqueInput!, create: UserProfileCreateInput!, update: UserProfileUpdateInput!): UserProfile!
   upsertProject(where: ProjectWhereUniqueInput!, create: ProjectCreateInput!, update: ProjectUpdateInput!): Project!
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyUserAccounts(data: UserAccountUpdateManyMutationInput!, where: UserAccountWhereInput): BatchPayload!
+  updateManyExternalAccounts(data: ExternalAccountUpdateManyMutationInput!, where: ExternalAccountWhereInput): BatchPayload!
+  updateManyUserProfiles(data: UserProfileUpdateManyMutationInput!, where: UserProfileWhereInput): BatchPayload!
   updateManyProjects(data: ProjectUpdateManyMutationInput!, where: ProjectWhereInput): BatchPayload!
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyUserAccounts(where: UserAccountWhereInput): BatchPayload!
+  deleteManyExternalAccounts(where: ExternalAccountWhereInput): BatchPayload!
+  deleteManyUserProfiles(where: UserProfileWhereInput): BatchPayload!
   deleteManyProjects(where: ProjectWhereInput): BatchPayload!
   executeRaw(database: PrismaDatabase, query: String!): Json!
 }
@@ -72,7 +274,7 @@ enum PrismaDatabase {
 
 type Project implements Node {
   id: ID!
-  user: User!
+  profile: UserProfile!
   name: String!
   description: String!
   address: String!
@@ -102,16 +304,16 @@ input ProjectCreateInput {
   zip: String!
   city: String!
   goalAmount: Float!
-  amountFunded: Float!
-  user: UserCreateOneWithoutProjectsInput!
+  amountFunded: Float
+  profile: UserProfileCreateOneWithoutProjectsInput!
 }
 
-input ProjectCreateManyWithoutUserInput {
-  create: [ProjectCreateWithoutUserInput!]
+input ProjectCreateManyWithoutProfileInput {
+  create: [ProjectCreateWithoutProfileInput!]
   connect: [ProjectWhereUniqueInput!]
 }
 
-input ProjectCreateWithoutUserInput {
+input ProjectCreateWithoutProfileInput {
   id: ID
   name: String!
   description: String!
@@ -120,7 +322,7 @@ input ProjectCreateWithoutUserInput {
   zip: String!
   city: String!
   goalAmount: Float!
-  amountFunded: Float!
+  amountFunded: Float
 }
 
 """An edge in a connection."""
@@ -546,7 +748,7 @@ input ProjectUpdateInput {
   city: String
   goalAmount: Float
   amountFunded: Float
-  user: UserUpdateOneRequiredWithoutProjectsInput
+  profile: UserProfileUpdateOneRequiredWithoutProjectsInput
 }
 
 input ProjectUpdateManyDataInput {
@@ -571,16 +773,16 @@ input ProjectUpdateManyMutationInput {
   amountFunded: Float
 }
 
-input ProjectUpdateManyWithoutUserInput {
-  create: [ProjectCreateWithoutUserInput!]
+input ProjectUpdateManyWithoutProfileInput {
+  create: [ProjectCreateWithoutProfileInput!]
   connect: [ProjectWhereUniqueInput!]
   set: [ProjectWhereUniqueInput!]
   disconnect: [ProjectWhereUniqueInput!]
   delete: [ProjectWhereUniqueInput!]
-  update: [ProjectUpdateWithWhereUniqueWithoutUserInput!]
+  update: [ProjectUpdateWithWhereUniqueWithoutProfileInput!]
   updateMany: [ProjectUpdateManyWithWhereNestedInput!]
   deleteMany: [ProjectScalarWhereInput!]
-  upsert: [ProjectUpsertWithWhereUniqueWithoutUserInput!]
+  upsert: [ProjectUpsertWithWhereUniqueWithoutProfileInput!]
 }
 
 input ProjectUpdateManyWithWhereNestedInput {
@@ -588,7 +790,7 @@ input ProjectUpdateManyWithWhereNestedInput {
   data: ProjectUpdateManyDataInput!
 }
 
-input ProjectUpdateWithoutUserDataInput {
+input ProjectUpdateWithoutProfileDataInput {
   name: String
   description: String
   address: String
@@ -599,15 +801,15 @@ input ProjectUpdateWithoutUserDataInput {
   amountFunded: Float
 }
 
-input ProjectUpdateWithWhereUniqueWithoutUserInput {
+input ProjectUpdateWithWhereUniqueWithoutProfileInput {
   where: ProjectWhereUniqueInput!
-  data: ProjectUpdateWithoutUserDataInput!
+  data: ProjectUpdateWithoutProfileDataInput!
 }
 
-input ProjectUpsertWithWhereUniqueWithoutUserInput {
+input ProjectUpsertWithWhereUniqueWithoutProfileInput {
   where: ProjectWhereUniqueInput!
-  update: ProjectUpdateWithoutUserDataInput!
-  create: ProjectCreateWithoutUserInput!
+  update: ProjectUpdateWithoutProfileDataInput!
+  create: ProjectCreateWithoutProfileInput!
 }
 
 input ProjectWhereInput {
@@ -943,7 +1145,7 @@ input ProjectWhereInput {
 
   """All values greater than or equal the given value."""
   amountFunded_gte: Float
-  user: UserWhereInput
+  profile: UserProfileWhereInput
 }
 
 input ProjectWhereUniqueInput {
@@ -951,11 +1153,17 @@ input ProjectWhereUniqueInput {
 }
 
 type Query {
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  userAccounts(where: UserAccountWhereInput, orderBy: UserAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserAccount]!
+  externalAccounts(where: ExternalAccountWhereInput, orderBy: ExternalAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ExternalAccount]!
+  userProfiles(where: UserProfileWhereInput, orderBy: UserProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserProfile]!
   projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
-  user(where: UserWhereUniqueInput!): User
+  userAccount(where: UserAccountWhereUniqueInput!): UserAccount
+  externalAccount(where: ExternalAccountWhereUniqueInput!): ExternalAccount
+  userProfile(where: UserProfileWhereUniqueInput!): UserProfile
   project(where: ProjectWhereUniqueInput!): Project
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  userAccountsConnection(where: UserAccountWhereInput, orderBy: UserAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserAccountConnection!
+  externalAccountsConnection(where: ExternalAccountWhereInput, orderBy: ExternalAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExternalAccountConnection!
+  userProfilesConnection(where: UserProfileWhereInput, orderBy: UserProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserProfileConnection!
   projectsConnection(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectConnection!
 
   """Fetches an object given its ID"""
@@ -966,133 +1174,74 @@ type Query {
 }
 
 type Subscription {
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  userAccount(where: UserAccountSubscriptionWhereInput): UserAccountSubscriptionPayload
+  externalAccount(where: ExternalAccountSubscriptionWhereInput): ExternalAccountSubscriptionPayload
+  userProfile(where: UserProfileSubscriptionWhereInput): UserProfileSubscriptionPayload
   project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
 }
 
-type User implements Node {
+type UserAccount implements Node {
   id: ID!
-  firstName: String
-  lastName: String
   email: String!
-  password: String!
-  profileImage: String
-  city: String
-  zip: String
-  address: String
-  state: String
-  aptNumber: String
-  projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project!]
+  password: String
 }
 
 """A connection to a list of items."""
-type UserConnection {
+type UserAccountConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [UserEdge]!
-  aggregate: AggregateUser!
+  edges: [UserAccountEdge]!
+  aggregate: AggregateUserAccount!
 }
 
-input UserCreateInput {
+input UserAccountCreateInput {
   id: ID
-  firstName: String
-  lastName: String
   email: String!
-  password: String!
-  profileImage: String
-  city: String
-  zip: String
-  address: String
-  state: String
-  aptNumber: String
-  projects: ProjectCreateManyWithoutUserInput
-}
-
-input UserCreateOneWithoutProjectsInput {
-  create: UserCreateWithoutProjectsInput
-  connect: UserWhereUniqueInput
-}
-
-input UserCreateWithoutProjectsInput {
-  id: ID
-  firstName: String
-  lastName: String
-  email: String!
-  password: String!
-  profileImage: String
-  city: String
-  zip: String
-  address: String
-  state: String
-  aptNumber: String
+  password: String
 }
 
 """An edge in a connection."""
-type UserEdge {
+type UserAccountEdge {
   """The item at the end of the edge."""
-  node: User!
+  node: UserAccount!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum UserOrderByInput {
+enum UserAccountOrderByInput {
   id_ASC
   id_DESC
-  firstName_ASC
-  firstName_DESC
-  lastName_ASC
-  lastName_DESC
   email_ASC
   email_DESC
   password_ASC
   password_DESC
-  profileImage_ASC
-  profileImage_DESC
-  city_ASC
-  city_DESC
-  zip_ASC
-  zip_DESC
-  address_ASC
-  address_DESC
-  state_ASC
-  state_DESC
-  aptNumber_ASC
-  aptNumber_DESC
 }
 
-type UserPreviousValues {
+type UserAccountPreviousValues {
   id: ID!
-  firstName: String
-  lastName: String
   email: String!
-  password: String!
-  profileImage: String
-  city: String
-  zip: String
-  address: String
-  state: String
-  aptNumber: String
+  password: String
 }
 
-type UserSubscriptionPayload {
+type UserAccountSubscriptionPayload {
   mutation: MutationType!
-  node: User
+  node: UserAccount
   updatedFields: [String!]
-  previousValues: UserPreviousValues
+  previousValues: UserAccountPreviousValues
 }
 
-input UserSubscriptionWhereInput {
+input UserAccountSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [UserSubscriptionWhereInput!]
+  AND: [UserAccountSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [UserSubscriptionWhereInput!]
+  OR: [UserAccountSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [UserSubscriptionWhereInput!]
+  NOT: [UserAccountSubscriptionWhereInput!]
 
   """The subscription event gets dispatched when it's listed in mutation_in"""
   mutation_in: [MutationType!]
@@ -1111,70 +1260,28 @@ input UserSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: UserWhereInput
+  node: UserAccountWhereInput
 }
 
-input UserUpdateInput {
-  firstName: String
-  lastName: String
+input UserAccountUpdateInput {
   email: String
   password: String
-  profileImage: String
-  city: String
-  zip: String
-  address: String
-  state: String
-  aptNumber: String
-  projects: ProjectUpdateManyWithoutUserInput
 }
 
-input UserUpdateManyMutationInput {
-  firstName: String
-  lastName: String
+input UserAccountUpdateManyMutationInput {
   email: String
   password: String
-  profileImage: String
-  city: String
-  zip: String
-  address: String
-  state: String
-  aptNumber: String
 }
 
-input UserUpdateOneRequiredWithoutProjectsInput {
-  create: UserCreateWithoutProjectsInput
-  connect: UserWhereUniqueInput
-  update: UserUpdateWithoutProjectsDataInput
-  upsert: UserUpsertWithoutProjectsInput
-}
-
-input UserUpdateWithoutProjectsDataInput {
-  firstName: String
-  lastName: String
-  email: String
-  password: String
-  profileImage: String
-  city: String
-  zip: String
-  address: String
-  state: String
-  aptNumber: String
-}
-
-input UserUpsertWithoutProjectsInput {
-  update: UserUpdateWithoutProjectsDataInput!
-  create: UserCreateWithoutProjectsInput!
-}
-
-input UserWhereInput {
+input UserAccountWhereInput {
   """Logical AND on all given filters."""
-  AND: [UserWhereInput!]
+  AND: [UserAccountWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [UserWhereInput!]
+  OR: [UserAccountWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [UserWhereInput!]
+  NOT: [UserAccountWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -1215,86 +1322,6 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  firstName: String
-
-  """All values that are not equal to given value."""
-  firstName_not: String
-
-  """All values that are contained in given list."""
-  firstName_in: [String!]
-
-  """All values that are not contained in given list."""
-  firstName_not_in: [String!]
-
-  """All values less than the given value."""
-  firstName_lt: String
-
-  """All values less than or equal the given value."""
-  firstName_lte: String
-
-  """All values greater than the given value."""
-  firstName_gt: String
-
-  """All values greater than or equal the given value."""
-  firstName_gte: String
-
-  """All values containing the given string."""
-  firstName_contains: String
-
-  """All values not containing the given string."""
-  firstName_not_contains: String
-
-  """All values starting with the given string."""
-  firstName_starts_with: String
-
-  """All values not starting with the given string."""
-  firstName_not_starts_with: String
-
-  """All values ending with the given string."""
-  firstName_ends_with: String
-
-  """All values not ending with the given string."""
-  firstName_not_ends_with: String
-  lastName: String
-
-  """All values that are not equal to given value."""
-  lastName_not: String
-
-  """All values that are contained in given list."""
-  lastName_in: [String!]
-
-  """All values that are not contained in given list."""
-  lastName_not_in: [String!]
-
-  """All values less than the given value."""
-  lastName_lt: String
-
-  """All values less than or equal the given value."""
-  lastName_lte: String
-
-  """All values greater than the given value."""
-  lastName_gt: String
-
-  """All values greater than or equal the given value."""
-  lastName_gte: String
-
-  """All values containing the given string."""
-  lastName_contains: String
-
-  """All values not containing the given string."""
-  lastName_not_contains: String
-
-  """All values starting with the given string."""
-  lastName_starts_with: String
-
-  """All values not starting with the given string."""
-  lastName_not_starts_with: String
-
-  """All values ending with the given string."""
-  lastName_ends_with: String
-
-  """All values not ending with the given string."""
-  lastName_not_ends_with: String
   email: String
 
   """All values that are not equal to given value."""
@@ -1375,6 +1402,418 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   password_not_ends_with: String
+}
+
+input UserAccountWhereUniqueInput {
+  id: ID
+  email: String
+}
+
+type UserProfile implements Node {
+  id: ID!
+  userAccountId: ID!
+  email: String!
+  firstName: String
+  lastName: String
+  profileImage: String
+  city: String
+  zip: String
+  address: String
+  state: String
+  aptNumber: String
+  projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project!]
+}
+
+"""A connection to a list of items."""
+type UserProfileConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserProfileEdge]!
+  aggregate: AggregateUserProfile!
+}
+
+input UserProfileCreateInput {
+  id: ID
+  userAccountId: ID!
+  email: String!
+  firstName: String
+  lastName: String
+  profileImage: String
+  city: String
+  zip: String
+  address: String
+  state: String
+  aptNumber: String
+  projects: ProjectCreateManyWithoutProfileInput
+}
+
+input UserProfileCreateOneWithoutProjectsInput {
+  create: UserProfileCreateWithoutProjectsInput
+  connect: UserProfileWhereUniqueInput
+}
+
+input UserProfileCreateWithoutProjectsInput {
+  id: ID
+  userAccountId: ID!
+  email: String!
+  firstName: String
+  lastName: String
+  profileImage: String
+  city: String
+  zip: String
+  address: String
+  state: String
+  aptNumber: String
+}
+
+"""An edge in a connection."""
+type UserProfileEdge {
+  """The item at the end of the edge."""
+  node: UserProfile!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum UserProfileOrderByInput {
+  id_ASC
+  id_DESC
+  userAccountId_ASC
+  userAccountId_DESC
+  email_ASC
+  email_DESC
+  firstName_ASC
+  firstName_DESC
+  lastName_ASC
+  lastName_DESC
+  profileImage_ASC
+  profileImage_DESC
+  city_ASC
+  city_DESC
+  zip_ASC
+  zip_DESC
+  address_ASC
+  address_DESC
+  state_ASC
+  state_DESC
+  aptNumber_ASC
+  aptNumber_DESC
+}
+
+type UserProfilePreviousValues {
+  id: ID!
+  userAccountId: ID!
+  email: String!
+  firstName: String
+  lastName: String
+  profileImage: String
+  city: String
+  zip: String
+  address: String
+  state: String
+  aptNumber: String
+}
+
+type UserProfileSubscriptionPayload {
+  mutation: MutationType!
+  node: UserProfile
+  updatedFields: [String!]
+  previousValues: UserProfilePreviousValues
+}
+
+input UserProfileSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserProfileSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserProfileSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserProfileSubscriptionWhereInput!]
+
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: UserProfileWhereInput
+}
+
+input UserProfileUpdateInput {
+  userAccountId: ID
+  email: String
+  firstName: String
+  lastName: String
+  profileImage: String
+  city: String
+  zip: String
+  address: String
+  state: String
+  aptNumber: String
+  projects: ProjectUpdateManyWithoutProfileInput
+}
+
+input UserProfileUpdateManyMutationInput {
+  userAccountId: ID
+  email: String
+  firstName: String
+  lastName: String
+  profileImage: String
+  city: String
+  zip: String
+  address: String
+  state: String
+  aptNumber: String
+}
+
+input UserProfileUpdateOneRequiredWithoutProjectsInput {
+  create: UserProfileCreateWithoutProjectsInput
+  connect: UserProfileWhereUniqueInput
+  update: UserProfileUpdateWithoutProjectsDataInput
+  upsert: UserProfileUpsertWithoutProjectsInput
+}
+
+input UserProfileUpdateWithoutProjectsDataInput {
+  userAccountId: ID
+  email: String
+  firstName: String
+  lastName: String
+  profileImage: String
+  city: String
+  zip: String
+  address: String
+  state: String
+  aptNumber: String
+}
+
+input UserProfileUpsertWithoutProjectsInput {
+  update: UserProfileUpdateWithoutProjectsDataInput!
+  create: UserProfileCreateWithoutProjectsInput!
+}
+
+input UserProfileWhereInput {
+  """Logical AND on all given filters."""
+  AND: [UserProfileWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [UserProfileWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [UserProfileWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  userAccountId: ID
+
+  """All values that are not equal to given value."""
+  userAccountId_not: ID
+
+  """All values that are contained in given list."""
+  userAccountId_in: [ID!]
+
+  """All values that are not contained in given list."""
+  userAccountId_not_in: [ID!]
+
+  """All values less than the given value."""
+  userAccountId_lt: ID
+
+  """All values less than or equal the given value."""
+  userAccountId_lte: ID
+
+  """All values greater than the given value."""
+  userAccountId_gt: ID
+
+  """All values greater than or equal the given value."""
+  userAccountId_gte: ID
+
+  """All values containing the given string."""
+  userAccountId_contains: ID
+
+  """All values not containing the given string."""
+  userAccountId_not_contains: ID
+
+  """All values starting with the given string."""
+  userAccountId_starts_with: ID
+
+  """All values not starting with the given string."""
+  userAccountId_not_starts_with: ID
+
+  """All values ending with the given string."""
+  userAccountId_ends_with: ID
+
+  """All values not ending with the given string."""
+  userAccountId_not_ends_with: ID
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+  firstName: String
+
+  """All values that are not equal to given value."""
+  firstName_not: String
+
+  """All values that are contained in given list."""
+  firstName_in: [String!]
+
+  """All values that are not contained in given list."""
+  firstName_not_in: [String!]
+
+  """All values less than the given value."""
+  firstName_lt: String
+
+  """All values less than or equal the given value."""
+  firstName_lte: String
+
+  """All values greater than the given value."""
+  firstName_gt: String
+
+  """All values greater than or equal the given value."""
+  firstName_gte: String
+
+  """All values containing the given string."""
+  firstName_contains: String
+
+  """All values not containing the given string."""
+  firstName_not_contains: String
+
+  """All values starting with the given string."""
+  firstName_starts_with: String
+
+  """All values not starting with the given string."""
+  firstName_not_starts_with: String
+
+  """All values ending with the given string."""
+  firstName_ends_with: String
+
+  """All values not ending with the given string."""
+  firstName_not_ends_with: String
+  lastName: String
+
+  """All values that are not equal to given value."""
+  lastName_not: String
+
+  """All values that are contained in given list."""
+  lastName_in: [String!]
+
+  """All values that are not contained in given list."""
+  lastName_not_in: [String!]
+
+  """All values less than the given value."""
+  lastName_lt: String
+
+  """All values less than or equal the given value."""
+  lastName_lte: String
+
+  """All values greater than the given value."""
+  lastName_gt: String
+
+  """All values greater than or equal the given value."""
+  lastName_gte: String
+
+  """All values containing the given string."""
+  lastName_contains: String
+
+  """All values not containing the given string."""
+  lastName_not_contains: String
+
+  """All values starting with the given string."""
+  lastName_starts_with: String
+
+  """All values not starting with the given string."""
+  lastName_not_starts_with: String
+
+  """All values ending with the given string."""
+  lastName_ends_with: String
+
+  """All values not ending with the given string."""
+  lastName_not_ends_with: String
   profileImage: String
 
   """All values that are not equal to given value."""
@@ -1620,7 +2059,7 @@ input UserWhereInput {
   projects_none: ProjectWhereInput
 }
 
-input UserWhereUniqueInput {
+input UserProfileWhereUniqueInput {
   id: ID
   email: String
 }

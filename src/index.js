@@ -1,10 +1,12 @@
 import '@babel/polyfill/noConflict';
 import { GraphQLServer } from 'graphql-yoga';
 import { resolvers, fragmentReplacements } from './resolvers';
-import prisma from './prisma';
+import { prisma } from './prisma';
 import passport from 'passport';
 
 import './services/passport';
+
+import { generateToken } from './utils/generateToken'
 
 export const server = new GraphQLServer({
 	typeDefs: './src/schema.graphql',
@@ -23,15 +25,17 @@ server.express.use(passport.initialize());
 server.express.get(
 	'/auth/google',
 	passport.authenticate('google', {
+		session: false,
 		scope: ['profile', 'email']
 	})
 );
 
 server.express.get(
 	'/auth/google/callback',
-	passport.authenticate('google', { failureRedirect: '/login' }),
+	passport.authenticate('google', { session: false, failureRedirect: '/login' }),
 	(req, res) => {
-		res.redirect('/');
+		const token = generateToken(req.user.userAccountId, req.user.id)
+		return res.redirect(`https://9mt2i.csb.app?token=${token}`);
 	}
 );
 

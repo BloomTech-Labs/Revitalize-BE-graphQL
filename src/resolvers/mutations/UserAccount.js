@@ -3,21 +3,31 @@ import { getUserId } from '../../utils/getUserId';
 import { hashPassword } from '../../utils/hashPassword';
 import bcrypt from 'bcryptjs';
 
-export const User = {
-	async createUser(parent, args, { prisma }, info) {
+export const UserAccount = {
+    async createUser(parent, args, { prisma }, info) {
 		const password = await hashPassword(args.data.password);
+		const email = args.data.email
 
-		const user = prisma.mutation.createUser({
+		const user = await prisma.mutation.createUserAccount({
 			data: {
-				...args.data,
+				email,
 				password
 			}
-		});
+        });
 
-		return { user, token: generateToken(user.id) };
+		const profile = await prisma.mutation.createUserProfile({
+			data: {
+				email,
+				userAccountId: user.id
+			}
+		})
+
+		const token = await generateToken(user.id, profile.id);
+
+		return { profile, token };
 	},
 	async loginUser(parent, args, { prisma }, info) {
-		const user = await prisma.query.user({
+		const user = await prisma.query.userAccount({
 			where: {
 				email: args.data.email
 			}
@@ -33,7 +43,15 @@ export const User = {
 			throw new Error('Unable to login');
 		}
 
-		return { user, token: generateToken(user.id) };
+		const profile = await prisma.query.userProfiles({
+			where: {
+				userAccountId: user.id
+			}
+		})
+
+		const token = await generateToken(user.id, profile.id);
+
+		return { profile: profile[0], token };
 	},
 	async updateUser(parent, args, { prisma, request }, info) {
 		const userId = getUserId(request);
@@ -42,7 +60,7 @@ export const User = {
 			args.data.password = await hashPassword(args.data.password);
 		}
 
-		return prisma.mutation.updateUser(
+		return prisma.mutation.updateUserAccount(
 			{
 				where: {
 					id: userId
@@ -55,7 +73,7 @@ export const User = {
 	async deleteUser(parent, args, { prisma, request }, info) {
 		const userId = getUserId(request);
 
-		return prisma.mutation.deleteUser(
+		return prisma.mutation.deleteUserAccount(
 			{
 				where: {
 					id: userId
@@ -64,4 +82,4 @@ export const User = {
 			info
 		);
 	}
-};
+}

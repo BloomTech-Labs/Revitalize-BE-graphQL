@@ -1,8 +1,8 @@
-import { getUserId } from '../../utils/getUserId';
+import { getProfileId } from '../../utils/getProfileId';
 
 export const Project = {
 	createProject(parent, args, { prisma, request }, info) {
-		const userId = getUserId(request);
+		const profileId = getProfileId(request);
 
 		return prisma.mutation.createProject(
 			{
@@ -15,9 +15,9 @@ export const Project = {
 					city: args.data.city,
 					goalAmount: args.data.goalAmount,
 					amountFunded: args.data.amountFunded,
-					user: {
+					profile: {
 						connect: {
-							id: userId
+							id: profileId
 						}
 					}
 				}
@@ -25,29 +25,12 @@ export const Project = {
 			info
 		);
 	},
-	async deleteProject(parent, args, { prisma, request }, info) {
-		const userId = getUserId(request);
-		const userProjectExists = await prisma.exists.Project({ id: args.id, user: { id: userId } });
+	async updateProject(parent, args, { prisma, request }, info) {
+		const profileId = getProfileId(request);
+		const userProjectExists = await prisma.exists.Project({ id: args.id, profile: { id: profileId } });
 
 		if (!userProjectExists) {
-			throw new Error('Sorry, but there was an error while trying to delete that project');
-		}
-
-		return prisma.mutation.deleteProject(
-			{
-				where: {
-					id: args.id
-				}
-			},
-			info
-		);
-	},
-	async updateProject(parent, args, { prisma }, info) {
-		const userId = getUserId(request);
-		const userProjectExists = await prisma.exists.Project({ id: args.id, user: { id: userId } });
-
-		if (!userProjectExists) {
-			throw new Error('Sorry, but there was an error while trying to delete that project');
+			throw new Error('Sorry, but that project does not exist');
 		}
 
 		return prisma.mutation.updateProject(
@@ -59,5 +42,22 @@ export const Project = {
 			},
 			info
 		);
-	}
+	},
+	async deleteProject(parent, args, { prisma, request }, info) {
+		const profileId = getProfileId(request);
+		const userProjectExists = await prisma.exists.Project({ id: args.id, profile: { id: profileId } });
+
+		if (!userProjectExists) {
+			throw new Error('Sorry, but that project does not exist');
+		}
+
+		return prisma.mutation.deleteProject(
+			{
+				where: {
+					id: args.id
+				}
+			},
+			info
+		);
+	},
 };
