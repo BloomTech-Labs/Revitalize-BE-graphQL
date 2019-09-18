@@ -9,7 +9,7 @@ export const UserProfile = {
 		const projectExists = await prisma.exists.UserProfile({ id: profileId, userAccountId: userId });
 
 		if (!projectExists) {
-			throw new Error('Sorry, but there was an error while trying to update that project');
+			throw new Error('Sorry, but that profile does not exist');
 		}
 
 		return prisma.mutation.updateUserProfile(
@@ -29,7 +29,7 @@ export const UserProfile = {
 		const projectExists = await prisma.exists.UserProfile({ id: profileId, userAccountId: userId });
 
 		if (!projectExists) {
-			throw new Error('Sorry, but there was an error while trying to delete that project');
+			throw new Error('Sorry, but that profile does not exist');
 		}
 
 		return prisma.mutation.deleteUserProfile(

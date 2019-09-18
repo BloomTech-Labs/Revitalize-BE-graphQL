@@ -24,8 +24,8 @@ type Mutation {
 
 	# Project
 	createProject(data: CreateProjectInput!): Project!
-	deleteProject(id: ID!): Project!
 	updateProject(id: ID!, data: UpdateProjectInput): Project!
+	deleteProject(id: ID!): Project!
 }
 
 # UserAccount
