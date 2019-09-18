@@ -31,7 +31,7 @@ type Project {
   description: String!
   address: String!
   state: String!
-  zip: String!
+  zip: Int!
   city: String!
   goalAmount: Float!
   amountFunded: Float! @default(value: 0)
