@@ -1,10 +1,10 @@
 # Queries
 type Query {
-	profiles(query: String): [UserProfile!]!
-	profile(id: ID!): UserProfile!
 	me: UserProfile!
-	projects(query: String): [Project!]!
-	project(id: ID!): [Project!]!
+	# profiles(query: String): [UserProfile!]!
+	# profile(id: ID!): UserProfile!
+	# projects(query: String): [Project!]!
+	# project(id: ID!): [Project!]!
 }
 
 # Mutations

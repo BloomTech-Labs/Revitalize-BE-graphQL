@@ -1,6 +1,18 @@
-import { getUserId } from '../../utils/getUserId';
+import { getProfileId } from '../../utils/getProfileId';
 
 export const UserProfile = {
+	async me(parent, args, { prisma, request }, info) {
+		const profileId = getProfileId(request);
+
+		return prisma.query.userProfile(
+			{
+				where: {
+					id: profileId
+				}
+			},
+			info
+		);
+	}
 	// WIP
 	// users(parent, args, { prisma }, info) {
 	// 	const opArgs = {};
@@ -28,16 +40,4 @@ export const UserProfile = {
 	// 		info
 	// 	);
 	// },
-	// async me(parent, args, { prisma, request }, info) {
-	// 	const userId = getUserId(request);
-
-	// 	return prisma.query.user(
-	// 		{
-	// 			where: {
-	// 				id: userId
-	// 			}
-	// 		},
-	// 		info
-	// 	);
-	// }
 };

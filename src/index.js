@@ -35,7 +35,7 @@ server.express.get(
 	passport.authenticate('google', { session: false, failureRedirect: '/login' }),
 	(req, res) => {
 		const token = generateToken(req.user.userAccountId, req.user.id)
-		return res.redirect(`https://9mt2i.csb.app?token=${token}`);
+		return res.redirect(`/?token=${token}`);
 	}
 );
 
