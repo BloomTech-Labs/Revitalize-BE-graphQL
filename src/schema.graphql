@@ -116,7 +116,7 @@ type Project {
   description: String!
   address: String!
   state: String!
-  zip: String!
+  zip: Int!
   city: String!
   goalAmount: Float!
   amountFunded: Float!
@@ -130,7 +130,7 @@ input CreateProjectInput {
 	zip: String!
 	city: String!
 	goalAmount: Float!
-	amountFunded: Float!
+	amountFunded: Float
 }
 
 input UpdateProjectInput {

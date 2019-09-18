@@ -25,9 +25,9 @@ export const Project = {
 			info
 		);
 	},
-	async updateProject(parent, args, { prisma }, info) {
-		const userId = getUserId(request);
-		const userProjectExists = await prisma.exists.Project({ id: args.id, user: { id: userId } });
+	async updateProject(parent, args, { prisma, request }, info) {
+		const profileId = getProfileId(request);
+		const userProjectExists = await prisma.exists.Project({ id: args.id, profile: { id: profileId } });
 
 		if (!userProjectExists) {
 			throw new Error('Sorry, but that project does not exist');
@@ -44,8 +44,8 @@ export const Project = {
 		);
 	},
 	async deleteProject(parent, args, { prisma, request }, info) {
-		const userId = getUserId(request);
-		const userProjectExists = await prisma.exists.Project({ id: args.id, user: { id: userId } });
+		const profileId = getProfileId(request);
+		const userProjectExists = await prisma.exists.Project({ id: args.id, profile: { id: profileId } });
 
 		if (!userProjectExists) {
 			throw new Error('Sorry, but that project does not exist');
