@@ -1,41 +1,64 @@
-import { server } from '../index';
+import { prisma } from '../prisma';
 import passport from 'passport';
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 
-// passport.serializeUser((user, done) => {
-//     console.log(user)
-// 	done(null, user.id);
-// });
+passport.serializeUser((user, done) => {
+    console.log(user)
+	done(null, user.id);
+});
 
-// passport.deserializeUser((id, done) => {
-//     console.log(id)
-// 	// User.findById(id).then(user => {
-// 	// 	done(null, user);
-//     // });
-//     // server.query.
-// });
+passport.deserializeUser((id, done) => {
+	const user = prisma.query.externalAccount({
+        where: {
+            accountId: id
+        }
+    })
 
-// passport.use(
-// 	new GoogleStrategy(
-// 		{
-// 			clientID: '',
-// 			clientSecret: '',
-// 			callbackURL: '/auth/google/callback',
-// 			proxy: true
-// 		},
-// 		async (accessToken, refreshToken, profile, done) => {
-//             console.log(profile)
-// 			// const existingUser = await User.findOne({ googleId: profile.id });
+    done(null, user);
+});
 
-// 			// if (existingUser) {
-// 			// 	// we already have a record with the given googleId
-// 			// 	return done(null, existingUser);
-// 			// }
+passport.use(
+	new GoogleStrategy(
+		{
+			clientID: process.env.GOOGLE_CLIENT_ID,
+			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+			callbackURL: '/auth/google/callback',
+			proxy: true
+		},
+		async (accessToken, refreshToken, profile, done) => {
+            try {
+                const existingUser = await prisma.query.userProfiles({
+                    where: {
+                        userAccountId: profile.id
+                    }
+                })
 
-// 			// // we dont have a user record with this ID, create new collection
-// 			// const user = await new User({ googleId: profile.id }).save();
-// 			// done(null, user);
-// 		}
-// 	)
-// );
+                if (existingUser.length) {
+                    // we already have a row with the given googleId
+                    return done(null, existingUser[0]);
+                }
+
+                // Create new account if user does not exists
+                await prisma.mutation.createExternalAccount({
+                    data: {
+                        accountId: profile.id
+                    }
+                })
+
+                const userProfile = await prisma.mutation.createUserProfile({
+                    data: {
+                        email: profile.emails[0].value,
+                        userAccountId: profile.id,
+                        firstName: profile.name.givenName !== undefined ? profile.name.givenName : null,
+                        lastName: profile.name.familyName !== undefined ? profile.name.familyName : null
+                    }
+                })
+
+                done(null, userProfile);
+            } catch (err) {
+                throw new Error(err);
+            }
+		}
+	)
+);
