@@ -20,18 +20,18 @@ export const UserAccount = {
 				email,
 				userAccountId: user.id
 			}
-        })
+		})
 
-		return { profile, token: generateToken(user.id) };
+		const token = await generateToken(user.id, profile.id);
+
+		return { profile, token };
 	},
 	async loginUser(parent, args, { prisma }, info) {
-		const user = await prisma.query.userAccounts({
+		const user = await prisma.query.userAccount({
 			where: {
 				email: args.data.email
 			}
-        });
-
-        console.log(user)
+		});
 
 		if (!user) {
 			throw new Error('Unable to login');
@@ -43,7 +43,15 @@ export const UserAccount = {
 			throw new Error('Unable to login');
 		}
 
-		return { profile, token: generateToken(user.id) };
+		const profile = await prisma.query.userProfiles({
+			where: {
+				userAccountId: user.id
+			}
+		})
+
+		const token = await generateToken(user.id, profile.id);
+
+		return { profile: profile[0], token };
 	},
 	async updateUser(parent, args, { prisma, request }, info) {
 		const userId = getUserId(request);
@@ -52,7 +60,7 @@ export const UserAccount = {
 			args.data.password = await hashPassword(args.data.password);
 		}
 
-		return prisma.mutation.updateUser(
+		return prisma.mutation.updateUserAccount(
 			{
 				where: {
 					id: userId
@@ -65,7 +73,7 @@ export const UserAccount = {
 	async deleteUser(parent, args, { prisma, request }, info) {
 		const userId = getUserId(request);
 
-		return prisma.mutation.deleteUser(
+		return prisma.mutation.deleteUserAccount(
 			{
 				where: {
 					id: userId

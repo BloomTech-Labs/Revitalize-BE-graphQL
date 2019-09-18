@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
 
-export function generateToken(userId) {
-	return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '7d' });
+export function generateToken(userId, profileId) {
+	return jwt.sign({ userId, profileId }, process.env.JWT_SECRET, { expiresIn: '7 days' });
 }

@@ -15,13 +15,12 @@ type Mutation {
 	loginExternalAccount(data: ExternalAccountAuthInput!): AuthPayload!
 
 	# User
-	updateUser(data: UpdateUserInput): UserAccount!
+	updateUser(data: UpdateUserAccountInput): UserAccount!
 	deleteUser: UserAccount!
 
 	# Profile
-	createProfile(date: CreateUserProfileInput!): UserProfile!
-	updateProfile(data: UpdateUserProfileInput!): UserProfile!
-	deleteProfile: UserProfile!
+	updateUserProfile(data: UpdateUserProfileInput!): UserProfile!
+	deleteUserProfile: UserProfile!
 
 	# Project
 	createProject(data: CreateProjectInput!): Project!
@@ -33,12 +32,17 @@ type Mutation {
 type UserAccount {
   id: ID!
   email: String!
-  password: String
+  password: String!
 }
 
 input UserAccountInput {
 	email: String!
 	password: String!
+}
+
+input UpdateUserAccountInput {
+	email: String
+	password: String
 }
 
 # ExternalAccount
