@@ -29,5 +29,16 @@ export const Project = {
 		}
 
 		return prisma.query.projects(opArgs, info)
+	},
+	async myProjects(parent, args, { prisma, request }, info) {
+		const profileId = getProfileId(request);
+
+		return prisma.query.projects({
+			where: {
+				profile: {
+					id: profileId
+				}
+			}
+		}, info)
 	}
 };
