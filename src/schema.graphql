@@ -1,10 +1,12 @@
 # Queries
 type Query {
-	profiles(query: String): [UserProfile!]!
-	profile(id: ID!): UserProfile!
 	me: UserProfile!
-	projects(query: String): [Project!]!
+	user(id: ID!): UserProfile!
+	users(query: String): [UserProfile!]!
 	project(id: ID!): [Project!]!
+	projects(query: String): [Project!]!
+	myProjects: [Project!]!
+	userProjects(id: ID!): [Project!]!
 }
 
 # Mutations
@@ -96,19 +98,6 @@ input UpdateUserProfileInput {
 	aptNumber: String
 }
 
-input UpdateUserInput {
-	firstName: String
-	lastName: String
-	email: String
-	password: String
-	profileImage: String
-	city: String
-	zip: String
-	address: String
-	state: String
-	aptNumber: String
-}
-
 type Project {
   id: ID!
   profile: UserProfile!
@@ -127,7 +116,7 @@ input CreateProjectInput {
 	description: String!
 	address: String!
 	state: String!
-	zip: String!
+	zip: Int!
 	city: String!
 	goalAmount: Float!
 	amountFunded: Float
