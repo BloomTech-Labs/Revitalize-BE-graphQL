@@ -40,5 +40,14 @@ export const Project = {
 				}
 			}
 		}, info)
+	},
+	async userProjects(parent, args, { prisma }, info) {
+		return prisma.query.projects({
+			where: {
+				profile: {
+					id: args.id
+				}
+			}
+		}, info)
 	}
 };
