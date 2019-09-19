@@ -10,7 +10,7 @@ export function getProfileId(request, requireAuth = true) {
 	}
 
 	if (requireAuth) {
-		throw new Error('Authentication required');
+		throw new Error('Sorry, but your token was not properly sent');
 	}
 
 	return null;
