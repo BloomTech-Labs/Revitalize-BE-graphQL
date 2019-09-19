@@ -12,32 +12,42 @@ export const UserProfile = {
 			},
 			info
 		);
-	}
-	// WIP
-	// users(parent, args, { prisma }, info) {
-	// 	const opArgs = {};
+	},
+	async user(parent, args, { prisma }, info) {
+		return prisma.query.userProfile(
+			{
+				where: {
+					id: args.id
+				}
+			},
+			info
+		);
+	},
+	async users(parent, args, { prisma }, info) {
+		const opArgs = {};
 
-	// 	if (args.query) {
-	// 		opArgs.where = {
-	// 			OR: [
-	// 				{
-	// 					name_contains: args.query
-	// 				}
-	// 			]
-	// 		};
-	// 	}
+		if (args.query) {
+			opArgs.where = {
+				OR: [
+					{
+						email_contains: args.query
+					},
+					{
+						firstName_contains: args.query
+					},
+					{
+						lastName_contains: args.query
+					},
+					{
+						city_contains: args.query
+					},
+					{
+						state_contains: args.query
+					}
+				]
+			};
+		}
 
-	// 	return prisma.query.users(opArgs, info);
-	// },
-	// WIP
-	// user(parent, args, { prisma, request }, info) {
-	// 	return prisma.query.user(
-	// 		{
-	// 			where: {
-	// 				id: args.id
-	// 			}
-	// 		},
-	// 		info
-	// 	);
-	// },
+		return prisma.query.userProfiles(opArgs, info);
+	},
 };
