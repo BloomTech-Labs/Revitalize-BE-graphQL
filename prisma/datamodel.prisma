@@ -1,12 +1,16 @@
 type UserAccount {
   id: ID! @id
   email: String! @unique
-  password: String
+  password: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type ExternalAccount {
   id: ID! @id
   accountId: ID! @unique
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type UserProfile {
@@ -22,6 +26,11 @@ type UserProfile {
   state: String
   aptNumber: String
   projects: [Project!]
+  projectLikes: [ProjectLike!]!
+  comments: [Comment!]
+  commentLikes: [CommentLike!]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type Project {
@@ -35,4 +44,34 @@ type Project {
   city: String!
   goalAmount: Float!
   amountFunded: Float! @default(value: 0)
+  comments: [Comment!]!
+  likes: [ProjectLike!]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type ProjectLike {
+  id: ID! @id
+  profile: Userprofile!
+  project: Project!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Comment {
+  id: ID! @id
+  profile: UserProfile!
+  project: Project!
+  text: String!
+  likes: [CommentLike!]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type CommentLike {
+  id: ID! @id
+  profile: Userprofile!
+  comment: Comment!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
