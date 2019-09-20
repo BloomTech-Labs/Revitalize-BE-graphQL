@@ -35,7 +35,7 @@ server.express.get(
 	passport.authenticate('google', { session: false, failureRedirect: '/login' }),
 	(req, res) => {
 		const token = generateToken(req.user.userAccountId, req.user.id)
-		return res.redirect(`localhost:3000/oauth/${token}`);
+		return res.redirect(`http://localhost:3000/oauth/${token}`);
 	}
 );
 
