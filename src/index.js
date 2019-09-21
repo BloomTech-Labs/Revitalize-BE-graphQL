@@ -1,7 +1,7 @@
 import '@babel/polyfill/noConflict';
 import { GraphQLServer } from 'graphql-yoga';
-import { resolvers, fragmentReplacements } from './resolvers';
-import { prisma } from './prisma';
+import { resolvers } from './resolvers';
+import { prisma } from './generated/prisma-client';
 import passport from 'passport';
 
 import './services/passport';
@@ -16,8 +16,7 @@ export const server = new GraphQLServer({
 			prisma,
 			request
 		};
-	},
-	fragmentReplacements
+	}
 });
 
 server.express.use(passport.initialize());

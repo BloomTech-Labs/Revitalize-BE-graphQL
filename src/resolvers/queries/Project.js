@@ -3,7 +3,7 @@ import { async } from 'rxjs/internal/scheduler/async';
 
 export const Project = {
 	async project(parent, args, { prisma }, info) {
-		return prisma.query.projects({
+		return prisma.projects({
 			where: {
 				id: args.id
 			}
@@ -28,12 +28,12 @@ export const Project = {
 			};
 		}
 
-		return prisma.query.projects(opArgs, info)
+		return prisma.projects(opArgs, info)
 	},
 	async myProjects(parent, args, { prisma, request }, info) {
 		const profileId = getProfileId(request);
 
-		return prisma.query.projects({
+		return prisma.projects({
 			where: {
 				profile: {
 					id: profileId
@@ -42,7 +42,7 @@ export const Project = {
 		}, info)
 	},
 	async userProjects(parent, args, { prisma }, info) {
-		return prisma.query.projects({
+		return prisma.projects({
 			where: {
 				profile: {
 					id: args.id

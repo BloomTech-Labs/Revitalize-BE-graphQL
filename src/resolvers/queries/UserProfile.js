@@ -4,7 +4,7 @@ export const UserProfile = {
 	async me(parent, args, { prisma, request }, info) {
 		const profileId = getProfileId(request);
 
-		return prisma.query.userProfile(
+		return prisma.userProfile(
 			{
 				where: {
 					id: profileId
@@ -14,7 +14,7 @@ export const UserProfile = {
 		);
 	},
 	async user(parent, args, { prisma }, info) {
-		return prisma.query.userProfile(
+		return prisma.userProfile(
 			{
 				where: {
 					id: args.id
@@ -47,7 +47,6 @@ export const UserProfile = {
 				]
 			};
 		}
-
-		return prisma.query.userProfiles(opArgs, info);
+		return prisma.userProfiles(opArgs, info);
 	},
 };

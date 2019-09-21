@@ -52,7 +52,7 @@ type Project {
 
 type ProjectLike {
   id: ID! @id
-  profile: Userprofile!
+  profile: UserProfile!
   project: Project!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -70,7 +70,7 @@ type Comment {
 
 type CommentLike {
   id: ID! @id
-  profile: Userprofile!
+  profile: UserProfile!
   comment: Comment!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt

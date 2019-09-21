@@ -8,14 +8,14 @@ export const UserAccount = {
 		const password = await hashPassword(args.data.password);
 		const email = args.data.email
 
-		const user = await prisma.mutation.createUserAccount({
+		const user = await prisma.createUserAccount({
 			data: {
 				email,
 				password
 			}
         });
 
-		const profile = await prisma.mutation.createUserProfile({
+		const profile = await prisma.createUserProfile({
 			data: {
 				email,
 				userAccountId: user.id
@@ -27,7 +27,7 @@ export const UserAccount = {
 		return { profile, token };
 	},
 	async loginUser(parent, args, { prisma }, info) {
-		const user = await prisma.query.userAccount({
+		const user = await prisma.userAccount({
 			where: {
 				email: args.data.email
 			}
@@ -43,7 +43,7 @@ export const UserAccount = {
 			throw new Error('Unable to login');
 		}
 
-		const profile = await prisma.query.userProfiles({
+		const profile = await prisma.userProfiles({
 			where: {
 				userAccountId: user.id
 			}
@@ -60,7 +60,7 @@ export const UserAccount = {
 			args.data.password = await hashPassword(args.data.password);
 		}
 
-		return prisma.mutation.updateUserAccount(
+		return prisma.updateUserAccount(
 			{
 				where: {
 					id: userId
@@ -73,7 +73,7 @@ export const UserAccount = {
 	async deleteUser(parent, args, { prisma, request }, info) {
 		const userId = getUserId(request);
 
-		return prisma.mutation.deleteUserAccount(
+		return prisma.deleteUserAccount(
 			{
 				where: {
 					id: userId
