@@ -45,3 +45,4 @@ Once done make sure you're in the root folder of the cloned repo and run the fol
 - `prisma deploy -e ../config/dev.env`
 
 ## 4️⃣ **Done** 🎉
+Now you can run `yarn dev` without any errors!

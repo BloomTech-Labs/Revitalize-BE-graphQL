@@ -1,10 +1,6 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
+# Revitalize Back-end
 
-🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be comepleted by. Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
-
-#### Backend delpoyed at [heroku](🚫add URL here) <br>
+****Backend delpoyed at [heroku](🚫add URL here)****
 
 ### Backend Stack Node/GraphQL/Passport/Redis/Prisma/PostgreSQL
 
@@ -22,88 +18,6 @@
 | ------ | -------------------- | -------------- | --------------------------------------- |
 | POST   | `/api/auth/register` | All Users      | Registers a new User to the database    |
 | POST   | `/api/auth/login`    | All Users      | Generates a token for a registered user |
-
-# Data Model
-
-```js
-type UserAccount {
-  id: ID! @id
-  email: String! @unique
-  password: String!
-  createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
-}
-
-type ExternalAccount {
-  id: ID! @id
-  accountId: ID! @unique
-  createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
-}
-
-type UserProfile {
-  id: ID! @id
-  userAccountId: ID!
-  email: String! @unique
-  firstName: String
-  lastName: String
-  profileImage: String
-  city: String
-  zip: String
-  address: String
-  state: String
-  aptNumber: String
-  projects: [Project!]
-  projectLikes: [ProjectLike!]!
-  comments: [Comment!]
-  commentLikes: [CommentLike!]!
-  createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
-}
-
-type Project {
-  id: ID! @id
-  profile: UserProfile!
-  name: String!
-  description: String!
-  address: String!
-  state: String!
-  zip: Int!
-  city: String!
-  goalAmount: Float!
-  amountFunded: Float! @default(value: 0)
-  comments: [Comment!]!
-  likes: [ProjectLike!]!
-  createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
-}
-
-type ProjectLike {
-  id: ID! @id
-  profile: UserProfile!
-  project: Project!
-  createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
-}
-
-type Comment {
-  id: ID! @id
-  profile: UserProfile!
-  project: Project!
-  text: String!
-  likes: [CommentLike!]!
-  createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
-}
-
-type CommentLike {
-  id: ID! @id
-  profile: UserProfile!
-  comment: Comment!
-  createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
-}
-```
 
 # Contributing
 

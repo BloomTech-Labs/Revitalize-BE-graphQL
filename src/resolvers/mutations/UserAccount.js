@@ -9,17 +9,14 @@ export const UserAccount = {
 		const email = args.data.email
 
 		const user = await prisma.createUserAccount({
-			data: {
 				email,
 				password
-			}
-        });
+		});
+
 
 		const profile = await prisma.createUserProfile({
-			data: {
 				email,
 				userAccountId: user.id
-			}
 		})
 
 		const token = await generateToken(user.id, profile.id);

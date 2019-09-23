@@ -4,7 +4,6 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 
 passport.serializeUser((user, done) => {
-	console.log(user);
 	done(null, user.id);
 });
 
