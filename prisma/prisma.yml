@@ -15,6 +15,5 @@ hooks:
     - prisma generate
 
 secret: ${env:PRISMA_SECRET}
-
-seed:
-  run: node ./prisma/seed.js
+# seed:
+#   run: node ./prisma/seed.js
