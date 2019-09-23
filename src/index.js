@@ -38,6 +38,6 @@ server.express.get(
 	}
 );
 
-server.start({ port: process.env.PORT }, () => {
+server.start({ port: process.env.PORT || 4000 }, () => {
 	console.log(`GraphQL server is now running http://localhost:${process.env.PORT}`);
 });
