@@ -1,4 +1,4 @@
-# **Configure Development Environment**
+# **Setup Development Environment**
 
 ## **Prerequisites**:
 
