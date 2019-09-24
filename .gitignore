@@ -92,3 +92,6 @@ test.env
 
 # Babel
 dist/
+
+# PM2
+pm2.config.json

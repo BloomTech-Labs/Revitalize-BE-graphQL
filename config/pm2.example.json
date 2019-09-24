@@ -1,0 +1,9 @@
+{
+    "apps": [
+        {
+            "name": "Revitalize-Back-end",
+            "script": "../dist/index.js",
+            "env": {}
+        }
+    ]
+}
