@@ -4,7 +4,7 @@
 
 - Node [Install](https://nodejs.org/en/download/c)
 - Docker [Windows](https://docs.docker.com/docker-for-windows/install/) [Mac](https://docs.docker.com/docker-for-mac/install/) [Linux](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
-- Prisma `yarn add global prisma` or `npm i -g prisma`
+- Prisma `yarn global add prisma` or `npm i -g prisma`
 
 ## 1️⃣ **Getting started** 👋
 
@@ -36,7 +36,7 @@ Utilizing [Prisma ORM](https://www.prisma.io/) we can seamlessly interface with 
 
 To get setup make sure you've installed prisma globally.
 
-- `yarn add global prisma` or `npm i -g prisma`
+- `yarn global add prisma` or `npm i -g prisma`
 
 Once done make sure you're in the root folder of the cloned repo and run the following commands.
 
