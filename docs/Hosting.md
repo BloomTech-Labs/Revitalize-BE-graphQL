@@ -36,9 +36,42 @@ Here's that command broken down.
 
 - `ssh` signifies that we want to run an `ssh` command.
 - `root` is saying you want to be logged in as `root`. `root` is a user that comes with linux by default, and has access to all commands and files on a Linux or Unix-like OS.
-- `@153.242.182.92` is the server you're connecting to.
+- `@157.245.187.82` is the server you're connecting to.
 - Last but not least! If connected to the server properly you should see something like such
 
     ![SHH Success](https://i.imgur.com/c1kEx5e.png)
 
 ## 3️⃣ **Installing Packages** 📦
+Now that we've Created our Droplet and have connected to it. Let's go ahead and install the two necessary packages to get up in running like, [Node](https://nodejs.org/en/) and [Nginx](https://www.nginx.com/).
+
+**Installing the _`Node LTS`_ (Latest Stable Release).**
+1) change to the home directory<br>
+    - `cd ~` <br>
+
+2) Download the Node LTS PPA and excute it<br>
+    - `curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -` <br>
+
+3) Install the Node LTS <br>
+    - `sudo apt-get install -y nodejs` <br>
+
+4) The `nodejs` package contains the nodejs binary as well as npm, so we don’t need to install npm separately. However, in order for some npm packages to work (such as those that require compiling code from source), we will need to install the build-essential package <br>
+    - `sudo apt-get install build-essential`
+
+The Node.js runtime is now installed, and ready to run our node application! Just in case, let's verify this by running `node -v` which should print out something like `v10.16.3`.
+
+**Installing _`Nginx`_**
+
+1) Install Nginx
+    - `sudo apt-get install nginx -y`
+
+2) Reconfigures our firewall to allow Nginx services
+    - `sudo ufw allow 'Nginx HTTP'`
+
+3) Starts Nginx automatically when the server starts
+    - `sudo systemctl enable nginx`
+
+If Nginx was successfully configured, you should be greeted by this beautiful page when you head to your _`ipv4`_ address _e.g_ [http://157.245.187.82/](http://157.245.187.82/)
+
+![](https://i.imgur.com/Dn815FG.png)
+
+You'll notice some more configuration needs to be done, but we'll do that after we've gotten our nodejs application up and running.
