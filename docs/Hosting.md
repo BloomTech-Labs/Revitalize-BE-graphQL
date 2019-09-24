@@ -75,3 +75,5 @@ If Nginx was successfully configured, you should be greeted by this beautiful pa
 ![](https://i.imgur.com/Dn815FG.png)
 
 You'll notice some more configuration needs to be done, but we'll do that after we've gotten our nodejs application up and running.
+
+## 4️⃣ **Starting our application** 🔥
