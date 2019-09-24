@@ -4,7 +4,8 @@
   "description": "Debt free tradeschool back-end",
   "main": "server.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "pm2 dist/index.js",
+    "build": "babel src --out-dir dist --copy-files",
     "heroku-postbuild": "babel src --out-dir dist --copy-files",
     "dev": "env-cmd -f ./config/dev.env nodemon src/index.js --ext js,graphql,env --exec babel-node",
     "get-schema": "env-cmd -f ./config/dev.env graphql get-schema -p prisma",
@@ -35,6 +36,7 @@
     "passport-facebook": "^3.0.0",
     "passport-google-oauth20": "^2.0.0",
     "passport-twitter-oauth2": "^2.1.1",
+    "pm2": "^3.5.1",
     "prisma-client-lib": "^1.34.8"
   },
   "devDependencies": {
