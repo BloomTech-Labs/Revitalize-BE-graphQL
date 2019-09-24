@@ -2,11 +2,34 @@
 
 ****Backend delpoyed at [heroku](🚫add URL here)****
 
-### Backend Stack Node/GraphQL/Passport/Redis/Prisma/PostgreSQL
+### Project Technology Stack
 
-- We chose this stack due to it's potential for rapid product iterations on the front-end, insightful analytics on the back-end, docuementation generation for GraphQL types, and all the benefits that come with a strongly typed system.
--
--
+### Front-end
+- React
+- SCSS
+- Slick JS
+- Apollo
+### Back-end
+- Node
+- GraphQL
+- Passport
+- Prisma
+- PostgreSQL
+- Redis
+### Testing
+- Jest
+### Devops
+- NginX
+- Travis CI
+- Docker
+- Netlify
+- Heroku
+- Digital Ocean
+
+TESTING
+DEVELOPMENT
+STAGING
+PRODUCTION
 
 ## 2️⃣ Endpoints
 
