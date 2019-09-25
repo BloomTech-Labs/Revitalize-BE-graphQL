@@ -3,13 +3,12 @@ import { GraphQLServer } from 'graphql-yoga';
 import { resolvers } from './resolvers';
 import { prisma } from './generated/prisma-client';
 import passport from 'passport';
-
 import './services/passport';
 
 import { generateToken } from './utils/generateToken'
 
 export const server = new GraphQLServer({
-	typeDefs: './schema.graphql',
+	typeDefs: __dirname + '/schema.graphql',
 	resolvers,
 	context(request) {
 		return {
