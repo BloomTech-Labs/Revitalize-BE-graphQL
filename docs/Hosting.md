@@ -36,13 +36,13 @@ Here's that command broken down.
 
 - `ssh` signifies that we want to run an `ssh` command.
 - `root` is saying you want to be logged in as `root`. `root` is a user that comes with linux by default, and has access to all commands and files on a Linux or Unix-like OS.
-- `@157.245.187.82` is the server you're connecting to.
+- `@157.245.187.82` is the server we're connecting to.
 - Last but not least! If connected to the server properly you should see something like such
 
     ![SHH Success](https://i.imgur.com/c1kEx5e.png)
 
-## 3️⃣ **Installing Packages** 📦
-Now that we've Created our Droplet and have connected to it. Let's go ahead and install the two necessary packages to get up in running like, [Node](https://nodejs.org/en/) and [Nginx](https://www.nginx.com/).
+## 3️⃣ **Installing Node** 📦
+Now that we've Created our Droplet and have connected to it. Let's install Node!
 
 **Installing the _`Node LTS`_ (Latest Stable Release).**
 1) change to the home directory<br>
@@ -59,21 +59,59 @@ Now that we've Created our Droplet and have connected to it. Let's go ahead and 
 
 The Node.js runtime is now installed, and ready to run our node application! Just in case, let's verify this by running `node -v` which should print out something like `v10.16.3`.
 
+## 4️⃣ **Starting our application** 🔥
+
+
+## 5️⃣ **Access our node application** 🏁🚘
+Now that our application is running, and listening on localhost, we'll need to set up a way for our users to access it. We will set up the [Nginx](https://www.nginx.com) web server as a reverse proxy for this purpose.
+
 **Installing _`Nginx`_**
 
-1) Install Nginx
+1) First we need to install the Nginx package
     - `sudo apt-get install nginx -y`
 
-2) Reconfigures our firewall to allow Nginx services
+2) Next we'll configure our firewall to allow Nginx services
     - `sudo ufw allow 'Nginx HTTP'`
 
-3) Starts Nginx automatically when the server starts
+3) Now we'll start nginx automatically when the server starts
     - `sudo systemctl enable nginx`
 
-If Nginx was successfully configured, you should be greeted by this beautiful page when you head to your _`ipv4`_ address _e.g_ [http://157.245.187.82/](http://157.245.187.82/)
+4) Next we need to configure our nginx proxy
+   - `sudo nano /etc/nginx/sites-available/default`
 
-![](https://i.imgur.com/Dn815FG.png)
+   Now we need to replace the exist location block.
+   ```
+    location / {
+        random stuff in here
+    }
+   ```
 
-You'll notice some more configuration needs to be done, but we'll do that after we've gotten our nodejs application up and running.
+   with this (the default port is 4000, if you changed it make sure your to use the port you set)
 
-## 4️⃣ **Starting our application** 🔥
+   ```
+   location / {
+        proxy_pass http://localhost:4000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+   ```
+
+5) Next we'll check to make sure the changes we've made were successful
+    - `sudo nginx -t` <br>
+We should see something like such if they are
+        ```
+        nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+        nginx: configuration file /etc/nginx/nginx.conf test is successful
+        ```
+
+6) Last, but not least, we need to restart nginx
+    - `sudo systemctl restart nginx`
+
+Now you should be greeted by this beautiful page when we head to our droplet _`ipv4`_ address _e.g_ [http://157.245.187.82/](http://157.245.187.82/)
+
+![](https://i.imgur.com/mXv0cgS.png)
+
+

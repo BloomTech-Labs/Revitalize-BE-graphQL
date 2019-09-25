@@ -19,7 +19,7 @@
 ### Testing
 - Jest
 ### Devops
-- NginX
+- Nginx
 - Travis CI
 - Docker
 - Netlify

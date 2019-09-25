@@ -32,13 +32,13 @@ Head over to the config file, and make copy of the a `.env.example` file, and re
 
 ## 3️⃣ **Prisma** 💻
 
-Utilizing [Prisma ORM](https://www.prisma.io/) we can seamlessly interface with our database.
+Last but, not least we need to setup [Prisma ORM](https://www.prisma.io/).
 
 To get setup make sure you've installed prisma globally.
 
 - `yarn global add prisma` or `npm i -g prisma`
 
-Once done make sure you're in the root folder of the cloned repo and run the following commands.
+Once done make sure you're in the _root_ of the cloned repo and run the following commands.
 
 - `cd ./prisma`
 - `docker-compose up -d`
