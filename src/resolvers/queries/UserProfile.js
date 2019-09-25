@@ -4,9 +4,9 @@ export const UserProfile = {
 	async me(parent, args, { prisma, request }, info) {
 		const profileId = getProfileId(request);
 
-		return prisma.userProfile(
+		return prisma.userProfiles(
 			{
-				id: profileId
+				where: { id: profileId }
 			},
 			info
 		);
