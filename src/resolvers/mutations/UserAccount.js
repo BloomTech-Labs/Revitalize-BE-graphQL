@@ -47,7 +47,9 @@ export const UserAccount = {
       }
     });
 
-    const token = await generateToken(user.id, profile.id);
+    console.log(profile[0].id)
+
+    const token = await generateToken(user.id, profile[0].id);
 
     return { profile: profile[0], token };
   },
