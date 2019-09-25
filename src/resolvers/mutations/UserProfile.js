@@ -14,9 +14,7 @@ export const UserProfile = {
 
 		return prisma.updateUserProfile(
 			{
-				where: {
-					id: profileId
-				},
+				id: profileId,
 				data: args.data
 			},
 			info
@@ -34,9 +32,7 @@ export const UserProfile = {
 
 		return prisma.deleteUserProfile(
 			{
-				where: {
-					id: profileId
-				}
+				id: profileId
 			},
 			info
 		);

@@ -35,9 +35,7 @@ export const Project = {
 
 		return prisma.mutation.updateProject(
 			{
-				where: {
-					id: args.id
-				},
+				id: args.id,
 				data: args.data
 			},
 			info
@@ -53,9 +51,7 @@ export const Project = {
 
 		return prisma.mutation.deleteProject(
 			{
-				where: {
-					id: args.id
-				}
+				id: args.id
 			},
 			info
 		);

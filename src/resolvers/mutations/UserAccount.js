@@ -25,9 +25,7 @@ export const UserAccount = {
   },
   async loginUser(parent, args, { prisma }, info) {
     const user = await prisma.userAccount({
-      where: {
         email: args.data.email
-      }
     });
 
     if (!user) {
@@ -44,9 +42,7 @@ export const UserAccount = {
     }
 
     const profile = await prisma.userProfiles({
-      where: {
         userAccountId: user.id
-      }
     });
 
     const token = await generateToken(user.id, profile.id);
@@ -62,9 +58,7 @@ export const UserAccount = {
 
     return prisma.updateUserAccount(
       {
-        where: {
-          id: userId
-        },
+        id: userId,
         data: args.data
       },
       info
@@ -75,9 +69,7 @@ export const UserAccount = {
 
     return prisma.deleteUserAccount(
       {
-        where: {
           id: userId
-        }
       },
       info
     );
