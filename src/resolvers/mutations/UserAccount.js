@@ -42,7 +42,9 @@ export const UserAccount = {
     }
 
     const profile = await prisma.userProfiles({
+      where: {
         userAccountId: user.id
+      }
     });
 
     const token = await generateToken(user.id, profile.id);
@@ -58,7 +60,9 @@ export const UserAccount = {
 
     return prisma.updateUserAccount(
       {
-        id: userId,
+        where: {
+          id: userId
+        },
         data: args.data
       },
       info
@@ -69,7 +73,9 @@ export const UserAccount = {
 
     return prisma.deleteUserAccount(
       {
+        where: {
           id: userId
+        }
       },
       info
     );
