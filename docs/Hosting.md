@@ -67,19 +67,19 @@ Now that our application is running, and listening on localhost, we'll need to s
 
 **Installing _`Nginx`_**
 
-1) First we need to install the Nginx package
+1) Install the Nginx package
     - `sudo apt-get install nginx -y`
 
-2) Next we'll configure our firewall to allow Nginx services
+2) Configure our firewall to allow http requests
     - `sudo ufw allow 'Nginx HTTP'`
 
-3) Now we'll start nginx automatically when the server starts
+3) Enable nginx to automatically run when the server starts
     - `sudo systemctl enable nginx`
 
 4) Next we need to configure our nginx proxy
    - `sudo nano /etc/nginx/sites-available/default`
 
-   Now we need to replace the exist location block.
+   Replace the existing location block.
    ```
     location / {
         random stuff in here
@@ -99,7 +99,7 @@ Now that our application is running, and listening on localhost, we'll need to s
     }
    ```
 
-5) Next we'll check to make sure the changes we've made were successful
+5) Lets check to make sure the changes we've made were successful
     - `sudo nginx -t` <br>
 We should see something like such if they are
         ```
@@ -113,5 +113,3 @@ We should see something like such if they are
 Now you should be greeted by this beautiful page when we head to our droplet _`ipv4`_ address _e.g_ [http://157.245.187.82/](http://157.245.187.82/)
 
 ![](https://i.imgur.com/mXv0cgS.png)
-
-
