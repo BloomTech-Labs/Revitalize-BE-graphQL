@@ -8,7 +8,7 @@ import './services/passport';
 import { generateToken } from './utils/generateToken'
 
 export const server = new GraphQLServer({
-	typeDefs: './schema.graphql',
+	typeDefs: __dirname + '/schema.graphql',
 	resolvers,
 	context(request) {
 		return {
@@ -37,6 +37,6 @@ server.express.get(
 	}
 );
 
-server.start({ port: process.env.PORT || 4000 }, () => {
+server.start({ port: process.env.PORT || 5000 }, () => {
 	console.log(`GraphQL server is now running http://localhost:${process.env.PORT}`);
 });
