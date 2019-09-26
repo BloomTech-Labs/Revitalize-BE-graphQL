@@ -33,7 +33,7 @@ passport.use(
 						}
 				});
 
-				if (existingUser) {
+				if (existingUser[0]) {
 					// we already have a row with the given googleId
 					return done(null, existingUser);
 				}
@@ -47,7 +47,8 @@ passport.use(
 						email: profile.emails[0].value,
 						userAccountId: profile.id,
 						firstName: profile.name.givenName !== undefined ? profile.name.givenName : null,
-						lastName: profile.name.familyName !== undefined ? profile.name.familyName : null
+						lastName: profile.name.familyName !== undefined ? profile.name.familyName : null,
+						profileImage: profile.photos[0].value ? profile.photos[0].value : null
 				});
 
 				done(null, userProfile);
@@ -76,7 +77,7 @@ passport.use(
 
 				if (existingUser.length) {
 					// we already have a row with the given googleId
-					return done(null, existingUser[0]);
+					return done(null, existingUser);
 				}
 
 				// Create new account if user does not exists
