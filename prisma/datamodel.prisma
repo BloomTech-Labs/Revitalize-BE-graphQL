@@ -25,7 +25,7 @@ type UserProfile {
   address: String
   state: String
   aptNumber: String
-  projects: [Project!]
+  projects: [Project!]! @relation(name: "ProjectToUserProfile", onDelete: CASCADE)
   projectLikes: [ProjectLike!]!
   comments: [Comment!]
   commentLikes: [CommentLike!]!
@@ -35,7 +35,7 @@ type UserProfile {
 
 type Project {
   id: ID! @id
-  profile: UserProfile!
+  profile: UserProfile! @relation(name: "ProjectToUserProfile", onDelete: SET_NULL)
   name: String!
   description: String!
   address: String!
