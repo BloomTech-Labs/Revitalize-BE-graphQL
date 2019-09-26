@@ -16,6 +16,7 @@
 - Prisma
 - PostgreSQL
 - Redis
+- Sentry
 ### Testing
 - Jest
 ### Devops
