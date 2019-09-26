@@ -4,9 +4,8 @@ export const Project = {
 	createProject(parent, args, { prisma, request }, info) {
 		const profileId = getProfileId(request);
 
-		return prisma.mutation.createProject(
+		return prisma.createProject(
 			{
-				data: {
 					name: args.data.name,
 					description: args.data.description,
 					address: args.data.address,
@@ -20,7 +19,6 @@ export const Project = {
 							id: profileId
 						}
 					}
-				}
 			},
 			info
 		);
@@ -33,7 +31,7 @@ export const Project = {
 			throw new Error('Sorry, but that project does not exist');
 		}
 
-		return prisma.mutation.updateProject(
+		return prisma.updateProject(
 			{
 				id: args.id,
 				data: args.data
@@ -49,7 +47,7 @@ export const Project = {
 			throw new Error('Sorry, but that project does not exist');
 		}
 
-		return prisma.mutation.deleteProject(
+		return prisma.deleteProject(
 			{
 				id: args.id
 			},

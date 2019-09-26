@@ -61,6 +61,7 @@ input ExternalAccountAuthInput {
 type UserProfile {
   id: ID!
   userAccountId: ID!
+  projects: [Project!]
   email: String!
   firstName: String
   lastName: String
@@ -70,7 +71,6 @@ type UserProfile {
   address: String
   state: String
   aptNumber: String
-  projects: [Project!]
 }
 
 input CreateUserProfileInput {

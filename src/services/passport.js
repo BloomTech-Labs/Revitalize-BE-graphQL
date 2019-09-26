@@ -27,31 +27,25 @@ passport.use(
 		},
 		async (accessToken, refreshToken, profile, done) => {
 			try {
-				const existingUser = await prisma.query.userProfiles({
-					where: {
+				const existingUser = await prisma.$exists.userProfile({
 						userAccountId: profile.id
-					}
 				});
 
-				if (existingUser.length) {
+				if (existingUser) {
 					// we already have a row with the given googleId
-					return done(null, existingUser[0]);
+					return done(null, existingUser);
 				}
 
 				// Create new account if user does not exists
-				await prisma.mutation.createExternalAccount({
-					data: {
+				await prisma.createExternalAccount({
 						accountId: profile.id
-					}
 				});
 
-				const userProfile = await prisma.mutation.createUserProfile({
-					data: {
+				const userProfile = await prisma.createUserProfile({
 						email: profile.emails[0].value,
 						userAccountId: profile.id,
 						firstName: profile.name.givenName !== undefined ? profile.name.givenName : null,
 						lastName: profile.name.familyName !== undefined ? profile.name.familyName : null
-					}
 				});
 
 				done(null, userProfile);
