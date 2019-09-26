@@ -32,7 +32,8 @@ server.express.get(
 	'/auth/google/callback',
 	passport.authenticate('google', { session: false, failureRedirect: '/login' }),
 	(req, res) => {
-		const token = generateToken(req.user[0].userAccountId, req.user[0].id)
+		console.log(req.user)
+		const token = generateToken(req.user.userAccountId, req.user.id)
 		return res.redirect(`http://localhost:3000/oauth/${token}`);
 	}
 );

@@ -35,7 +35,7 @@ passport.use(
 
 				if (existingUser[0]) {
 					// we already have a row with the given googleId
-					return done(null, existingUser);
+					return done(null, existingUser[0]);
 				}
 
 				// Create new account if user does not exists
@@ -43,6 +43,7 @@ passport.use(
 						accountId: profile.id
 				});
 
+				// Create profile for account
 				const userProfile = await prisma.createUserProfile({
 						email: profile.emails[0].value,
 						userAccountId: profile.id,
