@@ -1,6 +1,5 @@
 import { prisma } from '../generated/prisma-client';
 import { getUserId } from '../utils/getUserId';
-import { parentPort } from 'worker_threads';
 
 
 const UserAccount = {}
