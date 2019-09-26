@@ -27,8 +27,10 @@ passport.use(
 		},
 		async (accessToken, refreshToken, profile, done) => {
 			try {
-				const existingUser = await prisma.$exists.userProfile({
-						userAccountId: profile.id
+				const existingUser = await prisma.userProfiles({
+						where: {
+							userAccountId: profile.id
+						}
 				});
 
 				if (existingUser) {
