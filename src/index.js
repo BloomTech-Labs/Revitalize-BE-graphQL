@@ -8,7 +8,7 @@ import './services/passport';
 import { generateToken } from './utils/generateToken'
 
 export const server = new GraphQLServer({
-	typeDefs: __dirname + '/schema.graphql',
+	typeDefs: './schema.graphql',
 	resolvers,
 	context(request) {
 		return {
