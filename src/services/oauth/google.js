@@ -30,8 +30,8 @@ export const oAuthGoogle = new GoogleStrategy(
             const userProfile = await prisma.createUserProfile({
                     email: profile.emails[0].value,
                     userAccountId: profile.id,
-                    firstName: profile.name.givenName !== undefined ? profile.name.givenName : null,
-                    lastName: profile.name.familyName !== undefined ? profile.name.familyName : null,
+                    firstName: profile.name.givenName ? profile.name.givenName : null,
+                    lastName: profile.name.familyName ? profile.name.familyName : null,
                     profileImage: profile.photos[0].value ? profile.photos[0].value : null
             });
 
