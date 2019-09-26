@@ -4,7 +4,7 @@
   "description": "Debt free tradeschool back-end",
   "main": "server.js",
   "scripts": {
-    "start": "env-cmd -f ./config/dev.env node dist/index.js",
+    "start": "node dist/index.js",
     "build": "babel src --out-dir dist --copy-files",
     "heroku-postbuild": "npm run build",
     "dev": "env-cmd -f ./config/dev.env nodemon src/index.js --ext js,graphql,env --exec babel-node",
