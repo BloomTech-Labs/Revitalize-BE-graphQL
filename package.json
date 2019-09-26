@@ -4,9 +4,9 @@
   "description": "Debt free tradeschool back-end",
   "main": "server.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "env-cmd -f ./config/dev.env node dist/index.js",
     "build": "babel src --out-dir dist --copy-files",
-    "heroku-postbuild": "babel src --out-dir dist --copy-files",
+    "heroku-postbuild": "npm run build",
     "dev": "env-cmd -f ./config/dev.env nodemon src/index.js --ext js,graphql,env --exec babel-node",
     "get-schema": "env-cmd -f ./config/dev.env graphql get-schema -p prisma",
     "test": "jest --watch"
