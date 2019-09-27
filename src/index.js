@@ -1,12 +1,13 @@
 import '@babel/polyfill/noConflict';
 import { GraphQLServer } from 'graphql-yoga';
-import { resolvers } from './resolvers';
 import { prisma } from './generated/prisma-client';
+import { resolvers } from './resolvers';
+
 import passport from 'passport';
 import './services/passport';
+import { generateToken } from './utils/generateToken';
 
-import { generateToken } from './utils/generateToken'
-
+// graphql server
 export const server = new GraphQLServer({
 	typeDefs: __dirname + '/schema.graphql',
 	resolvers,
@@ -18,6 +19,7 @@ export const server = new GraphQLServer({
 	}
 });
 
+// middleware
 server.express.use(passport.initialize());
 
 server.express.get(
