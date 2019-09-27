@@ -1,7 +1,7 @@
 import { prisma } from '../../generated/prisma-client';
 const FacebookStrategy = require('passport-facebook').Strategy;
 
-export const oAuthFacebook = new FacebookStrategy(
+export const OAuthFacebook = new FacebookStrategy(
 	{
 		clientID: process.env.FACEBOOK_APP_ID,
 		clientSecret: process.env.FACEBOOK_APP_SECRET,
@@ -11,7 +11,6 @@ export const oAuthFacebook = new FacebookStrategy(
 	},
 	async (accessToken, refreshToken, profile, done) => {
 		try {
-			console.log(profile);
 			const existingUser = await prisma.userProfiles({
 				where: {
 					userAccountId: profile.id,

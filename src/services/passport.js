@@ -1,9 +1,9 @@
 import passport from 'passport';
 
-import { oAuthGoogle } from './oauth/google';
-import { oAuthFacebook } from './oauth/facebook';
-import { oAuthTwitter } from './oauth/twitter';
+import { OAuthGoogle } from './OAuth/google';
+import { OAuthFacebook } from './OAuth/facebook';
+import { OAuthTwitter } from './OAuth/twitter';
 
-passport.use(oAuthGoogle);
-passport.use(oAuthFacebook);
-passport.use(oAuthTwitter);
+passport.use(OAuthGoogle);
+passport.use(OAuthFacebook);
+passport.use(OAuthTwitter);

@@ -1,8 +1,8 @@
 import { prisma } from '../../generated/prisma-client';
 
-const TwitterStrategy = require('passport-twitter').Strategy;
+const TwitterStrategy = require('./node_modules/passport-twitter').Strategy;
 
-export const oAuthTwitter = new TwitterStrategy(
+export const OAuthTwitter = new TwitterStrategy(
 	{
 		consumerKey: process.env.TWITTER_API_KEY,
 		consumerSecret: process.env.TWITTER_API_SECRET,

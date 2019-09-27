@@ -4,10 +4,10 @@
   "description": "Debt free tradeschool back-end",
   "main": "server.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "node dist/server.js",
     "heroku-postbuild": "babel src --out-dir dist --copy-files",
     "build": "babel src --out-dir dist --copy-files",
-    "dev": "env-cmd -f ./config/dev.env nodemon src/index.js --ext js,graphql,env --exec babel-node",
+    "dev": "env-cmd -f ./config/dev.env nodemon src/server.js --ext js,graphql,env --exec babel-node",
     "test": "jest --watch"
   },
   "repository": {

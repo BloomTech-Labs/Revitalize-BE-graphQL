@@ -1,7 +1,7 @@
 import { prisma } from '../../generated/prisma-client';
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GoogleStrategy = require('./node_modules/passport-google-oauth20').Strategy;
 
-export const oAuthGoogle = new GoogleStrategy(
+export const OAuthGoogle = new GoogleStrategy(
 	{
 		clientID: process.env.GOOGLE_CLIENT_ID,
 		clientSecret: process.env.GOOGLE_CLIENT_SECRET,
