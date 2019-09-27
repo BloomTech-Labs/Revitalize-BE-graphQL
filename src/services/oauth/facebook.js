@@ -17,7 +17,7 @@ export const oAuthFacebook = new FacebookStrategy(
 				},
 			});
 
-			if (existingUser.length) {
+			if (existingUser[0]) {
 				// we already have a row with the given googleId
 				return done(null, existingUser);
 			}
