@@ -51,7 +51,7 @@ server.express.get(
 	(req, res) => {
 		console.log(req.user)
 		const token = generateToken(req.user.userAccountId, req.user.id)
-		return res.redirect(`${process.env.REACT_OAUTH_ROUTE}/oauth/${token}`);
+		return res.redirect(`${process.env.OAUTH_ROUTE}/oauth/${token}`);
 	}
 );
 
