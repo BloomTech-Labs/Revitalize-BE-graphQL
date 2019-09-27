@@ -6,7 +6,6 @@ async function main() {
             email: 'frank@gmail.com',
             password: 'password',
         });
-        console.log(user)
 
         await prisma.createUserProfile({
             userAccountId: user.id,
