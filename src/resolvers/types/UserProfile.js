@@ -1,11 +1,7 @@
-import { prisma } from '../generated/prisma-client';
-import { getUserId } from '../utils/getUserId';
+import { prisma } from '../../generated/prisma-client';
+import { getUserId } from '../../utils/getUserId';
 
-
-const UserAccount = {}
-const ExternalAccount = {}
-
-const UserProfile = {
+export const UserProfile = {
 	async projects(parent) {
 		return await prisma.userProfile({ id: parent.id}).projects()
 	}
@@ -21,17 +17,4 @@ const UserProfile = {
 	// 		}
 	// 	}
 	// }
-};
-
-const Project = {
-	async profile(parent) {
-		return await prisma.project({ id: parent.id }).profile()
-	}
-};
-
-export const Types = {
-	UserProfile,
-	UserAccount,
-	ExternalAccount,
-	Project
 };

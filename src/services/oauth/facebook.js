@@ -11,6 +11,7 @@ export const oAuthFacebook = new FacebookStrategy(
 	},
 	async (accessToken, refreshToken, profile, done) => {
 		try {
+			console.log(profile);
 			const existingUser = await prisma.userProfiles({
 				where: {
 					userAccountId: profile.id,
