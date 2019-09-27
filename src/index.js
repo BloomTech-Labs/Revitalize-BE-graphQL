@@ -37,7 +37,6 @@ server.express.get(
 	'/auth/facebook/callback',
 	passport.authenticate('facebook', { session: false, failureRedirect: '/login' }),
 	(req, res) => {
-		console.log(req.user);
 		const token = generateToken(req.user.userAccountId, req.user.id);
 		return res.redirect(`${process.env.OAUTH_ROUTE}/oauth/${token}`);
 	},

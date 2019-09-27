@@ -19,7 +19,7 @@ export const oAuthFacebook = new FacebookStrategy(
 
 			if (existingUser[0]) {
 				// we already have a row with the given googleId
-				return done(null, existingUser);
+				return done(null, existingUser[0]);
 			}
 
 			// Create new account if user does not exists
