@@ -5,8 +5,8 @@ export const oAuthFacebook = new FacebookStrategy(
 	{
 		clientID: process.env.FACEBOOK_APP_ID,
 		clientSecret: process.env.FACEBOOK_APP_SECRET,
-        callbackURL: '/auth/facebook/callback',
-        profileFields: ['emails'],
+		callbackURL: '/auth/facebook/callback',
+		profileFields: ['emails'],
 		proxy: true,
 	},
 	async (accessToken, refreshToken, profile, done) => {
