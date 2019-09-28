@@ -1,6 +1,6 @@
 import { prisma } from '../../generated/prisma-client';
 
-const TwitterStrategy = require('./node_modules/passport-twitter').Strategy;
+const TwitterStrategy = require('passport-twitter').Strategy;
 
 export const OAuthTwitter = new TwitterStrategy(
 	{
