@@ -16,8 +16,6 @@ export const OAuthGoogle = new GoogleStrategy(
 				},
 			});
 
-			console.log(existingUser);
-
 			if (existingUser[0]) {
 				// we already have a row with the given googleId
 				return done(null, existingUser[0]);
