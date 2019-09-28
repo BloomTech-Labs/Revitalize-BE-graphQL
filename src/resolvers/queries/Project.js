@@ -1,12 +1,9 @@
 import { getProfileId } from '../../utils/getProfileId';
-import { async } from 'rxjs/internal/scheduler/async';
 
 export const Project = {
 	async project(parent, args, { prisma }, info) {
-		return prisma.projects({
-			where: {
-				id: args.id
-			}
+		return prisma.project({
+			id: args.id
 		}, info)
 	},
 	async projects(parent, args, { prisma }, info) {

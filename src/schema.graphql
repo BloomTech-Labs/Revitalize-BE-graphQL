@@ -3,7 +3,7 @@ type Query {
 	me: UserProfile!
 	user(id: ID!): UserProfile!
 	users(query: String): [UserProfile!]!
-	project(id: ID!): [Project!]!
+	project(id: ID!): Project!
 	projects(query: String): [Project!]!
 	myProjects: [Project!]!
 	userProjects(id: ID!): [Project!]!
