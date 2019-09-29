@@ -6,7 +6,7 @@
             "env": {
                 "PORT": 4000,
                 "PRISMA_ENDPOINT":"http://localhost:4466",
-                "PRISMA_SECRET":"",
+                "PRISMA_SECRET":"http://prisma:4466",
                 "JWT_SECRET":"",
                 "GOOGLE_CLIENT_ID":"",
                 "GOOGLE_CLIENT_SECRET":"",

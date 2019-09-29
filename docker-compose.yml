@@ -1,6 +1,6 @@
 version: '3'
-# GraphQL Server
 services:
+  # GraphQL Server
   server:
     container_name: graphql-server
     restart: always
