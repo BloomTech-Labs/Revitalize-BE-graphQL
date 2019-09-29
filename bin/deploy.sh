@@ -4,7 +4,7 @@ docker kill $(docker ps -q)
 
 # Remove all stopped containers, all dangling images, and all unused networks
 echo -e "\e[31;3mRemoving existing docker containers and images\e[37;3m"
-docker system prune -f
+docker system prune -af
 
 # Build docker images
 echo -e "\e[36;1mBuilding docker images\e[37;3m"
