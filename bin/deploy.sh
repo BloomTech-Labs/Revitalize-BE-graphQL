@@ -14,7 +14,7 @@ echo -e "\e[34;3mSpinning up docker images"
 docker-compose up -d
 
 # Migrate and seed database
-sleep 5 &&  echo -e "\e[33;1mMigrating data" # Delay 5 seconds the run prisma deploy, this is so the docker images can spin up
+sleep 5 && echo -e "\e[33;1mMigrating data" # Delay the run prisma deploy command for 5 seconds, this is so the docker images can spin up
 prisma deploy -e ./config/prod.env
 
 echo -e "\e[32;3mSuccess!"

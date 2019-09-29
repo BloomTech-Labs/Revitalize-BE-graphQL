@@ -1,7 +1,10 @@
-node_modules
-npm-debug.log
+dist
 Dockerfile
+node_modules
+
+npm-debug.log
+
 .dockerignore
 .git
 .gitignore
-dist
+
