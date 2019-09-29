@@ -12,4 +12,4 @@ generate:
       output: ../src/generated/prisma-client/
 
 seed:
-  run: node ../prisma/seed.js
+  run: node ./prisma/seed.js
