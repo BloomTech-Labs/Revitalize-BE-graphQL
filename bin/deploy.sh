@@ -8,9 +8,10 @@ docker system prune -f
 
 # Build docker images
 echo -e "\e[36;1mBuilding docker images\e[37;3m"
-docker-compose up -d
+docker-compose build
 
 echo -e "\e[34;3mSpinning up docker images"
+docker-compose up -d
 
 # Migrate and seed database
 sleep 5 &&  echo -e "\e[33;1mMigrating data" # Delay 5 seconds the run prisma deploy, this is so the docker images can spin up
