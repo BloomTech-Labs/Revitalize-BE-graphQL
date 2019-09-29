@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node dist/server.js",
     "heroku-postbuild": "babel src --out-dir dist --copy-files",
+    "deploy": "bash bin/deploy.sh",
     "build": "babel src --out-dir dist --copy-files",
     "dev": "env-cmd -f ./config/dev.env nodemon src/server.js --ext js,graphql,env --exec babel-node",
     "test": "jest --watch"
