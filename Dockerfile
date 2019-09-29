@@ -16,6 +16,6 @@ RUN chown -R node:node .
 
 RUN npm run build
 
-EXPOSE 8080
+EXPOSE 4000
 
-CMD ["pm2-runtime", "./config/pm2.json"]
+CMD ["pm2-runtime", "./config/pm2.config.json"]

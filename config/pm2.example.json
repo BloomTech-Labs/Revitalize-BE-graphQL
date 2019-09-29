@@ -2,7 +2,7 @@
     "apps": [
         {
             "name": "Revitalize-Back-end",
-            "script": "./Back-End/dist/index.js",
+            "script": "./Back-End/dist/server.js",
             "env": {
                 "PORT": 4000,
                 "PRISMA_ENDPOINT":"http://localhost:4466",
