@@ -1,4 +1,4 @@
-FROM node:10.16.3
+FROM node:10-alpine
 
 RUN npm install pm2 prisma -g
 
