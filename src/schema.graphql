@@ -7,6 +7,7 @@ type Query {
 	projects(query: String): [Project!]!
 	myProjects: [Project!]!
 	userProjects(id: ID!): [Project!]!
+	projectLikes(id: ID!): [ProjectLike!]!
 }
 
 # Mutations
@@ -61,7 +62,6 @@ input ExternalAccountAuthInput {
 type UserProfile {
   id: ID!
   userAccountId: ID!
-  projects: [Project!]
   email: String!
   firstName: String
   lastName: String
@@ -72,6 +72,10 @@ type UserProfile {
   zip: Int
   address: String
   aptNumber: String
+  projects: [Project!]!
+  likedProjects: [ProjectLike!]!
+  comments: [ProjectComment!]
+  likedComments: [ProjectCommentLike!]!
 }
 
 input CreateUserProfileInput {
@@ -113,6 +117,8 @@ type Project {
   address: String!
   goalAmount: Float!
   amountFunded: Float!
+  likes: [ProjectLike!]!
+  comments: [ProjectComment!]!
 }
 
 input CreateProjectInput {
@@ -137,6 +143,26 @@ input UpdateProjectInput {
 	address: String!
 	goalAmount: Float
 	amountFunded: Float
+}
+
+type ProjectLike {
+  id: ID!
+  profile: UserProfile!
+  project: Project!
+}
+
+type ProjectComment {
+  id: ID!
+  profile: UserProfile!
+  project: Project!
+  comment: String!
+  likes: [ProjectCommentLike!]!
+}
+
+type ProjectCommentLike {
+  id: ID!
+  profile: UserProfile!
+  comment: ProjectComment!
 }
 
 # Enums
