@@ -20,7 +20,7 @@ type UserProfile {
   firstName: String
   lastName: String
   profileImage: String
-  country: String!
+  country: String
   address: String
   state: String
   city: String

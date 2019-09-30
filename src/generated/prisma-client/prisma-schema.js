@@ -2072,7 +2072,7 @@ type UserProfile {
   firstName: String
   lastName: String
   profileImage: String
-  country: String!
+  country: String
   address: String
   state: String
   city: String
@@ -2099,7 +2099,7 @@ input UserProfileCreateInput {
   firstName: String
   lastName: String
   profileImage: String
-  country: String!
+  country: String
   address: String
   state: String
   city: String
@@ -2138,7 +2138,7 @@ input UserProfileCreateWithoutCommentsInput {
   firstName: String
   lastName: String
   profileImage: String
-  country: String!
+  country: String
   address: String
   state: String
   city: String
@@ -2156,7 +2156,7 @@ input UserProfileCreateWithoutLikedCommentsInput {
   firstName: String
   lastName: String
   profileImage: String
-  country: String!
+  country: String
   address: String
   state: String
   city: String
@@ -2174,7 +2174,7 @@ input UserProfileCreateWithoutLikedProjectsInput {
   firstName: String
   lastName: String
   profileImage: String
-  country: String!
+  country: String
   address: String
   state: String
   city: String
@@ -2192,7 +2192,7 @@ input UserProfileCreateWithoutProjectsInput {
   firstName: String
   lastName: String
   profileImage: String
-  country: String!
+  country: String
   address: String
   state: String
   city: String
@@ -2246,7 +2246,7 @@ type UserProfilePreviousValues {
   firstName: String
   lastName: String
   profileImage: String
-  country: String!
+  country: String
   address: String
   state: String
   city: String

@@ -1262,7 +1262,7 @@ export interface UserProfileCreateWithoutProjectsInput {
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
   profileImage?: Maybe<String>;
-  country: String;
+  country?: Maybe<String>;
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
@@ -1353,7 +1353,7 @@ export interface UserProfileCreateWithoutCommentsInput {
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
   profileImage?: Maybe<String>;
-  country: String;
+  country?: Maybe<String>;
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
@@ -1413,7 +1413,7 @@ export interface UserProfileCreateWithoutLikedProjectsInput {
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
   profileImage?: Maybe<String>;
-  country: String;
+  country?: Maybe<String>;
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
@@ -1490,7 +1490,7 @@ export interface UserProfileCreateWithoutLikedCommentsInput {
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
   profileImage?: Maybe<String>;
-  country: String;
+  country?: Maybe<String>;
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
@@ -2621,7 +2621,7 @@ export interface UserProfileCreateInput {
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
   profileImage?: Maybe<String>;
-  country: String;
+  country?: Maybe<String>;
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
@@ -3080,7 +3080,7 @@ export interface UserProfile {
   firstName?: String;
   lastName?: String;
   profileImage?: String;
-  country: String;
+  country?: String;
   address?: String;
   state?: String;
   city?: String;
@@ -4272,7 +4272,7 @@ export interface UserProfilePreviousValues {
   firstName?: String;
   lastName?: String;
   profileImage?: String;
-  country: String;
+  country?: String;
   address?: String;
   state?: String;
   city?: String;
