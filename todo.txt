@@ -1,4 +1,3 @@
-fix prisma deploy issue
 create development env for docker
 create test suite
 comments and likes

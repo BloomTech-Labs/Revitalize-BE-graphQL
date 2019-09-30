@@ -25,11 +25,11 @@ var models = [
     embedded: false
   },
   {
-    name: "Comment",
+    name: "ProjectComment",
     embedded: false
   },
   {
-    name: "CommentLike",
+    name: "ProjectCommentLike",
     embedded: false
   }
 ];

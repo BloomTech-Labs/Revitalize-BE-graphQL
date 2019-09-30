@@ -20,15 +20,16 @@ type UserProfile {
   firstName: String
   lastName: String
   profileImage: String
-  city: String
-  zip: String
+  country: String!
   address: String
   state: String
+  city: String
+  zip: String
   aptNumber: String
   projects: [Project!]! @relation(name: "ProjectToUserProfile", onDelete: CASCADE)
-  projectLikes: [ProjectLike!]!
-  comments: [Comment!]
-  commentLikes: [CommentLike!]!
+  likedProjects: [ProjectLike!]! @relation(name: "ProjectLikeToUserProfile", onDelete: CASCADE)
+  comments: [ProjectComment!] @relation(name: "CommentToUserProfile", onDelete: CASCADE)
+  likedComments: [ProjectCommentLike!]! @relation(name: "CommentLikeToUserProfile", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -38,40 +39,41 @@ type Project {
   profile: UserProfile! @relation(name: "ProjectToUserProfile", onDelete: SET_NULL)
   name: String!
   description: String!
-  address: String!
-  state: String!
-  zip: Int!
-  city: String!
+  country: String!
+  address: String
+  state: String
+  city: String
+  zip: String
   goalAmount: Float!
   amountFunded: Float! @default(value: 0)
-  comments: [Comment!]!
-  likes: [ProjectLike!]!
+  likes: [ProjectLike!]! @relation(name: "ProjectLike", onDelete: CASCADE)
+  comments: [ProjectComment!]! @relation(name: "ProjectComment", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
 
 type ProjectLike {
   id: ID! @id
-  profile: UserProfile!
-  project: Project!
+  profile: UserProfile! @relation(name: "ProjectLikeToUserProfile", onDelete: SET_NULL)
+  project: Project! @relation(name: "ProjectLike", onDelete: SET_NULL)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
 
-type Comment {
+type ProjectComment {
   id: ID! @id
-  profile: UserProfile!
-  project: Project!
-  text: String!
-  likes: [CommentLike!]!
+  profile: UserProfile! @relation(name: "CommentToUserProfile", onDelete: SET_NULL)
+  project: Project! @relation(name: "ProjectComment", onDelete: SET_NULL)
+  comment: String!
+  likes: [ProjectCommentLike!]! @relation(name: "ProjectCommentLike", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
 
-type CommentLike {
+type ProjectCommentLike {
   id: ID! @id
-  profile: UserProfile!
-  comment: Comment!
+  profile: UserProfile! @relation(name: "CommentLikeToUserProfile", onDelete: SET_NULL)
+  comment: ProjectComment! @relation(name: "ProjectCommentLike", onDelete: SET_NULL)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }

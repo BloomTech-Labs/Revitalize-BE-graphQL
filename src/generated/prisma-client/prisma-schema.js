@@ -3,19 +3,19 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateComment {
-  count: Int!
-}
-
-type AggregateCommentLike {
-  count: Int!
-}
-
-type AggregateExternalAccount {
+/* GraphQL */ `type AggregateExternalAccount {
   count: Int!
 }
 
 type AggregateProject {
+  count: Int!
+}
+
+type AggregateProjectComment {
+  count: Int!
+}
+
+type AggregateProjectCommentLike {
   count: Int!
 }
 
@@ -33,525 +33,6 @@ type AggregateUserProfile {
 
 type BatchPayload {
   count: Long!
-}
-
-type Comment {
-  id: ID!
-  profile: UserProfile!
-  project: Project!
-  text: String!
-  likes(where: CommentLikeWhereInput, orderBy: CommentLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CommentLike!]
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-type CommentConnection {
-  pageInfo: PageInfo!
-  edges: [CommentEdge]!
-  aggregate: AggregateComment!
-}
-
-input CommentCreateInput {
-  id: ID
-  profile: UserProfileCreateOneWithoutCommentsInput!
-  project: ProjectCreateOneWithoutCommentsInput!
-  text: String!
-  likes: CommentLikeCreateManyWithoutCommentInput
-}
-
-input CommentCreateManyWithoutProfileInput {
-  create: [CommentCreateWithoutProfileInput!]
-  connect: [CommentWhereUniqueInput!]
-}
-
-input CommentCreateManyWithoutProjectInput {
-  create: [CommentCreateWithoutProjectInput!]
-  connect: [CommentWhereUniqueInput!]
-}
-
-input CommentCreateOneWithoutLikesInput {
-  create: CommentCreateWithoutLikesInput
-  connect: CommentWhereUniqueInput
-}
-
-input CommentCreateWithoutLikesInput {
-  id: ID
-  profile: UserProfileCreateOneWithoutCommentsInput!
-  project: ProjectCreateOneWithoutCommentsInput!
-  text: String!
-}
-
-input CommentCreateWithoutProfileInput {
-  id: ID
-  project: ProjectCreateOneWithoutCommentsInput!
-  text: String!
-  likes: CommentLikeCreateManyWithoutCommentInput
-}
-
-input CommentCreateWithoutProjectInput {
-  id: ID
-  profile: UserProfileCreateOneWithoutCommentsInput!
-  text: String!
-  likes: CommentLikeCreateManyWithoutCommentInput
-}
-
-type CommentEdge {
-  node: Comment!
-  cursor: String!
-}
-
-type CommentLike {
-  id: ID!
-  profile: UserProfile!
-  comment: Comment!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-type CommentLikeConnection {
-  pageInfo: PageInfo!
-  edges: [CommentLikeEdge]!
-  aggregate: AggregateCommentLike!
-}
-
-input CommentLikeCreateInput {
-  id: ID
-  profile: UserProfileCreateOneWithoutCommentLikesInput!
-  comment: CommentCreateOneWithoutLikesInput!
-}
-
-input CommentLikeCreateManyWithoutCommentInput {
-  create: [CommentLikeCreateWithoutCommentInput!]
-  connect: [CommentLikeWhereUniqueInput!]
-}
-
-input CommentLikeCreateManyWithoutProfileInput {
-  create: [CommentLikeCreateWithoutProfileInput!]
-  connect: [CommentLikeWhereUniqueInput!]
-}
-
-input CommentLikeCreateWithoutCommentInput {
-  id: ID
-  profile: UserProfileCreateOneWithoutCommentLikesInput!
-}
-
-input CommentLikeCreateWithoutProfileInput {
-  id: ID
-  comment: CommentCreateOneWithoutLikesInput!
-}
-
-type CommentLikeEdge {
-  node: CommentLike!
-  cursor: String!
-}
-
-enum CommentLikeOrderByInput {
-  id_ASC
-  id_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-}
-
-type CommentLikePreviousValues {
-  id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-input CommentLikeScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  AND: [CommentLikeScalarWhereInput!]
-  OR: [CommentLikeScalarWhereInput!]
-  NOT: [CommentLikeScalarWhereInput!]
-}
-
-type CommentLikeSubscriptionPayload {
-  mutation: MutationType!
-  node: CommentLike
-  updatedFields: [String!]
-  previousValues: CommentLikePreviousValues
-}
-
-input CommentLikeSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: CommentLikeWhereInput
-  AND: [CommentLikeSubscriptionWhereInput!]
-  OR: [CommentLikeSubscriptionWhereInput!]
-  NOT: [CommentLikeSubscriptionWhereInput!]
-}
-
-input CommentLikeUpdateInput {
-  profile: UserProfileUpdateOneRequiredWithoutCommentLikesInput
-  comment: CommentUpdateOneRequiredWithoutLikesInput
-}
-
-input CommentLikeUpdateManyWithoutCommentInput {
-  create: [CommentLikeCreateWithoutCommentInput!]
-  delete: [CommentLikeWhereUniqueInput!]
-  connect: [CommentLikeWhereUniqueInput!]
-  set: [CommentLikeWhereUniqueInput!]
-  disconnect: [CommentLikeWhereUniqueInput!]
-  update: [CommentLikeUpdateWithWhereUniqueWithoutCommentInput!]
-  upsert: [CommentLikeUpsertWithWhereUniqueWithoutCommentInput!]
-  deleteMany: [CommentLikeScalarWhereInput!]
-}
-
-input CommentLikeUpdateManyWithoutProfileInput {
-  create: [CommentLikeCreateWithoutProfileInput!]
-  delete: [CommentLikeWhereUniqueInput!]
-  connect: [CommentLikeWhereUniqueInput!]
-  set: [CommentLikeWhereUniqueInput!]
-  disconnect: [CommentLikeWhereUniqueInput!]
-  update: [CommentLikeUpdateWithWhereUniqueWithoutProfileInput!]
-  upsert: [CommentLikeUpsertWithWhereUniqueWithoutProfileInput!]
-  deleteMany: [CommentLikeScalarWhereInput!]
-}
-
-input CommentLikeUpdateWithoutCommentDataInput {
-  profile: UserProfileUpdateOneRequiredWithoutCommentLikesInput
-}
-
-input CommentLikeUpdateWithoutProfileDataInput {
-  comment: CommentUpdateOneRequiredWithoutLikesInput
-}
-
-input CommentLikeUpdateWithWhereUniqueWithoutCommentInput {
-  where: CommentLikeWhereUniqueInput!
-  data: CommentLikeUpdateWithoutCommentDataInput!
-}
-
-input CommentLikeUpdateWithWhereUniqueWithoutProfileInput {
-  where: CommentLikeWhereUniqueInput!
-  data: CommentLikeUpdateWithoutProfileDataInput!
-}
-
-input CommentLikeUpsertWithWhereUniqueWithoutCommentInput {
-  where: CommentLikeWhereUniqueInput!
-  update: CommentLikeUpdateWithoutCommentDataInput!
-  create: CommentLikeCreateWithoutCommentInput!
-}
-
-input CommentLikeUpsertWithWhereUniqueWithoutProfileInput {
-  where: CommentLikeWhereUniqueInput!
-  update: CommentLikeUpdateWithoutProfileDataInput!
-  create: CommentLikeCreateWithoutProfileInput!
-}
-
-input CommentLikeWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  profile: UserProfileWhereInput
-  comment: CommentWhereInput
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  AND: [CommentLikeWhereInput!]
-  OR: [CommentLikeWhereInput!]
-  NOT: [CommentLikeWhereInput!]
-}
-
-input CommentLikeWhereUniqueInput {
-  id: ID
-}
-
-enum CommentOrderByInput {
-  id_ASC
-  id_DESC
-  text_ASC
-  text_DESC
-  createdAt_ASC
-  createdAt_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-}
-
-type CommentPreviousValues {
-  id: ID!
-  text: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-}
-
-input CommentScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  text: String
-  text_not: String
-  text_in: [String!]
-  text_not_in: [String!]
-  text_lt: String
-  text_lte: String
-  text_gt: String
-  text_gte: String
-  text_contains: String
-  text_not_contains: String
-  text_starts_with: String
-  text_not_starts_with: String
-  text_ends_with: String
-  text_not_ends_with: String
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  AND: [CommentScalarWhereInput!]
-  OR: [CommentScalarWhereInput!]
-  NOT: [CommentScalarWhereInput!]
-}
-
-type CommentSubscriptionPayload {
-  mutation: MutationType!
-  node: Comment
-  updatedFields: [String!]
-  previousValues: CommentPreviousValues
-}
-
-input CommentSubscriptionWhereInput {
-  mutation_in: [MutationType!]
-  updatedFields_contains: String
-  updatedFields_contains_every: [String!]
-  updatedFields_contains_some: [String!]
-  node: CommentWhereInput
-  AND: [CommentSubscriptionWhereInput!]
-  OR: [CommentSubscriptionWhereInput!]
-  NOT: [CommentSubscriptionWhereInput!]
-}
-
-input CommentUpdateInput {
-  profile: UserProfileUpdateOneRequiredWithoutCommentsInput
-  project: ProjectUpdateOneRequiredWithoutCommentsInput
-  text: String
-  likes: CommentLikeUpdateManyWithoutCommentInput
-}
-
-input CommentUpdateManyDataInput {
-  text: String
-}
-
-input CommentUpdateManyMutationInput {
-  text: String
-}
-
-input CommentUpdateManyWithoutProfileInput {
-  create: [CommentCreateWithoutProfileInput!]
-  delete: [CommentWhereUniqueInput!]
-  connect: [CommentWhereUniqueInput!]
-  set: [CommentWhereUniqueInput!]
-  disconnect: [CommentWhereUniqueInput!]
-  update: [CommentUpdateWithWhereUniqueWithoutProfileInput!]
-  upsert: [CommentUpsertWithWhereUniqueWithoutProfileInput!]
-  deleteMany: [CommentScalarWhereInput!]
-  updateMany: [CommentUpdateManyWithWhereNestedInput!]
-}
-
-input CommentUpdateManyWithoutProjectInput {
-  create: [CommentCreateWithoutProjectInput!]
-  delete: [CommentWhereUniqueInput!]
-  connect: [CommentWhereUniqueInput!]
-  set: [CommentWhereUniqueInput!]
-  disconnect: [CommentWhereUniqueInput!]
-  update: [CommentUpdateWithWhereUniqueWithoutProjectInput!]
-  upsert: [CommentUpsertWithWhereUniqueWithoutProjectInput!]
-  deleteMany: [CommentScalarWhereInput!]
-  updateMany: [CommentUpdateManyWithWhereNestedInput!]
-}
-
-input CommentUpdateManyWithWhereNestedInput {
-  where: CommentScalarWhereInput!
-  data: CommentUpdateManyDataInput!
-}
-
-input CommentUpdateOneRequiredWithoutLikesInput {
-  create: CommentCreateWithoutLikesInput
-  update: CommentUpdateWithoutLikesDataInput
-  upsert: CommentUpsertWithoutLikesInput
-  connect: CommentWhereUniqueInput
-}
-
-input CommentUpdateWithoutLikesDataInput {
-  profile: UserProfileUpdateOneRequiredWithoutCommentsInput
-  project: ProjectUpdateOneRequiredWithoutCommentsInput
-  text: String
-}
-
-input CommentUpdateWithoutProfileDataInput {
-  project: ProjectUpdateOneRequiredWithoutCommentsInput
-  text: String
-  likes: CommentLikeUpdateManyWithoutCommentInput
-}
-
-input CommentUpdateWithoutProjectDataInput {
-  profile: UserProfileUpdateOneRequiredWithoutCommentsInput
-  text: String
-  likes: CommentLikeUpdateManyWithoutCommentInput
-}
-
-input CommentUpdateWithWhereUniqueWithoutProfileInput {
-  where: CommentWhereUniqueInput!
-  data: CommentUpdateWithoutProfileDataInput!
-}
-
-input CommentUpdateWithWhereUniqueWithoutProjectInput {
-  where: CommentWhereUniqueInput!
-  data: CommentUpdateWithoutProjectDataInput!
-}
-
-input CommentUpsertWithoutLikesInput {
-  update: CommentUpdateWithoutLikesDataInput!
-  create: CommentCreateWithoutLikesInput!
-}
-
-input CommentUpsertWithWhereUniqueWithoutProfileInput {
-  where: CommentWhereUniqueInput!
-  update: CommentUpdateWithoutProfileDataInput!
-  create: CommentCreateWithoutProfileInput!
-}
-
-input CommentUpsertWithWhereUniqueWithoutProjectInput {
-  where: CommentWhereUniqueInput!
-  update: CommentUpdateWithoutProjectDataInput!
-  create: CommentCreateWithoutProjectInput!
-}
-
-input CommentWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  profile: UserProfileWhereInput
-  project: ProjectWhereInput
-  text: String
-  text_not: String
-  text_in: [String!]
-  text_not_in: [String!]
-  text_lt: String
-  text_lte: String
-  text_gt: String
-  text_gte: String
-  text_contains: String
-  text_not_contains: String
-  text_starts_with: String
-  text_not_starts_with: String
-  text_ends_with: String
-  text_not_ends_with: String
-  likes_every: CommentLikeWhereInput
-  likes_some: CommentLikeWhereInput
-  likes_none: CommentLikeWhereInput
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  updatedAt: DateTime
-  updatedAt_not: DateTime
-  updatedAt_in: [DateTime!]
-  updatedAt_not_in: [DateTime!]
-  updatedAt_lt: DateTime
-  updatedAt_lte: DateTime
-  updatedAt_gt: DateTime
-  updatedAt_gte: DateTime
-  AND: [CommentWhereInput!]
-  OR: [CommentWhereInput!]
-  NOT: [CommentWhereInput!]
-}
-
-input CommentWhereUniqueInput {
-  id: ID
 }
 
 scalar DateTime
@@ -681,17 +162,6 @@ input ExternalAccountWhereUniqueInput {
 scalar Long
 
 type Mutation {
-  createComment(data: CommentCreateInput!): Comment!
-  updateComment(data: CommentUpdateInput!, where: CommentWhereUniqueInput!): Comment
-  updateManyComments(data: CommentUpdateManyMutationInput!, where: CommentWhereInput): BatchPayload!
-  upsertComment(where: CommentWhereUniqueInput!, create: CommentCreateInput!, update: CommentUpdateInput!): Comment!
-  deleteComment(where: CommentWhereUniqueInput!): Comment
-  deleteManyComments(where: CommentWhereInput): BatchPayload!
-  createCommentLike(data: CommentLikeCreateInput!): CommentLike!
-  updateCommentLike(data: CommentLikeUpdateInput!, where: CommentLikeWhereUniqueInput!): CommentLike
-  upsertCommentLike(where: CommentLikeWhereUniqueInput!, create: CommentLikeCreateInput!, update: CommentLikeUpdateInput!): CommentLike!
-  deleteCommentLike(where: CommentLikeWhereUniqueInput!): CommentLike
-  deleteManyCommentLikes(where: CommentLikeWhereInput): BatchPayload!
   createExternalAccount(data: ExternalAccountCreateInput!): ExternalAccount!
   updateExternalAccount(data: ExternalAccountUpdateInput!, where: ExternalAccountWhereUniqueInput!): ExternalAccount
   updateManyExternalAccounts(data: ExternalAccountUpdateManyMutationInput!, where: ExternalAccountWhereInput): BatchPayload!
@@ -704,6 +174,17 @@ type Mutation {
   upsertProject(where: ProjectWhereUniqueInput!, create: ProjectCreateInput!, update: ProjectUpdateInput!): Project!
   deleteProject(where: ProjectWhereUniqueInput!): Project
   deleteManyProjects(where: ProjectWhereInput): BatchPayload!
+  createProjectComment(data: ProjectCommentCreateInput!): ProjectComment!
+  updateProjectComment(data: ProjectCommentUpdateInput!, where: ProjectCommentWhereUniqueInput!): ProjectComment
+  updateManyProjectComments(data: ProjectCommentUpdateManyMutationInput!, where: ProjectCommentWhereInput): BatchPayload!
+  upsertProjectComment(where: ProjectCommentWhereUniqueInput!, create: ProjectCommentCreateInput!, update: ProjectCommentUpdateInput!): ProjectComment!
+  deleteProjectComment(where: ProjectCommentWhereUniqueInput!): ProjectComment
+  deleteManyProjectComments(where: ProjectCommentWhereInput): BatchPayload!
+  createProjectCommentLike(data: ProjectCommentLikeCreateInput!): ProjectCommentLike!
+  updateProjectCommentLike(data: ProjectCommentLikeUpdateInput!, where: ProjectCommentLikeWhereUniqueInput!): ProjectCommentLike
+  upsertProjectCommentLike(where: ProjectCommentLikeWhereUniqueInput!, create: ProjectCommentLikeCreateInput!, update: ProjectCommentLikeUpdateInput!): ProjectCommentLike!
+  deleteProjectCommentLike(where: ProjectCommentLikeWhereUniqueInput!): ProjectCommentLike
+  deleteManyProjectCommentLikes(where: ProjectCommentLikeWhereInput): BatchPayload!
   createProjectLike(data: ProjectLikeCreateInput!): ProjectLike!
   updateProjectLike(data: ProjectLikeUpdateInput!, where: ProjectLikeWhereUniqueInput!): ProjectLike
   upsertProjectLike(where: ProjectLikeWhereUniqueInput!, create: ProjectLikeCreateInput!, update: ProjectLikeUpdateInput!): ProjectLike!
@@ -745,16 +226,536 @@ type Project {
   profile: UserProfile!
   name: String!
   description: String!
-  address: String!
-  state: String!
-  zip: Int!
-  city: String!
+  country: String!
+  address: String
+  state: String
+  city: String
+  zip: String
   goalAmount: Float!
   amountFunded: Float!
-  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
   likes(where: ProjectLikeWhereInput, orderBy: ProjectLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectLike!]
+  comments(where: ProjectCommentWhereInput, orderBy: ProjectCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectComment!]
   createdAt: DateTime!
   updatedAt: DateTime!
+}
+
+type ProjectComment {
+  id: ID!
+  profile: UserProfile!
+  project: Project!
+  comment: String!
+  likes(where: ProjectCommentLikeWhereInput, orderBy: ProjectCommentLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectCommentLike!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ProjectCommentConnection {
+  pageInfo: PageInfo!
+  edges: [ProjectCommentEdge]!
+  aggregate: AggregateProjectComment!
+}
+
+input ProjectCommentCreateInput {
+  id: ID
+  profile: UserProfileCreateOneWithoutCommentsInput!
+  project: ProjectCreateOneWithoutCommentsInput!
+  comment: String!
+  likes: ProjectCommentLikeCreateManyWithoutCommentInput
+}
+
+input ProjectCommentCreateManyWithoutProfileInput {
+  create: [ProjectCommentCreateWithoutProfileInput!]
+  connect: [ProjectCommentWhereUniqueInput!]
+}
+
+input ProjectCommentCreateManyWithoutProjectInput {
+  create: [ProjectCommentCreateWithoutProjectInput!]
+  connect: [ProjectCommentWhereUniqueInput!]
+}
+
+input ProjectCommentCreateOneWithoutLikesInput {
+  create: ProjectCommentCreateWithoutLikesInput
+  connect: ProjectCommentWhereUniqueInput
+}
+
+input ProjectCommentCreateWithoutLikesInput {
+  id: ID
+  profile: UserProfileCreateOneWithoutCommentsInput!
+  project: ProjectCreateOneWithoutCommentsInput!
+  comment: String!
+}
+
+input ProjectCommentCreateWithoutProfileInput {
+  id: ID
+  project: ProjectCreateOneWithoutCommentsInput!
+  comment: String!
+  likes: ProjectCommentLikeCreateManyWithoutCommentInput
+}
+
+input ProjectCommentCreateWithoutProjectInput {
+  id: ID
+  profile: UserProfileCreateOneWithoutCommentsInput!
+  comment: String!
+  likes: ProjectCommentLikeCreateManyWithoutCommentInput
+}
+
+type ProjectCommentEdge {
+  node: ProjectComment!
+  cursor: String!
+}
+
+type ProjectCommentLike {
+  id: ID!
+  profile: UserProfile!
+  comment: ProjectComment!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ProjectCommentLikeConnection {
+  pageInfo: PageInfo!
+  edges: [ProjectCommentLikeEdge]!
+  aggregate: AggregateProjectCommentLike!
+}
+
+input ProjectCommentLikeCreateInput {
+  id: ID
+  profile: UserProfileCreateOneWithoutLikedCommentsInput!
+  comment: ProjectCommentCreateOneWithoutLikesInput!
+}
+
+input ProjectCommentLikeCreateManyWithoutCommentInput {
+  create: [ProjectCommentLikeCreateWithoutCommentInput!]
+  connect: [ProjectCommentLikeWhereUniqueInput!]
+}
+
+input ProjectCommentLikeCreateManyWithoutProfileInput {
+  create: [ProjectCommentLikeCreateWithoutProfileInput!]
+  connect: [ProjectCommentLikeWhereUniqueInput!]
+}
+
+input ProjectCommentLikeCreateWithoutCommentInput {
+  id: ID
+  profile: UserProfileCreateOneWithoutLikedCommentsInput!
+}
+
+input ProjectCommentLikeCreateWithoutProfileInput {
+  id: ID
+  comment: ProjectCommentCreateOneWithoutLikesInput!
+}
+
+type ProjectCommentLikeEdge {
+  node: ProjectCommentLike!
+  cursor: String!
+}
+
+enum ProjectCommentLikeOrderByInput {
+  id_ASC
+  id_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ProjectCommentLikePreviousValues {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input ProjectCommentLikeScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ProjectCommentLikeScalarWhereInput!]
+  OR: [ProjectCommentLikeScalarWhereInput!]
+  NOT: [ProjectCommentLikeScalarWhereInput!]
+}
+
+type ProjectCommentLikeSubscriptionPayload {
+  mutation: MutationType!
+  node: ProjectCommentLike
+  updatedFields: [String!]
+  previousValues: ProjectCommentLikePreviousValues
+}
+
+input ProjectCommentLikeSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ProjectCommentLikeWhereInput
+  AND: [ProjectCommentLikeSubscriptionWhereInput!]
+  OR: [ProjectCommentLikeSubscriptionWhereInput!]
+  NOT: [ProjectCommentLikeSubscriptionWhereInput!]
+}
+
+input ProjectCommentLikeUpdateInput {
+  profile: UserProfileUpdateOneRequiredWithoutLikedCommentsInput
+  comment: ProjectCommentUpdateOneRequiredWithoutLikesInput
+}
+
+input ProjectCommentLikeUpdateManyWithoutCommentInput {
+  create: [ProjectCommentLikeCreateWithoutCommentInput!]
+  delete: [ProjectCommentLikeWhereUniqueInput!]
+  connect: [ProjectCommentLikeWhereUniqueInput!]
+  set: [ProjectCommentLikeWhereUniqueInput!]
+  disconnect: [ProjectCommentLikeWhereUniqueInput!]
+  update: [ProjectCommentLikeUpdateWithWhereUniqueWithoutCommentInput!]
+  upsert: [ProjectCommentLikeUpsertWithWhereUniqueWithoutCommentInput!]
+  deleteMany: [ProjectCommentLikeScalarWhereInput!]
+}
+
+input ProjectCommentLikeUpdateManyWithoutProfileInput {
+  create: [ProjectCommentLikeCreateWithoutProfileInput!]
+  delete: [ProjectCommentLikeWhereUniqueInput!]
+  connect: [ProjectCommentLikeWhereUniqueInput!]
+  set: [ProjectCommentLikeWhereUniqueInput!]
+  disconnect: [ProjectCommentLikeWhereUniqueInput!]
+  update: [ProjectCommentLikeUpdateWithWhereUniqueWithoutProfileInput!]
+  upsert: [ProjectCommentLikeUpsertWithWhereUniqueWithoutProfileInput!]
+  deleteMany: [ProjectCommentLikeScalarWhereInput!]
+}
+
+input ProjectCommentLikeUpdateWithoutCommentDataInput {
+  profile: UserProfileUpdateOneRequiredWithoutLikedCommentsInput
+}
+
+input ProjectCommentLikeUpdateWithoutProfileDataInput {
+  comment: ProjectCommentUpdateOneRequiredWithoutLikesInput
+}
+
+input ProjectCommentLikeUpdateWithWhereUniqueWithoutCommentInput {
+  where: ProjectCommentLikeWhereUniqueInput!
+  data: ProjectCommentLikeUpdateWithoutCommentDataInput!
+}
+
+input ProjectCommentLikeUpdateWithWhereUniqueWithoutProfileInput {
+  where: ProjectCommentLikeWhereUniqueInput!
+  data: ProjectCommentLikeUpdateWithoutProfileDataInput!
+}
+
+input ProjectCommentLikeUpsertWithWhereUniqueWithoutCommentInput {
+  where: ProjectCommentLikeWhereUniqueInput!
+  update: ProjectCommentLikeUpdateWithoutCommentDataInput!
+  create: ProjectCommentLikeCreateWithoutCommentInput!
+}
+
+input ProjectCommentLikeUpsertWithWhereUniqueWithoutProfileInput {
+  where: ProjectCommentLikeWhereUniqueInput!
+  update: ProjectCommentLikeUpdateWithoutProfileDataInput!
+  create: ProjectCommentLikeCreateWithoutProfileInput!
+}
+
+input ProjectCommentLikeWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  profile: UserProfileWhereInput
+  comment: ProjectCommentWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ProjectCommentLikeWhereInput!]
+  OR: [ProjectCommentLikeWhereInput!]
+  NOT: [ProjectCommentLikeWhereInput!]
+}
+
+input ProjectCommentLikeWhereUniqueInput {
+  id: ID
+}
+
+enum ProjectCommentOrderByInput {
+  id_ASC
+  id_DESC
+  comment_ASC
+  comment_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ProjectCommentPreviousValues {
+  id: ID!
+  comment: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input ProjectCommentScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  comment: String
+  comment_not: String
+  comment_in: [String!]
+  comment_not_in: [String!]
+  comment_lt: String
+  comment_lte: String
+  comment_gt: String
+  comment_gte: String
+  comment_contains: String
+  comment_not_contains: String
+  comment_starts_with: String
+  comment_not_starts_with: String
+  comment_ends_with: String
+  comment_not_ends_with: String
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ProjectCommentScalarWhereInput!]
+  OR: [ProjectCommentScalarWhereInput!]
+  NOT: [ProjectCommentScalarWhereInput!]
+}
+
+type ProjectCommentSubscriptionPayload {
+  mutation: MutationType!
+  node: ProjectComment
+  updatedFields: [String!]
+  previousValues: ProjectCommentPreviousValues
+}
+
+input ProjectCommentSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ProjectCommentWhereInput
+  AND: [ProjectCommentSubscriptionWhereInput!]
+  OR: [ProjectCommentSubscriptionWhereInput!]
+  NOT: [ProjectCommentSubscriptionWhereInput!]
+}
+
+input ProjectCommentUpdateInput {
+  profile: UserProfileUpdateOneRequiredWithoutCommentsInput
+  project: ProjectUpdateOneRequiredWithoutCommentsInput
+  comment: String
+  likes: ProjectCommentLikeUpdateManyWithoutCommentInput
+}
+
+input ProjectCommentUpdateManyDataInput {
+  comment: String
+}
+
+input ProjectCommentUpdateManyMutationInput {
+  comment: String
+}
+
+input ProjectCommentUpdateManyWithoutProfileInput {
+  create: [ProjectCommentCreateWithoutProfileInput!]
+  delete: [ProjectCommentWhereUniqueInput!]
+  connect: [ProjectCommentWhereUniqueInput!]
+  set: [ProjectCommentWhereUniqueInput!]
+  disconnect: [ProjectCommentWhereUniqueInput!]
+  update: [ProjectCommentUpdateWithWhereUniqueWithoutProfileInput!]
+  upsert: [ProjectCommentUpsertWithWhereUniqueWithoutProfileInput!]
+  deleteMany: [ProjectCommentScalarWhereInput!]
+  updateMany: [ProjectCommentUpdateManyWithWhereNestedInput!]
+}
+
+input ProjectCommentUpdateManyWithoutProjectInput {
+  create: [ProjectCommentCreateWithoutProjectInput!]
+  delete: [ProjectCommentWhereUniqueInput!]
+  connect: [ProjectCommentWhereUniqueInput!]
+  set: [ProjectCommentWhereUniqueInput!]
+  disconnect: [ProjectCommentWhereUniqueInput!]
+  update: [ProjectCommentUpdateWithWhereUniqueWithoutProjectInput!]
+  upsert: [ProjectCommentUpsertWithWhereUniqueWithoutProjectInput!]
+  deleteMany: [ProjectCommentScalarWhereInput!]
+  updateMany: [ProjectCommentUpdateManyWithWhereNestedInput!]
+}
+
+input ProjectCommentUpdateManyWithWhereNestedInput {
+  where: ProjectCommentScalarWhereInput!
+  data: ProjectCommentUpdateManyDataInput!
+}
+
+input ProjectCommentUpdateOneRequiredWithoutLikesInput {
+  create: ProjectCommentCreateWithoutLikesInput
+  update: ProjectCommentUpdateWithoutLikesDataInput
+  upsert: ProjectCommentUpsertWithoutLikesInput
+  connect: ProjectCommentWhereUniqueInput
+}
+
+input ProjectCommentUpdateWithoutLikesDataInput {
+  profile: UserProfileUpdateOneRequiredWithoutCommentsInput
+  project: ProjectUpdateOneRequiredWithoutCommentsInput
+  comment: String
+}
+
+input ProjectCommentUpdateWithoutProfileDataInput {
+  project: ProjectUpdateOneRequiredWithoutCommentsInput
+  comment: String
+  likes: ProjectCommentLikeUpdateManyWithoutCommentInput
+}
+
+input ProjectCommentUpdateWithoutProjectDataInput {
+  profile: UserProfileUpdateOneRequiredWithoutCommentsInput
+  comment: String
+  likes: ProjectCommentLikeUpdateManyWithoutCommentInput
+}
+
+input ProjectCommentUpdateWithWhereUniqueWithoutProfileInput {
+  where: ProjectCommentWhereUniqueInput!
+  data: ProjectCommentUpdateWithoutProfileDataInput!
+}
+
+input ProjectCommentUpdateWithWhereUniqueWithoutProjectInput {
+  where: ProjectCommentWhereUniqueInput!
+  data: ProjectCommentUpdateWithoutProjectDataInput!
+}
+
+input ProjectCommentUpsertWithoutLikesInput {
+  update: ProjectCommentUpdateWithoutLikesDataInput!
+  create: ProjectCommentCreateWithoutLikesInput!
+}
+
+input ProjectCommentUpsertWithWhereUniqueWithoutProfileInput {
+  where: ProjectCommentWhereUniqueInput!
+  update: ProjectCommentUpdateWithoutProfileDataInput!
+  create: ProjectCommentCreateWithoutProfileInput!
+}
+
+input ProjectCommentUpsertWithWhereUniqueWithoutProjectInput {
+  where: ProjectCommentWhereUniqueInput!
+  update: ProjectCommentUpdateWithoutProjectDataInput!
+  create: ProjectCommentCreateWithoutProjectInput!
+}
+
+input ProjectCommentWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  profile: UserProfileWhereInput
+  project: ProjectWhereInput
+  comment: String
+  comment_not: String
+  comment_in: [String!]
+  comment_not_in: [String!]
+  comment_lt: String
+  comment_lte: String
+  comment_gt: String
+  comment_gte: String
+  comment_contains: String
+  comment_not_contains: String
+  comment_starts_with: String
+  comment_not_starts_with: String
+  comment_ends_with: String
+  comment_not_ends_with: String
+  likes_every: ProjectCommentLikeWhereInput
+  likes_some: ProjectCommentLikeWhereInput
+  likes_none: ProjectCommentLikeWhereInput
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [ProjectCommentWhereInput!]
+  OR: [ProjectCommentWhereInput!]
+  NOT: [ProjectCommentWhereInput!]
+}
+
+input ProjectCommentWhereUniqueInput {
+  id: ID
 }
 
 type ProjectConnection {
@@ -768,14 +769,15 @@ input ProjectCreateInput {
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
-  address: String!
-  state: String!
-  zip: Int!
-  city: String!
+  country: String!
+  address: String
+  state: String
+  city: String
+  zip: String
   goalAmount: Float!
   amountFunded: Float
-  comments: CommentCreateManyWithoutProjectInput
   likes: ProjectLikeCreateManyWithoutProjectInput
+  comments: ProjectCommentCreateManyWithoutProjectInput
 }
 
 input ProjectCreateManyWithoutProfileInput {
@@ -798,10 +800,11 @@ input ProjectCreateWithoutCommentsInput {
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
-  address: String!
-  state: String!
-  zip: Int!
-  city: String!
+  country: String!
+  address: String
+  state: String
+  city: String
+  zip: String
   goalAmount: Float!
   amountFunded: Float
   likes: ProjectLikeCreateManyWithoutProjectInput
@@ -812,27 +815,29 @@ input ProjectCreateWithoutLikesInput {
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
-  address: String!
-  state: String!
-  zip: Int!
-  city: String!
+  country: String!
+  address: String
+  state: String
+  city: String
+  zip: String
   goalAmount: Float!
   amountFunded: Float
-  comments: CommentCreateManyWithoutProjectInput
+  comments: ProjectCommentCreateManyWithoutProjectInput
 }
 
 input ProjectCreateWithoutProfileInput {
   id: ID
   name: String!
   description: String!
-  address: String!
-  state: String!
-  zip: Int!
-  city: String!
+  country: String!
+  address: String
+  state: String
+  city: String
+  zip: String
   goalAmount: Float!
   amountFunded: Float
-  comments: CommentCreateManyWithoutProjectInput
   likes: ProjectLikeCreateManyWithoutProjectInput
+  comments: ProjectCommentCreateManyWithoutProjectInput
 }
 
 type ProjectEdge {
@@ -856,7 +861,7 @@ type ProjectLikeConnection {
 
 input ProjectLikeCreateInput {
   id: ID
-  profile: UserProfileCreateOneWithoutProjectLikesInput!
+  profile: UserProfileCreateOneWithoutLikedProjectsInput!
   project: ProjectCreateOneWithoutLikesInput!
 }
 
@@ -877,7 +882,7 @@ input ProjectLikeCreateWithoutProfileInput {
 
 input ProjectLikeCreateWithoutProjectInput {
   id: ID
-  profile: UserProfileCreateOneWithoutProjectLikesInput!
+  profile: UserProfileCreateOneWithoutLikedProjectsInput!
 }
 
 type ProjectLikeEdge {
@@ -955,7 +960,7 @@ input ProjectLikeSubscriptionWhereInput {
 }
 
 input ProjectLikeUpdateInput {
-  profile: UserProfileUpdateOneRequiredWithoutProjectLikesInput
+  profile: UserProfileUpdateOneRequiredWithoutLikedProjectsInput
   project: ProjectUpdateOneRequiredWithoutLikesInput
 }
 
@@ -986,7 +991,7 @@ input ProjectLikeUpdateWithoutProfileDataInput {
 }
 
 input ProjectLikeUpdateWithoutProjectDataInput {
-  profile: UserProfileUpdateOneRequiredWithoutProjectLikesInput
+  profile: UserProfileUpdateOneRequiredWithoutLikedProjectsInput
 }
 
 input ProjectLikeUpdateWithWhereUniqueWithoutProfileInput {
@@ -1060,14 +1065,16 @@ enum ProjectOrderByInput {
   name_DESC
   description_ASC
   description_DESC
+  country_ASC
+  country_DESC
   address_ASC
   address_DESC
   state_ASC
   state_DESC
-  zip_ASC
-  zip_DESC
   city_ASC
   city_DESC
+  zip_ASC
+  zip_DESC
   goalAmount_ASC
   goalAmount_DESC
   amountFunded_ASC
@@ -1082,10 +1089,11 @@ type ProjectPreviousValues {
   id: ID!
   name: String!
   description: String!
-  address: String!
-  state: String!
-  zip: Int!
-  city: String!
+  country: String!
+  address: String
+  state: String
+  city: String
+  zip: String
   goalAmount: Float!
   amountFunded: Float!
   createdAt: DateTime!
@@ -1135,6 +1143,20 @@ input ProjectScalarWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
+  country: String
+  country_not: String
+  country_in: [String!]
+  country_not_in: [String!]
+  country_lt: String
+  country_lte: String
+  country_gt: String
+  country_gte: String
+  country_contains: String
+  country_not_contains: String
+  country_starts_with: String
+  country_not_starts_with: String
+  country_ends_with: String
+  country_not_ends_with: String
   address: String
   address_not: String
   address_in: [String!]
@@ -1163,14 +1185,6 @@ input ProjectScalarWhereInput {
   state_not_starts_with: String
   state_ends_with: String
   state_not_ends_with: String
-  zip: Int
-  zip_not: Int
-  zip_in: [Int!]
-  zip_not_in: [Int!]
-  zip_lt: Int
-  zip_lte: Int
-  zip_gt: Int
-  zip_gte: Int
   city: String
   city_not: String
   city_in: [String!]
@@ -1185,6 +1199,20 @@ input ProjectScalarWhereInput {
   city_not_starts_with: String
   city_ends_with: String
   city_not_ends_with: String
+  zip: String
+  zip_not: String
+  zip_in: [String!]
+  zip_not_in: [String!]
+  zip_lt: String
+  zip_lte: String
+  zip_gt: String
+  zip_gte: String
+  zip_contains: String
+  zip_not_contains: String
+  zip_starts_with: String
+  zip_not_starts_with: String
+  zip_ends_with: String
+  zip_not_ends_with: String
   goalAmount: Float
   goalAmount_not: Float
   goalAmount_in: [Float!]
@@ -1244,23 +1272,25 @@ input ProjectUpdateInput {
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
   name: String
   description: String
+  country: String
   address: String
   state: String
-  zip: Int
   city: String
+  zip: String
   goalAmount: Float
   amountFunded: Float
-  comments: CommentUpdateManyWithoutProjectInput
   likes: ProjectLikeUpdateManyWithoutProjectInput
+  comments: ProjectCommentUpdateManyWithoutProjectInput
 }
 
 input ProjectUpdateManyDataInput {
   name: String
   description: String
+  country: String
   address: String
   state: String
-  zip: Int
   city: String
+  zip: String
   goalAmount: Float
   amountFunded: Float
 }
@@ -1268,10 +1298,11 @@ input ProjectUpdateManyDataInput {
 input ProjectUpdateManyMutationInput {
   name: String
   description: String
+  country: String
   address: String
   state: String
-  zip: Int
   city: String
+  zip: String
   goalAmount: Float
   amountFunded: Float
 }
@@ -1311,10 +1342,11 @@ input ProjectUpdateWithoutCommentsDataInput {
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
   name: String
   description: String
+  country: String
   address: String
   state: String
-  zip: Int
   city: String
+  zip: String
   goalAmount: Float
   amountFunded: Float
   likes: ProjectLikeUpdateManyWithoutProjectInput
@@ -1324,26 +1356,28 @@ input ProjectUpdateWithoutLikesDataInput {
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
   name: String
   description: String
+  country: String
   address: String
   state: String
-  zip: Int
   city: String
+  zip: String
   goalAmount: Float
   amountFunded: Float
-  comments: CommentUpdateManyWithoutProjectInput
+  comments: ProjectCommentUpdateManyWithoutProjectInput
 }
 
 input ProjectUpdateWithoutProfileDataInput {
   name: String
   description: String
+  country: String
   address: String
   state: String
-  zip: Int
   city: String
+  zip: String
   goalAmount: Float
   amountFunded: Float
-  comments: CommentUpdateManyWithoutProjectInput
   likes: ProjectLikeUpdateManyWithoutProjectInput
+  comments: ProjectCommentUpdateManyWithoutProjectInput
 }
 
 input ProjectUpdateWithWhereUniqueWithoutProfileInput {
@@ -1411,6 +1445,20 @@ input ProjectWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
+  country: String
+  country_not: String
+  country_in: [String!]
+  country_not_in: [String!]
+  country_lt: String
+  country_lte: String
+  country_gt: String
+  country_gte: String
+  country_contains: String
+  country_not_contains: String
+  country_starts_with: String
+  country_not_starts_with: String
+  country_ends_with: String
+  country_not_ends_with: String
   address: String
   address_not: String
   address_in: [String!]
@@ -1439,14 +1487,6 @@ input ProjectWhereInput {
   state_not_starts_with: String
   state_ends_with: String
   state_not_ends_with: String
-  zip: Int
-  zip_not: Int
-  zip_in: [Int!]
-  zip_not_in: [Int!]
-  zip_lt: Int
-  zip_lte: Int
-  zip_gt: Int
-  zip_gte: Int
   city: String
   city_not: String
   city_in: [String!]
@@ -1461,6 +1501,20 @@ input ProjectWhereInput {
   city_not_starts_with: String
   city_ends_with: String
   city_not_ends_with: String
+  zip: String
+  zip_not: String
+  zip_in: [String!]
+  zip_not_in: [String!]
+  zip_lt: String
+  zip_lte: String
+  zip_gt: String
+  zip_gte: String
+  zip_contains: String
+  zip_not_contains: String
+  zip_starts_with: String
+  zip_not_starts_with: String
+  zip_ends_with: String
+  zip_not_ends_with: String
   goalAmount: Float
   goalAmount_not: Float
   goalAmount_in: [Float!]
@@ -1477,12 +1531,12 @@ input ProjectWhereInput {
   amountFunded_lte: Float
   amountFunded_gt: Float
   amountFunded_gte: Float
-  comments_every: CommentWhereInput
-  comments_some: CommentWhereInput
-  comments_none: CommentWhereInput
   likes_every: ProjectLikeWhereInput
   likes_some: ProjectLikeWhereInput
   likes_none: ProjectLikeWhereInput
+  comments_every: ProjectCommentWhereInput
+  comments_some: ProjectCommentWhereInput
+  comments_none: ProjectCommentWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -1509,18 +1563,18 @@ input ProjectWhereUniqueInput {
 }
 
 type Query {
-  comment(where: CommentWhereUniqueInput!): Comment
-  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment]!
-  commentsConnection(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentConnection!
-  commentLike(where: CommentLikeWhereUniqueInput!): CommentLike
-  commentLikes(where: CommentLikeWhereInput, orderBy: CommentLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CommentLike]!
-  commentLikesConnection(where: CommentLikeWhereInput, orderBy: CommentLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CommentLikeConnection!
   externalAccount(where: ExternalAccountWhereUniqueInput!): ExternalAccount
   externalAccounts(where: ExternalAccountWhereInput, orderBy: ExternalAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ExternalAccount]!
   externalAccountsConnection(where: ExternalAccountWhereInput, orderBy: ExternalAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExternalAccountConnection!
   project(where: ProjectWhereUniqueInput!): Project
   projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
   projectsConnection(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectConnection!
+  projectComment(where: ProjectCommentWhereUniqueInput!): ProjectComment
+  projectComments(where: ProjectCommentWhereInput, orderBy: ProjectCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectComment]!
+  projectCommentsConnection(where: ProjectCommentWhereInput, orderBy: ProjectCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectCommentConnection!
+  projectCommentLike(where: ProjectCommentLikeWhereUniqueInput!): ProjectCommentLike
+  projectCommentLikes(where: ProjectCommentLikeWhereInput, orderBy: ProjectCommentLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectCommentLike]!
+  projectCommentLikesConnection(where: ProjectCommentLikeWhereInput, orderBy: ProjectCommentLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectCommentLikeConnection!
   projectLike(where: ProjectLikeWhereUniqueInput!): ProjectLike
   projectLikes(where: ProjectLikeWhereInput, orderBy: ProjectLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectLike]!
   projectLikesConnection(where: ProjectLikeWhereInput, orderBy: ProjectLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectLikeConnection!
@@ -1534,10 +1588,10 @@ type Query {
 }
 
 type Subscription {
-  comment(where: CommentSubscriptionWhereInput): CommentSubscriptionPayload
-  commentLike(where: CommentLikeSubscriptionWhereInput): CommentLikeSubscriptionPayload
   externalAccount(where: ExternalAccountSubscriptionWhereInput): ExternalAccountSubscriptionPayload
   project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
+  projectComment(where: ProjectCommentSubscriptionWhereInput): ProjectCommentSubscriptionPayload
+  projectCommentLike(where: ProjectCommentLikeSubscriptionWhereInput): ProjectCommentLikeSubscriptionPayload
   projectLike(where: ProjectLikeSubscriptionWhereInput): ProjectLikeSubscriptionPayload
   userAccount(where: UserAccountSubscriptionWhereInput): UserAccountSubscriptionPayload
   userProfile(where: UserProfileSubscriptionWhereInput): UserProfileSubscriptionPayload
@@ -1693,15 +1747,16 @@ type UserProfile {
   firstName: String
   lastName: String
   profileImage: String
-  city: String
-  zip: String
+  country: String!
   address: String
   state: String
+  city: String
+  zip: String
   aptNumber: String
   projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project!]
-  projectLikes(where: ProjectLikeWhereInput, orderBy: ProjectLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectLike!]
-  comments(where: CommentWhereInput, orderBy: CommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Comment!]
-  commentLikes(where: CommentLikeWhereInput, orderBy: CommentLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CommentLike!]
+  likedProjects(where: ProjectLikeWhereInput, orderBy: ProjectLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectLike!]
+  comments(where: ProjectCommentWhereInput, orderBy: ProjectCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectComment!]
+  likedComments(where: ProjectCommentLikeWhereInput, orderBy: ProjectCommentLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectCommentLike!]
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -1719,20 +1774,16 @@ input UserProfileCreateInput {
   firstName: String
   lastName: String
   profileImage: String
-  city: String
-  zip: String
+  country: String!
   address: String
   state: String
+  city: String
+  zip: String
   aptNumber: String
   projects: ProjectCreateManyWithoutProfileInput
-  projectLikes: ProjectLikeCreateManyWithoutProfileInput
-  comments: CommentCreateManyWithoutProfileInput
-  commentLikes: CommentLikeCreateManyWithoutProfileInput
-}
-
-input UserProfileCreateOneWithoutCommentLikesInput {
-  create: UserProfileCreateWithoutCommentLikesInput
-  connect: UserProfileWhereUniqueInput
+  likedProjects: ProjectLikeCreateManyWithoutProfileInput
+  comments: ProjectCommentCreateManyWithoutProfileInput
+  likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
 }
 
 input UserProfileCreateOneWithoutCommentsInput {
@@ -1740,31 +1791,19 @@ input UserProfileCreateOneWithoutCommentsInput {
   connect: UserProfileWhereUniqueInput
 }
 
-input UserProfileCreateOneWithoutProjectLikesInput {
-  create: UserProfileCreateWithoutProjectLikesInput
+input UserProfileCreateOneWithoutLikedCommentsInput {
+  create: UserProfileCreateWithoutLikedCommentsInput
+  connect: UserProfileWhereUniqueInput
+}
+
+input UserProfileCreateOneWithoutLikedProjectsInput {
+  create: UserProfileCreateWithoutLikedProjectsInput
   connect: UserProfileWhereUniqueInput
 }
 
 input UserProfileCreateOneWithoutProjectsInput {
   create: UserProfileCreateWithoutProjectsInput
   connect: UserProfileWhereUniqueInput
-}
-
-input UserProfileCreateWithoutCommentLikesInput {
-  id: ID
-  userAccountId: ID!
-  email: String!
-  firstName: String
-  lastName: String
-  profileImage: String
-  city: String
-  zip: String
-  address: String
-  state: String
-  aptNumber: String
-  projects: ProjectCreateManyWithoutProfileInput
-  projectLikes: ProjectLikeCreateManyWithoutProfileInput
-  comments: CommentCreateManyWithoutProfileInput
 }
 
 input UserProfileCreateWithoutCommentsInput {
@@ -1774,31 +1813,51 @@ input UserProfileCreateWithoutCommentsInput {
   firstName: String
   lastName: String
   profileImage: String
-  city: String
-  zip: String
+  country: String!
   address: String
   state: String
+  city: String
+  zip: String
   aptNumber: String
   projects: ProjectCreateManyWithoutProfileInput
-  projectLikes: ProjectLikeCreateManyWithoutProfileInput
-  commentLikes: CommentLikeCreateManyWithoutProfileInput
+  likedProjects: ProjectLikeCreateManyWithoutProfileInput
+  likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
 }
 
-input UserProfileCreateWithoutProjectLikesInput {
+input UserProfileCreateWithoutLikedCommentsInput {
   id: ID
   userAccountId: ID!
   email: String!
   firstName: String
   lastName: String
   profileImage: String
-  city: String
-  zip: String
+  country: String!
   address: String
   state: String
+  city: String
+  zip: String
   aptNumber: String
   projects: ProjectCreateManyWithoutProfileInput
-  comments: CommentCreateManyWithoutProfileInput
-  commentLikes: CommentLikeCreateManyWithoutProfileInput
+  likedProjects: ProjectLikeCreateManyWithoutProfileInput
+  comments: ProjectCommentCreateManyWithoutProfileInput
+}
+
+input UserProfileCreateWithoutLikedProjectsInput {
+  id: ID
+  userAccountId: ID!
+  email: String!
+  firstName: String
+  lastName: String
+  profileImage: String
+  country: String!
+  address: String
+  state: String
+  city: String
+  zip: String
+  aptNumber: String
+  projects: ProjectCreateManyWithoutProfileInput
+  comments: ProjectCommentCreateManyWithoutProfileInput
+  likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
 }
 
 input UserProfileCreateWithoutProjectsInput {
@@ -1808,14 +1867,15 @@ input UserProfileCreateWithoutProjectsInput {
   firstName: String
   lastName: String
   profileImage: String
-  city: String
-  zip: String
+  country: String!
   address: String
   state: String
+  city: String
+  zip: String
   aptNumber: String
-  projectLikes: ProjectLikeCreateManyWithoutProfileInput
-  comments: CommentCreateManyWithoutProfileInput
-  commentLikes: CommentLikeCreateManyWithoutProfileInput
+  likedProjects: ProjectLikeCreateManyWithoutProfileInput
+  comments: ProjectCommentCreateManyWithoutProfileInput
+  likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
 }
 
 type UserProfileEdge {
@@ -1836,14 +1896,16 @@ enum UserProfileOrderByInput {
   lastName_DESC
   profileImage_ASC
   profileImage_DESC
-  city_ASC
-  city_DESC
-  zip_ASC
-  zip_DESC
+  country_ASC
+  country_DESC
   address_ASC
   address_DESC
   state_ASC
   state_DESC
+  city_ASC
+  city_DESC
+  zip_ASC
+  zip_DESC
   aptNumber_ASC
   aptNumber_DESC
   createdAt_ASC
@@ -1859,10 +1921,11 @@ type UserProfilePreviousValues {
   firstName: String
   lastName: String
   profileImage: String
-  city: String
-  zip: String
+  country: String!
   address: String
   state: String
+  city: String
+  zip: String
   aptNumber: String
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -1892,15 +1955,16 @@ input UserProfileUpdateInput {
   firstName: String
   lastName: String
   profileImage: String
-  city: String
-  zip: String
+  country: String
   address: String
   state: String
+  city: String
+  zip: String
   aptNumber: String
   projects: ProjectUpdateManyWithoutProfileInput
-  projectLikes: ProjectLikeUpdateManyWithoutProfileInput
-  comments: CommentUpdateManyWithoutProfileInput
-  commentLikes: CommentLikeUpdateManyWithoutProfileInput
+  likedProjects: ProjectLikeUpdateManyWithoutProfileInput
+  comments: ProjectCommentUpdateManyWithoutProfileInput
+  likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
 }
 
 input UserProfileUpdateManyMutationInput {
@@ -1909,18 +1973,12 @@ input UserProfileUpdateManyMutationInput {
   firstName: String
   lastName: String
   profileImage: String
-  city: String
-  zip: String
+  country: String
   address: String
   state: String
+  city: String
+  zip: String
   aptNumber: String
-}
-
-input UserProfileUpdateOneRequiredWithoutCommentLikesInput {
-  create: UserProfileCreateWithoutCommentLikesInput
-  update: UserProfileUpdateWithoutCommentLikesDataInput
-  upsert: UserProfileUpsertWithoutCommentLikesInput
-  connect: UserProfileWhereUniqueInput
 }
 
 input UserProfileUpdateOneRequiredWithoutCommentsInput {
@@ -1930,10 +1988,17 @@ input UserProfileUpdateOneRequiredWithoutCommentsInput {
   connect: UserProfileWhereUniqueInput
 }
 
-input UserProfileUpdateOneRequiredWithoutProjectLikesInput {
-  create: UserProfileCreateWithoutProjectLikesInput
-  update: UserProfileUpdateWithoutProjectLikesDataInput
-  upsert: UserProfileUpsertWithoutProjectLikesInput
+input UserProfileUpdateOneRequiredWithoutLikedCommentsInput {
+  create: UserProfileCreateWithoutLikedCommentsInput
+  update: UserProfileUpdateWithoutLikedCommentsDataInput
+  upsert: UserProfileUpsertWithoutLikedCommentsInput
+  connect: UserProfileWhereUniqueInput
+}
+
+input UserProfileUpdateOneRequiredWithoutLikedProjectsInput {
+  create: UserProfileCreateWithoutLikedProjectsInput
+  update: UserProfileUpdateWithoutLikedProjectsDataInput
+  upsert: UserProfileUpsertWithoutLikedProjectsInput
   connect: UserProfileWhereUniqueInput
 }
 
@@ -1944,52 +2009,55 @@ input UserProfileUpdateOneRequiredWithoutProjectsInput {
   connect: UserProfileWhereUniqueInput
 }
 
-input UserProfileUpdateWithoutCommentLikesDataInput {
-  userAccountId: ID
-  email: String
-  firstName: String
-  lastName: String
-  profileImage: String
-  city: String
-  zip: String
-  address: String
-  state: String
-  aptNumber: String
-  projects: ProjectUpdateManyWithoutProfileInput
-  projectLikes: ProjectLikeUpdateManyWithoutProfileInput
-  comments: CommentUpdateManyWithoutProfileInput
-}
-
 input UserProfileUpdateWithoutCommentsDataInput {
   userAccountId: ID
   email: String
   firstName: String
   lastName: String
   profileImage: String
-  city: String
-  zip: String
+  country: String
   address: String
   state: String
+  city: String
+  zip: String
   aptNumber: String
   projects: ProjectUpdateManyWithoutProfileInput
-  projectLikes: ProjectLikeUpdateManyWithoutProfileInput
-  commentLikes: CommentLikeUpdateManyWithoutProfileInput
+  likedProjects: ProjectLikeUpdateManyWithoutProfileInput
+  likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
 }
 
-input UserProfileUpdateWithoutProjectLikesDataInput {
+input UserProfileUpdateWithoutLikedCommentsDataInput {
   userAccountId: ID
   email: String
   firstName: String
   lastName: String
   profileImage: String
-  city: String
-  zip: String
+  country: String
   address: String
   state: String
+  city: String
+  zip: String
   aptNumber: String
   projects: ProjectUpdateManyWithoutProfileInput
-  comments: CommentUpdateManyWithoutProfileInput
-  commentLikes: CommentLikeUpdateManyWithoutProfileInput
+  likedProjects: ProjectLikeUpdateManyWithoutProfileInput
+  comments: ProjectCommentUpdateManyWithoutProfileInput
+}
+
+input UserProfileUpdateWithoutLikedProjectsDataInput {
+  userAccountId: ID
+  email: String
+  firstName: String
+  lastName: String
+  profileImage: String
+  country: String
+  address: String
+  state: String
+  city: String
+  zip: String
+  aptNumber: String
+  projects: ProjectUpdateManyWithoutProfileInput
+  comments: ProjectCommentUpdateManyWithoutProfileInput
+  likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
 }
 
 input UserProfileUpdateWithoutProjectsDataInput {
@@ -1998,19 +2066,15 @@ input UserProfileUpdateWithoutProjectsDataInput {
   firstName: String
   lastName: String
   profileImage: String
-  city: String
-  zip: String
+  country: String
   address: String
   state: String
+  city: String
+  zip: String
   aptNumber: String
-  projectLikes: ProjectLikeUpdateManyWithoutProfileInput
-  comments: CommentUpdateManyWithoutProfileInput
-  commentLikes: CommentLikeUpdateManyWithoutProfileInput
-}
-
-input UserProfileUpsertWithoutCommentLikesInput {
-  update: UserProfileUpdateWithoutCommentLikesDataInput!
-  create: UserProfileCreateWithoutCommentLikesInput!
+  likedProjects: ProjectLikeUpdateManyWithoutProfileInput
+  comments: ProjectCommentUpdateManyWithoutProfileInput
+  likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
 }
 
 input UserProfileUpsertWithoutCommentsInput {
@@ -2018,9 +2082,14 @@ input UserProfileUpsertWithoutCommentsInput {
   create: UserProfileCreateWithoutCommentsInput!
 }
 
-input UserProfileUpsertWithoutProjectLikesInput {
-  update: UserProfileUpdateWithoutProjectLikesDataInput!
-  create: UserProfileCreateWithoutProjectLikesInput!
+input UserProfileUpsertWithoutLikedCommentsInput {
+  update: UserProfileUpdateWithoutLikedCommentsDataInput!
+  create: UserProfileCreateWithoutLikedCommentsInput!
+}
+
+input UserProfileUpsertWithoutLikedProjectsInput {
+  update: UserProfileUpdateWithoutLikedProjectsDataInput!
+  create: UserProfileCreateWithoutLikedProjectsInput!
 }
 
 input UserProfileUpsertWithoutProjectsInput {
@@ -2113,34 +2182,20 @@ input UserProfileWhereInput {
   profileImage_not_starts_with: String
   profileImage_ends_with: String
   profileImage_not_ends_with: String
-  city: String
-  city_not: String
-  city_in: [String!]
-  city_not_in: [String!]
-  city_lt: String
-  city_lte: String
-  city_gt: String
-  city_gte: String
-  city_contains: String
-  city_not_contains: String
-  city_starts_with: String
-  city_not_starts_with: String
-  city_ends_with: String
-  city_not_ends_with: String
-  zip: String
-  zip_not: String
-  zip_in: [String!]
-  zip_not_in: [String!]
-  zip_lt: String
-  zip_lte: String
-  zip_gt: String
-  zip_gte: String
-  zip_contains: String
-  zip_not_contains: String
-  zip_starts_with: String
-  zip_not_starts_with: String
-  zip_ends_with: String
-  zip_not_ends_with: String
+  country: String
+  country_not: String
+  country_in: [String!]
+  country_not_in: [String!]
+  country_lt: String
+  country_lte: String
+  country_gt: String
+  country_gte: String
+  country_contains: String
+  country_not_contains: String
+  country_starts_with: String
+  country_not_starts_with: String
+  country_ends_with: String
+  country_not_ends_with: String
   address: String
   address_not: String
   address_in: [String!]
@@ -2169,6 +2224,34 @@ input UserProfileWhereInput {
   state_not_starts_with: String
   state_ends_with: String
   state_not_ends_with: String
+  city: String
+  city_not: String
+  city_in: [String!]
+  city_not_in: [String!]
+  city_lt: String
+  city_lte: String
+  city_gt: String
+  city_gte: String
+  city_contains: String
+  city_not_contains: String
+  city_starts_with: String
+  city_not_starts_with: String
+  city_ends_with: String
+  city_not_ends_with: String
+  zip: String
+  zip_not: String
+  zip_in: [String!]
+  zip_not_in: [String!]
+  zip_lt: String
+  zip_lte: String
+  zip_gt: String
+  zip_gte: String
+  zip_contains: String
+  zip_not_contains: String
+  zip_starts_with: String
+  zip_not_starts_with: String
+  zip_ends_with: String
+  zip_not_ends_with: String
   aptNumber: String
   aptNumber_not: String
   aptNumber_in: [String!]
@@ -2186,15 +2269,15 @@ input UserProfileWhereInput {
   projects_every: ProjectWhereInput
   projects_some: ProjectWhereInput
   projects_none: ProjectWhereInput
-  projectLikes_every: ProjectLikeWhereInput
-  projectLikes_some: ProjectLikeWhereInput
-  projectLikes_none: ProjectLikeWhereInput
-  comments_every: CommentWhereInput
-  comments_some: CommentWhereInput
-  comments_none: CommentWhereInput
-  commentLikes_every: CommentLikeWhereInput
-  commentLikes_some: CommentLikeWhereInput
-  commentLikes_none: CommentLikeWhereInput
+  likedProjects_every: ProjectLikeWhereInput
+  likedProjects_some: ProjectLikeWhereInput
+  likedProjects_none: ProjectLikeWhereInput
+  comments_every: ProjectCommentWhereInput
+  comments_some: ProjectCommentWhereInput
+  comments_none: ProjectCommentWhereInput
+  likedComments_every: ProjectCommentLikeWhereInput
+  likedComments_some: ProjectCommentLikeWhereInput
+  likedComments_none: ProjectCommentLikeWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
