@@ -11,7 +11,6 @@ COPY package*.json ./
 
 RUN npm install --production --no-progress
 
-
 COPY . .
 
 RUN chown -R node:node .

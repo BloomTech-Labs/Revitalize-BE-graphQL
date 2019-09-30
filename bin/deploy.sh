@@ -17,6 +17,6 @@ docker-compose up -d
 sleep 5 && echo -e "\e[33;1mMigrating data"
 
 # Migrate and seed database
-docker container exec -i graphql-server prisma deploy -e ./config/prod.env
+docker container exec graphql-server prisma deploy -e ./config/prod.env
 
 echo -e "\e[32;3mSuccess!"
