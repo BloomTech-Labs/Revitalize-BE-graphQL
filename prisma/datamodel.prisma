@@ -24,7 +24,7 @@ type UserProfile {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   aptNumber: String
   projects: [Project!]! @relation(name: "ProjectToUserProfile", onDelete: CASCADE)
   likedProjects: [ProjectLike!]! @relation(name: "ProjectLikeToUserProfile", onDelete: CASCADE)
@@ -45,7 +45,7 @@ type Project {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   goalAmount: Float!
   amountFunded: Float! @default(value: 0)
   likes: [ProjectLike!]! @relation(name: "ProjectLike", onDelete: CASCADE)

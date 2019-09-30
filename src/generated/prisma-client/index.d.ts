@@ -702,20 +702,14 @@ export interface ProjectWhereInput {
   city_not_starts_with?: Maybe<String>;
   city_ends_with?: Maybe<String>;
   city_not_ends_with?: Maybe<String>;
-  zip?: Maybe<String>;
-  zip_not?: Maybe<String>;
-  zip_in?: Maybe<String[] | String>;
-  zip_not_in?: Maybe<String[] | String>;
-  zip_lt?: Maybe<String>;
-  zip_lte?: Maybe<String>;
-  zip_gt?: Maybe<String>;
-  zip_gte?: Maybe<String>;
-  zip_contains?: Maybe<String>;
-  zip_not_contains?: Maybe<String>;
-  zip_starts_with?: Maybe<String>;
-  zip_not_starts_with?: Maybe<String>;
-  zip_ends_with?: Maybe<String>;
-  zip_not_ends_with?: Maybe<String>;
+  zip?: Maybe<Int>;
+  zip_not?: Maybe<Int>;
+  zip_in?: Maybe<Int[] | Int>;
+  zip_not_in?: Maybe<Int[] | Int>;
+  zip_lt?: Maybe<Int>;
+  zip_lte?: Maybe<Int>;
+  zip_gt?: Maybe<Int>;
+  zip_gte?: Maybe<Int>;
   goalAmount?: Maybe<Float>;
   goalAmount_not?: Maybe<Float>;
   goalAmount_in?: Maybe<Float[] | Float>;
@@ -900,20 +894,14 @@ export interface UserProfileWhereInput {
   city_not_starts_with?: Maybe<String>;
   city_ends_with?: Maybe<String>;
   city_not_ends_with?: Maybe<String>;
-  zip?: Maybe<String>;
-  zip_not?: Maybe<String>;
-  zip_in?: Maybe<String[] | String>;
-  zip_not_in?: Maybe<String[] | String>;
-  zip_lt?: Maybe<String>;
-  zip_lte?: Maybe<String>;
-  zip_gt?: Maybe<String>;
-  zip_gte?: Maybe<String>;
-  zip_contains?: Maybe<String>;
-  zip_not_contains?: Maybe<String>;
-  zip_starts_with?: Maybe<String>;
-  zip_not_starts_with?: Maybe<String>;
-  zip_ends_with?: Maybe<String>;
-  zip_not_ends_with?: Maybe<String>;
+  zip?: Maybe<Int>;
+  zip_not?: Maybe<Int>;
+  zip_in?: Maybe<Int[] | Int>;
+  zip_not_in?: Maybe<Int[] | Int>;
+  zip_lt?: Maybe<Int>;
+  zip_lte?: Maybe<Int>;
+  zip_gt?: Maybe<Int>;
+  zip_gte?: Maybe<Int>;
   aptNumber?: Maybe<String>;
   aptNumber_not?: Maybe<String>;
   aptNumber_in?: Maybe<String[] | String>;
@@ -1255,7 +1243,7 @@ export interface ProjectCreateInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   goalAmount: Float;
   amountFunded?: Maybe<Float>;
   likes?: Maybe<ProjectLikeCreateManyWithoutProjectInput>;
@@ -1278,7 +1266,7 @@ export interface UserProfileCreateWithoutProjectsInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   aptNumber?: Maybe<String>;
   likedProjects?: Maybe<ProjectLikeCreateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProfileInput>;
@@ -1314,7 +1302,7 @@ export interface ProjectCreateWithoutLikesInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   goalAmount: Float;
   amountFunded?: Maybe<Float>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProjectInput>;
@@ -1369,7 +1357,7 @@ export interface UserProfileCreateWithoutCommentsInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   aptNumber?: Maybe<String>;
   projects?: Maybe<ProjectCreateManyWithoutProfileInput>;
   likedProjects?: Maybe<ProjectLikeCreateManyWithoutProfileInput>;
@@ -1393,7 +1381,7 @@ export interface ProjectCreateWithoutProfileInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   goalAmount: Float;
   amountFunded?: Maybe<Float>;
   likes?: Maybe<ProjectLikeCreateManyWithoutProjectInput>;
@@ -1429,7 +1417,7 @@ export interface UserProfileCreateWithoutLikedProjectsInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   aptNumber?: Maybe<String>;
   projects?: Maybe<ProjectCreateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProfileInput>;
@@ -1469,7 +1457,7 @@ export interface ProjectCreateWithoutCommentsInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   goalAmount: Float;
   amountFunded?: Maybe<Float>;
   likes?: Maybe<ProjectLikeCreateManyWithoutProjectInput>;
@@ -1506,7 +1494,7 @@ export interface UserProfileCreateWithoutLikedCommentsInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   aptNumber?: Maybe<String>;
   projects?: Maybe<ProjectCreateManyWithoutProfileInput>;
   likedProjects?: Maybe<ProjectLikeCreateManyWithoutProfileInput>;
@@ -1550,7 +1538,7 @@ export interface ProjectUpdateInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   goalAmount?: Maybe<Float>;
   amountFunded?: Maybe<Float>;
   likes?: Maybe<ProjectLikeUpdateManyWithoutProjectInput>;
@@ -1574,7 +1562,7 @@ export interface UserProfileUpdateWithoutProjectsDataInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   aptNumber?: Maybe<String>;
   likedProjects?: Maybe<ProjectLikeUpdateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProfileInput>;
@@ -1631,7 +1619,7 @@ export interface ProjectUpdateWithoutLikesDataInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   goalAmount?: Maybe<Float>;
   amountFunded?: Maybe<Float>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
@@ -1803,7 +1791,7 @@ export interface UserProfileUpdateWithoutCommentsDataInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   aptNumber?: Maybe<String>;
   projects?: Maybe<ProjectUpdateManyWithoutProfileInput>;
   likedProjects?: Maybe<ProjectLikeUpdateManyWithoutProfileInput>;
@@ -1847,7 +1835,7 @@ export interface ProjectUpdateWithoutProfileDataInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   goalAmount?: Maybe<Float>;
   amountFunded?: Maybe<Float>;
   likes?: Maybe<ProjectLikeUpdateManyWithoutProjectInput>;
@@ -1904,7 +1892,7 @@ export interface UserProfileUpdateWithoutLikedProjectsDataInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   aptNumber?: Maybe<String>;
   projects?: Maybe<ProjectUpdateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProfileInput>;
@@ -1973,7 +1961,7 @@ export interface ProjectUpdateWithoutCommentsDataInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   goalAmount?: Maybe<Float>;
   amountFunded?: Maybe<Float>;
   likes?: Maybe<ProjectLikeUpdateManyWithoutProjectInput>;
@@ -2040,7 +2028,7 @@ export interface UserProfileUpdateWithoutLikedCommentsDataInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   aptNumber?: Maybe<String>;
   projects?: Maybe<ProjectUpdateManyWithoutProfileInput>;
   likedProjects?: Maybe<ProjectLikeUpdateManyWithoutProfileInput>;
@@ -2398,20 +2386,14 @@ export interface ProjectScalarWhereInput {
   city_not_starts_with?: Maybe<String>;
   city_ends_with?: Maybe<String>;
   city_not_ends_with?: Maybe<String>;
-  zip?: Maybe<String>;
-  zip_not?: Maybe<String>;
-  zip_in?: Maybe<String[] | String>;
-  zip_not_in?: Maybe<String[] | String>;
-  zip_lt?: Maybe<String>;
-  zip_lte?: Maybe<String>;
-  zip_gt?: Maybe<String>;
-  zip_gte?: Maybe<String>;
-  zip_contains?: Maybe<String>;
-  zip_not_contains?: Maybe<String>;
-  zip_starts_with?: Maybe<String>;
-  zip_not_starts_with?: Maybe<String>;
-  zip_ends_with?: Maybe<String>;
-  zip_not_ends_with?: Maybe<String>;
+  zip?: Maybe<Int>;
+  zip_not?: Maybe<Int>;
+  zip_in?: Maybe<Int[] | Int>;
+  zip_not_in?: Maybe<Int[] | Int>;
+  zip_lt?: Maybe<Int>;
+  zip_lte?: Maybe<Int>;
+  zip_gt?: Maybe<Int>;
+  zip_gte?: Maybe<Int>;
   goalAmount?: Maybe<Float>;
   goalAmount_not?: Maybe<Float>;
   goalAmount_in?: Maybe<Float[] | Float>;
@@ -2462,7 +2444,7 @@ export interface ProjectUpdateManyDataInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   goalAmount?: Maybe<Float>;
   amountFunded?: Maybe<Float>;
 }
@@ -2502,7 +2484,7 @@ export interface ProjectUpdateManyMutationInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   goalAmount?: Maybe<Float>;
   amountFunded?: Maybe<Float>;
 }
@@ -2559,7 +2541,7 @@ export interface ProjectCreateWithoutImagesInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   goalAmount: Float;
   amountFunded?: Maybe<Float>;
   likes?: Maybe<ProjectLikeCreateManyWithoutProjectInput>;
@@ -2588,7 +2570,7 @@ export interface ProjectUpdateWithoutImagesDataInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   goalAmount?: Maybe<Float>;
   amountFunded?: Maybe<Float>;
   likes?: Maybe<ProjectLikeUpdateManyWithoutProjectInput>;
@@ -2643,7 +2625,7 @@ export interface UserProfileCreateInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   aptNumber?: Maybe<String>;
   projects?: Maybe<ProjectCreateManyWithoutProfileInput>;
   likedProjects?: Maybe<ProjectLikeCreateManyWithoutProfileInput>;
@@ -2661,7 +2643,7 @@ export interface UserProfileUpdateInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   aptNumber?: Maybe<String>;
   projects?: Maybe<ProjectUpdateManyWithoutProfileInput>;
   likedProjects?: Maybe<ProjectLikeUpdateManyWithoutProfileInput>;
@@ -2679,7 +2661,7 @@ export interface UserProfileUpdateManyMutationInput {
   address?: Maybe<String>;
   state?: Maybe<String>;
   city?: Maybe<String>;
-  zip?: Maybe<String>;
+  zip?: Maybe<Int>;
   aptNumber?: Maybe<String>;
 }
 
@@ -2948,7 +2930,7 @@ export interface Project {
   address?: String;
   state?: String;
   city?: String;
-  zip?: String;
+  zip?: Int;
   goalAmount: Float;
   amountFunded: Float;
   createdAt: DateTimeOutput;
@@ -2974,7 +2956,7 @@ export interface ProjectPromise extends Promise<Project>, Fragmentable {
   address: () => Promise<String>;
   state: () => Promise<String>;
   city: () => Promise<String>;
-  zip: () => Promise<String>;
+  zip: () => Promise<Int>;
   goalAmount: () => Promise<Float>;
   amountFunded: () => Promise<Float>;
   likes: <T = FragmentableArray<ProjectLike>>(args?: {
@@ -3020,7 +3002,7 @@ export interface ProjectSubscription
   address: () => Promise<AsyncIterator<String>>;
   state: () => Promise<AsyncIterator<String>>;
   city: () => Promise<AsyncIterator<String>>;
-  zip: () => Promise<AsyncIterator<String>>;
+  zip: () => Promise<AsyncIterator<Int>>;
   goalAmount: () => Promise<AsyncIterator<Float>>;
   amountFunded: () => Promise<AsyncIterator<Float>>;
   likes: <T = Promise<AsyncIterator<ProjectLikeSubscription>>>(args?: {
@@ -3066,7 +3048,7 @@ export interface ProjectNullablePromise
   address: () => Promise<String>;
   state: () => Promise<String>;
   city: () => Promise<String>;
-  zip: () => Promise<String>;
+  zip: () => Promise<Int>;
   goalAmount: () => Promise<Float>;
   amountFunded: () => Promise<Float>;
   likes: <T = FragmentableArray<ProjectLike>>(args?: {
@@ -3102,7 +3084,7 @@ export interface UserProfile {
   address?: String;
   state?: String;
   city?: String;
-  zip?: String;
+  zip?: Int;
   aptNumber?: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
@@ -3119,7 +3101,7 @@ export interface UserProfilePromise extends Promise<UserProfile>, Fragmentable {
   address: () => Promise<String>;
   state: () => Promise<String>;
   city: () => Promise<String>;
-  zip: () => Promise<String>;
+  zip: () => Promise<Int>;
   aptNumber: () => Promise<String>;
   projects: <T = FragmentableArray<Project>>(args?: {
     where?: ProjectWhereInput;
@@ -3174,7 +3156,7 @@ export interface UserProfileSubscription
   address: () => Promise<AsyncIterator<String>>;
   state: () => Promise<AsyncIterator<String>>;
   city: () => Promise<AsyncIterator<String>>;
-  zip: () => Promise<AsyncIterator<String>>;
+  zip: () => Promise<AsyncIterator<Int>>;
   aptNumber: () => Promise<AsyncIterator<String>>;
   projects: <T = Promise<AsyncIterator<ProjectSubscription>>>(args?: {
     where?: ProjectWhereInput;
@@ -3231,7 +3213,7 @@ export interface UserProfileNullablePromise
   address: () => Promise<String>;
   state: () => Promise<String>;
   city: () => Promise<String>;
-  zip: () => Promise<String>;
+  zip: () => Promise<Int>;
   aptNumber: () => Promise<String>;
   projects: <T = FragmentableArray<Project>>(args?: {
     where?: ProjectWhereInput;
@@ -3971,7 +3953,7 @@ export interface ProjectPreviousValues {
   address?: String;
   state?: String;
   city?: String;
-  zip?: String;
+  zip?: Int;
   goalAmount: Float;
   amountFunded: Float;
   createdAt: DateTimeOutput;
@@ -3989,7 +3971,7 @@ export interface ProjectPreviousValuesPromise
   address: () => Promise<String>;
   state: () => Promise<String>;
   city: () => Promise<String>;
-  zip: () => Promise<String>;
+  zip: () => Promise<Int>;
   goalAmount: () => Promise<Float>;
   amountFunded: () => Promise<Float>;
   createdAt: () => Promise<DateTimeOutput>;
@@ -4007,7 +3989,7 @@ export interface ProjectPreviousValuesSubscription
   address: () => Promise<AsyncIterator<String>>;
   state: () => Promise<AsyncIterator<String>>;
   city: () => Promise<AsyncIterator<String>>;
-  zip: () => Promise<AsyncIterator<String>>;
+  zip: () => Promise<AsyncIterator<Int>>;
   goalAmount: () => Promise<AsyncIterator<Float>>;
   amountFunded: () => Promise<AsyncIterator<Float>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -4294,7 +4276,7 @@ export interface UserProfilePreviousValues {
   address?: String;
   state?: String;
   city?: String;
-  zip?: String;
+  zip?: Int;
   aptNumber?: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
@@ -4313,7 +4295,7 @@ export interface UserProfilePreviousValuesPromise
   address: () => Promise<String>;
   state: () => Promise<String>;
   city: () => Promise<String>;
-  zip: () => Promise<String>;
+  zip: () => Promise<Int>;
   aptNumber: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -4332,7 +4314,7 @@ export interface UserProfilePreviousValuesSubscription
   address: () => Promise<AsyncIterator<String>>;
   state: () => Promise<AsyncIterator<String>>;
   city: () => Promise<AsyncIterator<String>>;
-  zip: () => Promise<AsyncIterator<String>>;
+  zip: () => Promise<AsyncIterator<Int>>;
   aptNumber: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;

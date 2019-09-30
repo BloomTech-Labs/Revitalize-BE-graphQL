@@ -242,7 +242,7 @@ type Project {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   goalAmount: Float!
   amountFunded: Float!
   likes(where: ProjectLikeWhereInput, orderBy: ProjectLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectLike!]
@@ -787,7 +787,7 @@ input ProjectCreateInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   goalAmount: Float!
   amountFunded: Float
   likes: ProjectLikeCreateManyWithoutProjectInput
@@ -825,7 +825,7 @@ input ProjectCreateWithoutCommentsInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   goalAmount: Float!
   amountFunded: Float
   likes: ProjectLikeCreateManyWithoutProjectInput
@@ -841,7 +841,7 @@ input ProjectCreateWithoutImagesInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   goalAmount: Float!
   amountFunded: Float
   likes: ProjectLikeCreateManyWithoutProjectInput
@@ -859,7 +859,7 @@ input ProjectCreateWithoutLikesInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   goalAmount: Float!
   amountFunded: Float
   comments: ProjectCommentCreateManyWithoutProjectInput
@@ -875,7 +875,7 @@ input ProjectCreateWithoutProfileInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   goalAmount: Float!
   amountFunded: Float
   likes: ProjectLikeCreateManyWithoutProjectInput
@@ -1357,7 +1357,7 @@ type ProjectPreviousValues {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   goalAmount: Float!
   amountFunded: Float!
   createdAt: DateTime!
@@ -1477,20 +1477,14 @@ input ProjectScalarWhereInput {
   city_not_starts_with: String
   city_ends_with: String
   city_not_ends_with: String
-  zip: String
-  zip_not: String
-  zip_in: [String!]
-  zip_not_in: [String!]
-  zip_lt: String
-  zip_lte: String
-  zip_gt: String
-  zip_gte: String
-  zip_contains: String
-  zip_not_contains: String
-  zip_starts_with: String
-  zip_not_starts_with: String
-  zip_ends_with: String
-  zip_not_ends_with: String
+  zip: Int
+  zip_not: Int
+  zip_in: [Int!]
+  zip_not_in: [Int!]
+  zip_lt: Int
+  zip_lte: Int
+  zip_gt: Int
+  zip_gte: Int
   goalAmount: Float
   goalAmount_not: Float
   goalAmount_in: [Float!]
@@ -1556,7 +1550,7 @@ input ProjectUpdateInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   goalAmount: Float
   amountFunded: Float
   likes: ProjectLikeUpdateManyWithoutProjectInput
@@ -1571,7 +1565,7 @@ input ProjectUpdateManyDataInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   goalAmount: Float
   amountFunded: Float
 }
@@ -1584,7 +1578,7 @@ input ProjectUpdateManyMutationInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   goalAmount: Float
   amountFunded: Float
 }
@@ -1637,7 +1631,7 @@ input ProjectUpdateWithoutCommentsDataInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   goalAmount: Float
   amountFunded: Float
   likes: ProjectLikeUpdateManyWithoutProjectInput
@@ -1652,7 +1646,7 @@ input ProjectUpdateWithoutImagesDataInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   goalAmount: Float
   amountFunded: Float
   likes: ProjectLikeUpdateManyWithoutProjectInput
@@ -1669,7 +1663,7 @@ input ProjectUpdateWithoutLikesDataInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   goalAmount: Float
   amountFunded: Float
   comments: ProjectCommentUpdateManyWithoutProjectInput
@@ -1684,7 +1678,7 @@ input ProjectUpdateWithoutProfileDataInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   goalAmount: Float
   amountFunded: Float
   likes: ProjectLikeUpdateManyWithoutProjectInput
@@ -1834,20 +1828,14 @@ input ProjectWhereInput {
   city_not_starts_with: String
   city_ends_with: String
   city_not_ends_with: String
-  zip: String
-  zip_not: String
-  zip_in: [String!]
-  zip_not_in: [String!]
-  zip_lt: String
-  zip_lte: String
-  zip_gt: String
-  zip_gte: String
-  zip_contains: String
-  zip_not_contains: String
-  zip_starts_with: String
-  zip_not_starts_with: String
-  zip_ends_with: String
-  zip_not_ends_with: String
+  zip: Int
+  zip_not: Int
+  zip_in: [Int!]
+  zip_not_in: [Int!]
+  zip_lt: Int
+  zip_lte: Int
+  zip_gt: Int
+  zip_gte: Int
   goalAmount: Float
   goalAmount_not: Float
   goalAmount_in: [Float!]
@@ -2088,7 +2076,7 @@ type UserProfile {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   aptNumber: String
   projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project!]
   likedProjects(where: ProjectLikeWhereInput, orderBy: ProjectLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectLike!]
@@ -2115,7 +2103,7 @@ input UserProfileCreateInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   aptNumber: String
   projects: ProjectCreateManyWithoutProfileInput
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
@@ -2154,7 +2142,7 @@ input UserProfileCreateWithoutCommentsInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   aptNumber: String
   projects: ProjectCreateManyWithoutProfileInput
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
@@ -2172,7 +2160,7 @@ input UserProfileCreateWithoutLikedCommentsInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   aptNumber: String
   projects: ProjectCreateManyWithoutProfileInput
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
@@ -2190,7 +2178,7 @@ input UserProfileCreateWithoutLikedProjectsInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   aptNumber: String
   projects: ProjectCreateManyWithoutProfileInput
   comments: ProjectCommentCreateManyWithoutProfileInput
@@ -2208,7 +2196,7 @@ input UserProfileCreateWithoutProjectsInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   aptNumber: String
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
   comments: ProjectCommentCreateManyWithoutProfileInput
@@ -2262,7 +2250,7 @@ type UserProfilePreviousValues {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   aptNumber: String
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -2296,7 +2284,7 @@ input UserProfileUpdateInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   aptNumber: String
   projects: ProjectUpdateManyWithoutProfileInput
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
@@ -2314,7 +2302,7 @@ input UserProfileUpdateManyMutationInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   aptNumber: String
 }
 
@@ -2356,7 +2344,7 @@ input UserProfileUpdateWithoutCommentsDataInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   aptNumber: String
   projects: ProjectUpdateManyWithoutProfileInput
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
@@ -2373,7 +2361,7 @@ input UserProfileUpdateWithoutLikedCommentsDataInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   aptNumber: String
   projects: ProjectUpdateManyWithoutProfileInput
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
@@ -2390,7 +2378,7 @@ input UserProfileUpdateWithoutLikedProjectsDataInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   aptNumber: String
   projects: ProjectUpdateManyWithoutProfileInput
   comments: ProjectCommentUpdateManyWithoutProfileInput
@@ -2407,7 +2395,7 @@ input UserProfileUpdateWithoutProjectsDataInput {
   address: String
   state: String
   city: String
-  zip: String
+  zip: Int
   aptNumber: String
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
   comments: ProjectCommentUpdateManyWithoutProfileInput
@@ -2575,20 +2563,14 @@ input UserProfileWhereInput {
   city_not_starts_with: String
   city_ends_with: String
   city_not_ends_with: String
-  zip: String
-  zip_not: String
-  zip_in: [String!]
-  zip_not_in: [String!]
-  zip_lt: String
-  zip_lte: String
-  zip_gt: String
-  zip_gte: String
-  zip_contains: String
-  zip_not_contains: String
-  zip_starts_with: String
-  zip_not_starts_with: String
-  zip_ends_with: String
-  zip_not_ends_with: String
+  zip: Int
+  zip_not: Int
+  zip_in: [Int!]
+  zip_not_in: [Int!]
+  zip_lt: Int
+  zip_lte: Int
+  zip_gt: Int
+  zip_gte: Int
   aptNumber: String
   aptNumber_not: String
   aptNumber_in: [String!]
