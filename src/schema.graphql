@@ -66,10 +66,11 @@ type UserProfile {
   firstName: String
   lastName: String
   profileImage: String
-  city: String
-  zip: String
-  address: String
+  country: String
   state: String
+  city: String
+  zip: Int
+  address: String
   aptNumber: String
 }
 
@@ -78,10 +79,11 @@ input CreateUserProfileInput {
 	lastName: String
 	email: String!
 	profileImage: String
-	city: String
-	zip: String
-	address: String
+	country: String
 	state: String
+	city: String
+	zip: Int
+	address: String
 	aptNumber: String
 }
 
@@ -91,10 +93,11 @@ input UpdateUserProfileInput {
 	lastName: String
 	email: String
 	profileImage: String
-	city: String
-	zip: String
-	address: String
+	country: String
 	state: String
+	city: String
+	zip: Int
+	address: String
 	aptNumber: String
 }
 
@@ -103,10 +106,11 @@ type Project {
   profile: UserProfile!
   name: String!
   description: String!
-  address: String!
+  country: String!
   state: String!
-  zip: Int!
   city: String!
+  zip: Int!
+  address: String!
   goalAmount: Float!
   amountFunded: Float!
 }
@@ -114,10 +118,11 @@ type Project {
 input CreateProjectInput {
 	name: String!
 	description: String!
-	address: String!
+	country: String!
 	state: String!
-	zip: Int!
 	city: String!
+	zip: Int!
+	address: String!
 	goalAmount: Float!
 	amountFunded: Float
 }
@@ -125,10 +130,11 @@ input CreateProjectInput {
 input UpdateProjectInput {
 	name: String
 	description: String
-	address: String
-	state: String
-	zip: String
-	city: String
+	country: String!
+	state: String!
+	city: String!
+	zip: Int!
+	address: String!
 	goalAmount: Float
 	amountFunded: Float
 }
