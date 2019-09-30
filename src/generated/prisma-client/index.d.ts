@@ -22,6 +22,7 @@ export interface Exists {
   projectCommentLike: (
     where?: ProjectCommentLikeWhereInput
   ) => Promise<boolean>;
+  projectImage: (where?: ProjectImageWhereInput) => Promise<boolean>;
   projectLike: (where?: ProjectLikeWhereInput) => Promise<boolean>;
   userAccount: (where?: UserAccountWhereInput) => Promise<boolean>;
   userProfile: (where?: UserProfileWhereInput) => Promise<boolean>;
@@ -128,6 +129,27 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => ProjectCommentLikeConnectionPromise;
+  projectImage: (
+    where: ProjectImageWhereUniqueInput
+  ) => ProjectImageNullablePromise;
+  projectImages: (args?: {
+    where?: ProjectImageWhereInput;
+    orderBy?: ProjectImageOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<ProjectImage>;
+  projectImagesConnection: (args?: {
+    where?: ProjectImageWhereInput;
+    orderBy?: ProjectImageOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => ProjectImageConnectionPromise;
   projectLike: (
     where: ProjectLikeWhereUniqueInput
   ) => ProjectLikeNullablePromise;
@@ -275,6 +297,26 @@ export interface Prisma {
   deleteManyProjectCommentLikes: (
     where?: ProjectCommentLikeWhereInput
   ) => BatchPayloadPromise;
+  createProjectImage: (data: ProjectImageCreateInput) => ProjectImagePromise;
+  updateProjectImage: (args: {
+    data: ProjectImageUpdateInput;
+    where: ProjectImageWhereUniqueInput;
+  }) => ProjectImagePromise;
+  updateManyProjectImages: (args: {
+    data: ProjectImageUpdateManyMutationInput;
+    where?: ProjectImageWhereInput;
+  }) => BatchPayloadPromise;
+  upsertProjectImage: (args: {
+    where: ProjectImageWhereUniqueInput;
+    create: ProjectImageCreateInput;
+    update: ProjectImageUpdateInput;
+  }) => ProjectImagePromise;
+  deleteProjectImage: (
+    where: ProjectImageWhereUniqueInput
+  ) => ProjectImagePromise;
+  deleteManyProjectImages: (
+    where?: ProjectImageWhereInput
+  ) => BatchPayloadPromise;
   createProjectLike: (data: ProjectLikeCreateInput) => ProjectLikePromise;
   updateProjectLike: (args: {
     data: ProjectLikeUpdateInput;
@@ -346,6 +388,9 @@ export interface Subscription {
   projectCommentLike: (
     where?: ProjectCommentLikeSubscriptionWhereInput
   ) => ProjectCommentLikeSubscriptionPayloadSubscription;
+  projectImage: (
+    where?: ProjectImageSubscriptionWhereInput
+  ) => ProjectImageSubscriptionPayloadSubscription;
   projectLike: (
     where?: ProjectLikeSubscriptionWhereInput
   ) => ProjectLikeSubscriptionPayloadSubscription;
@@ -378,6 +423,8 @@ export type ExternalAccountOrderByInput =
 export type ProjectOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "featuredImage_ASC"
+  | "featuredImage_DESC"
   | "name_ASC"
   | "name_DESC"
   | "description_ASC"
@@ -426,6 +473,14 @@ export type ProjectCommentLikeOrderByInput =
   | "createdAt_DESC"
   | "updatedAt_ASC"
   | "updatedAt_DESC";
+
+export type ProjectImageOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "imageUrl_ASC"
+  | "imageUrl_DESC"
+  | "deleteImageUrl_ASC"
+  | "deleteImageUrl_DESC";
 
 export type UserAccountOrderByInput =
   | "id_ASC"
@@ -546,6 +601,23 @@ export interface ProjectWhereInput {
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
   profile?: Maybe<UserProfileWhereInput>;
+  featuredImage?: Maybe<String>;
+  featuredImage_not?: Maybe<String>;
+  featuredImage_in?: Maybe<String[] | String>;
+  featuredImage_not_in?: Maybe<String[] | String>;
+  featuredImage_lt?: Maybe<String>;
+  featuredImage_lte?: Maybe<String>;
+  featuredImage_gt?: Maybe<String>;
+  featuredImage_gte?: Maybe<String>;
+  featuredImage_contains?: Maybe<String>;
+  featuredImage_not_contains?: Maybe<String>;
+  featuredImage_starts_with?: Maybe<String>;
+  featuredImage_not_starts_with?: Maybe<String>;
+  featuredImage_ends_with?: Maybe<String>;
+  featuredImage_not_ends_with?: Maybe<String>;
+  images_every?: Maybe<ProjectImageWhereInput>;
+  images_some?: Maybe<ProjectImageWhereInput>;
+  images_none?: Maybe<ProjectImageWhereInput>;
   name?: Maybe<String>;
   name_not?: Maybe<String>;
   name_in?: Maybe<String[] | String>;
@@ -1020,11 +1092,64 @@ export interface ProjectCommentLikeWhereInput {
   NOT?: Maybe<ProjectCommentLikeWhereInput[] | ProjectCommentLikeWhereInput>;
 }
 
+export interface ProjectImageWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  project?: Maybe<ProjectWhereInput>;
+  imageUrl?: Maybe<String>;
+  imageUrl_not?: Maybe<String>;
+  imageUrl_in?: Maybe<String[] | String>;
+  imageUrl_not_in?: Maybe<String[] | String>;
+  imageUrl_lt?: Maybe<String>;
+  imageUrl_lte?: Maybe<String>;
+  imageUrl_gt?: Maybe<String>;
+  imageUrl_gte?: Maybe<String>;
+  imageUrl_contains?: Maybe<String>;
+  imageUrl_not_contains?: Maybe<String>;
+  imageUrl_starts_with?: Maybe<String>;
+  imageUrl_not_starts_with?: Maybe<String>;
+  imageUrl_ends_with?: Maybe<String>;
+  imageUrl_not_ends_with?: Maybe<String>;
+  deleteImageUrl?: Maybe<String>;
+  deleteImageUrl_not?: Maybe<String>;
+  deleteImageUrl_in?: Maybe<String[] | String>;
+  deleteImageUrl_not_in?: Maybe<String[] | String>;
+  deleteImageUrl_lt?: Maybe<String>;
+  deleteImageUrl_lte?: Maybe<String>;
+  deleteImageUrl_gt?: Maybe<String>;
+  deleteImageUrl_gte?: Maybe<String>;
+  deleteImageUrl_contains?: Maybe<String>;
+  deleteImageUrl_not_contains?: Maybe<String>;
+  deleteImageUrl_starts_with?: Maybe<String>;
+  deleteImageUrl_not_starts_with?: Maybe<String>;
+  deleteImageUrl_ends_with?: Maybe<String>;
+  deleteImageUrl_not_ends_with?: Maybe<String>;
+  AND?: Maybe<ProjectImageWhereInput[] | ProjectImageWhereInput>;
+  OR?: Maybe<ProjectImageWhereInput[] | ProjectImageWhereInput>;
+  NOT?: Maybe<ProjectImageWhereInput[] | ProjectImageWhereInput>;
+}
+
 export type ProjectCommentWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
 export type ProjectCommentLikeWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type ProjectImageWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
@@ -1122,6 +1247,8 @@ export interface ExternalAccountUpdateManyMutationInput {
 export interface ProjectCreateInput {
   id?: Maybe<ID_Input>;
   profile: UserProfileCreateOneWithoutProjectsInput;
+  featuredImage: String;
+  images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
   name: String;
   description: String;
   country: String;
@@ -1179,6 +1306,8 @@ export interface ProjectCreateOneWithoutLikesInput {
 export interface ProjectCreateWithoutLikesInput {
   id?: Maybe<ID_Input>;
   profile: UserProfileCreateOneWithoutProjectsInput;
+  featuredImage: String;
+  images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
   name: String;
   description: String;
   country: String;
@@ -1189,6 +1318,22 @@ export interface ProjectCreateWithoutLikesInput {
   goalAmount: Float;
   amountFunded?: Maybe<Float>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProjectInput>;
+}
+
+export interface ProjectImageCreateManyWithoutProjectInput {
+  create?: Maybe<
+    | ProjectImageCreateWithoutProjectInput[]
+    | ProjectImageCreateWithoutProjectInput
+  >;
+  connect?: Maybe<
+    ProjectImageWhereUniqueInput[] | ProjectImageWhereUniqueInput
+  >;
+}
+
+export interface ProjectImageCreateWithoutProjectInput {
+  id?: Maybe<ID_Input>;
+  imageUrl: String;
+  deleteImageUrl: String;
 }
 
 export interface ProjectCommentCreateManyWithoutProjectInput {
@@ -1240,6 +1385,8 @@ export interface ProjectCreateManyWithoutProfileInput {
 
 export interface ProjectCreateWithoutProfileInput {
   id?: Maybe<ID_Input>;
+  featuredImage: String;
+  images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
   name: String;
   description: String;
   country: String;
@@ -1314,6 +1461,8 @@ export interface ProjectCreateOneWithoutCommentsInput {
 export interface ProjectCreateWithoutCommentsInput {
   id?: Maybe<ID_Input>;
   profile: UserProfileCreateOneWithoutProjectsInput;
+  featuredImage: String;
+  images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
   name: String;
   description: String;
   country: String;
@@ -1393,6 +1542,8 @@ export interface ProjectCommentCreateWithoutLikesInput {
 
 export interface ProjectUpdateInput {
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
+  featuredImage?: Maybe<String>;
+  images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
   country?: Maybe<String>;
@@ -1472,6 +1623,8 @@ export interface ProjectUpdateOneRequiredWithoutLikesInput {
 
 export interface ProjectUpdateWithoutLikesDataInput {
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
+  featuredImage?: Maybe<String>;
+  images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
   country?: Maybe<String>;
@@ -1482,6 +1635,110 @@ export interface ProjectUpdateWithoutLikesDataInput {
   goalAmount?: Maybe<Float>;
   amountFunded?: Maybe<Float>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
+}
+
+export interface ProjectImageUpdateManyWithoutProjectInput {
+  create?: Maybe<
+    | ProjectImageCreateWithoutProjectInput[]
+    | ProjectImageCreateWithoutProjectInput
+  >;
+  delete?: Maybe<ProjectImageWhereUniqueInput[] | ProjectImageWhereUniqueInput>;
+  connect?: Maybe<
+    ProjectImageWhereUniqueInput[] | ProjectImageWhereUniqueInput
+  >;
+  set?: Maybe<ProjectImageWhereUniqueInput[] | ProjectImageWhereUniqueInput>;
+  disconnect?: Maybe<
+    ProjectImageWhereUniqueInput[] | ProjectImageWhereUniqueInput
+  >;
+  update?: Maybe<
+    | ProjectImageUpdateWithWhereUniqueWithoutProjectInput[]
+    | ProjectImageUpdateWithWhereUniqueWithoutProjectInput
+  >;
+  upsert?: Maybe<
+    | ProjectImageUpsertWithWhereUniqueWithoutProjectInput[]
+    | ProjectImageUpsertWithWhereUniqueWithoutProjectInput
+  >;
+  deleteMany?: Maybe<
+    ProjectImageScalarWhereInput[] | ProjectImageScalarWhereInput
+  >;
+  updateMany?: Maybe<
+    | ProjectImageUpdateManyWithWhereNestedInput[]
+    | ProjectImageUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface ProjectImageUpdateWithWhereUniqueWithoutProjectInput {
+  where: ProjectImageWhereUniqueInput;
+  data: ProjectImageUpdateWithoutProjectDataInput;
+}
+
+export interface ProjectImageUpdateWithoutProjectDataInput {
+  imageUrl?: Maybe<String>;
+  deleteImageUrl?: Maybe<String>;
+}
+
+export interface ProjectImageUpsertWithWhereUniqueWithoutProjectInput {
+  where: ProjectImageWhereUniqueInput;
+  update: ProjectImageUpdateWithoutProjectDataInput;
+  create: ProjectImageCreateWithoutProjectInput;
+}
+
+export interface ProjectImageScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  imageUrl?: Maybe<String>;
+  imageUrl_not?: Maybe<String>;
+  imageUrl_in?: Maybe<String[] | String>;
+  imageUrl_not_in?: Maybe<String[] | String>;
+  imageUrl_lt?: Maybe<String>;
+  imageUrl_lte?: Maybe<String>;
+  imageUrl_gt?: Maybe<String>;
+  imageUrl_gte?: Maybe<String>;
+  imageUrl_contains?: Maybe<String>;
+  imageUrl_not_contains?: Maybe<String>;
+  imageUrl_starts_with?: Maybe<String>;
+  imageUrl_not_starts_with?: Maybe<String>;
+  imageUrl_ends_with?: Maybe<String>;
+  imageUrl_not_ends_with?: Maybe<String>;
+  deleteImageUrl?: Maybe<String>;
+  deleteImageUrl_not?: Maybe<String>;
+  deleteImageUrl_in?: Maybe<String[] | String>;
+  deleteImageUrl_not_in?: Maybe<String[] | String>;
+  deleteImageUrl_lt?: Maybe<String>;
+  deleteImageUrl_lte?: Maybe<String>;
+  deleteImageUrl_gt?: Maybe<String>;
+  deleteImageUrl_gte?: Maybe<String>;
+  deleteImageUrl_contains?: Maybe<String>;
+  deleteImageUrl_not_contains?: Maybe<String>;
+  deleteImageUrl_starts_with?: Maybe<String>;
+  deleteImageUrl_not_starts_with?: Maybe<String>;
+  deleteImageUrl_ends_with?: Maybe<String>;
+  deleteImageUrl_not_ends_with?: Maybe<String>;
+  AND?: Maybe<ProjectImageScalarWhereInput[] | ProjectImageScalarWhereInput>;
+  OR?: Maybe<ProjectImageScalarWhereInput[] | ProjectImageScalarWhereInput>;
+  NOT?: Maybe<ProjectImageScalarWhereInput[] | ProjectImageScalarWhereInput>;
+}
+
+export interface ProjectImageUpdateManyWithWhereNestedInput {
+  where: ProjectImageScalarWhereInput;
+  data: ProjectImageUpdateManyDataInput;
+}
+
+export interface ProjectImageUpdateManyDataInput {
+  imageUrl?: Maybe<String>;
+  deleteImageUrl?: Maybe<String>;
 }
 
 export interface ProjectCommentUpdateManyWithoutProjectInput {
@@ -1582,6 +1839,8 @@ export interface ProjectUpdateWithWhereUniqueWithoutProfileInput {
 }
 
 export interface ProjectUpdateWithoutProfileDataInput {
+  featuredImage?: Maybe<String>;
+  images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
   country?: Maybe<String>;
@@ -1706,6 +1965,8 @@ export interface ProjectUpdateOneRequiredWithoutCommentsInput {
 
 export interface ProjectUpdateWithoutCommentsDataInput {
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
+  featuredImage?: Maybe<String>;
+  images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
   country?: Maybe<String>;
@@ -2039,6 +2300,20 @@ export interface ProjectScalarWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
+  featuredImage?: Maybe<String>;
+  featuredImage_not?: Maybe<String>;
+  featuredImage_in?: Maybe<String[] | String>;
+  featuredImage_not_in?: Maybe<String[] | String>;
+  featuredImage_lt?: Maybe<String>;
+  featuredImage_lte?: Maybe<String>;
+  featuredImage_gt?: Maybe<String>;
+  featuredImage_gte?: Maybe<String>;
+  featuredImage_contains?: Maybe<String>;
+  featuredImage_not_contains?: Maybe<String>;
+  featuredImage_starts_with?: Maybe<String>;
+  featuredImage_not_starts_with?: Maybe<String>;
+  featuredImage_ends_with?: Maybe<String>;
+  featuredImage_not_ends_with?: Maybe<String>;
   name?: Maybe<String>;
   name_not?: Maybe<String>;
   name_in?: Maybe<String[] | String>;
@@ -2180,6 +2455,7 @@ export interface ProjectUpdateManyWithWhereNestedInput {
 }
 
 export interface ProjectUpdateManyDataInput {
+  featuredImage?: Maybe<String>;
   name?: Maybe<String>;
   description?: Maybe<String>;
   country?: Maybe<String>;
@@ -2219,6 +2495,7 @@ export interface UserProfileUpsertWithoutProjectsInput {
 }
 
 export interface ProjectUpdateManyMutationInput {
+  featuredImage?: Maybe<String>;
   name?: Maybe<String>;
   description?: Maybe<String>;
   country?: Maybe<String>;
@@ -2258,6 +2535,74 @@ export interface ProjectCommentLikeCreateInput {
 export interface ProjectCommentLikeUpdateInput {
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutLikedCommentsInput>;
   comment?: Maybe<ProjectCommentUpdateOneRequiredWithoutLikesInput>;
+}
+
+export interface ProjectImageCreateInput {
+  id?: Maybe<ID_Input>;
+  project: ProjectCreateOneWithoutImagesInput;
+  imageUrl: String;
+  deleteImageUrl: String;
+}
+
+export interface ProjectCreateOneWithoutImagesInput {
+  create?: Maybe<ProjectCreateWithoutImagesInput>;
+  connect?: Maybe<ProjectWhereUniqueInput>;
+}
+
+export interface ProjectCreateWithoutImagesInput {
+  id?: Maybe<ID_Input>;
+  profile: UserProfileCreateOneWithoutProjectsInput;
+  featuredImage: String;
+  name: String;
+  description: String;
+  country: String;
+  address?: Maybe<String>;
+  state?: Maybe<String>;
+  city?: Maybe<String>;
+  zip?: Maybe<String>;
+  goalAmount: Float;
+  amountFunded?: Maybe<Float>;
+  likes?: Maybe<ProjectLikeCreateManyWithoutProjectInput>;
+  comments?: Maybe<ProjectCommentCreateManyWithoutProjectInput>;
+}
+
+export interface ProjectImageUpdateInput {
+  project?: Maybe<ProjectUpdateOneRequiredWithoutImagesInput>;
+  imageUrl?: Maybe<String>;
+  deleteImageUrl?: Maybe<String>;
+}
+
+export interface ProjectUpdateOneRequiredWithoutImagesInput {
+  create?: Maybe<ProjectCreateWithoutImagesInput>;
+  update?: Maybe<ProjectUpdateWithoutImagesDataInput>;
+  upsert?: Maybe<ProjectUpsertWithoutImagesInput>;
+  connect?: Maybe<ProjectWhereUniqueInput>;
+}
+
+export interface ProjectUpdateWithoutImagesDataInput {
+  profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
+  featuredImage?: Maybe<String>;
+  name?: Maybe<String>;
+  description?: Maybe<String>;
+  country?: Maybe<String>;
+  address?: Maybe<String>;
+  state?: Maybe<String>;
+  city?: Maybe<String>;
+  zip?: Maybe<String>;
+  goalAmount?: Maybe<Float>;
+  amountFunded?: Maybe<Float>;
+  likes?: Maybe<ProjectLikeUpdateManyWithoutProjectInput>;
+  comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
+}
+
+export interface ProjectUpsertWithoutImagesInput {
+  update: ProjectUpdateWithoutImagesDataInput;
+  create: ProjectCreateWithoutImagesInput;
+}
+
+export interface ProjectImageUpdateManyMutationInput {
+  imageUrl?: Maybe<String>;
+  deleteImageUrl?: Maybe<String>;
 }
 
 export interface ProjectLikeCreateInput {
@@ -2406,6 +2751,23 @@ export interface ProjectCommentLikeSubscriptionWhereInput {
   NOT?: Maybe<
     | ProjectCommentLikeSubscriptionWhereInput[]
     | ProjectCommentLikeSubscriptionWhereInput
+  >;
+}
+
+export interface ProjectImageSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ProjectImageWhereInput>;
+  AND?: Maybe<
+    ProjectImageSubscriptionWhereInput[] | ProjectImageSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    ProjectImageSubscriptionWhereInput[] | ProjectImageSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    ProjectImageSubscriptionWhereInput[] | ProjectImageSubscriptionWhereInput
   >;
 }
 
@@ -2579,6 +2941,7 @@ export interface AggregateExternalAccountSubscription
 
 export interface Project {
   id: ID_Output;
+  featuredImage: String;
   name: String;
   description: String;
   country: String;
@@ -2595,6 +2958,16 @@ export interface Project {
 export interface ProjectPromise extends Promise<Project>, Fragmentable {
   id: () => Promise<ID_Output>;
   profile: <T = UserProfilePromise>() => T;
+  featuredImage: () => Promise<String>;
+  images: <T = FragmentableArray<ProjectImage>>(args?: {
+    where?: ProjectImageWhereInput;
+    orderBy?: ProjectImageOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
   name: () => Promise<String>;
   description: () => Promise<String>;
   country: () => Promise<String>;
@@ -2631,6 +3004,16 @@ export interface ProjectSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   profile: <T = UserProfileSubscription>() => T;
+  featuredImage: () => Promise<AsyncIterator<String>>;
+  images: <T = Promise<AsyncIterator<ProjectImageSubscription>>>(args?: {
+    where?: ProjectImageWhereInput;
+    orderBy?: ProjectImageOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
   name: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
   country: () => Promise<AsyncIterator<String>>;
@@ -2667,6 +3050,16 @@ export interface ProjectNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   profile: <T = UserProfilePromise>() => T;
+  featuredImage: () => Promise<String>;
+  images: <T = FragmentableArray<ProjectImage>>(args?: {
+    where?: ProjectImageWhereInput;
+    orderBy?: ProjectImageOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
   name: () => Promise<String>;
   description: () => Promise<String>;
   country: () => Promise<String>;
@@ -3017,6 +3410,39 @@ export interface ProjectCommentLikeNullablePromise
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
+export interface ProjectImage {
+  id: ID_Output;
+  imageUrl: String;
+  deleteImageUrl: String;
+}
+
+export interface ProjectImagePromise
+  extends Promise<ProjectImage>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  project: <T = ProjectPromise>() => T;
+  imageUrl: () => Promise<String>;
+  deleteImageUrl: () => Promise<String>;
+}
+
+export interface ProjectImageSubscription
+  extends Promise<AsyncIterator<ProjectImage>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  project: <T = ProjectSubscription>() => T;
+  imageUrl: () => Promise<AsyncIterator<String>>;
+  deleteImageUrl: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ProjectImageNullablePromise
+  extends Promise<ProjectImage | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  project: <T = ProjectPromise>() => T;
+  imageUrl: () => Promise<String>;
+  deleteImageUrl: () => Promise<String>;
+}
+
 export interface ProjectConnection {
   pageInfo: PageInfo;
   edges: ProjectEdge[];
@@ -3181,6 +3607,62 @@ export interface AggregateProjectCommentLikePromise
 
 export interface AggregateProjectCommentLikeSubscription
   extends Promise<AsyncIterator<AggregateProjectCommentLike>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProjectImageConnection {
+  pageInfo: PageInfo;
+  edges: ProjectImageEdge[];
+}
+
+export interface ProjectImageConnectionPromise
+  extends Promise<ProjectImageConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProjectImageEdge>>() => T;
+  aggregate: <T = AggregateProjectImagePromise>() => T;
+}
+
+export interface ProjectImageConnectionSubscription
+  extends Promise<AsyncIterator<ProjectImageConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ProjectImageEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateProjectImageSubscription>() => T;
+}
+
+export interface ProjectImageEdge {
+  node: ProjectImage;
+  cursor: String;
+}
+
+export interface ProjectImageEdgePromise
+  extends Promise<ProjectImageEdge>,
+    Fragmentable {
+  node: <T = ProjectImagePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ProjectImageEdgeSubscription
+  extends Promise<AsyncIterator<ProjectImageEdge>>,
+    Fragmentable {
+  node: <T = ProjectImageSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateProjectImage {
+  count: Int;
+}
+
+export interface AggregateProjectImagePromise
+  extends Promise<AggregateProjectImage>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateProjectImageSubscription
+  extends Promise<AsyncIterator<AggregateProjectImage>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -3482,6 +3964,7 @@ export interface ProjectSubscriptionPayloadSubscription
 
 export interface ProjectPreviousValues {
   id: ID_Output;
+  featuredImage: String;
   name: String;
   description: String;
   country: String;
@@ -3499,6 +3982,7 @@ export interface ProjectPreviousValuesPromise
   extends Promise<ProjectPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  featuredImage: () => Promise<String>;
   name: () => Promise<String>;
   description: () => Promise<String>;
   country: () => Promise<String>;
@@ -3516,6 +4000,7 @@ export interface ProjectPreviousValuesSubscription
   extends Promise<AsyncIterator<ProjectPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  featuredImage: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
   country: () => Promise<AsyncIterator<String>>;
@@ -3624,6 +4109,53 @@ export interface ProjectCommentLikePreviousValuesSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ProjectImageSubscriptionPayload {
+  mutation: MutationType;
+  node: ProjectImage;
+  updatedFields: String[];
+  previousValues: ProjectImagePreviousValues;
+}
+
+export interface ProjectImageSubscriptionPayloadPromise
+  extends Promise<ProjectImageSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ProjectImagePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ProjectImagePreviousValuesPromise>() => T;
+}
+
+export interface ProjectImageSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ProjectImageSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ProjectImageSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ProjectImagePreviousValuesSubscription>() => T;
+}
+
+export interface ProjectImagePreviousValues {
+  id: ID_Output;
+  imageUrl: String;
+  deleteImageUrl: String;
+}
+
+export interface ProjectImagePreviousValuesPromise
+  extends Promise<ProjectImagePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  imageUrl: () => Promise<String>;
+  deleteImageUrl: () => Promise<String>;
+}
+
+export interface ProjectImagePreviousValuesSubscription
+  extends Promise<AsyncIterator<ProjectImagePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  imageUrl: () => Promise<AsyncIterator<String>>;
+  deleteImageUrl: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ProjectLikeSubscriptionPayload {
@@ -3863,6 +4395,10 @@ export const models: Model[] = [
   },
   {
     name: "Project",
+    embedded: false
+  },
+  {
+    name: "ProjectImage",
     embedded: false
   },
   {

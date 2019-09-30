@@ -19,6 +19,10 @@ type AggregateProjectCommentLike {
   count: Int!
 }
 
+type AggregateProjectImage {
+  count: Int!
+}
+
 type AggregateProjectLike {
   count: Int!
 }
@@ -185,6 +189,12 @@ type Mutation {
   upsertProjectCommentLike(where: ProjectCommentLikeWhereUniqueInput!, create: ProjectCommentLikeCreateInput!, update: ProjectCommentLikeUpdateInput!): ProjectCommentLike!
   deleteProjectCommentLike(where: ProjectCommentLikeWhereUniqueInput!): ProjectCommentLike
   deleteManyProjectCommentLikes(where: ProjectCommentLikeWhereInput): BatchPayload!
+  createProjectImage(data: ProjectImageCreateInput!): ProjectImage!
+  updateProjectImage(data: ProjectImageUpdateInput!, where: ProjectImageWhereUniqueInput!): ProjectImage
+  updateManyProjectImages(data: ProjectImageUpdateManyMutationInput!, where: ProjectImageWhereInput): BatchPayload!
+  upsertProjectImage(where: ProjectImageWhereUniqueInput!, create: ProjectImageCreateInput!, update: ProjectImageUpdateInput!): ProjectImage!
+  deleteProjectImage(where: ProjectImageWhereUniqueInput!): ProjectImage
+  deleteManyProjectImages(where: ProjectImageWhereInput): BatchPayload!
   createProjectLike(data: ProjectLikeCreateInput!): ProjectLike!
   updateProjectLike(data: ProjectLikeUpdateInput!, where: ProjectLikeWhereUniqueInput!): ProjectLike
   upsertProjectLike(where: ProjectLikeWhereUniqueInput!, create: ProjectLikeCreateInput!, update: ProjectLikeUpdateInput!): ProjectLike!
@@ -224,6 +234,8 @@ type PageInfo {
 type Project {
   id: ID!
   profile: UserProfile!
+  featuredImage: String!
+  images(where: ProjectImageWhereInput, orderBy: ProjectImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectImage!]
   name: String!
   description: String!
   country: String!
@@ -767,6 +779,8 @@ type ProjectConnection {
 input ProjectCreateInput {
   id: ID
   profile: UserProfileCreateOneWithoutProjectsInput!
+  featuredImage: String!
+  images: ProjectImageCreateManyWithoutProjectInput
   name: String!
   description: String!
   country: String!
@@ -790,6 +804,11 @@ input ProjectCreateOneWithoutCommentsInput {
   connect: ProjectWhereUniqueInput
 }
 
+input ProjectCreateOneWithoutImagesInput {
+  create: ProjectCreateWithoutImagesInput
+  connect: ProjectWhereUniqueInput
+}
+
 input ProjectCreateOneWithoutLikesInput {
   create: ProjectCreateWithoutLikesInput
   connect: ProjectWhereUniqueInput
@@ -798,6 +817,8 @@ input ProjectCreateOneWithoutLikesInput {
 input ProjectCreateWithoutCommentsInput {
   id: ID
   profile: UserProfileCreateOneWithoutProjectsInput!
+  featuredImage: String!
+  images: ProjectImageCreateManyWithoutProjectInput
   name: String!
   description: String!
   country: String!
@@ -810,9 +831,28 @@ input ProjectCreateWithoutCommentsInput {
   likes: ProjectLikeCreateManyWithoutProjectInput
 }
 
+input ProjectCreateWithoutImagesInput {
+  id: ID
+  profile: UserProfileCreateOneWithoutProjectsInput!
+  featuredImage: String!
+  name: String!
+  description: String!
+  country: String!
+  address: String
+  state: String
+  city: String
+  zip: String
+  goalAmount: Float!
+  amountFunded: Float
+  likes: ProjectLikeCreateManyWithoutProjectInput
+  comments: ProjectCommentCreateManyWithoutProjectInput
+}
+
 input ProjectCreateWithoutLikesInput {
   id: ID
   profile: UserProfileCreateOneWithoutProjectsInput!
+  featuredImage: String!
+  images: ProjectImageCreateManyWithoutProjectInput
   name: String!
   description: String!
   country: String!
@@ -827,6 +867,8 @@ input ProjectCreateWithoutLikesInput {
 
 input ProjectCreateWithoutProfileInput {
   id: ID
+  featuredImage: String!
+  images: ProjectImageCreateManyWithoutProjectInput
   name: String!
   description: String!
   country: String!
@@ -843,6 +885,225 @@ input ProjectCreateWithoutProfileInput {
 type ProjectEdge {
   node: Project!
   cursor: String!
+}
+
+type ProjectImage {
+  id: ID!
+  project: Project!
+  imageUrl: String!
+  deleteImageUrl: String!
+}
+
+type ProjectImageConnection {
+  pageInfo: PageInfo!
+  edges: [ProjectImageEdge]!
+  aggregate: AggregateProjectImage!
+}
+
+input ProjectImageCreateInput {
+  id: ID
+  project: ProjectCreateOneWithoutImagesInput!
+  imageUrl: String!
+  deleteImageUrl: String!
+}
+
+input ProjectImageCreateManyWithoutProjectInput {
+  create: [ProjectImageCreateWithoutProjectInput!]
+  connect: [ProjectImageWhereUniqueInput!]
+}
+
+input ProjectImageCreateWithoutProjectInput {
+  id: ID
+  imageUrl: String!
+  deleteImageUrl: String!
+}
+
+type ProjectImageEdge {
+  node: ProjectImage!
+  cursor: String!
+}
+
+enum ProjectImageOrderByInput {
+  id_ASC
+  id_DESC
+  imageUrl_ASC
+  imageUrl_DESC
+  deleteImageUrl_ASC
+  deleteImageUrl_DESC
+}
+
+type ProjectImagePreviousValues {
+  id: ID!
+  imageUrl: String!
+  deleteImageUrl: String!
+}
+
+input ProjectImageScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  imageUrl: String
+  imageUrl_not: String
+  imageUrl_in: [String!]
+  imageUrl_not_in: [String!]
+  imageUrl_lt: String
+  imageUrl_lte: String
+  imageUrl_gt: String
+  imageUrl_gte: String
+  imageUrl_contains: String
+  imageUrl_not_contains: String
+  imageUrl_starts_with: String
+  imageUrl_not_starts_with: String
+  imageUrl_ends_with: String
+  imageUrl_not_ends_with: String
+  deleteImageUrl: String
+  deleteImageUrl_not: String
+  deleteImageUrl_in: [String!]
+  deleteImageUrl_not_in: [String!]
+  deleteImageUrl_lt: String
+  deleteImageUrl_lte: String
+  deleteImageUrl_gt: String
+  deleteImageUrl_gte: String
+  deleteImageUrl_contains: String
+  deleteImageUrl_not_contains: String
+  deleteImageUrl_starts_with: String
+  deleteImageUrl_not_starts_with: String
+  deleteImageUrl_ends_with: String
+  deleteImageUrl_not_ends_with: String
+  AND: [ProjectImageScalarWhereInput!]
+  OR: [ProjectImageScalarWhereInput!]
+  NOT: [ProjectImageScalarWhereInput!]
+}
+
+type ProjectImageSubscriptionPayload {
+  mutation: MutationType!
+  node: ProjectImage
+  updatedFields: [String!]
+  previousValues: ProjectImagePreviousValues
+}
+
+input ProjectImageSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ProjectImageWhereInput
+  AND: [ProjectImageSubscriptionWhereInput!]
+  OR: [ProjectImageSubscriptionWhereInput!]
+  NOT: [ProjectImageSubscriptionWhereInput!]
+}
+
+input ProjectImageUpdateInput {
+  project: ProjectUpdateOneRequiredWithoutImagesInput
+  imageUrl: String
+  deleteImageUrl: String
+}
+
+input ProjectImageUpdateManyDataInput {
+  imageUrl: String
+  deleteImageUrl: String
+}
+
+input ProjectImageUpdateManyMutationInput {
+  imageUrl: String
+  deleteImageUrl: String
+}
+
+input ProjectImageUpdateManyWithoutProjectInput {
+  create: [ProjectImageCreateWithoutProjectInput!]
+  delete: [ProjectImageWhereUniqueInput!]
+  connect: [ProjectImageWhereUniqueInput!]
+  set: [ProjectImageWhereUniqueInput!]
+  disconnect: [ProjectImageWhereUniqueInput!]
+  update: [ProjectImageUpdateWithWhereUniqueWithoutProjectInput!]
+  upsert: [ProjectImageUpsertWithWhereUniqueWithoutProjectInput!]
+  deleteMany: [ProjectImageScalarWhereInput!]
+  updateMany: [ProjectImageUpdateManyWithWhereNestedInput!]
+}
+
+input ProjectImageUpdateManyWithWhereNestedInput {
+  where: ProjectImageScalarWhereInput!
+  data: ProjectImageUpdateManyDataInput!
+}
+
+input ProjectImageUpdateWithoutProjectDataInput {
+  imageUrl: String
+  deleteImageUrl: String
+}
+
+input ProjectImageUpdateWithWhereUniqueWithoutProjectInput {
+  where: ProjectImageWhereUniqueInput!
+  data: ProjectImageUpdateWithoutProjectDataInput!
+}
+
+input ProjectImageUpsertWithWhereUniqueWithoutProjectInput {
+  where: ProjectImageWhereUniqueInput!
+  update: ProjectImageUpdateWithoutProjectDataInput!
+  create: ProjectImageCreateWithoutProjectInput!
+}
+
+input ProjectImageWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  project: ProjectWhereInput
+  imageUrl: String
+  imageUrl_not: String
+  imageUrl_in: [String!]
+  imageUrl_not_in: [String!]
+  imageUrl_lt: String
+  imageUrl_lte: String
+  imageUrl_gt: String
+  imageUrl_gte: String
+  imageUrl_contains: String
+  imageUrl_not_contains: String
+  imageUrl_starts_with: String
+  imageUrl_not_starts_with: String
+  imageUrl_ends_with: String
+  imageUrl_not_ends_with: String
+  deleteImageUrl: String
+  deleteImageUrl_not: String
+  deleteImageUrl_in: [String!]
+  deleteImageUrl_not_in: [String!]
+  deleteImageUrl_lt: String
+  deleteImageUrl_lte: String
+  deleteImageUrl_gt: String
+  deleteImageUrl_gte: String
+  deleteImageUrl_contains: String
+  deleteImageUrl_not_contains: String
+  deleteImageUrl_starts_with: String
+  deleteImageUrl_not_starts_with: String
+  deleteImageUrl_ends_with: String
+  deleteImageUrl_not_ends_with: String
+  AND: [ProjectImageWhereInput!]
+  OR: [ProjectImageWhereInput!]
+  NOT: [ProjectImageWhereInput!]
+}
+
+input ProjectImageWhereUniqueInput {
+  id: ID
 }
 
 type ProjectLike {
@@ -1061,6 +1322,8 @@ input ProjectLikeWhereUniqueInput {
 enum ProjectOrderByInput {
   id_ASC
   id_DESC
+  featuredImage_ASC
+  featuredImage_DESC
   name_ASC
   name_DESC
   description_ASC
@@ -1087,6 +1350,7 @@ enum ProjectOrderByInput {
 
 type ProjectPreviousValues {
   id: ID!
+  featuredImage: String!
   name: String!
   description: String!
   country: String!
@@ -1115,6 +1379,20 @@ input ProjectScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  featuredImage: String
+  featuredImage_not: String
+  featuredImage_in: [String!]
+  featuredImage_not_in: [String!]
+  featuredImage_lt: String
+  featuredImage_lte: String
+  featuredImage_gt: String
+  featuredImage_gte: String
+  featuredImage_contains: String
+  featuredImage_not_contains: String
+  featuredImage_starts_with: String
+  featuredImage_not_starts_with: String
+  featuredImage_ends_with: String
+  featuredImage_not_ends_with: String
   name: String
   name_not: String
   name_in: [String!]
@@ -1270,6 +1548,8 @@ input ProjectSubscriptionWhereInput {
 
 input ProjectUpdateInput {
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
+  featuredImage: String
+  images: ProjectImageUpdateManyWithoutProjectInput
   name: String
   description: String
   country: String
@@ -1284,6 +1564,7 @@ input ProjectUpdateInput {
 }
 
 input ProjectUpdateManyDataInput {
+  featuredImage: String
   name: String
   description: String
   country: String
@@ -1296,6 +1577,7 @@ input ProjectUpdateManyDataInput {
 }
 
 input ProjectUpdateManyMutationInput {
+  featuredImage: String
   name: String
   description: String
   country: String
@@ -1331,6 +1613,13 @@ input ProjectUpdateOneRequiredWithoutCommentsInput {
   connect: ProjectWhereUniqueInput
 }
 
+input ProjectUpdateOneRequiredWithoutImagesInput {
+  create: ProjectCreateWithoutImagesInput
+  update: ProjectUpdateWithoutImagesDataInput
+  upsert: ProjectUpsertWithoutImagesInput
+  connect: ProjectWhereUniqueInput
+}
+
 input ProjectUpdateOneRequiredWithoutLikesInput {
   create: ProjectCreateWithoutLikesInput
   update: ProjectUpdateWithoutLikesDataInput
@@ -1340,6 +1629,8 @@ input ProjectUpdateOneRequiredWithoutLikesInput {
 
 input ProjectUpdateWithoutCommentsDataInput {
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
+  featuredImage: String
+  images: ProjectImageUpdateManyWithoutProjectInput
   name: String
   description: String
   country: String
@@ -1352,8 +1643,26 @@ input ProjectUpdateWithoutCommentsDataInput {
   likes: ProjectLikeUpdateManyWithoutProjectInput
 }
 
+input ProjectUpdateWithoutImagesDataInput {
+  profile: UserProfileUpdateOneRequiredWithoutProjectsInput
+  featuredImage: String
+  name: String
+  description: String
+  country: String
+  address: String
+  state: String
+  city: String
+  zip: String
+  goalAmount: Float
+  amountFunded: Float
+  likes: ProjectLikeUpdateManyWithoutProjectInput
+  comments: ProjectCommentUpdateManyWithoutProjectInput
+}
+
 input ProjectUpdateWithoutLikesDataInput {
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
+  featuredImage: String
+  images: ProjectImageUpdateManyWithoutProjectInput
   name: String
   description: String
   country: String
@@ -1367,6 +1676,8 @@ input ProjectUpdateWithoutLikesDataInput {
 }
 
 input ProjectUpdateWithoutProfileDataInput {
+  featuredImage: String
+  images: ProjectImageUpdateManyWithoutProjectInput
   name: String
   description: String
   country: String
@@ -1388,6 +1699,11 @@ input ProjectUpdateWithWhereUniqueWithoutProfileInput {
 input ProjectUpsertWithoutCommentsInput {
   update: ProjectUpdateWithoutCommentsDataInput!
   create: ProjectCreateWithoutCommentsInput!
+}
+
+input ProjectUpsertWithoutImagesInput {
+  update: ProjectUpdateWithoutImagesDataInput!
+  create: ProjectCreateWithoutImagesInput!
 }
 
 input ProjectUpsertWithoutLikesInput {
@@ -1417,6 +1733,23 @@ input ProjectWhereInput {
   id_ends_with: ID
   id_not_ends_with: ID
   profile: UserProfileWhereInput
+  featuredImage: String
+  featuredImage_not: String
+  featuredImage_in: [String!]
+  featuredImage_not_in: [String!]
+  featuredImage_lt: String
+  featuredImage_lte: String
+  featuredImage_gt: String
+  featuredImage_gte: String
+  featuredImage_contains: String
+  featuredImage_not_contains: String
+  featuredImage_starts_with: String
+  featuredImage_not_starts_with: String
+  featuredImage_ends_with: String
+  featuredImage_not_ends_with: String
+  images_every: ProjectImageWhereInput
+  images_some: ProjectImageWhereInput
+  images_none: ProjectImageWhereInput
   name: String
   name_not: String
   name_in: [String!]
@@ -1575,6 +1908,9 @@ type Query {
   projectCommentLike(where: ProjectCommentLikeWhereUniqueInput!): ProjectCommentLike
   projectCommentLikes(where: ProjectCommentLikeWhereInput, orderBy: ProjectCommentLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectCommentLike]!
   projectCommentLikesConnection(where: ProjectCommentLikeWhereInput, orderBy: ProjectCommentLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectCommentLikeConnection!
+  projectImage(where: ProjectImageWhereUniqueInput!): ProjectImage
+  projectImages(where: ProjectImageWhereInput, orderBy: ProjectImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectImage]!
+  projectImagesConnection(where: ProjectImageWhereInput, orderBy: ProjectImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectImageConnection!
   projectLike(where: ProjectLikeWhereUniqueInput!): ProjectLike
   projectLikes(where: ProjectLikeWhereInput, orderBy: ProjectLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectLike]!
   projectLikesConnection(where: ProjectLikeWhereInput, orderBy: ProjectLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectLikeConnection!
@@ -1592,6 +1928,7 @@ type Subscription {
   project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
   projectComment(where: ProjectCommentSubscriptionWhereInput): ProjectCommentSubscriptionPayload
   projectCommentLike(where: ProjectCommentLikeSubscriptionWhereInput): ProjectCommentLikeSubscriptionPayload
+  projectImage(where: ProjectImageSubscriptionWhereInput): ProjectImageSubscriptionPayload
   projectLike(where: ProjectLikeSubscriptionWhereInput): ProjectLikeSubscriptionPayload
   userAccount(where: UserAccountSubscriptionWhereInput): UserAccountSubscriptionPayload
   userProfile(where: UserProfileSubscriptionWhereInput): UserProfileSubscriptionPayload
