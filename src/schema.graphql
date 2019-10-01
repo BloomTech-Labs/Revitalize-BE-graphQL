@@ -31,6 +31,7 @@ type Mutation {
 	deleteProject(id: ID!): Project!
 
 	createProjectComment(data: CreateProjectCommentInput!): ProjectComment!
+	updateProjectComment(data: UpdateProjectCommentInput!): ProjectComment!
 }
 
 # UserAccount
@@ -161,6 +162,11 @@ type ProjectComment {
 }
 
 input CreateProjectCommentInput {
+	id: ID!
+	comment: String!
+}
+
+input UpdateProjectCommentInput {
 	id: ID!
 	comment: String!
 }
