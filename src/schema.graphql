@@ -30,6 +30,9 @@ type Mutation {
 	updateProject(id: ID!, data: UpdateProjectInput): Project!
 	deleteProject(id: ID!): Project!
 
+	# Project likes
+
+	# Project comments
 	createProjectComment(data: CreateProjectCommentInput!): ProjectComment!
 	updateProjectComment(data: UpdateProjectCommentInput!): ProjectComment!
 	deleteProjectComment(id: ID!): ProjectComment!
@@ -108,6 +111,8 @@ input UpdateUserProfileInput {
 	aptNumber: String
 }
 
+# Project
+
 type Project {
 	id: ID!
 	profile: UserProfile!
@@ -148,12 +153,14 @@ input UpdateProjectInput {
 	amountFunded: Float
 }
 
+# Project Like
 type ProjectLike {
 	id: ID!
 	profile: UserProfile!
 	project: Project!
 }
 
+# Project Comment
 type ProjectComment {
 	id: ID!
 	profile: UserProfile!
@@ -171,6 +178,8 @@ input UpdateProjectCommentInput {
 	id: ID!
 	comment: String!
 }
+
+# Project comment like
 
 type ProjectCommentLike {
 	id: ID!
