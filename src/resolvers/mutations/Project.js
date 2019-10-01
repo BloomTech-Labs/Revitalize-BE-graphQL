@@ -14,6 +14,9 @@ export const Project = {
 			city: args.data.city,
 			goalAmount: args.data.goalAmount,
 			amountFunded: args.data.amountFunded,
+			duration: args.data.duration,
+			difficulty: args.data.difficulty,
+			startDate: args.data.startDate,
 			profile: {
 				connect: {
 					id: profileId,
@@ -21,13 +24,15 @@ export const Project = {
 			},
 		});
 
-		for (let i = 0; i < images.length; i++) {
-			const image = await uploadImage(args.images[i]);
-			await prisma.createProjectImage({
-				project: project.id,
-				imageUrl: image.secure_url,
-				public_id: image.public_id,
-			});
+		if (args.images.length > 1) {
+			for (let i = 0; i < images.length; i++) {
+				const image = await uploadImage(args.images[i]);
+				await prisma.createProjectImage({
+					project: project.id,
+					imageUrl: image.secure_url,
+					public_id: image.public_id,
+				});
+			}
 		}
 
 		return prisma.project({ id: project.id }, info);

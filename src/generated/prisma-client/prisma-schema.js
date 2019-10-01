@@ -234,17 +234,20 @@ type PageInfo {
 type Project {
   id: ID!
   profile: UserProfile!
-  featuredImage: String!
-  images(where: ProjectImageWhereInput, orderBy: ProjectImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectImage!]
   name: String!
   description: String!
   country: String!
-  address: String
-  state: String
-  city: String
-  zip: Int
+  address: String!
+  state: String!
+  city: String!
+  zip: Int!
+  duration: Int!
+  difficulty: String!
+  startDate: DateTime!
   goalAmount: Float!
   amountFunded: Float!
+  featuredImage: String
+  images(where: ProjectImageWhereInput, orderBy: ProjectImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectImage!]
   likes(where: ProjectLikeWhereInput, orderBy: ProjectLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectLike!]
   comments(where: ProjectCommentWhereInput, orderBy: ProjectCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectComment!]
   createdAt: DateTime!
@@ -779,17 +782,20 @@ type ProjectConnection {
 input ProjectCreateInput {
   id: ID
   profile: UserProfileCreateOneWithoutProjectsInput!
-  featuredImage: String!
-  images: ProjectImageCreateManyWithoutProjectInput
   name: String!
   description: String!
   country: String!
-  address: String
-  state: String
-  city: String
-  zip: Int
+  address: String!
+  state: String!
+  city: String!
+  zip: Int!
+  duration: Int!
+  difficulty: String!
+  startDate: DateTime!
   goalAmount: Float!
   amountFunded: Float
+  featuredImage: String
+  images: ProjectImageCreateManyWithoutProjectInput
   likes: ProjectLikeCreateManyWithoutProjectInput
   comments: ProjectCommentCreateManyWithoutProjectInput
 }
@@ -817,33 +823,39 @@ input ProjectCreateOneWithoutLikesInput {
 input ProjectCreateWithoutCommentsInput {
   id: ID
   profile: UserProfileCreateOneWithoutProjectsInput!
-  featuredImage: String!
-  images: ProjectImageCreateManyWithoutProjectInput
   name: String!
   description: String!
   country: String!
-  address: String
-  state: String
-  city: String
-  zip: Int
+  address: String!
+  state: String!
+  city: String!
+  zip: Int!
+  duration: Int!
+  difficulty: String!
+  startDate: DateTime!
   goalAmount: Float!
   amountFunded: Float
+  featuredImage: String
+  images: ProjectImageCreateManyWithoutProjectInput
   likes: ProjectLikeCreateManyWithoutProjectInput
 }
 
 input ProjectCreateWithoutImagesInput {
   id: ID
   profile: UserProfileCreateOneWithoutProjectsInput!
-  featuredImage: String!
   name: String!
   description: String!
   country: String!
-  address: String
-  state: String
-  city: String
-  zip: Int
+  address: String!
+  state: String!
+  city: String!
+  zip: Int!
+  duration: Int!
+  difficulty: String!
+  startDate: DateTime!
   goalAmount: Float!
   amountFunded: Float
+  featuredImage: String
   likes: ProjectLikeCreateManyWithoutProjectInput
   comments: ProjectCommentCreateManyWithoutProjectInput
 }
@@ -851,33 +863,39 @@ input ProjectCreateWithoutImagesInput {
 input ProjectCreateWithoutLikesInput {
   id: ID
   profile: UserProfileCreateOneWithoutProjectsInput!
-  featuredImage: String!
-  images: ProjectImageCreateManyWithoutProjectInput
   name: String!
   description: String!
   country: String!
-  address: String
-  state: String
-  city: String
-  zip: Int
+  address: String!
+  state: String!
+  city: String!
+  zip: Int!
+  duration: Int!
+  difficulty: String!
+  startDate: DateTime!
   goalAmount: Float!
   amountFunded: Float
+  featuredImage: String
+  images: ProjectImageCreateManyWithoutProjectInput
   comments: ProjectCommentCreateManyWithoutProjectInput
 }
 
 input ProjectCreateWithoutProfileInput {
   id: ID
-  featuredImage: String!
-  images: ProjectImageCreateManyWithoutProjectInput
   name: String!
   description: String!
   country: String!
-  address: String
-  state: String
-  city: String
-  zip: Int
+  address: String!
+  state: String!
+  city: String!
+  zip: Int!
+  duration: Int!
+  difficulty: String!
+  startDate: DateTime!
   goalAmount: Float!
   amountFunded: Float
+  featuredImage: String
+  images: ProjectImageCreateManyWithoutProjectInput
   likes: ProjectLikeCreateManyWithoutProjectInput
   comments: ProjectCommentCreateManyWithoutProjectInput
 }
@@ -1322,8 +1340,6 @@ input ProjectLikeWhereUniqueInput {
 enum ProjectOrderByInput {
   id_ASC
   id_DESC
-  featuredImage_ASC
-  featuredImage_DESC
   name_ASC
   name_DESC
   description_ASC
@@ -1338,10 +1354,18 @@ enum ProjectOrderByInput {
   city_DESC
   zip_ASC
   zip_DESC
+  duration_ASC
+  duration_DESC
+  difficulty_ASC
+  difficulty_DESC
+  startDate_ASC
+  startDate_DESC
   goalAmount_ASC
   goalAmount_DESC
   amountFunded_ASC
   amountFunded_DESC
+  featuredImage_ASC
+  featuredImage_DESC
   createdAt_ASC
   createdAt_DESC
   updatedAt_ASC
@@ -1350,16 +1374,19 @@ enum ProjectOrderByInput {
 
 type ProjectPreviousValues {
   id: ID!
-  featuredImage: String!
   name: String!
   description: String!
   country: String!
-  address: String
-  state: String
-  city: String
-  zip: Int
+  address: String!
+  state: String!
+  city: String!
+  zip: Int!
+  duration: Int!
+  difficulty: String!
+  startDate: DateTime!
   goalAmount: Float!
   amountFunded: Float!
+  featuredImage: String
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -1379,20 +1406,6 @@ input ProjectScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  featuredImage: String
-  featuredImage_not: String
-  featuredImage_in: [String!]
-  featuredImage_not_in: [String!]
-  featuredImage_lt: String
-  featuredImage_lte: String
-  featuredImage_gt: String
-  featuredImage_gte: String
-  featuredImage_contains: String
-  featuredImage_not_contains: String
-  featuredImage_starts_with: String
-  featuredImage_not_starts_with: String
-  featuredImage_ends_with: String
-  featuredImage_not_ends_with: String
   name: String
   name_not: String
   name_in: [String!]
@@ -1485,6 +1498,36 @@ input ProjectScalarWhereInput {
   zip_lte: Int
   zip_gt: Int
   zip_gte: Int
+  duration: Int
+  duration_not: Int
+  duration_in: [Int!]
+  duration_not_in: [Int!]
+  duration_lt: Int
+  duration_lte: Int
+  duration_gt: Int
+  duration_gte: Int
+  difficulty: String
+  difficulty_not: String
+  difficulty_in: [String!]
+  difficulty_not_in: [String!]
+  difficulty_lt: String
+  difficulty_lte: String
+  difficulty_gt: String
+  difficulty_gte: String
+  difficulty_contains: String
+  difficulty_not_contains: String
+  difficulty_starts_with: String
+  difficulty_not_starts_with: String
+  difficulty_ends_with: String
+  difficulty_not_ends_with: String
+  startDate: DateTime
+  startDate_not: DateTime
+  startDate_in: [DateTime!]
+  startDate_not_in: [DateTime!]
+  startDate_lt: DateTime
+  startDate_lte: DateTime
+  startDate_gt: DateTime
+  startDate_gte: DateTime
   goalAmount: Float
   goalAmount_not: Float
   goalAmount_in: [Float!]
@@ -1501,6 +1544,20 @@ input ProjectScalarWhereInput {
   amountFunded_lte: Float
   amountFunded_gt: Float
   amountFunded_gte: Float
+  featuredImage: String
+  featuredImage_not: String
+  featuredImage_in: [String!]
+  featuredImage_not_in: [String!]
+  featuredImage_lt: String
+  featuredImage_lte: String
+  featuredImage_gt: String
+  featuredImage_gte: String
+  featuredImage_contains: String
+  featuredImage_not_contains: String
+  featuredImage_starts_with: String
+  featuredImage_not_starts_with: String
+  featuredImage_ends_with: String
+  featuredImage_not_ends_with: String
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -1542,8 +1599,6 @@ input ProjectSubscriptionWhereInput {
 
 input ProjectUpdateInput {
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
-  featuredImage: String
-  images: ProjectImageUpdateManyWithoutProjectInput
   name: String
   description: String
   country: String
@@ -1551,14 +1606,18 @@ input ProjectUpdateInput {
   state: String
   city: String
   zip: Int
+  duration: Int
+  difficulty: String
+  startDate: DateTime
   goalAmount: Float
   amountFunded: Float
+  featuredImage: String
+  images: ProjectImageUpdateManyWithoutProjectInput
   likes: ProjectLikeUpdateManyWithoutProjectInput
   comments: ProjectCommentUpdateManyWithoutProjectInput
 }
 
 input ProjectUpdateManyDataInput {
-  featuredImage: String
   name: String
   description: String
   country: String
@@ -1566,12 +1625,15 @@ input ProjectUpdateManyDataInput {
   state: String
   city: String
   zip: Int
+  duration: Int
+  difficulty: String
+  startDate: DateTime
   goalAmount: Float
   amountFunded: Float
+  featuredImage: String
 }
 
 input ProjectUpdateManyMutationInput {
-  featuredImage: String
   name: String
   description: String
   country: String
@@ -1579,8 +1641,12 @@ input ProjectUpdateManyMutationInput {
   state: String
   city: String
   zip: Int
+  duration: Int
+  difficulty: String
+  startDate: DateTime
   goalAmount: Float
   amountFunded: Float
+  featuredImage: String
 }
 
 input ProjectUpdateManyWithoutProfileInput {
@@ -1623,8 +1689,6 @@ input ProjectUpdateOneRequiredWithoutLikesInput {
 
 input ProjectUpdateWithoutCommentsDataInput {
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
-  featuredImage: String
-  images: ProjectImageUpdateManyWithoutProjectInput
   name: String
   description: String
   country: String
@@ -1632,14 +1696,18 @@ input ProjectUpdateWithoutCommentsDataInput {
   state: String
   city: String
   zip: Int
+  duration: Int
+  difficulty: String
+  startDate: DateTime
   goalAmount: Float
   amountFunded: Float
+  featuredImage: String
+  images: ProjectImageUpdateManyWithoutProjectInput
   likes: ProjectLikeUpdateManyWithoutProjectInput
 }
 
 input ProjectUpdateWithoutImagesDataInput {
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
-  featuredImage: String
   name: String
   description: String
   country: String
@@ -1647,16 +1715,18 @@ input ProjectUpdateWithoutImagesDataInput {
   state: String
   city: String
   zip: Int
+  duration: Int
+  difficulty: String
+  startDate: DateTime
   goalAmount: Float
   amountFunded: Float
+  featuredImage: String
   likes: ProjectLikeUpdateManyWithoutProjectInput
   comments: ProjectCommentUpdateManyWithoutProjectInput
 }
 
 input ProjectUpdateWithoutLikesDataInput {
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
-  featuredImage: String
-  images: ProjectImageUpdateManyWithoutProjectInput
   name: String
   description: String
   country: String
@@ -1664,14 +1734,17 @@ input ProjectUpdateWithoutLikesDataInput {
   state: String
   city: String
   zip: Int
+  duration: Int
+  difficulty: String
+  startDate: DateTime
   goalAmount: Float
   amountFunded: Float
+  featuredImage: String
+  images: ProjectImageUpdateManyWithoutProjectInput
   comments: ProjectCommentUpdateManyWithoutProjectInput
 }
 
 input ProjectUpdateWithoutProfileDataInput {
-  featuredImage: String
-  images: ProjectImageUpdateManyWithoutProjectInput
   name: String
   description: String
   country: String
@@ -1679,8 +1752,13 @@ input ProjectUpdateWithoutProfileDataInput {
   state: String
   city: String
   zip: Int
+  duration: Int
+  difficulty: String
+  startDate: DateTime
   goalAmount: Float
   amountFunded: Float
+  featuredImage: String
+  images: ProjectImageUpdateManyWithoutProjectInput
   likes: ProjectLikeUpdateManyWithoutProjectInput
   comments: ProjectCommentUpdateManyWithoutProjectInput
 }
@@ -1727,23 +1805,6 @@ input ProjectWhereInput {
   id_ends_with: ID
   id_not_ends_with: ID
   profile: UserProfileWhereInput
-  featuredImage: String
-  featuredImage_not: String
-  featuredImage_in: [String!]
-  featuredImage_not_in: [String!]
-  featuredImage_lt: String
-  featuredImage_lte: String
-  featuredImage_gt: String
-  featuredImage_gte: String
-  featuredImage_contains: String
-  featuredImage_not_contains: String
-  featuredImage_starts_with: String
-  featuredImage_not_starts_with: String
-  featuredImage_ends_with: String
-  featuredImage_not_ends_with: String
-  images_every: ProjectImageWhereInput
-  images_some: ProjectImageWhereInput
-  images_none: ProjectImageWhereInput
   name: String
   name_not: String
   name_in: [String!]
@@ -1836,6 +1897,36 @@ input ProjectWhereInput {
   zip_lte: Int
   zip_gt: Int
   zip_gte: Int
+  duration: Int
+  duration_not: Int
+  duration_in: [Int!]
+  duration_not_in: [Int!]
+  duration_lt: Int
+  duration_lte: Int
+  duration_gt: Int
+  duration_gte: Int
+  difficulty: String
+  difficulty_not: String
+  difficulty_in: [String!]
+  difficulty_not_in: [String!]
+  difficulty_lt: String
+  difficulty_lte: String
+  difficulty_gt: String
+  difficulty_gte: String
+  difficulty_contains: String
+  difficulty_not_contains: String
+  difficulty_starts_with: String
+  difficulty_not_starts_with: String
+  difficulty_ends_with: String
+  difficulty_not_ends_with: String
+  startDate: DateTime
+  startDate_not: DateTime
+  startDate_in: [DateTime!]
+  startDate_not_in: [DateTime!]
+  startDate_lt: DateTime
+  startDate_lte: DateTime
+  startDate_gt: DateTime
+  startDate_gte: DateTime
   goalAmount: Float
   goalAmount_not: Float
   goalAmount_in: [Float!]
@@ -1852,6 +1943,23 @@ input ProjectWhereInput {
   amountFunded_lte: Float
   amountFunded_gt: Float
   amountFunded_gte: Float
+  featuredImage: String
+  featuredImage_not: String
+  featuredImage_in: [String!]
+  featuredImage_not_in: [String!]
+  featuredImage_lt: String
+  featuredImage_lte: String
+  featuredImage_gt: String
+  featuredImage_gte: String
+  featuredImage_contains: String
+  featuredImage_not_contains: String
+  featuredImage_starts_with: String
+  featuredImage_not_starts_with: String
+  featuredImage_ends_with: String
+  featuredImage_not_ends_with: String
+  images_every: ProjectImageWhereInput
+  images_some: ProjectImageWhereInput
+  images_none: ProjectImageWhereInput
   likes_every: ProjectLikeWhereInput
   likes_some: ProjectLikeWhereInput
   likes_none: ProjectLikeWhereInput

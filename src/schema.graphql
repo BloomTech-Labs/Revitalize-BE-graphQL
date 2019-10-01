@@ -127,6 +127,9 @@ type Project {
 	address: String!
 	goalAmount: Float!
 	amountFunded: Float!
+	duration: Int!
+	difficulty: String!
+	startDate: DateTime!
 	likes: [ProjectLike!]!
 	comments: [ProjectComment!]!
 	images: [ProjectImage!]!
@@ -148,17 +151,23 @@ input CreateProjectInput {
 	zip: Int!
 	address: String!
 	goalAmount: Float!
+	duration: Int!
+	difficulty: String!
+	startDate: DateTime!
 	amountFunded: Float
 }
 
 input UpdateProjectInput {
 	name: String
 	description: String
-	country: String!
-	state: String!
-	city: String!
-	zip: Int!
-	address: String!
+	country: String
+	state: String
+	city: String
+	zip: Int
+	address: String
+	duration: Int
+	difficulty: String
+	startDate: DateTime
 	goalAmount: Float
 	amountFunded: Float
 }

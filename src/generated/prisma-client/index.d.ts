@@ -423,8 +423,6 @@ export type ExternalAccountOrderByInput =
 export type ProjectOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "featuredImage_ASC"
-  | "featuredImage_DESC"
   | "name_ASC"
   | "name_DESC"
   | "description_ASC"
@@ -439,10 +437,18 @@ export type ProjectOrderByInput =
   | "city_DESC"
   | "zip_ASC"
   | "zip_DESC"
+  | "duration_ASC"
+  | "duration_DESC"
+  | "difficulty_ASC"
+  | "difficulty_DESC"
+  | "startDate_ASC"
+  | "startDate_DESC"
   | "goalAmount_ASC"
   | "goalAmount_DESC"
   | "amountFunded_ASC"
   | "amountFunded_DESC"
+  | "featuredImage_ASC"
+  | "featuredImage_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -601,23 +607,6 @@ export interface ProjectWhereInput {
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
   profile?: Maybe<UserProfileWhereInput>;
-  featuredImage?: Maybe<String>;
-  featuredImage_not?: Maybe<String>;
-  featuredImage_in?: Maybe<String[] | String>;
-  featuredImage_not_in?: Maybe<String[] | String>;
-  featuredImage_lt?: Maybe<String>;
-  featuredImage_lte?: Maybe<String>;
-  featuredImage_gt?: Maybe<String>;
-  featuredImage_gte?: Maybe<String>;
-  featuredImage_contains?: Maybe<String>;
-  featuredImage_not_contains?: Maybe<String>;
-  featuredImage_starts_with?: Maybe<String>;
-  featuredImage_not_starts_with?: Maybe<String>;
-  featuredImage_ends_with?: Maybe<String>;
-  featuredImage_not_ends_with?: Maybe<String>;
-  images_every?: Maybe<ProjectImageWhereInput>;
-  images_some?: Maybe<ProjectImageWhereInput>;
-  images_none?: Maybe<ProjectImageWhereInput>;
   name?: Maybe<String>;
   name_not?: Maybe<String>;
   name_in?: Maybe<String[] | String>;
@@ -710,6 +699,36 @@ export interface ProjectWhereInput {
   zip_lte?: Maybe<Int>;
   zip_gt?: Maybe<Int>;
   zip_gte?: Maybe<Int>;
+  duration?: Maybe<Int>;
+  duration_not?: Maybe<Int>;
+  duration_in?: Maybe<Int[] | Int>;
+  duration_not_in?: Maybe<Int[] | Int>;
+  duration_lt?: Maybe<Int>;
+  duration_lte?: Maybe<Int>;
+  duration_gt?: Maybe<Int>;
+  duration_gte?: Maybe<Int>;
+  difficulty?: Maybe<String>;
+  difficulty_not?: Maybe<String>;
+  difficulty_in?: Maybe<String[] | String>;
+  difficulty_not_in?: Maybe<String[] | String>;
+  difficulty_lt?: Maybe<String>;
+  difficulty_lte?: Maybe<String>;
+  difficulty_gt?: Maybe<String>;
+  difficulty_gte?: Maybe<String>;
+  difficulty_contains?: Maybe<String>;
+  difficulty_not_contains?: Maybe<String>;
+  difficulty_starts_with?: Maybe<String>;
+  difficulty_not_starts_with?: Maybe<String>;
+  difficulty_ends_with?: Maybe<String>;
+  difficulty_not_ends_with?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  startDate_not?: Maybe<DateTimeInput>;
+  startDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  startDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  startDate_lt?: Maybe<DateTimeInput>;
+  startDate_lte?: Maybe<DateTimeInput>;
+  startDate_gt?: Maybe<DateTimeInput>;
+  startDate_gte?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
   goalAmount_not?: Maybe<Float>;
   goalAmount_in?: Maybe<Float[] | Float>;
@@ -726,6 +745,23 @@ export interface ProjectWhereInput {
   amountFunded_lte?: Maybe<Float>;
   amountFunded_gt?: Maybe<Float>;
   amountFunded_gte?: Maybe<Float>;
+  featuredImage?: Maybe<String>;
+  featuredImage_not?: Maybe<String>;
+  featuredImage_in?: Maybe<String[] | String>;
+  featuredImage_not_in?: Maybe<String[] | String>;
+  featuredImage_lt?: Maybe<String>;
+  featuredImage_lte?: Maybe<String>;
+  featuredImage_gt?: Maybe<String>;
+  featuredImage_gte?: Maybe<String>;
+  featuredImage_contains?: Maybe<String>;
+  featuredImage_not_contains?: Maybe<String>;
+  featuredImage_starts_with?: Maybe<String>;
+  featuredImage_not_starts_with?: Maybe<String>;
+  featuredImage_ends_with?: Maybe<String>;
+  featuredImage_not_ends_with?: Maybe<String>;
+  images_every?: Maybe<ProjectImageWhereInput>;
+  images_some?: Maybe<ProjectImageWhereInput>;
+  images_none?: Maybe<ProjectImageWhereInput>;
   likes_every?: Maybe<ProjectLikeWhereInput>;
   likes_some?: Maybe<ProjectLikeWhereInput>;
   likes_none?: Maybe<ProjectLikeWhereInput>;
@@ -1235,17 +1271,20 @@ export interface ExternalAccountUpdateManyMutationInput {
 export interface ProjectCreateInput {
   id?: Maybe<ID_Input>;
   profile: UserProfileCreateOneWithoutProjectsInput;
-  featuredImage: String;
-  images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
   name: String;
   description: String;
   country: String;
-  address?: Maybe<String>;
-  state?: Maybe<String>;
-  city?: Maybe<String>;
-  zip?: Maybe<Int>;
+  address: String;
+  state: String;
+  city: String;
+  zip: Int;
+  duration: Int;
+  difficulty: String;
+  startDate: DateTimeInput;
   goalAmount: Float;
   amountFunded?: Maybe<Float>;
+  featuredImage?: Maybe<String>;
+  images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
   likes?: Maybe<ProjectLikeCreateManyWithoutProjectInput>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProjectInput>;
 }
@@ -1294,17 +1333,20 @@ export interface ProjectCreateOneWithoutLikesInput {
 export interface ProjectCreateWithoutLikesInput {
   id?: Maybe<ID_Input>;
   profile: UserProfileCreateOneWithoutProjectsInput;
-  featuredImage: String;
-  images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
   name: String;
   description: String;
   country: String;
-  address?: Maybe<String>;
-  state?: Maybe<String>;
-  city?: Maybe<String>;
-  zip?: Maybe<Int>;
+  address: String;
+  state: String;
+  city: String;
+  zip: Int;
+  duration: Int;
+  difficulty: String;
+  startDate: DateTimeInput;
   goalAmount: Float;
   amountFunded?: Maybe<Float>;
+  featuredImage?: Maybe<String>;
+  images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProjectInput>;
 }
 
@@ -1373,17 +1415,20 @@ export interface ProjectCreateManyWithoutProfileInput {
 
 export interface ProjectCreateWithoutProfileInput {
   id?: Maybe<ID_Input>;
-  featuredImage: String;
-  images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
   name: String;
   description: String;
   country: String;
-  address?: Maybe<String>;
-  state?: Maybe<String>;
-  city?: Maybe<String>;
-  zip?: Maybe<Int>;
+  address: String;
+  state: String;
+  city: String;
+  zip: Int;
+  duration: Int;
+  difficulty: String;
+  startDate: DateTimeInput;
   goalAmount: Float;
   amountFunded?: Maybe<Float>;
+  featuredImage?: Maybe<String>;
+  images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
   likes?: Maybe<ProjectLikeCreateManyWithoutProjectInput>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProjectInput>;
 }
@@ -1449,17 +1494,20 @@ export interface ProjectCreateOneWithoutCommentsInput {
 export interface ProjectCreateWithoutCommentsInput {
   id?: Maybe<ID_Input>;
   profile: UserProfileCreateOneWithoutProjectsInput;
-  featuredImage: String;
-  images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
   name: String;
   description: String;
   country: String;
-  address?: Maybe<String>;
-  state?: Maybe<String>;
-  city?: Maybe<String>;
-  zip?: Maybe<Int>;
+  address: String;
+  state: String;
+  city: String;
+  zip: Int;
+  duration: Int;
+  difficulty: String;
+  startDate: DateTimeInput;
   goalAmount: Float;
   amountFunded?: Maybe<Float>;
+  featuredImage?: Maybe<String>;
+  images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
   likes?: Maybe<ProjectLikeCreateManyWithoutProjectInput>;
 }
 
@@ -1530,8 +1578,6 @@ export interface ProjectCommentCreateWithoutLikesInput {
 
 export interface ProjectUpdateInput {
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
-  featuredImage?: Maybe<String>;
-  images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
   country?: Maybe<String>;
@@ -1539,8 +1585,13 @@ export interface ProjectUpdateInput {
   state?: Maybe<String>;
   city?: Maybe<String>;
   zip?: Maybe<Int>;
+  duration?: Maybe<Int>;
+  difficulty?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
   amountFunded?: Maybe<Float>;
+  featuredImage?: Maybe<String>;
+  images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
   likes?: Maybe<ProjectLikeUpdateManyWithoutProjectInput>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
 }
@@ -1611,8 +1662,6 @@ export interface ProjectUpdateOneRequiredWithoutLikesInput {
 
 export interface ProjectUpdateWithoutLikesDataInput {
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
-  featuredImage?: Maybe<String>;
-  images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
   country?: Maybe<String>;
@@ -1620,8 +1669,13 @@ export interface ProjectUpdateWithoutLikesDataInput {
   state?: Maybe<String>;
   city?: Maybe<String>;
   zip?: Maybe<Int>;
+  duration?: Maybe<Int>;
+  difficulty?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
   amountFunded?: Maybe<Float>;
+  featuredImage?: Maybe<String>;
+  images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
 }
 
@@ -1827,8 +1881,6 @@ export interface ProjectUpdateWithWhereUniqueWithoutProfileInput {
 }
 
 export interface ProjectUpdateWithoutProfileDataInput {
-  featuredImage?: Maybe<String>;
-  images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
   country?: Maybe<String>;
@@ -1836,8 +1888,13 @@ export interface ProjectUpdateWithoutProfileDataInput {
   state?: Maybe<String>;
   city?: Maybe<String>;
   zip?: Maybe<Int>;
+  duration?: Maybe<Int>;
+  difficulty?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
   amountFunded?: Maybe<Float>;
+  featuredImage?: Maybe<String>;
+  images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
   likes?: Maybe<ProjectLikeUpdateManyWithoutProjectInput>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
 }
@@ -1953,8 +2010,6 @@ export interface ProjectUpdateOneRequiredWithoutCommentsInput {
 
 export interface ProjectUpdateWithoutCommentsDataInput {
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
-  featuredImage?: Maybe<String>;
-  images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
   country?: Maybe<String>;
@@ -1962,8 +2017,13 @@ export interface ProjectUpdateWithoutCommentsDataInput {
   state?: Maybe<String>;
   city?: Maybe<String>;
   zip?: Maybe<Int>;
+  duration?: Maybe<Int>;
+  difficulty?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
   amountFunded?: Maybe<Float>;
+  featuredImage?: Maybe<String>;
+  images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
   likes?: Maybe<ProjectLikeUpdateManyWithoutProjectInput>;
 }
 
@@ -2288,20 +2348,6 @@ export interface ProjectScalarWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  featuredImage?: Maybe<String>;
-  featuredImage_not?: Maybe<String>;
-  featuredImage_in?: Maybe<String[] | String>;
-  featuredImage_not_in?: Maybe<String[] | String>;
-  featuredImage_lt?: Maybe<String>;
-  featuredImage_lte?: Maybe<String>;
-  featuredImage_gt?: Maybe<String>;
-  featuredImage_gte?: Maybe<String>;
-  featuredImage_contains?: Maybe<String>;
-  featuredImage_not_contains?: Maybe<String>;
-  featuredImage_starts_with?: Maybe<String>;
-  featuredImage_not_starts_with?: Maybe<String>;
-  featuredImage_ends_with?: Maybe<String>;
-  featuredImage_not_ends_with?: Maybe<String>;
   name?: Maybe<String>;
   name_not?: Maybe<String>;
   name_in?: Maybe<String[] | String>;
@@ -2394,6 +2440,36 @@ export interface ProjectScalarWhereInput {
   zip_lte?: Maybe<Int>;
   zip_gt?: Maybe<Int>;
   zip_gte?: Maybe<Int>;
+  duration?: Maybe<Int>;
+  duration_not?: Maybe<Int>;
+  duration_in?: Maybe<Int[] | Int>;
+  duration_not_in?: Maybe<Int[] | Int>;
+  duration_lt?: Maybe<Int>;
+  duration_lte?: Maybe<Int>;
+  duration_gt?: Maybe<Int>;
+  duration_gte?: Maybe<Int>;
+  difficulty?: Maybe<String>;
+  difficulty_not?: Maybe<String>;
+  difficulty_in?: Maybe<String[] | String>;
+  difficulty_not_in?: Maybe<String[] | String>;
+  difficulty_lt?: Maybe<String>;
+  difficulty_lte?: Maybe<String>;
+  difficulty_gt?: Maybe<String>;
+  difficulty_gte?: Maybe<String>;
+  difficulty_contains?: Maybe<String>;
+  difficulty_not_contains?: Maybe<String>;
+  difficulty_starts_with?: Maybe<String>;
+  difficulty_not_starts_with?: Maybe<String>;
+  difficulty_ends_with?: Maybe<String>;
+  difficulty_not_ends_with?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  startDate_not?: Maybe<DateTimeInput>;
+  startDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  startDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  startDate_lt?: Maybe<DateTimeInput>;
+  startDate_lte?: Maybe<DateTimeInput>;
+  startDate_gt?: Maybe<DateTimeInput>;
+  startDate_gte?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
   goalAmount_not?: Maybe<Float>;
   goalAmount_in?: Maybe<Float[] | Float>;
@@ -2410,6 +2486,20 @@ export interface ProjectScalarWhereInput {
   amountFunded_lte?: Maybe<Float>;
   amountFunded_gt?: Maybe<Float>;
   amountFunded_gte?: Maybe<Float>;
+  featuredImage?: Maybe<String>;
+  featuredImage_not?: Maybe<String>;
+  featuredImage_in?: Maybe<String[] | String>;
+  featuredImage_not_in?: Maybe<String[] | String>;
+  featuredImage_lt?: Maybe<String>;
+  featuredImage_lte?: Maybe<String>;
+  featuredImage_gt?: Maybe<String>;
+  featuredImage_gte?: Maybe<String>;
+  featuredImage_contains?: Maybe<String>;
+  featuredImage_not_contains?: Maybe<String>;
+  featuredImage_starts_with?: Maybe<String>;
+  featuredImage_not_starts_with?: Maybe<String>;
+  featuredImage_ends_with?: Maybe<String>;
+  featuredImage_not_ends_with?: Maybe<String>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -2437,7 +2527,6 @@ export interface ProjectUpdateManyWithWhereNestedInput {
 }
 
 export interface ProjectUpdateManyDataInput {
-  featuredImage?: Maybe<String>;
   name?: Maybe<String>;
   description?: Maybe<String>;
   country?: Maybe<String>;
@@ -2445,8 +2534,12 @@ export interface ProjectUpdateManyDataInput {
   state?: Maybe<String>;
   city?: Maybe<String>;
   zip?: Maybe<Int>;
+  duration?: Maybe<Int>;
+  difficulty?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
   amountFunded?: Maybe<Float>;
+  featuredImage?: Maybe<String>;
 }
 
 export interface UserProfileUpsertWithoutCommentsInput {
@@ -2477,7 +2570,6 @@ export interface UserProfileUpsertWithoutProjectsInput {
 }
 
 export interface ProjectUpdateManyMutationInput {
-  featuredImage?: Maybe<String>;
   name?: Maybe<String>;
   description?: Maybe<String>;
   country?: Maybe<String>;
@@ -2485,8 +2577,12 @@ export interface ProjectUpdateManyMutationInput {
   state?: Maybe<String>;
   city?: Maybe<String>;
   zip?: Maybe<Int>;
+  duration?: Maybe<Int>;
+  difficulty?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
   amountFunded?: Maybe<Float>;
+  featuredImage?: Maybe<String>;
 }
 
 export interface ProjectCommentCreateInput {
@@ -2534,16 +2630,19 @@ export interface ProjectCreateOneWithoutImagesInput {
 export interface ProjectCreateWithoutImagesInput {
   id?: Maybe<ID_Input>;
   profile: UserProfileCreateOneWithoutProjectsInput;
-  featuredImage: String;
   name: String;
   description: String;
   country: String;
-  address?: Maybe<String>;
-  state?: Maybe<String>;
-  city?: Maybe<String>;
-  zip?: Maybe<Int>;
+  address: String;
+  state: String;
+  city: String;
+  zip: Int;
+  duration: Int;
+  difficulty: String;
+  startDate: DateTimeInput;
   goalAmount: Float;
   amountFunded?: Maybe<Float>;
+  featuredImage?: Maybe<String>;
   likes?: Maybe<ProjectLikeCreateManyWithoutProjectInput>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProjectInput>;
 }
@@ -2563,7 +2662,6 @@ export interface ProjectUpdateOneRequiredWithoutImagesInput {
 
 export interface ProjectUpdateWithoutImagesDataInput {
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
-  featuredImage?: Maybe<String>;
   name?: Maybe<String>;
   description?: Maybe<String>;
   country?: Maybe<String>;
@@ -2571,8 +2669,12 @@ export interface ProjectUpdateWithoutImagesDataInput {
   state?: Maybe<String>;
   city?: Maybe<String>;
   zip?: Maybe<Int>;
+  duration?: Maybe<Int>;
+  difficulty?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
   amountFunded?: Maybe<Float>;
+  featuredImage?: Maybe<String>;
   likes?: Maybe<ProjectLikeUpdateManyWithoutProjectInput>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
 }
@@ -2923,16 +3025,19 @@ export interface AggregateExternalAccountSubscription
 
 export interface Project {
   id: ID_Output;
-  featuredImage: String;
   name: String;
   description: String;
   country: String;
-  address?: String;
-  state?: String;
-  city?: String;
-  zip?: Int;
+  address: String;
+  state: String;
+  city: String;
+  zip: Int;
+  duration: Int;
+  difficulty: String;
+  startDate: DateTimeOutput;
   goalAmount: Float;
   amountFunded: Float;
+  featuredImage?: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
@@ -2940,6 +3045,18 @@ export interface Project {
 export interface ProjectPromise extends Promise<Project>, Fragmentable {
   id: () => Promise<ID_Output>;
   profile: <T = UserProfilePromise>() => T;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+  country: () => Promise<String>;
+  address: () => Promise<String>;
+  state: () => Promise<String>;
+  city: () => Promise<String>;
+  zip: () => Promise<Int>;
+  duration: () => Promise<Int>;
+  difficulty: () => Promise<String>;
+  startDate: () => Promise<DateTimeOutput>;
+  goalAmount: () => Promise<Float>;
+  amountFunded: () => Promise<Float>;
   featuredImage: () => Promise<String>;
   images: <T = FragmentableArray<ProjectImage>>(args?: {
     where?: ProjectImageWhereInput;
@@ -2950,15 +3067,6 @@ export interface ProjectPromise extends Promise<Project>, Fragmentable {
     first?: Int;
     last?: Int;
   }) => T;
-  name: () => Promise<String>;
-  description: () => Promise<String>;
-  country: () => Promise<String>;
-  address: () => Promise<String>;
-  state: () => Promise<String>;
-  city: () => Promise<String>;
-  zip: () => Promise<Int>;
-  goalAmount: () => Promise<Float>;
-  amountFunded: () => Promise<Float>;
   likes: <T = FragmentableArray<ProjectLike>>(args?: {
     where?: ProjectLikeWhereInput;
     orderBy?: ProjectLikeOrderByInput;
@@ -2986,6 +3094,18 @@ export interface ProjectSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   profile: <T = UserProfileSubscription>() => T;
+  name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+  country: () => Promise<AsyncIterator<String>>;
+  address: () => Promise<AsyncIterator<String>>;
+  state: () => Promise<AsyncIterator<String>>;
+  city: () => Promise<AsyncIterator<String>>;
+  zip: () => Promise<AsyncIterator<Int>>;
+  duration: () => Promise<AsyncIterator<Int>>;
+  difficulty: () => Promise<AsyncIterator<String>>;
+  startDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  goalAmount: () => Promise<AsyncIterator<Float>>;
+  amountFunded: () => Promise<AsyncIterator<Float>>;
   featuredImage: () => Promise<AsyncIterator<String>>;
   images: <T = Promise<AsyncIterator<ProjectImageSubscription>>>(args?: {
     where?: ProjectImageWhereInput;
@@ -2996,15 +3116,6 @@ export interface ProjectSubscription
     first?: Int;
     last?: Int;
   }) => T;
-  name: () => Promise<AsyncIterator<String>>;
-  description: () => Promise<AsyncIterator<String>>;
-  country: () => Promise<AsyncIterator<String>>;
-  address: () => Promise<AsyncIterator<String>>;
-  state: () => Promise<AsyncIterator<String>>;
-  city: () => Promise<AsyncIterator<String>>;
-  zip: () => Promise<AsyncIterator<Int>>;
-  goalAmount: () => Promise<AsyncIterator<Float>>;
-  amountFunded: () => Promise<AsyncIterator<Float>>;
   likes: <T = Promise<AsyncIterator<ProjectLikeSubscription>>>(args?: {
     where?: ProjectLikeWhereInput;
     orderBy?: ProjectLikeOrderByInput;
@@ -3032,6 +3143,18 @@ export interface ProjectNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   profile: <T = UserProfilePromise>() => T;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+  country: () => Promise<String>;
+  address: () => Promise<String>;
+  state: () => Promise<String>;
+  city: () => Promise<String>;
+  zip: () => Promise<Int>;
+  duration: () => Promise<Int>;
+  difficulty: () => Promise<String>;
+  startDate: () => Promise<DateTimeOutput>;
+  goalAmount: () => Promise<Float>;
+  amountFunded: () => Promise<Float>;
   featuredImage: () => Promise<String>;
   images: <T = FragmentableArray<ProjectImage>>(args?: {
     where?: ProjectImageWhereInput;
@@ -3042,15 +3165,6 @@ export interface ProjectNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
-  name: () => Promise<String>;
-  description: () => Promise<String>;
-  country: () => Promise<String>;
-  address: () => Promise<String>;
-  state: () => Promise<String>;
-  city: () => Promise<String>;
-  zip: () => Promise<Int>;
-  goalAmount: () => Promise<Float>;
-  amountFunded: () => Promise<Float>;
   likes: <T = FragmentableArray<ProjectLike>>(args?: {
     where?: ProjectLikeWhereInput;
     orderBy?: ProjectLikeOrderByInput;
@@ -3946,16 +4060,19 @@ export interface ProjectSubscriptionPayloadSubscription
 
 export interface ProjectPreviousValues {
   id: ID_Output;
-  featuredImage: String;
   name: String;
   description: String;
   country: String;
-  address?: String;
-  state?: String;
-  city?: String;
-  zip?: Int;
+  address: String;
+  state: String;
+  city: String;
+  zip: Int;
+  duration: Int;
+  difficulty: String;
+  startDate: DateTimeOutput;
   goalAmount: Float;
   amountFunded: Float;
+  featuredImage?: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
@@ -3964,7 +4081,6 @@ export interface ProjectPreviousValuesPromise
   extends Promise<ProjectPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  featuredImage: () => Promise<String>;
   name: () => Promise<String>;
   description: () => Promise<String>;
   country: () => Promise<String>;
@@ -3972,8 +4088,12 @@ export interface ProjectPreviousValuesPromise
   state: () => Promise<String>;
   city: () => Promise<String>;
   zip: () => Promise<Int>;
+  duration: () => Promise<Int>;
+  difficulty: () => Promise<String>;
+  startDate: () => Promise<DateTimeOutput>;
   goalAmount: () => Promise<Float>;
   amountFunded: () => Promise<Float>;
+  featuredImage: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
@@ -3982,7 +4102,6 @@ export interface ProjectPreviousValuesSubscription
   extends Promise<AsyncIterator<ProjectPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  featuredImage: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
   country: () => Promise<AsyncIterator<String>>;
@@ -3990,8 +4109,12 @@ export interface ProjectPreviousValuesSubscription
   state: () => Promise<AsyncIterator<String>>;
   city: () => Promise<AsyncIterator<String>>;
   zip: () => Promise<AsyncIterator<Int>>;
+  duration: () => Promise<AsyncIterator<Int>>;
+  difficulty: () => Promise<AsyncIterator<String>>;
+  startDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   goalAmount: () => Promise<AsyncIterator<Float>>;
   amountFunded: () => Promise<AsyncIterator<Float>>;
+  featuredImage: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
