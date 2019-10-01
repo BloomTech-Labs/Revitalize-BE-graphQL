@@ -27,6 +27,31 @@ async function main() {
             password: '$2a$10$zY9/yBf0MYWGGtiEZrFQ8ef1KYLFPAmguEk3tX2NWP1mBhdekcj8O'
         })
 
+        const jose = await prisma.createUserAccount({
+            email: 'jose@gmail.com',
+            password: '$2a$10$zY9/yBf0MYWGGtiEZrFQ8ef1KYLFPAmguEk3tX2NWP1mBhdekcj8O'
+        })
+
+        const kerry = await prisma.createUserAccount({
+            email: 'kerry@gmail.com',
+            password: '$2a$10$zY9/yBf0MYWGGtiEZrFQ8ef1KYLFPAmguEk3tX2NWP1mBhdekcj8O'
+        })
+
+        const alexander = await prisma.createUserAccount({
+            email: 'alexander@gmail.com',
+            password: '$2a$10$zY9/yBf0MYWGGtiEZrFQ8ef1KYLFPAmguEk3tX2NWP1mBhdekcj8O'
+        })
+
+        const ruth = await prisma.createUserAccount({
+            email: 'ruth@gmail.com',
+            password: '$2a$10$zY9/yBf0MYWGGtiEZrFQ8ef1KYLFPAmguEk3tX2NWP1mBhdekcj8O'
+        })
+
+        const omar = await prisma.createUserAccount({
+            email: 'omar@gmail.com',
+            password: '$2a$10$zY9/yBf0MYWGGtiEZrFQ8ef1KYLFPAmguEk3tX2NWP1mBhdekcj8O'
+        })
+
         const frankProfile = await prisma.createUserProfile({
             userAccountId: frank.id,
             email: frank.email,
@@ -281,7 +306,7 @@ async function main() {
                                             id: frankProfile.id
                                         },
                                     },
-                                    comment: "We miss Providence Theater!"
+                                    comment: "We miss Cottonwood Paper Mill!"
                                 },
                                 {
                                     profile: {
@@ -297,7 +322,7 @@ async function main() {
                                             id: anthonyProfile.id
                                         },
                                     },
-                                    comment: "Billy Joel was here"
+                                    comment: "Let's make some paper!"
                                 }
 
                             ],
@@ -306,6 +331,352 @@ async function main() {
                 ],
             },
         })
+
+        const joseProfile = await prisma.createUserProfile({
+            userAccountId: jose.id,
+            email: jose.email,
+            firstName: "Jose",
+            lastName: "Montero",
+            profileImage: "https://avatars2.githubusercontent.com/u/32372095?s=400&u=213263fdc4bbfba59bbf43ca53009fd9aac15095&v=4",
+            country: "United States",
+            state: "IL",
+            city: "Chicago",
+            address: "912 North",
+            zip: 60614,
+            projects: {
+                create: [
+                    {
+                        name: 'Edgewater Medical Center',
+                        featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1569879306/start%20page/Mission_Zero_image_cvd99p',
+                        description: 'A healthy portion of large abandoned buildings that urban explorers seek out are left behind after major changes in economic markets, competition and innovation leave stagnant companies behind. That is not the case with Edgewater Medical Center. What sets this building apart from other urbex locations is that it was created by criminal acts over an extended period of time. Even though the hospital was dated, they were still operating in a capacity that for the most part benefitted patients. By the time the FBI discovered the corruption it had already metastasized and killed Edgewater Medical Center.',
+                        country:'United States',
+                        state: 'IL',
+                        address: '1621-1623 W Edgewater Ave',
+                        zip: 60660,
+                        city: 'Chicago',
+                        goalAmount: 1300000,
+                        amountFunded: 437432.34,
+                        likes: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: clarkProfile.id
+                                        },
+                                    },
+                                }
+                            ]
+                        },
+                        comments: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        },
+                                    },
+                                    comment: "Looks like a fantastic building!!"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        },
+                                    },
+                                    comment: "This building is iconic!"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        },
+                                    },
+                                    comment: "What an awesome project"
+                                }
+
+                            ],
+                        }
+                    }
+                ],
+            },
+        })
+
+        const joseProfile = await prisma.createUserProfile({
+            userAccountId: kerry.id,
+            email: kerry.email,
+            firstName: "Kerry",
+            lastName: "McPhearson",
+            profileImage: "https://avatars2.githubusercontent.com/u/32372095?s=400&u=213263fdc4bbfba59bbf43ca53009fd9aac15095&v=4",
+            country: "United States",
+            state: "GA",
+            city: "Atlanta",
+            address: "3634 Limer Street",
+            zip: 30303,
+            projects: {
+                create: [
+                    {
+                        name: 'Georgia Girl Drive-In',
+                        featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1569879306/start%20page/Mission_Zero_image_cvd99p',
+                        description: 'Just south of Woodbine, Georgia on the nearly forgotten stretch of highway known as US-17 sits the remains of the Georgia Girl Drive-In. The catchy old neon sign and rapidly crumbling building is all that remains of this once-groovy hangout from the 1960s.',
+                        country:'United States',
+                        state: 'GA',
+                        address: '1602 GA-25',
+                        zip: 31569,
+                        city: 'Atlanta',
+                        goalAmount: 1120000,
+                        amountFunded: 633433.34,
+                        likes: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: clarkProfile.id
+                                        },
+                                    },
+                                }
+                            ]
+                        },
+                        comments: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        },
+                                    },
+                                    comment: "Looks like a fantastic building!!"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        },
+                                    },
+                                    comment: "This building is iconic!"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        },
+                                    },
+                                    comment: "What an awesome project"
+                                }
+
+                            ],
+                        }
+                    }
+                ],
+            },
+        })
+
+        const alexanderProfile = await prisma.createUserProfile({
+            userAccountId: alexander.id,
+            email: alexander.email,
+            firstName: "Alexander",
+            lastName: "Piroumian",
+            profileImage: "https://avatars2.githubusercontent.com/u/32372095?s=400&u=213263fdc4bbfba59bbf43ca53009fd9aac15095&v=4",
+            country: "United States",
+            state: "CA",
+            city: "Palmdale",
+            address: "667 Williams Avenue",
+            zip: 93552,
+            projects: {
+                create: [
+                    {
+                        name: 'Hawthorne Mall',
+                        featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1569879306/start%20page/Mission_Zero_image_cvd99p',
+                        description: 'Hawthorne Plaza is a dead mall along Hawthorne Boulevard between 120th Street and El Segundo Blvd in Hawthorne, California. The 40-acre (16 ha) property opened in 1977 and included an indoor mall and free standing stores at the property\'s south end. The mall largely catered to the middle class residents living in and around Hawthorne and featured cheaper stores than other nearby malls such as South Bay Galleria and Manhattan Village.',
+                        country:'United States',
+                        state: 'CA',
+                        address: '12000 Hawthorne Blvd. ',
+                        zip: 90250,
+                        city: 'Atlanta',
+                        goalAmount: 21120000,
+                        amountFunded: 1633433.34,
+                        likes: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: kerryProfile.id
+                                        },
+                                    },
+                                }
+                            ]
+                        },
+                        comments: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        },
+                                    },
+                                    comment: "Wow. What a beautiful building!!"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        },
+                                    },
+                                    comment: "This building is iconic!"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        },
+                                    },
+                                    comment: "Please donate to this amazing project."
+                                }
+
+                            ],
+                        }
+                    }
+                ],
+            },
+        })
+
+        const ruthProfile = await prisma.createUserProfile({
+            userAccountId: ruth.id,
+            email: ruth.email,
+            firstName: "Ruth",
+            lastName: "Philips",
+            profileImage: "https://avatars2.githubusercontent.com/u/32372095?s=400&u=213263fdc4bbfba59bbf43ca53009fd9aac15095&v=4",
+            country: "United States",
+            state: "CA",
+            city: "Oakland",
+            address: "481 Beech Street",
+            zip: 94612,
+            projects: {
+                create: [
+                    {
+                        name: 'Hawthorne Mall',
+                        featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1569879306/start%20page/Mission_Zero_image_cvd99p',
+                        description: 'The original 16th Street depot was a smaller wood structure, built when the tracks were on the shoreline of San Francisco Bay. Later the shoreline was filled and now lies nearly a mile west. It was replaced in 1912 by a Beaux-Arts building designed by architect Jarvis Hunt.',
+                        country:'United States',
+                        state: 'CA',
+                        address: '1601 Wood Street',
+                        zip: 94607,
+                        city: 'Oakland',
+                        goalAmount: 19120000,
+                        amountFunded: 1233433.34,
+                        likes: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: alexanderProfile.id
+                                        },
+                                    },
+                                }
+                            ]
+                        },
+                        comments: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        },
+                                    },
+                                    comment: "This building is huge! Good luck!"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        },
+                                    },
+                                    comment: "This building is iconic!"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        },
+                                    },
+                                    comment: "Please donate to this amazing project."
+                                }
+
+                            ],
+                        }
+                    }
+                ],
+            },
+        })
+
+        const omarProfile = await prisma.createUserProfile({
+            userAccountId: omar.id,
+            email: omar.email,
+            firstName: "Omar",
+            lastName: "Salah",
+            profileImage: "https://avatars2.githubusercontent.com/u/32372095?s=400&u=213263fdc4bbfba59bbf43ca53009fd9aac15095&v=4",
+            country: "United States",
+            state: "CA",
+            city: "San Francisco",
+            address: "601 Avenue A, San Francisco",
+            zip: 94130,
+            projects: {
+                create: [
+                    {
+                        name: 'Cosson Hall',
+                        featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1569879306/start%20page/Mission_Zero_image_cvd99p',
+                        description: 'Opened in 1969 on sadly treasure-less Treasure Island, Cosson Hall was an asterisk-shaped barracks that featured six wings, all of which were occupied by male sailors stationed on the island.',
+                        country:'United States',
+                        state: 'CA',
+                        address: '601 Avenue A',
+                        zip: 94130,
+                        city: 'San Francisco',
+                        goalAmount: 29120000,
+                        amountFunded: 12233433,
+                        likes: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: ruthProfile.id
+                                        },
+                                    },
+                                }
+                            ]
+                        },
+                        comments: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        },
+                                    },
+                                    comment: "This building is huge! Good luck!"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        },
+                                    },
+                                    comment: "This building is iconic!"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        },
+                                    },
+                                    comment: "Please donate to this amazing project."
+                                }
+
+                            ],
+                        }
+                    }
+                ],
+            },
+        })
+
 
     } catch (error) {
         console.log(error);
