@@ -45,4 +45,25 @@ export const ProjectComment = {
 			info,
 		);
 	},
+	async updateProjectComment(parent, args, { prisma, request }, info) {
+		const profileId = getProfileId(request);
+
+		const userComment = await prisma.$exists.projectComment({
+			id: args.id,
+			profile: profileId,
+		});
+
+		if (!userComment) {
+			throw new Error('Sorry, but there was an error trying to delete that comment');
+		}
+
+		return prisma.deleteProjectComment(
+			{
+				where: {
+					id: args.data.id,
+				},
+			},
+			info,
+		);
+	},
 };
