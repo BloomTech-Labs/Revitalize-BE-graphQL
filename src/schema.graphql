@@ -29,13 +29,20 @@ type Mutation {
 	createProject(data: CreateProjectInput!): Project!
 	updateProject(id: ID!, data: UpdateProjectInput): Project!
 	deleteProject(id: ID!): Project!
+
+	# Project likes
+
+	# Project comments
+	createProjectComment(data: CreateProjectCommentInput!): ProjectComment!
+	updateProjectComment(data: UpdateProjectCommentInput!): ProjectComment!
+	deleteProjectComment(id: ID!): ProjectComment!
 }
 
 # UserAccount
 type UserAccount {
-  id: ID!
-  email: String!
-  password: String!
+	id: ID!
+	email: String!
+	password: String!
 }
 
 input UserAccountInput {
@@ -50,8 +57,8 @@ input UpdateUserAccountInput {
 
 # ExternalAccount
 type ExternalAccount {
-  id: ID!
-  accountId: ID!
+	id: ID!
+	accountId: ID!
 }
 
 input ExternalAccountAuthInput {
@@ -60,22 +67,22 @@ input ExternalAccountAuthInput {
 
 # User
 type UserProfile {
-  id: ID!
-  userAccountId: ID!
-  email: String!
-  firstName: String
-  lastName: String
-  profileImage: String
-  country: String
-  state: String
-  city: String
-  zip: Int
-  address: String
-  aptNumber: String
-  projects: [Project!]!
-  likedProjects: [ProjectLike!]!
-  comments: [ProjectComment!]
-  likedComments: [ProjectCommentLike!]!
+	id: ID!
+	userAccountId: ID!
+	email: String!
+	firstName: String
+	lastName: String
+	profileImage: String
+	country: String
+	state: String
+	city: String
+	zip: Int
+	address: String
+	aptNumber: String
+	projects: [Project!]!
+	likedProjects: [ProjectLike!]!
+	comments: [ProjectComment!]
+	likedComments: [ProjectCommentLike!]!
 }
 
 input CreateUserProfileInput {
@@ -91,7 +98,6 @@ input CreateUserProfileInput {
 	aptNumber: String
 }
 
-
 input UpdateUserProfileInput {
 	firstName: String
 	lastName: String
@@ -105,20 +111,22 @@ input UpdateUserProfileInput {
 	aptNumber: String
 }
 
+# Project
+
 type Project {
-  id: ID!
-  profile: UserProfile!
-  name: String!
-  description: String!
-  country: String!
-  state: String!
-  city: String!
-  zip: Int!
-  address: String!
-  goalAmount: Float!
-  amountFunded: Float!
-  likes: [ProjectLike!]!
-  comments: [ProjectComment!]!
+	id: ID!
+	profile: UserProfile!
+	name: String!
+	description: String!
+	country: String!
+	state: String!
+	city: String!
+	zip: Int!
+	address: String!
+	goalAmount: Float!
+	amountFunded: Float!
+	likes: [ProjectLike!]!
+	comments: [ProjectComment!]!
 }
 
 input CreateProjectInput {
@@ -145,24 +153,38 @@ input UpdateProjectInput {
 	amountFunded: Float
 }
 
+# Project Like
 type ProjectLike {
-  id: ID!
-  profile: UserProfile!
-  project: Project!
+	id: ID!
+	profile: UserProfile!
+	project: Project!
 }
 
+# Project Comment
 type ProjectComment {
-  id: ID!
-  profile: UserProfile!
-  project: Project!
-  comment: String!
-  likes: [ProjectCommentLike!]!
+	id: ID!
+	profile: UserProfile!
+	project: Project!
+	comment: String!
+	likes: [ProjectCommentLike!]!
 }
+
+input CreateProjectCommentInput {
+	id: ID!
+	comment: String!
+}
+
+input UpdateProjectCommentInput {
+	id: ID!
+	comment: String!
+}
+
+# Project comment like
 
 type ProjectCommentLike {
-  id: ID!
-  profile: UserProfile!
-  comment: ProjectComment!
+	id: ID!
+	profile: UserProfile!
+	comment: ProjectComment!
 }
 
 # Enums
