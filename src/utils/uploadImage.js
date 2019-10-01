@@ -9,6 +9,7 @@ cloudinary.config({
 export const uploadImage = async picture => {
 	const { createReadStream, filename, mimetype, encoding } = await picture;
 
+	// todo categorize images into folder so I know what to do
 	try {
 		const result = await new Promise((resolve, reject) => {
 			createReadStream().pipe(
