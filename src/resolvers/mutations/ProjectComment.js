@@ -25,8 +25,10 @@ export const ProjectComment = {
 		const profileId = getProfileId(request);
 
 		const userComment = await prisma.$exists.projectComment({
-			id: args.id,
-			profile: profileId,
+			id: args.data.id,
+			profile: {
+				id: profileId,
+			},
 		});
 
 		if (!userComment) {
@@ -45,12 +47,14 @@ export const ProjectComment = {
 			info,
 		);
 	},
-	async updateProjectComment(parent, args, { prisma, request }, info) {
+	async deleteProjectComment(parent, args, { prisma, request }, info) {
 		const profileId = getProfileId(request);
 
 		const userComment = await prisma.$exists.projectComment({
 			id: args.id,
-			profile: profileId,
+			profile: {
+				id: profileId,
+			},
 		});
 
 		if (!userComment) {
@@ -59,9 +63,7 @@ export const ProjectComment = {
 
 		return prisma.deleteProjectComment(
 			{
-				where: {
-					id: args.data.id,
-				},
+				id: args.id,
 			},
 			info,
 		);
