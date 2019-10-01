@@ -5,8 +5,17 @@ export const ProjectComment = {
 		const profileId = getProfileId(request);
 
 		return prisma.createProjectComment({
-			profile: profileId,
-			project: args.id,
+			profile: {
+				connect: {
+					id: profileId,
+				},
+			},
+			project: {
+				connect: {
+					id: args.data.id,
+				},
+			},
+			comment: args.data.comment,
 		});
 	},
 };
