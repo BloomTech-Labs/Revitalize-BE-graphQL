@@ -1,3 +1,5 @@
+scalar Upload
+
 # Queries
 type Query {
 	me: UserProfile!
@@ -12,6 +14,8 @@ type Query {
 
 # Mutations
 type Mutation {
+	# Upload image
+	uploadImage(picture: Upload!): UploadImage!
 	# Auth
 	createUser(data: UserAccountInput!): AuthPayload!
 	loginUser(data: UserAccountInput!): AuthPayload!
@@ -36,6 +40,11 @@ type Mutation {
 	createProjectComment(data: CreateProjectCommentInput!): ProjectComment!
 	updateProjectComment(data: UpdateProjectCommentInput!): ProjectComment!
 	deleteProjectComment(id: ID!): ProjectComment!
+}
+
+type UploadImage {
+	imageUrl: String!
+	deleteImageUrl: String!
 }
 
 # UserAccount
@@ -127,6 +136,14 @@ type Project {
 	amountFunded: Float!
 	likes: [ProjectLike!]!
 	comments: [ProjectComment!]!
+	images: [ProjectImage!]
+}
+
+type ProjectImage {
+	id: ID!
+	project: Project!
+	imageUrl: String!
+	deleteImageUrl: String!
 }
 
 input CreateProjectInput {

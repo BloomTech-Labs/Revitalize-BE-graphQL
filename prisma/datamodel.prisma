@@ -37,14 +37,14 @@ type UserProfile {
 type Project {
   id: ID! @id
   profile: UserProfile! @relation(name: "ProjectToUserProfile", onDelete: SET_NULL)
-  featuredImage: String!
-  images: [ProjectImage!]! @relation(name: "ImagesToProject", onDelete: CASCADE)
+  featuredImage: String
+  images: [ProjectImage!] @relation(name: "ImagesToProject", onDelete: CASCADE)
   name: String!
   description: String!
   country: String!
-  address: String
-  state: String
-  city: String
+  address: String!
+  state: String!
+  city: String!
   zip: Int
   goalAmount: Float!
   amountFunded: Float! @default(value: 0)

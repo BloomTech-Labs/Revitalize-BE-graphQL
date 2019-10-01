@@ -6,21 +6,21 @@ export const Project = {
 
 		return prisma.createProject(
 			{
-					name: args.data.name,
-					description: args.data.description,
-					address: args.data.address,
-					state: args.data.state,
-					zip: args.data.zip,
-					city: args.data.city,
-					goalAmount: args.data.goalAmount,
-					amountFunded: args.data.amountFunded,
-					profile: {
-						connect: {
-							id: profileId
-						}
-					}
+				name: args.data.name,
+				description: args.data.description,
+				address: args.data.address,
+				state: args.data.state,
+				zip: args.data.zip,
+				city: args.data.city,
+				goalAmount: args.data.goalAmount,
+				amountFunded: args.data.amountFunded,
+				profile: {
+					connect: {
+						id: profileId,
+					},
+				},
 			},
-			info
+			info,
 		);
 	},
 	async updateProject(parent, args, { prisma, request }, info) {
@@ -34,9 +34,9 @@ export const Project = {
 		return prisma.updateProject(
 			{
 				id: args.id,
-				data: args.data
+				data: args.data,
 			},
-			info
+			info,
 		);
 	},
 	async deleteProject(parent, args, { prisma, request }, info) {
@@ -49,9 +49,9 @@ export const Project = {
 
 		return prisma.deleteProject(
 			{
-				id: args.id
+				id: args.id,
 			},
-			info
+			info,
 		);
 	},
 };
