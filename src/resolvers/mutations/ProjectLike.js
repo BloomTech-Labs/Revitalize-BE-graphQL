@@ -4,6 +4,10 @@ export const ProjectLike = {
 	async createProjectLike(parent, args, { prisma, request }, info) {
 		const profileId = getProfileId(request);
 
+		const projectExists = await prisma.$exists.project({ id: args.id });
+
+		if (!projectExists) throw new Error('Sorry, but that project does not exist');
+
 		return prisma.createProjectLike({
 			data: {
 				profile: {
