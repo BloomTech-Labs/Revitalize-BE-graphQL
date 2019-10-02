@@ -25,7 +25,7 @@ export const Project = {
 			},
 		});
 
-		if (args.images.length > 1) {
+		if (args.images && args.images.length >= 1) {
 			for (let i = 0; i < images.length; i++) {
 				const image = await uploadImage(args.images[i]);
 				await prisma.createProjectImage({
