@@ -23,4 +23,17 @@ export const ProjectCommentLike = {
 			},
 		});
 	},
+	async deleteProjectCommentLike(parent, args, { prisma, request }, info) {
+		const profileId = getProfileId(request);
+
+		const commentExists = await prisma.$exists.projectCommentLike({ id: args.id, profile: { id: profileId } });
+
+		if (!commentExists) throw new Error("Sorry, but that comment doesn't exist");
+
+		return prisma.deleteProjectCommentLike({
+			where: {
+				id: args.id,
+			},
+		});
+	},
 };

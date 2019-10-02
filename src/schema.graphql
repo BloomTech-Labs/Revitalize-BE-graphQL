@@ -43,6 +43,7 @@ type Mutation {
 
 	# Project comment likes
 	createProjectCommentLike(id: ID!): ProjectComment!
+	deleteProjectCommentLike(id: ID!): ProjectComment!
 }
 
 # UserAccount
