@@ -76,6 +76,9 @@ async function main() {
                         city: 'Atlanta',
                         goalAmount: 250000,
                         amountFunded: 24313,
+                        duration: 24,
+                        difficulty: "Easy",
+                        startDate: "2019-10-09",
                     }
                 ],
             },
@@ -105,6 +108,9 @@ async function main() {
                         city: 'Chicago',
                         goalAmount: 100000,
                         amountFunded: 67432,
+                        duration: 24,
+                        difficulty: "Easy",
+                        startDate: "2019-10-09",
                         likes: {
                             create: [
                                 {
@@ -157,6 +163,9 @@ async function main() {
                         city: 'Detroit',
                         goalAmount: 1000000,
                         amountFunded: 237432.34,
+                        duration: 24,
+                        difficulty: "Easy",
+                        startDate: "2019-10-09",
                         likes: {
                             create: [
                                 {
@@ -218,6 +227,9 @@ async function main() {
                         city: 'New York',
                         goalAmount: 1300000,
                         amountFunded: 537432.34,
+                        duration: 24,
+                        difficulty: "Easy",
+                        startDate: "2019-10-09",
                         likes: {
                             create: [
                                 {
@@ -287,6 +299,9 @@ async function main() {
                         city: 'Cottonwood Heights',
                         goalAmount: 1100000,
                         amountFunded: 237432.34,
+                        duration: 24,
+                        difficulty: "Easy",
+                        startDate: "2019-10-09",
                         likes: {
                             create: [
                                 {
@@ -356,6 +371,9 @@ async function main() {
                         city: 'Chicago',
                         goalAmount: 1300000,
                         amountFunded: 437432.34,
+                        duration: 24,
+                        difficulty: "Easy",
+                        startDate: "2019-10-09",
                         likes: {
                             create: [
                                 {
@@ -401,7 +419,7 @@ async function main() {
             },
         })
 
-        const joseProfile = await prisma.createUserProfile({
+        const kerryProfile = await prisma.createUserProfile({
             userAccountId: kerry.id,
             email: kerry.email,
             firstName: "Kerry",
@@ -425,6 +443,9 @@ async function main() {
                         city: 'Atlanta',
                         goalAmount: 1120000,
                         amountFunded: 633433.34,
+                        duration: 24,
+                        difficulty: "Easy",
+                        startDate: "2019-10-09",
                         likes: {
                             create: [
                                 {
@@ -494,6 +515,9 @@ async function main() {
                         city: 'Atlanta',
                         goalAmount: 21120000,
                         amountFunded: 1633433.34,
+                        duration: 24,
+                        difficulty: "Easy",
+                        startDate: "2019-10-09",
                         likes: {
                             create: [
                                 {
@@ -563,6 +587,9 @@ async function main() {
                         city: 'Oakland',
                         goalAmount: 19120000,
                         amountFunded: 1233433.34,
+                        duration: 24,
+                        difficulty: "Easy",
+                        startDate: "2019-10-09",
                         likes: {
                             create: [
                                 {
@@ -632,6 +659,9 @@ async function main() {
                         city: 'San Francisco',
                         goalAmount: 29120000,
                         amountFunded: 12233433,
+                        duration: 24,
+                        difficulty: "Easy",
+                        startDate: "2019-10-09",
                         likes: {
                             create: [
                                 {
