@@ -8,6 +8,7 @@ export const Project = {
 		const project = await prisma.createProject({
 			name: args.data.name,
 			description: args.data.description,
+			country: args.data.country,
 			address: args.data.address,
 			state: args.data.state,
 			zip: args.data.zip,
