@@ -1,5 +1,5 @@
 scalar Upload
-
+scalar Date
 # Queries
 type Query {
 	me: UserProfile!
@@ -129,7 +129,7 @@ type Project {
 	amountFunded: Float!
 	duration: Int!
 	difficulty: String!
-	startDate: DateTime!
+	startDate: Date!
 	likes: [ProjectLike!]!
 	comments: [ProjectComment!]!
 	images: [ProjectImage!]!
@@ -153,7 +153,7 @@ input CreateProjectInput {
 	goalAmount: Float!
 	duration: Int!
 	difficulty: String!
-	startDate: DateTime!
+	startDate: Date!
 	amountFunded: Float
 }
 
@@ -167,7 +167,7 @@ input UpdateProjectInput {
 	address: String
 	duration: Int
 	difficulty: String
-	startDate: DateTime
+	startDate: Date
 	goalAmount: Float
 	amountFunded: Float
 }
