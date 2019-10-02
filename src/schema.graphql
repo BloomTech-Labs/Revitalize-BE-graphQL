@@ -34,6 +34,7 @@ type Mutation {
 
 	# Project likes
 	createProjectLike(id: ID!): Project!
+	deleteProjectLike(id: ID!): Project!
 
 	# Project comments
 	createProjectComment(data: CreateProjectCommentInput!): ProjectComment!
