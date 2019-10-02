@@ -1,0 +1,22 @@
+{
+    "apps": [
+        {
+            "name": "Revitalize-Back-end",
+            "script": "./dist/server.js",
+            "env": {
+                "PORT": 4000,
+                "PRISMA_ENDPOINT": "http://prisma:4466",
+                "PRISMA_SECRET": "",
+                "JWT_SECRET": "",
+                "GOOGLE_CLIENT_ID": "",
+                "GOOGLE_CLIENT_SECRET": "",
+                "FACEBOOK_APP_ID": "",
+                "FACEBOOK_APP_SECRET": "",
+                "TWITTER_API_KEY": "",
+                "TWITTER_API_SECRET": "",
+                "OAUTH_ROUTE": "",
+                "SENTRY_DSN": ""
+            }
+        }
+    ]
+}
