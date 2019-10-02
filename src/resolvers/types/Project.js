@@ -10,4 +10,7 @@ export const Project = {
 	async comments(parent) {
 		return await prisma.project({ id: parent.id }).comments();
 	},
+	async images() {
+		return await prisma.project({ id: parent.id }).images();
+	},
 };
