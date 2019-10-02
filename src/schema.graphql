@@ -1,3 +1,5 @@
+scalar Upload
+scalar Date
 # Queries
 type Query {
 	me: UserProfile!
@@ -127,6 +129,19 @@ type Project {
 	amountFunded: Float!
 	likes: [ProjectLike!]!
 	comments: [ProjectComment!]!
+	duration: Int!
+	difficulty: String!
+	startDate: Date!
+	likes: [ProjectLike!]!
+	comments: [ProjectComment!]!
+	images: [ProjectImage!]!
+}
+
+type ProjectImage {
+	id: ID!
+	project: Project!
+	imageUrl: String!
+	public_id: String!
 }
 
 input CreateProjectInput {
@@ -138,17 +153,23 @@ input CreateProjectInput {
 	zip: Int!
 	address: String!
 	goalAmount: Float!
+	duration: Int!
+	difficulty: String!
+	startDate: Date!
 	amountFunded: Float
 }
 
 input UpdateProjectInput {
 	name: String
 	description: String
-	country: String!
-	state: String!
-	city: String!
-	zip: Int!
-	address: String!
+	country: String
+	state: String
+	city: String
+	zip: Int
+	address: String
+	duration: Int
+	difficulty: String
+	startDate: Date
 	goalAmount: Float
 	amountFunded: Float
 }

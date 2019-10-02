@@ -1,27 +1,42 @@
 import { getProfileId } from '../../utils/getProfileId';
+import { uploadImage } from '../../utils/uploadImage';
 
 export const Project = {
-	createProject(parent, args, { prisma, request }, info) {
+	async createProject(parent, args, { prisma, request }, info) {
 		const profileId = getProfileId(request);
 
-		return prisma.createProject(
-			{
-					name: args.data.name,
-					description: args.data.description,
-					address: args.data.address,
-					state: args.data.state,
-					zip: args.data.zip,
-					city: args.data.city,
-					goalAmount: args.data.goalAmount,
-					amountFunded: args.data.amountFunded,
-					profile: {
-						connect: {
-							id: profileId
-						}
-					}
+		const project = await prisma.createProject({
+			name: args.data.name,
+			description: args.data.description,
+			country: args.data.country,
+			address: args.data.address,
+			state: args.data.state,
+			zip: args.data.zip,
+			city: args.data.city,
+			goalAmount: args.data.goalAmount,
+			amountFunded: args.data.amountFunded,
+			duration: args.data.duration,
+			difficulty: args.data.difficulty,
+			startDate: args.data.startDate,
+			profile: {
+				connect: {
+					id: profileId,
+				},
 			},
-			info
-		);
+		});
+
+		if (args.images && args.images.length >= 1) {
+			for (let i = 0; i < images.length; i++) {
+				const image = await uploadImage(args.images[i]);
+				await prisma.createProjectImage({
+					project: project.id,
+					imageUrl: image.secure_url,
+					public_id: image.public_id,
+				});
+			}
+		}
+
+		return prisma.project({ id: project.id }, info);
 	},
 	async updateProject(parent, args, { prisma, request }, info) {
 		const profileId = getProfileId(request);
@@ -34,9 +49,9 @@ export const Project = {
 		return prisma.updateProject(
 			{
 				id: args.id,
-				data: args.data
+				data: args.data,
 			},
-			info
+			info,
 		);
 	},
 	async deleteProject(parent, args, { prisma, request }, info) {
@@ -49,9 +64,9 @@ export const Project = {
 
 		return prisma.deleteProject(
 			{
-				id: args.id
+				id: args.id,
 			},
-			info
+			info,
 		);
 	},
 };

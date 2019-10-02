@@ -37,17 +37,20 @@ type UserProfile {
 type Project {
   id: ID! @id
   profile: UserProfile! @relation(name: "ProjectToUserProfile", onDelete: SET_NULL)
-  featuredImage: String!
-  images: [ProjectImage!]! @relation(name: "ImagesToProject", onDelete: CASCADE)
   name: String!
   description: String!
   country: String!
-  address: String
-  state: String
-  city: String
-  zip: Int
+  address: String!
+  state: String!
+  city: String!
+  zip: Int!
+  duration: Int!
+  difficulty: String!
+  startDate: DateTime!
   goalAmount: Float!
   amountFunded: Float! @default(value: 0)
+  featuredImage: String
+  images: [ProjectImage!] @relation(name: "ImagesToProject", onDelete: CASCADE)
   likes: [ProjectLike!]! @relation(name: "ProjectLike", onDelete: CASCADE)
   comments: [ProjectComment!]! @relation(name: "ProjectComment", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
