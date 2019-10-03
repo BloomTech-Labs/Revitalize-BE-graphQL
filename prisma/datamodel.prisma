@@ -50,7 +50,7 @@ type Project {
   goalAmount: Float!
   amountFunded: Float! @default(value: 0)
   featuredImage: String
-  images: [ProjectImage!] @relation(name: "ImagesToProject", onDelete: CASCADE)
+  images: [ProjectImage!]! @relation(name: "ImagesToProject", onDelete: CASCADE)
   likes: [ProjectLike!]! @relation(name: "ProjectLike", onDelete: CASCADE)
   comments: [ProjectComment!]! @relation(name: "ProjectComment", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
@@ -61,7 +61,7 @@ type ProjectImage {
   id: ID! @id,
   project: Project! @relation(name: "ImagesToProject", onDelete: SET_NULL)
   imageUrl: String!
-  deleteImageUrl: String!
+  public_id: ID!
 }
 
 type ProjectLike {

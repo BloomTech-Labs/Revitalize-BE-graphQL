@@ -485,8 +485,8 @@ export type ProjectImageOrderByInput =
   | "id_DESC"
   | "imageUrl_ASC"
   | "imageUrl_DESC"
-  | "deleteImageUrl_ASC"
-  | "deleteImageUrl_DESC";
+  | "public_id_ASC"
+  | "public_id_DESC";
 
 export type UserAccountOrderByInput =
   | "id_ASC"
@@ -1146,20 +1146,20 @@ export interface ProjectImageWhereInput {
   imageUrl_not_starts_with?: Maybe<String>;
   imageUrl_ends_with?: Maybe<String>;
   imageUrl_not_ends_with?: Maybe<String>;
-  deleteImageUrl?: Maybe<String>;
-  deleteImageUrl_not?: Maybe<String>;
-  deleteImageUrl_in?: Maybe<String[] | String>;
-  deleteImageUrl_not_in?: Maybe<String[] | String>;
-  deleteImageUrl_lt?: Maybe<String>;
-  deleteImageUrl_lte?: Maybe<String>;
-  deleteImageUrl_gt?: Maybe<String>;
-  deleteImageUrl_gte?: Maybe<String>;
-  deleteImageUrl_contains?: Maybe<String>;
-  deleteImageUrl_not_contains?: Maybe<String>;
-  deleteImageUrl_starts_with?: Maybe<String>;
-  deleteImageUrl_not_starts_with?: Maybe<String>;
-  deleteImageUrl_ends_with?: Maybe<String>;
-  deleteImageUrl_not_ends_with?: Maybe<String>;
+  public_id?: Maybe<ID_Input>;
+  public_id_not?: Maybe<ID_Input>;
+  public_id_in?: Maybe<ID_Input[] | ID_Input>;
+  public_id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  public_id_lt?: Maybe<ID_Input>;
+  public_id_lte?: Maybe<ID_Input>;
+  public_id_gt?: Maybe<ID_Input>;
+  public_id_gte?: Maybe<ID_Input>;
+  public_id_contains?: Maybe<ID_Input>;
+  public_id_not_contains?: Maybe<ID_Input>;
+  public_id_starts_with?: Maybe<ID_Input>;
+  public_id_not_starts_with?: Maybe<ID_Input>;
+  public_id_ends_with?: Maybe<ID_Input>;
+  public_id_not_ends_with?: Maybe<ID_Input>;
   AND?: Maybe<ProjectImageWhereInput[] | ProjectImageWhereInput>;
   OR?: Maybe<ProjectImageWhereInput[] | ProjectImageWhereInput>;
   NOT?: Maybe<ProjectImageWhereInput[] | ProjectImageWhereInput>;
@@ -1363,7 +1363,7 @@ export interface ProjectImageCreateManyWithoutProjectInput {
 export interface ProjectImageCreateWithoutProjectInput {
   id?: Maybe<ID_Input>;
   imageUrl: String;
-  deleteImageUrl: String;
+  public_id: ID_Input;
 }
 
 export interface ProjectCommentCreateManyWithoutProjectInput {
@@ -1716,7 +1716,7 @@ export interface ProjectImageUpdateWithWhereUniqueWithoutProjectInput {
 
 export interface ProjectImageUpdateWithoutProjectDataInput {
   imageUrl?: Maybe<String>;
-  deleteImageUrl?: Maybe<String>;
+  public_id?: Maybe<ID_Input>;
 }
 
 export interface ProjectImageUpsertWithWhereUniqueWithoutProjectInput {
@@ -1754,20 +1754,20 @@ export interface ProjectImageScalarWhereInput {
   imageUrl_not_starts_with?: Maybe<String>;
   imageUrl_ends_with?: Maybe<String>;
   imageUrl_not_ends_with?: Maybe<String>;
-  deleteImageUrl?: Maybe<String>;
-  deleteImageUrl_not?: Maybe<String>;
-  deleteImageUrl_in?: Maybe<String[] | String>;
-  deleteImageUrl_not_in?: Maybe<String[] | String>;
-  deleteImageUrl_lt?: Maybe<String>;
-  deleteImageUrl_lte?: Maybe<String>;
-  deleteImageUrl_gt?: Maybe<String>;
-  deleteImageUrl_gte?: Maybe<String>;
-  deleteImageUrl_contains?: Maybe<String>;
-  deleteImageUrl_not_contains?: Maybe<String>;
-  deleteImageUrl_starts_with?: Maybe<String>;
-  deleteImageUrl_not_starts_with?: Maybe<String>;
-  deleteImageUrl_ends_with?: Maybe<String>;
-  deleteImageUrl_not_ends_with?: Maybe<String>;
+  public_id?: Maybe<ID_Input>;
+  public_id_not?: Maybe<ID_Input>;
+  public_id_in?: Maybe<ID_Input[] | ID_Input>;
+  public_id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  public_id_lt?: Maybe<ID_Input>;
+  public_id_lte?: Maybe<ID_Input>;
+  public_id_gt?: Maybe<ID_Input>;
+  public_id_gte?: Maybe<ID_Input>;
+  public_id_contains?: Maybe<ID_Input>;
+  public_id_not_contains?: Maybe<ID_Input>;
+  public_id_starts_with?: Maybe<ID_Input>;
+  public_id_not_starts_with?: Maybe<ID_Input>;
+  public_id_ends_with?: Maybe<ID_Input>;
+  public_id_not_ends_with?: Maybe<ID_Input>;
   AND?: Maybe<ProjectImageScalarWhereInput[] | ProjectImageScalarWhereInput>;
   OR?: Maybe<ProjectImageScalarWhereInput[] | ProjectImageScalarWhereInput>;
   NOT?: Maybe<ProjectImageScalarWhereInput[] | ProjectImageScalarWhereInput>;
@@ -1780,7 +1780,7 @@ export interface ProjectImageUpdateManyWithWhereNestedInput {
 
 export interface ProjectImageUpdateManyDataInput {
   imageUrl?: Maybe<String>;
-  deleteImageUrl?: Maybe<String>;
+  public_id?: Maybe<ID_Input>;
 }
 
 export interface ProjectCommentUpdateManyWithoutProjectInput {
@@ -2619,7 +2619,7 @@ export interface ProjectImageCreateInput {
   id?: Maybe<ID_Input>;
   project: ProjectCreateOneWithoutImagesInput;
   imageUrl: String;
-  deleteImageUrl: String;
+  public_id: ID_Input;
 }
 
 export interface ProjectCreateOneWithoutImagesInput {
@@ -2650,7 +2650,7 @@ export interface ProjectCreateWithoutImagesInput {
 export interface ProjectImageUpdateInput {
   project?: Maybe<ProjectUpdateOneRequiredWithoutImagesInput>;
   imageUrl?: Maybe<String>;
-  deleteImageUrl?: Maybe<String>;
+  public_id?: Maybe<ID_Input>;
 }
 
 export interface ProjectUpdateOneRequiredWithoutImagesInput {
@@ -2686,7 +2686,7 @@ export interface ProjectUpsertWithoutImagesInput {
 
 export interface ProjectImageUpdateManyMutationInput {
   imageUrl?: Maybe<String>;
-  deleteImageUrl?: Maybe<String>;
+  public_id?: Maybe<ID_Input>;
 }
 
 export interface ProjectLikeCreateInput {
@@ -3509,7 +3509,7 @@ export interface ProjectCommentLikeNullablePromise
 export interface ProjectImage {
   id: ID_Output;
   imageUrl: String;
-  deleteImageUrl: String;
+  public_id: ID_Output;
 }
 
 export interface ProjectImagePromise
@@ -3518,7 +3518,7 @@ export interface ProjectImagePromise
   id: () => Promise<ID_Output>;
   project: <T = ProjectPromise>() => T;
   imageUrl: () => Promise<String>;
-  deleteImageUrl: () => Promise<String>;
+  public_id: () => Promise<ID_Output>;
 }
 
 export interface ProjectImageSubscription
@@ -3527,7 +3527,7 @@ export interface ProjectImageSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   project: <T = ProjectSubscription>() => T;
   imageUrl: () => Promise<AsyncIterator<String>>;
-  deleteImageUrl: () => Promise<AsyncIterator<String>>;
+  public_id: () => Promise<AsyncIterator<ID_Output>>;
 }
 
 export interface ProjectImageNullablePromise
@@ -3536,7 +3536,7 @@ export interface ProjectImageNullablePromise
   id: () => Promise<ID_Output>;
   project: <T = ProjectPromise>() => T;
   imageUrl: () => Promise<String>;
-  deleteImageUrl: () => Promise<String>;
+  public_id: () => Promise<ID_Output>;
 }
 
 export interface ProjectConnection {
@@ -4244,7 +4244,7 @@ export interface ProjectImageSubscriptionPayloadSubscription
 export interface ProjectImagePreviousValues {
   id: ID_Output;
   imageUrl: String;
-  deleteImageUrl: String;
+  public_id: ID_Output;
 }
 
 export interface ProjectImagePreviousValuesPromise
@@ -4252,7 +4252,7 @@ export interface ProjectImagePreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   imageUrl: () => Promise<String>;
-  deleteImageUrl: () => Promise<String>;
+  public_id: () => Promise<ID_Output>;
 }
 
 export interface ProjectImagePreviousValuesSubscription
@@ -4260,7 +4260,7 @@ export interface ProjectImagePreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   imageUrl: () => Promise<AsyncIterator<String>>;
-  deleteImageUrl: () => Promise<AsyncIterator<String>>;
+  public_id: () => Promise<AsyncIterator<ID_Output>>;
 }
 
 export interface ProjectLikeSubscriptionPayload {

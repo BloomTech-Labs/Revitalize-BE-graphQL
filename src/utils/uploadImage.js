@@ -13,12 +13,11 @@ export const uploadImage = async picture => {
 	try {
 		const result = await new Promise((resolve, reject) => {
 			createReadStream().pipe(
-				cloudinary.uploader.upload_stream((error, result) => {
+				cloudinary.uploader.upload_stream((result, error) => {
 					if (error) {
 						reject(error);
 					}
-
-					resolve(result);
+					return resolve(result);
 				}),
 			);
 		});

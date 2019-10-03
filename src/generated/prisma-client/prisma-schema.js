@@ -909,7 +909,7 @@ type ProjectImage {
   id: ID!
   project: Project!
   imageUrl: String!
-  deleteImageUrl: String!
+  public_id: ID!
 }
 
 type ProjectImageConnection {
@@ -922,7 +922,7 @@ input ProjectImageCreateInput {
   id: ID
   project: ProjectCreateOneWithoutImagesInput!
   imageUrl: String!
-  deleteImageUrl: String!
+  public_id: ID!
 }
 
 input ProjectImageCreateManyWithoutProjectInput {
@@ -933,7 +933,7 @@ input ProjectImageCreateManyWithoutProjectInput {
 input ProjectImageCreateWithoutProjectInput {
   id: ID
   imageUrl: String!
-  deleteImageUrl: String!
+  public_id: ID!
 }
 
 type ProjectImageEdge {
@@ -946,14 +946,14 @@ enum ProjectImageOrderByInput {
   id_DESC
   imageUrl_ASC
   imageUrl_DESC
-  deleteImageUrl_ASC
-  deleteImageUrl_DESC
+  public_id_ASC
+  public_id_DESC
 }
 
 type ProjectImagePreviousValues {
   id: ID!
   imageUrl: String!
-  deleteImageUrl: String!
+  public_id: ID!
 }
 
 input ProjectImageScalarWhereInput {
@@ -985,20 +985,20 @@ input ProjectImageScalarWhereInput {
   imageUrl_not_starts_with: String
   imageUrl_ends_with: String
   imageUrl_not_ends_with: String
-  deleteImageUrl: String
-  deleteImageUrl_not: String
-  deleteImageUrl_in: [String!]
-  deleteImageUrl_not_in: [String!]
-  deleteImageUrl_lt: String
-  deleteImageUrl_lte: String
-  deleteImageUrl_gt: String
-  deleteImageUrl_gte: String
-  deleteImageUrl_contains: String
-  deleteImageUrl_not_contains: String
-  deleteImageUrl_starts_with: String
-  deleteImageUrl_not_starts_with: String
-  deleteImageUrl_ends_with: String
-  deleteImageUrl_not_ends_with: String
+  public_id: ID
+  public_id_not: ID
+  public_id_in: [ID!]
+  public_id_not_in: [ID!]
+  public_id_lt: ID
+  public_id_lte: ID
+  public_id_gt: ID
+  public_id_gte: ID
+  public_id_contains: ID
+  public_id_not_contains: ID
+  public_id_starts_with: ID
+  public_id_not_starts_with: ID
+  public_id_ends_with: ID
+  public_id_not_ends_with: ID
   AND: [ProjectImageScalarWhereInput!]
   OR: [ProjectImageScalarWhereInput!]
   NOT: [ProjectImageScalarWhereInput!]
@@ -1025,17 +1025,17 @@ input ProjectImageSubscriptionWhereInput {
 input ProjectImageUpdateInput {
   project: ProjectUpdateOneRequiredWithoutImagesInput
   imageUrl: String
-  deleteImageUrl: String
+  public_id: ID
 }
 
 input ProjectImageUpdateManyDataInput {
   imageUrl: String
-  deleteImageUrl: String
+  public_id: ID
 }
 
 input ProjectImageUpdateManyMutationInput {
   imageUrl: String
-  deleteImageUrl: String
+  public_id: ID
 }
 
 input ProjectImageUpdateManyWithoutProjectInput {
@@ -1057,7 +1057,7 @@ input ProjectImageUpdateManyWithWhereNestedInput {
 
 input ProjectImageUpdateWithoutProjectDataInput {
   imageUrl: String
-  deleteImageUrl: String
+  public_id: ID
 }
 
 input ProjectImageUpdateWithWhereUniqueWithoutProjectInput {
@@ -1101,20 +1101,20 @@ input ProjectImageWhereInput {
   imageUrl_not_starts_with: String
   imageUrl_ends_with: String
   imageUrl_not_ends_with: String
-  deleteImageUrl: String
-  deleteImageUrl_not: String
-  deleteImageUrl_in: [String!]
-  deleteImageUrl_not_in: [String!]
-  deleteImageUrl_lt: String
-  deleteImageUrl_lte: String
-  deleteImageUrl_gt: String
-  deleteImageUrl_gte: String
-  deleteImageUrl_contains: String
-  deleteImageUrl_not_contains: String
-  deleteImageUrl_starts_with: String
-  deleteImageUrl_not_starts_with: String
-  deleteImageUrl_ends_with: String
-  deleteImageUrl_not_ends_with: String
+  public_id: ID
+  public_id_not: ID
+  public_id_in: [ID!]
+  public_id_not_in: [ID!]
+  public_id_lt: ID
+  public_id_lte: ID
+  public_id_gt: ID
+  public_id_gte: ID
+  public_id_contains: ID
+  public_id_not_contains: ID
+  public_id_starts_with: ID
+  public_id_not_starts_with: ID
+  public_id_ends_with: ID
+  public_id_not_ends_with: ID
   AND: [ProjectImageWhereInput!]
   OR: [ProjectImageWhereInput!]
   NOT: [ProjectImageWhereInput!]

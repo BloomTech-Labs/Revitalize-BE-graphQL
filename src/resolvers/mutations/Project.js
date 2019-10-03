@@ -25,16 +25,19 @@ export const Project = {
 			},
 		});
 
-		if (args.images && args.images.length >= 1) {
-			for (let i = 0; i < images.length; i++) {
-				const image = await uploadImage(args.images[i]);
-				await prisma.createProjectImage({
-					project: project.id,
-					imageUrl: image.secure_url,
-					public_id: image.public_id,
-				});
-			}
-		}
+		args.data.images.map(async image => {
+			const result = await uploadImage(image);
+			console.log(result);
+			await prisma.createProjectImage({
+				project: {
+					connect: {
+						id: project.id,
+					},
+				},
+				imageUrl: result.secure_url,
+				public_id: result.public_id,
+			});
+		});
 
 		return prisma.project({ id: project.id }, info);
 	},
