@@ -136,6 +136,7 @@ type Project {
 	duration: Int!
 	difficulty: String!
 	startDate: Date!
+	featuredImage: Upload!
 	likes: [ProjectLike!]!
 	comments: [ProjectComment!]!
 	images: [ProjectImage!]!
@@ -161,6 +162,7 @@ input CreateProjectInput {
 	difficulty: String!
 	startDate: Date!
 	amountFunded: Float!
+	featuredImage: Upload
 	images: [Upload!]
 }
 

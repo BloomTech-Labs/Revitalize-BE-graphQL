@@ -5,6 +5,11 @@ export const Project = {
 	async createProject(parent, args, { prisma, request }, info) {
 		const profileId = getProfileId(request);
 
+		let featuredImage = '';
+		if (args.data.featuredImage) {
+			featuredImage = await uploadImage(args.data.featuredImage).imageUrl;
+		}
+
 		const project = await prisma.createProject({
 			name: args.data.name,
 			description: args.data.description,
@@ -18,6 +23,7 @@ export const Project = {
 			duration: args.data.duration,
 			difficulty: args.data.difficulty,
 			startDate: args.data.startDate,
+			featuredImage,
 			profile: {
 				connect: {
 					id: profileId,
