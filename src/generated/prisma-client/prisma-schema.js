@@ -19,6 +19,10 @@ type AggregateProjectCommentLike {
   count: Int!
 }
 
+type AggregateProjectDonation {
+  count: Int!
+}
+
 type AggregateProjectImage {
   count: Int!
 }
@@ -189,6 +193,12 @@ type Mutation {
   upsertProjectCommentLike(where: ProjectCommentLikeWhereUniqueInput!, create: ProjectCommentLikeCreateInput!, update: ProjectCommentLikeUpdateInput!): ProjectCommentLike!
   deleteProjectCommentLike(where: ProjectCommentLikeWhereUniqueInput!): ProjectCommentLike
   deleteManyProjectCommentLikes(where: ProjectCommentLikeWhereInput): BatchPayload!
+  createProjectDonation(data: ProjectDonationCreateInput!): ProjectDonation!
+  updateProjectDonation(data: ProjectDonationUpdateInput!, where: ProjectDonationWhereUniqueInput!): ProjectDonation
+  updateManyProjectDonations(data: ProjectDonationUpdateManyMutationInput!, where: ProjectDonationWhereInput): BatchPayload!
+  upsertProjectDonation(where: ProjectDonationWhereUniqueInput!, create: ProjectDonationCreateInput!, update: ProjectDonationUpdateInput!): ProjectDonation!
+  deleteProjectDonation(where: ProjectDonationWhereUniqueInput!): ProjectDonation
+  deleteManyProjectDonations(where: ProjectDonationWhereInput): BatchPayload!
   createProjectImage(data: ProjectImageCreateInput!): ProjectImage!
   updateProjectImage(data: ProjectImageUpdateInput!, where: ProjectImageWhereUniqueInput!): ProjectImage
   updateManyProjectImages(data: ProjectImageUpdateManyMutationInput!, where: ProjectImageWhereInput): BatchPayload!
@@ -247,6 +257,7 @@ type Project {
   goalAmount: Float!
   amountFunded: Float!
   featuredImage: String
+  donations(where: ProjectDonationWhereInput, orderBy: ProjectDonationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectDonation!]
   images(where: ProjectImageWhereInput, orderBy: ProjectImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectImage!]
   likes(where: ProjectLikeWhereInput, orderBy: ProjectLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectLike!]
   comments(where: ProjectCommentWhereInput, orderBy: ProjectCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectComment!]
@@ -795,6 +806,7 @@ input ProjectCreateInput {
   goalAmount: Float!
   amountFunded: Float
   featuredImage: String
+  donations: ProjectDonationCreateManyWithoutProjectInput
   images: ProjectImageCreateManyWithoutProjectInput
   likes: ProjectLikeCreateManyWithoutProjectInput
   comments: ProjectCommentCreateManyWithoutProjectInput
@@ -807,6 +819,11 @@ input ProjectCreateManyWithoutProfileInput {
 
 input ProjectCreateOneWithoutCommentsInput {
   create: ProjectCreateWithoutCommentsInput
+  connect: ProjectWhereUniqueInput
+}
+
+input ProjectCreateOneWithoutDonationsInput {
+  create: ProjectCreateWithoutDonationsInput
   connect: ProjectWhereUniqueInput
 }
 
@@ -836,8 +853,30 @@ input ProjectCreateWithoutCommentsInput {
   goalAmount: Float!
   amountFunded: Float
   featuredImage: String
+  donations: ProjectDonationCreateManyWithoutProjectInput
   images: ProjectImageCreateManyWithoutProjectInput
   likes: ProjectLikeCreateManyWithoutProjectInput
+}
+
+input ProjectCreateWithoutDonationsInput {
+  id: ID
+  profile: UserProfileCreateOneWithoutProjectsInput!
+  name: String!
+  description: String!
+  country: String!
+  address: String!
+  state: String!
+  city: String!
+  zip: Int!
+  duration: Int!
+  difficulty: String!
+  startDate: DateTime!
+  goalAmount: Float!
+  amountFunded: Float
+  featuredImage: String
+  images: ProjectImageCreateManyWithoutProjectInput
+  likes: ProjectLikeCreateManyWithoutProjectInput
+  comments: ProjectCommentCreateManyWithoutProjectInput
 }
 
 input ProjectCreateWithoutImagesInput {
@@ -856,6 +895,7 @@ input ProjectCreateWithoutImagesInput {
   goalAmount: Float!
   amountFunded: Float
   featuredImage: String
+  donations: ProjectDonationCreateManyWithoutProjectInput
   likes: ProjectLikeCreateManyWithoutProjectInput
   comments: ProjectCommentCreateManyWithoutProjectInput
 }
@@ -876,6 +916,7 @@ input ProjectCreateWithoutLikesInput {
   goalAmount: Float!
   amountFunded: Float
   featuredImage: String
+  donations: ProjectDonationCreateManyWithoutProjectInput
   images: ProjectImageCreateManyWithoutProjectInput
   comments: ProjectCommentCreateManyWithoutProjectInput
 }
@@ -895,9 +936,224 @@ input ProjectCreateWithoutProfileInput {
   goalAmount: Float!
   amountFunded: Float
   featuredImage: String
+  donations: ProjectDonationCreateManyWithoutProjectInput
   images: ProjectImageCreateManyWithoutProjectInput
   likes: ProjectLikeCreateManyWithoutProjectInput
   comments: ProjectCommentCreateManyWithoutProjectInput
+}
+
+type ProjectDonation {
+  id: ID!
+  project: Project!
+  profile: UserProfile!
+  amount: Float!
+}
+
+type ProjectDonationConnection {
+  pageInfo: PageInfo!
+  edges: [ProjectDonationEdge]!
+  aggregate: AggregateProjectDonation!
+}
+
+input ProjectDonationCreateInput {
+  id: ID
+  project: ProjectCreateOneWithoutDonationsInput!
+  profile: UserProfileCreateOneWithoutDonationsInput!
+  amount: Float!
+}
+
+input ProjectDonationCreateManyWithoutProfileInput {
+  create: [ProjectDonationCreateWithoutProfileInput!]
+  connect: [ProjectDonationWhereUniqueInput!]
+}
+
+input ProjectDonationCreateManyWithoutProjectInput {
+  create: [ProjectDonationCreateWithoutProjectInput!]
+  connect: [ProjectDonationWhereUniqueInput!]
+}
+
+input ProjectDonationCreateWithoutProfileInput {
+  id: ID
+  project: ProjectCreateOneWithoutDonationsInput!
+  amount: Float!
+}
+
+input ProjectDonationCreateWithoutProjectInput {
+  id: ID
+  profile: UserProfileCreateOneWithoutDonationsInput!
+  amount: Float!
+}
+
+type ProjectDonationEdge {
+  node: ProjectDonation!
+  cursor: String!
+}
+
+enum ProjectDonationOrderByInput {
+  id_ASC
+  id_DESC
+  amount_ASC
+  amount_DESC
+}
+
+type ProjectDonationPreviousValues {
+  id: ID!
+  amount: Float!
+}
+
+input ProjectDonationScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  amount: Float
+  amount_not: Float
+  amount_in: [Float!]
+  amount_not_in: [Float!]
+  amount_lt: Float
+  amount_lte: Float
+  amount_gt: Float
+  amount_gte: Float
+  AND: [ProjectDonationScalarWhereInput!]
+  OR: [ProjectDonationScalarWhereInput!]
+  NOT: [ProjectDonationScalarWhereInput!]
+}
+
+type ProjectDonationSubscriptionPayload {
+  mutation: MutationType!
+  node: ProjectDonation
+  updatedFields: [String!]
+  previousValues: ProjectDonationPreviousValues
+}
+
+input ProjectDonationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ProjectDonationWhereInput
+  AND: [ProjectDonationSubscriptionWhereInput!]
+  OR: [ProjectDonationSubscriptionWhereInput!]
+  NOT: [ProjectDonationSubscriptionWhereInput!]
+}
+
+input ProjectDonationUpdateInput {
+  project: ProjectUpdateOneRequiredWithoutDonationsInput
+  profile: UserProfileUpdateOneRequiredWithoutDonationsInput
+  amount: Float
+}
+
+input ProjectDonationUpdateManyDataInput {
+  amount: Float
+}
+
+input ProjectDonationUpdateManyMutationInput {
+  amount: Float
+}
+
+input ProjectDonationUpdateManyWithoutProfileInput {
+  create: [ProjectDonationCreateWithoutProfileInput!]
+  delete: [ProjectDonationWhereUniqueInput!]
+  connect: [ProjectDonationWhereUniqueInput!]
+  set: [ProjectDonationWhereUniqueInput!]
+  disconnect: [ProjectDonationWhereUniqueInput!]
+  update: [ProjectDonationUpdateWithWhereUniqueWithoutProfileInput!]
+  upsert: [ProjectDonationUpsertWithWhereUniqueWithoutProfileInput!]
+  deleteMany: [ProjectDonationScalarWhereInput!]
+  updateMany: [ProjectDonationUpdateManyWithWhereNestedInput!]
+}
+
+input ProjectDonationUpdateManyWithoutProjectInput {
+  create: [ProjectDonationCreateWithoutProjectInput!]
+  delete: [ProjectDonationWhereUniqueInput!]
+  connect: [ProjectDonationWhereUniqueInput!]
+  set: [ProjectDonationWhereUniqueInput!]
+  disconnect: [ProjectDonationWhereUniqueInput!]
+  update: [ProjectDonationUpdateWithWhereUniqueWithoutProjectInput!]
+  upsert: [ProjectDonationUpsertWithWhereUniqueWithoutProjectInput!]
+  deleteMany: [ProjectDonationScalarWhereInput!]
+  updateMany: [ProjectDonationUpdateManyWithWhereNestedInput!]
+}
+
+input ProjectDonationUpdateManyWithWhereNestedInput {
+  where: ProjectDonationScalarWhereInput!
+  data: ProjectDonationUpdateManyDataInput!
+}
+
+input ProjectDonationUpdateWithoutProfileDataInput {
+  project: ProjectUpdateOneRequiredWithoutDonationsInput
+  amount: Float
+}
+
+input ProjectDonationUpdateWithoutProjectDataInput {
+  profile: UserProfileUpdateOneRequiredWithoutDonationsInput
+  amount: Float
+}
+
+input ProjectDonationUpdateWithWhereUniqueWithoutProfileInput {
+  where: ProjectDonationWhereUniqueInput!
+  data: ProjectDonationUpdateWithoutProfileDataInput!
+}
+
+input ProjectDonationUpdateWithWhereUniqueWithoutProjectInput {
+  where: ProjectDonationWhereUniqueInput!
+  data: ProjectDonationUpdateWithoutProjectDataInput!
+}
+
+input ProjectDonationUpsertWithWhereUniqueWithoutProfileInput {
+  where: ProjectDonationWhereUniqueInput!
+  update: ProjectDonationUpdateWithoutProfileDataInput!
+  create: ProjectDonationCreateWithoutProfileInput!
+}
+
+input ProjectDonationUpsertWithWhereUniqueWithoutProjectInput {
+  where: ProjectDonationWhereUniqueInput!
+  update: ProjectDonationUpdateWithoutProjectDataInput!
+  create: ProjectDonationCreateWithoutProjectInput!
+}
+
+input ProjectDonationWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  project: ProjectWhereInput
+  profile: UserProfileWhereInput
+  amount: Float
+  amount_not: Float
+  amount_in: [Float!]
+  amount_not_in: [Float!]
+  amount_lt: Float
+  amount_lte: Float
+  amount_gt: Float
+  amount_gte: Float
+  AND: [ProjectDonationWhereInput!]
+  OR: [ProjectDonationWhereInput!]
+  NOT: [ProjectDonationWhereInput!]
+}
+
+input ProjectDonationWhereUniqueInput {
+  id: ID
 }
 
 type ProjectEdge {
@@ -1612,6 +1868,7 @@ input ProjectUpdateInput {
   goalAmount: Float
   amountFunded: Float
   featuredImage: String
+  donations: ProjectDonationUpdateManyWithoutProjectInput
   images: ProjectImageUpdateManyWithoutProjectInput
   likes: ProjectLikeUpdateManyWithoutProjectInput
   comments: ProjectCommentUpdateManyWithoutProjectInput
@@ -1673,6 +1930,13 @@ input ProjectUpdateOneRequiredWithoutCommentsInput {
   connect: ProjectWhereUniqueInput
 }
 
+input ProjectUpdateOneRequiredWithoutDonationsInput {
+  create: ProjectCreateWithoutDonationsInput
+  update: ProjectUpdateWithoutDonationsDataInput
+  upsert: ProjectUpsertWithoutDonationsInput
+  connect: ProjectWhereUniqueInput
+}
+
 input ProjectUpdateOneRequiredWithoutImagesInput {
   create: ProjectCreateWithoutImagesInput
   update: ProjectUpdateWithoutImagesDataInput
@@ -1702,8 +1966,29 @@ input ProjectUpdateWithoutCommentsDataInput {
   goalAmount: Float
   amountFunded: Float
   featuredImage: String
+  donations: ProjectDonationUpdateManyWithoutProjectInput
   images: ProjectImageUpdateManyWithoutProjectInput
   likes: ProjectLikeUpdateManyWithoutProjectInput
+}
+
+input ProjectUpdateWithoutDonationsDataInput {
+  profile: UserProfileUpdateOneRequiredWithoutProjectsInput
+  name: String
+  description: String
+  country: String
+  address: String
+  state: String
+  city: String
+  zip: Int
+  duration: Int
+  difficulty: String
+  startDate: DateTime
+  goalAmount: Float
+  amountFunded: Float
+  featuredImage: String
+  images: ProjectImageUpdateManyWithoutProjectInput
+  likes: ProjectLikeUpdateManyWithoutProjectInput
+  comments: ProjectCommentUpdateManyWithoutProjectInput
 }
 
 input ProjectUpdateWithoutImagesDataInput {
@@ -1721,6 +2006,7 @@ input ProjectUpdateWithoutImagesDataInput {
   goalAmount: Float
   amountFunded: Float
   featuredImage: String
+  donations: ProjectDonationUpdateManyWithoutProjectInput
   likes: ProjectLikeUpdateManyWithoutProjectInput
   comments: ProjectCommentUpdateManyWithoutProjectInput
 }
@@ -1740,6 +2026,7 @@ input ProjectUpdateWithoutLikesDataInput {
   goalAmount: Float
   amountFunded: Float
   featuredImage: String
+  donations: ProjectDonationUpdateManyWithoutProjectInput
   images: ProjectImageUpdateManyWithoutProjectInput
   comments: ProjectCommentUpdateManyWithoutProjectInput
 }
@@ -1758,6 +2045,7 @@ input ProjectUpdateWithoutProfileDataInput {
   goalAmount: Float
   amountFunded: Float
   featuredImage: String
+  donations: ProjectDonationUpdateManyWithoutProjectInput
   images: ProjectImageUpdateManyWithoutProjectInput
   likes: ProjectLikeUpdateManyWithoutProjectInput
   comments: ProjectCommentUpdateManyWithoutProjectInput
@@ -1771,6 +2059,11 @@ input ProjectUpdateWithWhereUniqueWithoutProfileInput {
 input ProjectUpsertWithoutCommentsInput {
   update: ProjectUpdateWithoutCommentsDataInput!
   create: ProjectCreateWithoutCommentsInput!
+}
+
+input ProjectUpsertWithoutDonationsInput {
+  update: ProjectUpdateWithoutDonationsDataInput!
+  create: ProjectCreateWithoutDonationsInput!
 }
 
 input ProjectUpsertWithoutImagesInput {
@@ -1957,6 +2250,9 @@ input ProjectWhereInput {
   featuredImage_not_starts_with: String
   featuredImage_ends_with: String
   featuredImage_not_ends_with: String
+  donations_every: ProjectDonationWhereInput
+  donations_some: ProjectDonationWhereInput
+  donations_none: ProjectDonationWhereInput
   images_every: ProjectImageWhereInput
   images_some: ProjectImageWhereInput
   images_none: ProjectImageWhereInput
@@ -2004,6 +2300,9 @@ type Query {
   projectCommentLike(where: ProjectCommentLikeWhereUniqueInput!): ProjectCommentLike
   projectCommentLikes(where: ProjectCommentLikeWhereInput, orderBy: ProjectCommentLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectCommentLike]!
   projectCommentLikesConnection(where: ProjectCommentLikeWhereInput, orderBy: ProjectCommentLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectCommentLikeConnection!
+  projectDonation(where: ProjectDonationWhereUniqueInput!): ProjectDonation
+  projectDonations(where: ProjectDonationWhereInput, orderBy: ProjectDonationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectDonation]!
+  projectDonationsConnection(where: ProjectDonationWhereInput, orderBy: ProjectDonationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectDonationConnection!
   projectImage(where: ProjectImageWhereUniqueInput!): ProjectImage
   projectImages(where: ProjectImageWhereInput, orderBy: ProjectImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectImage]!
   projectImagesConnection(where: ProjectImageWhereInput, orderBy: ProjectImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectImageConnection!
@@ -2024,6 +2323,7 @@ type Subscription {
   project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
   projectComment(where: ProjectCommentSubscriptionWhereInput): ProjectCommentSubscriptionPayload
   projectCommentLike(where: ProjectCommentLikeSubscriptionWhereInput): ProjectCommentLikeSubscriptionPayload
+  projectDonation(where: ProjectDonationSubscriptionWhereInput): ProjectDonationSubscriptionPayload
   projectImage(where: ProjectImageSubscriptionWhereInput): ProjectImageSubscriptionPayload
   projectLike(where: ProjectLikeSubscriptionWhereInput): ProjectLikeSubscriptionPayload
   userAccount(where: UserAccountSubscriptionWhereInput): UserAccountSubscriptionPayload
@@ -2186,6 +2486,7 @@ type UserProfile {
   city: String
   zip: Int
   aptNumber: String
+  donations(where: ProjectDonationWhereInput, orderBy: ProjectDonationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectDonation!]
   projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project!]
   likedProjects(where: ProjectLikeWhereInput, orderBy: ProjectLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectLike!]
   comments(where: ProjectCommentWhereInput, orderBy: ProjectCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectComment!]
@@ -2213,6 +2514,7 @@ input UserProfileCreateInput {
   city: String
   zip: Int
   aptNumber: String
+  donations: ProjectDonationCreateManyWithoutProfileInput
   projects: ProjectCreateManyWithoutProfileInput
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
   comments: ProjectCommentCreateManyWithoutProfileInput
@@ -2221,6 +2523,11 @@ input UserProfileCreateInput {
 
 input UserProfileCreateOneWithoutCommentsInput {
   create: UserProfileCreateWithoutCommentsInput
+  connect: UserProfileWhereUniqueInput
+}
+
+input UserProfileCreateOneWithoutDonationsInput {
+  create: UserProfileCreateWithoutDonationsInput
   connect: UserProfileWhereUniqueInput
 }
 
@@ -2252,8 +2559,28 @@ input UserProfileCreateWithoutCommentsInput {
   city: String
   zip: Int
   aptNumber: String
+  donations: ProjectDonationCreateManyWithoutProfileInput
   projects: ProjectCreateManyWithoutProfileInput
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
+  likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
+}
+
+input UserProfileCreateWithoutDonationsInput {
+  id: ID
+  userAccountId: ID!
+  email: String!
+  firstName: String
+  lastName: String
+  profileImage: String
+  country: String
+  address: String
+  state: String
+  city: String
+  zip: Int
+  aptNumber: String
+  projects: ProjectCreateManyWithoutProfileInput
+  likedProjects: ProjectLikeCreateManyWithoutProfileInput
+  comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
 }
 
@@ -2270,6 +2597,7 @@ input UserProfileCreateWithoutLikedCommentsInput {
   city: String
   zip: Int
   aptNumber: String
+  donations: ProjectDonationCreateManyWithoutProfileInput
   projects: ProjectCreateManyWithoutProfileInput
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
   comments: ProjectCommentCreateManyWithoutProfileInput
@@ -2288,6 +2616,7 @@ input UserProfileCreateWithoutLikedProjectsInput {
   city: String
   zip: Int
   aptNumber: String
+  donations: ProjectDonationCreateManyWithoutProfileInput
   projects: ProjectCreateManyWithoutProfileInput
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
@@ -2306,6 +2635,7 @@ input UserProfileCreateWithoutProjectsInput {
   city: String
   zip: Int
   aptNumber: String
+  donations: ProjectDonationCreateManyWithoutProfileInput
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
@@ -2394,6 +2724,7 @@ input UserProfileUpdateInput {
   city: String
   zip: Int
   aptNumber: String
+  donations: ProjectDonationUpdateManyWithoutProfileInput
   projects: ProjectUpdateManyWithoutProfileInput
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
   comments: ProjectCommentUpdateManyWithoutProfileInput
@@ -2418,6 +2749,13 @@ input UserProfileUpdateOneRequiredWithoutCommentsInput {
   create: UserProfileCreateWithoutCommentsInput
   update: UserProfileUpdateWithoutCommentsDataInput
   upsert: UserProfileUpsertWithoutCommentsInput
+  connect: UserProfileWhereUniqueInput
+}
+
+input UserProfileUpdateOneRequiredWithoutDonationsInput {
+  create: UserProfileCreateWithoutDonationsInput
+  update: UserProfileUpdateWithoutDonationsDataInput
+  upsert: UserProfileUpsertWithoutDonationsInput
   connect: UserProfileWhereUniqueInput
 }
 
@@ -2454,8 +2792,27 @@ input UserProfileUpdateWithoutCommentsDataInput {
   city: String
   zip: Int
   aptNumber: String
+  donations: ProjectDonationUpdateManyWithoutProfileInput
   projects: ProjectUpdateManyWithoutProfileInput
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
+  likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
+}
+
+input UserProfileUpdateWithoutDonationsDataInput {
+  userAccountId: ID
+  email: String
+  firstName: String
+  lastName: String
+  profileImage: String
+  country: String
+  address: String
+  state: String
+  city: String
+  zip: Int
+  aptNumber: String
+  projects: ProjectUpdateManyWithoutProfileInput
+  likedProjects: ProjectLikeUpdateManyWithoutProfileInput
+  comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
 }
 
@@ -2471,6 +2828,7 @@ input UserProfileUpdateWithoutLikedCommentsDataInput {
   city: String
   zip: Int
   aptNumber: String
+  donations: ProjectDonationUpdateManyWithoutProfileInput
   projects: ProjectUpdateManyWithoutProfileInput
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
   comments: ProjectCommentUpdateManyWithoutProfileInput
@@ -2488,6 +2846,7 @@ input UserProfileUpdateWithoutLikedProjectsDataInput {
   city: String
   zip: Int
   aptNumber: String
+  donations: ProjectDonationUpdateManyWithoutProfileInput
   projects: ProjectUpdateManyWithoutProfileInput
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
@@ -2505,6 +2864,7 @@ input UserProfileUpdateWithoutProjectsDataInput {
   city: String
   zip: Int
   aptNumber: String
+  donations: ProjectDonationUpdateManyWithoutProfileInput
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
@@ -2513,6 +2873,11 @@ input UserProfileUpdateWithoutProjectsDataInput {
 input UserProfileUpsertWithoutCommentsInput {
   update: UserProfileUpdateWithoutCommentsDataInput!
   create: UserProfileCreateWithoutCommentsInput!
+}
+
+input UserProfileUpsertWithoutDonationsInput {
+  update: UserProfileUpdateWithoutDonationsDataInput!
+  create: UserProfileCreateWithoutDonationsInput!
 }
 
 input UserProfileUpsertWithoutLikedCommentsInput {
@@ -2693,6 +3058,9 @@ input UserProfileWhereInput {
   aptNumber_not_starts_with: String
   aptNumber_ends_with: String
   aptNumber_not_ends_with: String
+  donations_every: ProjectDonationWhereInput
+  donations_some: ProjectDonationWhereInput
+  donations_none: ProjectDonationWhereInput
   projects_every: ProjectWhereInput
   projects_some: ProjectWhereInput
   projects_none: ProjectWhereInput

@@ -32,6 +32,9 @@ type Mutation {
 	updateProject(id: ID!, data: UpdateProjectInput): Project!
 	deleteProject(id: ID!): Project!
 
+	# Project Donation
+	createProjectDonation(id: ID!, data: CreateProjectDonationInput!): ProjectDonation
+
 	# Project likes
 	createProjectLike(id: ID!): Project!
 	deleteProjectLike(id: ID!): Project!
@@ -87,6 +90,7 @@ type UserProfile {
 	zip: Int
 	address: String
 	aptNumber: String
+	donations: [ProjectDonation!]!
 	projects: [Project!]!
 	likedProjects: [ProjectLike!]!
 	comments: [ProjectComment!]
@@ -120,7 +124,6 @@ input UpdateUserProfileInput {
 }
 
 # Project
-
 type Project {
 	id: ID!
 	profile: UserProfile!
@@ -136,10 +139,22 @@ type Project {
 	duration: Int!
 	difficulty: String!
 	startDate: Date!
-	featuredImage: Upload!
+	featuredImage: String!
+	donations: [ProjectDonation!]!
 	likes: [ProjectLike!]!
 	comments: [ProjectComment!]!
 	images: [ProjectImage!]!
+}
+
+type ProjectDonation {
+	id: ID!
+	project: Project!
+	profile: UserProfile!
+	amount: Float!
+}
+
+input CreateProjectDonationInput {
+	amount: Float!
 }
 
 type ProjectImage {

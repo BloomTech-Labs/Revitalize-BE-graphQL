@@ -21,6 +21,10 @@ var models = [
     embedded: false
   },
   {
+    name: "ProjectDonation",
+    embedded: false
+  },
+  {
     name: "ProjectImage",
     embedded: false
   },
