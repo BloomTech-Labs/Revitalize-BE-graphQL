@@ -4,4 +4,7 @@ export const ProjectComment = {
 	async profile(parent) {
 		return await prisma.projectComment({ id: parent.id }).profile();
 	},
+	async project(parent) {
+		return await prisma.projectComment({ id: parent.id }).project();
+	},
 };

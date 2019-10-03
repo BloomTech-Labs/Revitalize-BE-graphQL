@@ -68,14 +68,14 @@ type ProjectDonation {
 
 type ProjectImage {
   id: ID! @id,
-  project: Project! @relation(name: "ImagesToProject", onDelete: SET_NULL)
+  project: Project! @relation(name: "ImagesToProject")
   imageUrl: String!
   public_id: ID!
 }
 
 type ProjectLike {
   id: ID! @id
-  profile: UserProfile! @relation(name: "ProjectLikeToUserProfile", onDelete: SET_NULL)
+  profile: UserProfile! @relation(name: "ProjectLikeToUserProfile")
   project: Project! @relation(name: "ProjectLike", onDelete: SET_NULL)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
@@ -83,8 +83,8 @@ type ProjectLike {
 
 type ProjectComment {
   id: ID! @id
-  profile: UserProfile! @relation(name: "CommentToUserProfile", onDelete: SET_NULL)
-  project: Project! @relation(name: "ProjectComment", onDelete: SET_NULL)
+  profile: UserProfile! @relation(name: "CommentToUserProfile")
+  project: Project! @relation(name: "ProjectComment")
   comment: String!
   likes: [ProjectCommentLike!]! @relation(name: "ProjectCommentLike", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
