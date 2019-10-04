@@ -16,4 +16,7 @@ export const Project = {
 	async images(parent) {
 		return await prisma.project({ id: parent.id }).images();
 	},
+	async donations(parent) {
+		return prisma.project({ id: parent.id }).donations();
+	},
 };

@@ -177,7 +177,6 @@ input CreateProjectInput {
 	duration: Int!
 	difficulty: String!
 	startDate: Date!
-	amountFunded: Float!
 	featuredImage: Upload
 	images: [Upload!]
 }

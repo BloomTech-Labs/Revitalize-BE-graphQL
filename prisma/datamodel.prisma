@@ -64,6 +64,8 @@ type ProjectDonation {
   project: Project! @relation(name: "ProjectDonationToProject", onDelete: SET_NULL)
   profile: UserProfile! @relation(name: "ProjectDonationToUserProfile", onDelete: SET_NULL)
   amount: Float!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
 
 type ProjectImage {

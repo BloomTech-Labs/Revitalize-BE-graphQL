@@ -8,38 +8,31 @@ export const ProjectDonation = {
 			const project = await prisma.project({ id: args.id });
 			if (!project) throw new Error("Sorry, but that project doesn't exist");
 
-			await stripe.charges.create(
-				{
-					amount: args.data.amount,
-					currency: 'usd',
-					source: args.data.token,
-					description: `Donation for ${project.name}'s crowd funded project.`,
-				},
-				async (err, { paid }) => {
-					if (err) throw new Error(err);
+			const { paid } = await stripe.charges.create({
+				amount: args.data.amount,
+				currency: 'usd',
+				source: args.data.token,
+				description: `Donation for ${project.name}'s crowd funded project.`,
+			});
 
-					if (paid) {
-						return;
-					}
-				},
-			);
-
-			return prisma.createProjectDonation(
-				{
-					amount: args.data.amount,
-					project: {
-						connect: {
-							id: args.id,
+			if (paid) {
+				return prisma.createProjectDonation(
+					{
+						amount: args.data.amount,
+						project: {
+							connect: {
+								id: args.id,
+							},
+						},
+						profile: {
+							connect: {
+								id: profileId,
+							},
 						},
 					},
-					profile: {
-						connect: {
-							id: profileId,
-						},
-					},
-				},
-				info,
-			);
+					info,
+				);
+			}
 		} catch (error) {
 			throw new Error(error);
 		}
