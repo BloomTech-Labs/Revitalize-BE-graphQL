@@ -33,7 +33,7 @@ type Mutation {
 	deleteProject(id: ID!): Project!
 
 	# Project Donation
-	createProjectDonation(id: ID!, data: CreateProjectDonationInput!): ProjectDonation
+	createProjectDonation(id: ID!, data: CreateProjectDonationInput!): ProjectDonation!
 
 	# Project likes
 	createProjectLike(id: ID!): Project!
@@ -139,7 +139,7 @@ type Project {
 	duration: Int!
 	difficulty: String!
 	startDate: Date!
-	featuredImage: String!
+	featuredImage: String
 	donations: [ProjectDonation!]!
 	likes: [ProjectLike!]!
 	comments: [ProjectComment!]!
