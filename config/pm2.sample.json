@@ -15,7 +15,13 @@
                 "TWITTER_API_KEY": "",
                 "TWITTER_API_SECRET": "",
                 "OAUTH_ROUTE": "",
-                "SENTRY_DSN": ""
+                "SENTRY_DSN": "",
+                "CLOUDINARY_NAME": "",
+                "CLOUDINARY_KEY": "",
+                "CLOUDINARY_SECRET": "",
+                "STRIPE_PUBLISH_KEY": "",
+                "STRIPE_SECRET_KEY": ""
+
             }
         }
     ]
