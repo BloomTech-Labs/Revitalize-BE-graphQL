@@ -21,7 +21,6 @@
                 "CLOUDINARY_SECRET": "",
                 "STRIPE_PUBLISH_KEY": "",
                 "STRIPE_SECRET_KEY": ""
-
             }
         }
     ]

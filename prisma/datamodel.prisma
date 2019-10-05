@@ -16,6 +16,7 @@ type ExternalAccount {
 type UserProfile {
   id: ID! @id
   userAccountId: ID!
+  verified: boolean @default(value: false)
   email: String! @unique
   firstName: String
   lastName: String
