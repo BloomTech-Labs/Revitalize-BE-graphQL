@@ -101,3 +101,11 @@ type ProjectCommentLike {
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
+
+// @WIP for direct messages
+type DirectMessage {
+  id: ID! @id
+  sender: UserProfile!
+  recipient: UserProfile!
+  message: String!
+}
