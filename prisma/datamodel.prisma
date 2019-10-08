@@ -129,6 +129,24 @@ type ProjectApplicants {
   status: boolean @default(value: false)
 }
 
+type ProjectTasks {
+  id: ID! @id
+  project: Project!
+  trade: ProjectTrade!
+  description: String!
+  priority: String!
+  dueDate: DateTime!
+  budgetHours: Int!
+  apprentices: ProjectTaskApprentices!
+}
+
+type ProjectTaskApprentices {
+  id: ID! @id
+  project: Project!
+  profile: UserProfile!
+}
+
+
 // @WIP for direct messages
 type DirectMessage {
   id: ID! @id
