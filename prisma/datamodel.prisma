@@ -1,3 +1,9 @@
+enum Status {
+  PENDING
+  ACCEPTED
+  DECLINED
+}
+
 type UserAccount {
   id: ID! @id
   email: String! @unique
@@ -26,12 +32,17 @@ type UserProfile {
   state: String
   city: String
   zip: Int
+  phone: Int
   aptNumber: String
   donations: [ProjectDonation!]! @relation(name: "ProjectDonationToUserProfile", onDelete: CASCADE)
   projects: [Project!]! @relation(name: "ProjectToUserProfile", onDelete: CASCADE)
+  studentProjects: [ProjectStudent!]! @relation(name: "ProjectStudentToProfile", onDelete: CASCADE)
+  tasks: [ProjectApprenticeTask!]! @relation(name: "ProjectApprenticeTaskToUserProfile", onDelete: CASCADE)
+  tradeMasterProjects: [ProjectMasterTradesman!] @relation(name: "ProjectMasterTradesmanToProfile", onDelete: CASCADE)
   likedProjects: [ProjectLike!]! @relation(name: "ProjectLikeToUserProfile", onDelete: CASCADE)
   comments: [ProjectComment!] @relation(name: "CommentToUserProfile", onDelete: CASCADE)
   likedComments: [ProjectCommentLike!]! @relation(name: "CommentLikeToUserProfile", onDelete: CASCADE)
+  applications: [ProjectApplicants!]! @relation(name: "ApplicantToUserProfile", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -56,6 +67,11 @@ type Project {
   images: [ProjectImage!]! @relation(name: "ImagesToProject", onDelete: CASCADE)
   likes: [ProjectLike!]! @relation(name: "ProjectLike", onDelete: CASCADE)
   comments: [ProjectComment!]! @relation(name: "ProjectComment", onDelete: CASCADE)
+  trades: [ProjectTrade!]! @relation(name: "ProjectTradeToProject", onDelete: CASCADE)
+  tasks: [ProjectTask!]! @relation(name: "ProjectTaskToProject", onDelete: CASCADE)
+  applicants: [ProjectApplicants!]! @relation(name: "ApplicantToProject", onDelete: CASCADE)
+  students: [ProjectStudent!]! @relation(name: "ProjectStudentToProject", onDelete: CASCADE)
+  tradeMasters: [ProjectMasterTradesman!]! @relation(name: "ProjectMasterTradesmanToProject", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -102,47 +118,48 @@ type ProjectCommentLike {
   updatedAt: DateTime! @updatedAt
 }
 
-type ProjectTrade {
+type ProjectApplicants {
   id: ID! @id
-  project: Project!
-  name: String!
-  description: String!
+  project: Project! @relation(name: "ApplicantToProject", onDelete: SET_NULL)
+  profile: UserProfile! @relation(name: "ApplicantToUserProfile", onDelete: SET_NULL)
+  trade: ProjectTrade!
+  coverLetter: String!
+  status: Status!
 }
 
 type ProjectStudent {
   id: ID! @id
-  project: Project!
-  profile: UserProfile!
+  project: Project! @relation(name: "ProjectStudentToProject", onDelete: SET_NULL)
+  profile: UserProfile! @relation(name: "ProjectStudentToProfile", onDelete: SET_NULL)
 }
 
 type ProjectMasterTradesman {
   id: ID! @id
-  project: Project!
-  profile: UserProfile!
+  project: Project! @relation(name: "ProjectMasterTradesmanToProject", onDelete: SET_NULL)
+  profile: UserProfile! @relation(name: "ProjectMasterTradesmanToProfile", onDelete: SET_NULL)
 }
 
-type ProjectApplicants {
+type ProjectTrade {
   id: ID! @id
-  project: Project!
-  profile: UserProfile!
-  trade: ProjectTrade!
-  coverLetter: String!
-  status: Boolean @default(value: false)
+  project: Project! @relation(name: "ProjectTradeToProject", onDelete: SET_NULL)
+  name: String!
+  description: String!
 }
 
-type ProjectTasks {
+type ProjectTask {
   id: ID! @id
-  project: Project!
+  project: Project! @relation(name: "ProjectTaskToProject", onDelete: SET_NULL)
   trade: ProjectTrade!
   description: String!
   priority: String!
   dueDate: DateTime!
   budgetHours: Int!
-  apprentices: ProjectTaskApprentices!
+  apprentices: [ProjectApprenticeTask!]! @relation(name: "ProjectApprenticeTaskToProjectTask", onDelete: CASCADE)
 }
 
-type ProjectTaskApprentices {
+type ProjectApprenticeTask {
   id: ID! @id
-  project: Project!
-  profile: UserProfile!
+  projectTask: ProjectTask! @relation(name: "ProjectApprenticeTaskToProjectTask", onDelete: SET_NULL)
+  profile: UserProfile! @relation(name: "ProjectApprenticeTaskToUserProfile", onDelete: SET_NULL)
 }
+

@@ -18,5 +18,5 @@ export const Project = {
 	},
 	async donations(parent) {
 		return prisma.project({ id: parent.id }).donations();
-	},
+	}
 };
