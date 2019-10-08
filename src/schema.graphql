@@ -62,6 +62,9 @@ type Mutation {
 	createProjectCommentLike(id: ID!): ProjectComment!
 	deleteProjectCommentLike(id: ID!): ProjectComment!
 
+	# Project Trade
+	createProjectTrade(data: CreateProjectTrade!): ProjectApplicant!
+
 	# Project Applicant
 	createProjectApplicant(data: CreateProjectApplicant!): ProjectApplicant!
 }
@@ -261,13 +264,13 @@ type ProjectTrade {
 }
 
 input CreateProjectTrade {
-  id: ID!
+  project: ID!
   name: String!
   description: String!
 }
 
 input UpdateProjectTrade {
-  id: ID!
+  project: ID!
   name: String
   description: String
 }

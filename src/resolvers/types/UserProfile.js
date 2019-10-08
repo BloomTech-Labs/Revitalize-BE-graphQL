@@ -17,6 +17,9 @@ export const UserProfile = {
 	async likedProjects(parent) {
 		return await prisma.userProfile({ id: parent.id }).likedProjects();
 	},
+	async applications(parent) {
+		return await prisma.userProfile({ id: parent.id }).applications();
+	}
 	// email: {
 	// 	fragment: 'fragment userId on UserProfile { id }',
 	// 	resolve(parent, args, { request }, info) {

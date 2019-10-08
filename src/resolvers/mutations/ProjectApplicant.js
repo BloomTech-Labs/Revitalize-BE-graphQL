@@ -4,7 +4,7 @@ export const ProjectApplicant = {
     async  createProjectApplicant(parent, args, { prisma, request }, info) {
         const profileId = getProfileId(request);
 
-        prisma.createProjectApplicant({
+        return prisma.createProjectApplicant({
             data: {
                 project: {
                     connect: {
@@ -24,6 +24,6 @@ export const ProjectApplicant = {
                 status: args.coverLetter,
                 coverLetter: args.status
             }
-        })
+        }, info)
     }
 }
