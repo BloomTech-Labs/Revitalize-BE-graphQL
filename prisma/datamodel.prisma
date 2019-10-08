@@ -16,7 +16,7 @@ type ExternalAccount {
 type UserProfile {
   id: ID! @id
   userAccountId: ID!
-  verified: boolean @default(value: false)
+  verified: Boolean @default(value: false)
   email: String! @unique
   firstName: String
   lastName: String
@@ -107,6 +107,7 @@ type ProjectTrade {
   project: Project!
   name: String!
   description: String!
+}
 
 type ProjectStudent {
   id: ID! @id
@@ -126,7 +127,7 @@ type ProjectApplicants {
   profile: UserProfile!
   trade: ProjectTrade!
   coverLetter: String!
-  status: boolean @default(value: false)
+  status: Boolean @default(value: false)
 }
 
 type ProjectTasks {
@@ -144,13 +145,4 @@ type ProjectTaskApprentices {
   id: ID! @id
   project: Project!
   profile: UserProfile!
-}
-
-
-// @WIP for direct messages
-type DirectMessage {
-  id: ID! @id
-  sender: UserProfile!
-  recipient: UserProfile!
-  message: String!
 }

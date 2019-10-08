@@ -20,4 +20,7 @@ sleep 5 && echo -e "\e[33;1mMigrating data\e[37;3m"
 # Migrate and seed database
 docker container exec -i graphql-server prisma deploy -e ./config/prod.env
 
+# Run lets encypt validation script
+bash bin/init-letsencrypt.sh
+
 echo -e "\e[32;3mSuccess!"

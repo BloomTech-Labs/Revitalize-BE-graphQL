@@ -18,6 +18,7 @@ export type Maybe<T> = T | undefined | null;
 export interface Exists {
   externalAccount: (where?: ExternalAccountWhereInput) => Promise<boolean>;
   project: (where?: ProjectWhereInput) => Promise<boolean>;
+  projectApplicants: (where?: ProjectApplicantsWhereInput) => Promise<boolean>;
   projectComment: (where?: ProjectCommentWhereInput) => Promise<boolean>;
   projectCommentLike: (
     where?: ProjectCommentLikeWhereInput
@@ -25,6 +26,15 @@ export interface Exists {
   projectDonation: (where?: ProjectDonationWhereInput) => Promise<boolean>;
   projectImage: (where?: ProjectImageWhereInput) => Promise<boolean>;
   projectLike: (where?: ProjectLikeWhereInput) => Promise<boolean>;
+  projectMasterTradesman: (
+    where?: ProjectMasterTradesmanWhereInput
+  ) => Promise<boolean>;
+  projectStudent: (where?: ProjectStudentWhereInput) => Promise<boolean>;
+  projectTaskApprentices: (
+    where?: ProjectTaskApprenticesWhereInput
+  ) => Promise<boolean>;
+  projectTasks: (where?: ProjectTasksWhereInput) => Promise<boolean>;
+  projectTrade: (where?: ProjectTradeWhereInput) => Promise<boolean>;
   userAccount: (where?: UserAccountWhereInput) => Promise<boolean>;
   userProfile: (where?: UserProfileWhereInput) => Promise<boolean>;
 }
@@ -88,6 +98,27 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => ProjectConnectionPromise;
+  projectApplicants: (
+    where: ProjectApplicantsWhereUniqueInput
+  ) => ProjectApplicantsNullablePromise;
+  projectApplicantses: (args?: {
+    where?: ProjectApplicantsWhereInput;
+    orderBy?: ProjectApplicantsOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<ProjectApplicants>;
+  projectApplicantsesConnection: (args?: {
+    where?: ProjectApplicantsWhereInput;
+    orderBy?: ProjectApplicantsOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => ProjectApplicantsConnectionPromise;
   projectComment: (
     where: ProjectCommentWhereUniqueInput
   ) => ProjectCommentNullablePromise;
@@ -193,6 +224,111 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => ProjectLikeConnectionPromise;
+  projectMasterTradesman: (
+    where: ProjectMasterTradesmanWhereUniqueInput
+  ) => ProjectMasterTradesmanNullablePromise;
+  projectMasterTradesmen: (args?: {
+    where?: ProjectMasterTradesmanWhereInput;
+    orderBy?: ProjectMasterTradesmanOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<ProjectMasterTradesman>;
+  projectMasterTradesmenConnection: (args?: {
+    where?: ProjectMasterTradesmanWhereInput;
+    orderBy?: ProjectMasterTradesmanOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => ProjectMasterTradesmanConnectionPromise;
+  projectStudent: (
+    where: ProjectStudentWhereUniqueInput
+  ) => ProjectStudentNullablePromise;
+  projectStudents: (args?: {
+    where?: ProjectStudentWhereInput;
+    orderBy?: ProjectStudentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<ProjectStudent>;
+  projectStudentsConnection: (args?: {
+    where?: ProjectStudentWhereInput;
+    orderBy?: ProjectStudentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => ProjectStudentConnectionPromise;
+  projectTaskApprentices: (
+    where: ProjectTaskApprenticesWhereUniqueInput
+  ) => ProjectTaskApprenticesNullablePromise;
+  projectTaskApprenticeses: (args?: {
+    where?: ProjectTaskApprenticesWhereInput;
+    orderBy?: ProjectTaskApprenticesOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<ProjectTaskApprentices>;
+  projectTaskApprenticesesConnection: (args?: {
+    where?: ProjectTaskApprenticesWhereInput;
+    orderBy?: ProjectTaskApprenticesOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => ProjectTaskApprenticesConnectionPromise;
+  projectTasks: (
+    where: ProjectTasksWhereUniqueInput
+  ) => ProjectTasksNullablePromise;
+  projectTaskses: (args?: {
+    where?: ProjectTasksWhereInput;
+    orderBy?: ProjectTasksOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<ProjectTasks>;
+  projectTasksesConnection: (args?: {
+    where?: ProjectTasksWhereInput;
+    orderBy?: ProjectTasksOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => ProjectTasksConnectionPromise;
+  projectTrade: (
+    where: ProjectTradeWhereUniqueInput
+  ) => ProjectTradeNullablePromise;
+  projectTrades: (args?: {
+    where?: ProjectTradeWhereInput;
+    orderBy?: ProjectTradeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<ProjectTrade>;
+  projectTradesConnection: (args?: {
+    where?: ProjectTradeWhereInput;
+    orderBy?: ProjectTradeOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => ProjectTradeConnectionPromise;
   userAccount: (
     where: UserAccountWhereUniqueInput
   ) => UserAccountNullablePromise;
@@ -279,6 +415,28 @@ export interface Prisma {
   }) => ProjectPromise;
   deleteProject: (where: ProjectWhereUniqueInput) => ProjectPromise;
   deleteManyProjects: (where?: ProjectWhereInput) => BatchPayloadPromise;
+  createProjectApplicants: (
+    data: ProjectApplicantsCreateInput
+  ) => ProjectApplicantsPromise;
+  updateProjectApplicants: (args: {
+    data: ProjectApplicantsUpdateInput;
+    where: ProjectApplicantsWhereUniqueInput;
+  }) => ProjectApplicantsPromise;
+  updateManyProjectApplicantses: (args: {
+    data: ProjectApplicantsUpdateManyMutationInput;
+    where?: ProjectApplicantsWhereInput;
+  }) => BatchPayloadPromise;
+  upsertProjectApplicants: (args: {
+    where: ProjectApplicantsWhereUniqueInput;
+    create: ProjectApplicantsCreateInput;
+    update: ProjectApplicantsUpdateInput;
+  }) => ProjectApplicantsPromise;
+  deleteProjectApplicants: (
+    where: ProjectApplicantsWhereUniqueInput
+  ) => ProjectApplicantsPromise;
+  deleteManyProjectApplicantses: (
+    where?: ProjectApplicantsWhereInput
+  ) => BatchPayloadPromise;
   createProjectComment: (
     data: ProjectCommentCreateInput
   ) => ProjectCommentPromise;
@@ -375,6 +533,100 @@ export interface Prisma {
   deleteManyProjectLikes: (
     where?: ProjectLikeWhereInput
   ) => BatchPayloadPromise;
+  createProjectMasterTradesman: (
+    data: ProjectMasterTradesmanCreateInput
+  ) => ProjectMasterTradesmanPromise;
+  updateProjectMasterTradesman: (args: {
+    data: ProjectMasterTradesmanUpdateInput;
+    where: ProjectMasterTradesmanWhereUniqueInput;
+  }) => ProjectMasterTradesmanPromise;
+  upsertProjectMasterTradesman: (args: {
+    where: ProjectMasterTradesmanWhereUniqueInput;
+    create: ProjectMasterTradesmanCreateInput;
+    update: ProjectMasterTradesmanUpdateInput;
+  }) => ProjectMasterTradesmanPromise;
+  deleteProjectMasterTradesman: (
+    where: ProjectMasterTradesmanWhereUniqueInput
+  ) => ProjectMasterTradesmanPromise;
+  deleteManyProjectMasterTradesmen: (
+    where?: ProjectMasterTradesmanWhereInput
+  ) => BatchPayloadPromise;
+  createProjectStudent: (
+    data: ProjectStudentCreateInput
+  ) => ProjectStudentPromise;
+  updateProjectStudent: (args: {
+    data: ProjectStudentUpdateInput;
+    where: ProjectStudentWhereUniqueInput;
+  }) => ProjectStudentPromise;
+  upsertProjectStudent: (args: {
+    where: ProjectStudentWhereUniqueInput;
+    create: ProjectStudentCreateInput;
+    update: ProjectStudentUpdateInput;
+  }) => ProjectStudentPromise;
+  deleteProjectStudent: (
+    where: ProjectStudentWhereUniqueInput
+  ) => ProjectStudentPromise;
+  deleteManyProjectStudents: (
+    where?: ProjectStudentWhereInput
+  ) => BatchPayloadPromise;
+  createProjectTaskApprentices: (
+    data: ProjectTaskApprenticesCreateInput
+  ) => ProjectTaskApprenticesPromise;
+  updateProjectTaskApprentices: (args: {
+    data: ProjectTaskApprenticesUpdateInput;
+    where: ProjectTaskApprenticesWhereUniqueInput;
+  }) => ProjectTaskApprenticesPromise;
+  upsertProjectTaskApprentices: (args: {
+    where: ProjectTaskApprenticesWhereUniqueInput;
+    create: ProjectTaskApprenticesCreateInput;
+    update: ProjectTaskApprenticesUpdateInput;
+  }) => ProjectTaskApprenticesPromise;
+  deleteProjectTaskApprentices: (
+    where: ProjectTaskApprenticesWhereUniqueInput
+  ) => ProjectTaskApprenticesPromise;
+  deleteManyProjectTaskApprenticeses: (
+    where?: ProjectTaskApprenticesWhereInput
+  ) => BatchPayloadPromise;
+  createProjectTasks: (data: ProjectTasksCreateInput) => ProjectTasksPromise;
+  updateProjectTasks: (args: {
+    data: ProjectTasksUpdateInput;
+    where: ProjectTasksWhereUniqueInput;
+  }) => ProjectTasksPromise;
+  updateManyProjectTaskses: (args: {
+    data: ProjectTasksUpdateManyMutationInput;
+    where?: ProjectTasksWhereInput;
+  }) => BatchPayloadPromise;
+  upsertProjectTasks: (args: {
+    where: ProjectTasksWhereUniqueInput;
+    create: ProjectTasksCreateInput;
+    update: ProjectTasksUpdateInput;
+  }) => ProjectTasksPromise;
+  deleteProjectTasks: (
+    where: ProjectTasksWhereUniqueInput
+  ) => ProjectTasksPromise;
+  deleteManyProjectTaskses: (
+    where?: ProjectTasksWhereInput
+  ) => BatchPayloadPromise;
+  createProjectTrade: (data: ProjectTradeCreateInput) => ProjectTradePromise;
+  updateProjectTrade: (args: {
+    data: ProjectTradeUpdateInput;
+    where: ProjectTradeWhereUniqueInput;
+  }) => ProjectTradePromise;
+  updateManyProjectTrades: (args: {
+    data: ProjectTradeUpdateManyMutationInput;
+    where?: ProjectTradeWhereInput;
+  }) => BatchPayloadPromise;
+  upsertProjectTrade: (args: {
+    where: ProjectTradeWhereUniqueInput;
+    create: ProjectTradeCreateInput;
+    update: ProjectTradeUpdateInput;
+  }) => ProjectTradePromise;
+  deleteProjectTrade: (
+    where: ProjectTradeWhereUniqueInput
+  ) => ProjectTradePromise;
+  deleteManyProjectTrades: (
+    where?: ProjectTradeWhereInput
+  ) => BatchPayloadPromise;
   createUserAccount: (data: UserAccountCreateInput) => UserAccountPromise;
   updateUserAccount: (args: {
     data: UserAccountUpdateInput;
@@ -426,6 +678,9 @@ export interface Subscription {
   project: (
     where?: ProjectSubscriptionWhereInput
   ) => ProjectSubscriptionPayloadSubscription;
+  projectApplicants: (
+    where?: ProjectApplicantsSubscriptionWhereInput
+  ) => ProjectApplicantsSubscriptionPayloadSubscription;
   projectComment: (
     where?: ProjectCommentSubscriptionWhereInput
   ) => ProjectCommentSubscriptionPayloadSubscription;
@@ -441,6 +696,21 @@ export interface Subscription {
   projectLike: (
     where?: ProjectLikeSubscriptionWhereInput
   ) => ProjectLikeSubscriptionPayloadSubscription;
+  projectMasterTradesman: (
+    where?: ProjectMasterTradesmanSubscriptionWhereInput
+  ) => ProjectMasterTradesmanSubscriptionPayloadSubscription;
+  projectStudent: (
+    where?: ProjectStudentSubscriptionWhereInput
+  ) => ProjectStudentSubscriptionPayloadSubscription;
+  projectTaskApprentices: (
+    where?: ProjectTaskApprenticesSubscriptionWhereInput
+  ) => ProjectTaskApprenticesSubscriptionPayloadSubscription;
+  projectTasks: (
+    where?: ProjectTasksSubscriptionWhereInput
+  ) => ProjectTasksSubscriptionPayloadSubscription;
+  projectTrade: (
+    where?: ProjectTradeSubscriptionWhereInput
+  ) => ProjectTradeSubscriptionPayloadSubscription;
   userAccount: (
     where?: UserAccountSubscriptionWhereInput
   ) => UserAccountSubscriptionPayloadSubscription;
@@ -471,7 +741,11 @@ export type ProjectDonationOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "amount_ASC"
-  | "amount_DESC";
+  | "amount_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
 
 export type ProjectOrderByInput =
   | "id_ASC"
@@ -541,6 +815,40 @@ export type ProjectImageOrderByInput =
   | "public_id_ASC"
   | "public_id_DESC";
 
+export type ProjectApplicantsOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "coverLetter_ASC"
+  | "coverLetter_DESC"
+  | "status_ASC"
+  | "status_DESC";
+
+export type ProjectMasterTradesmanOrderByInput = "id_ASC" | "id_DESC";
+
+export type ProjectStudentOrderByInput = "id_ASC" | "id_DESC";
+
+export type ProjectTaskApprenticesOrderByInput = "id_ASC" | "id_DESC";
+
+export type ProjectTasksOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "priority_ASC"
+  | "priority_DESC"
+  | "dueDate_ASC"
+  | "dueDate_DESC"
+  | "budgetHours_ASC"
+  | "budgetHours_DESC";
+
+export type ProjectTradeOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "description_ASC"
+  | "description_DESC";
+
 export type UserAccountOrderByInput =
   | "id_ASC"
   | "id_DESC"
@@ -558,6 +866,8 @@ export type UserProfileOrderByInput =
   | "id_DESC"
   | "userAccountId_ASC"
   | "userAccountId_DESC"
+  | "verified_ASC"
+  | "verified_DESC"
   | "email_ASC"
   | "email_DESC"
   | "firstName_ASC"
@@ -669,6 +979,22 @@ export interface ProjectDonationWhereInput {
   amount_lte?: Maybe<Float>;
   amount_gt?: Maybe<Float>;
   amount_gte?: Maybe<Float>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
   AND?: Maybe<ProjectDonationWhereInput[] | ProjectDonationWhereInput>;
   OR?: Maybe<ProjectDonationWhereInput[] | ProjectDonationWhereInput>;
   NOT?: Maybe<ProjectDonationWhereInput[] | ProjectDonationWhereInput>;
@@ -904,6 +1230,8 @@ export interface UserProfileWhereInput {
   userAccountId_not_starts_with?: Maybe<ID_Input>;
   userAccountId_ends_with?: Maybe<ID_Input>;
   userAccountId_not_ends_with?: Maybe<ID_Input>;
+  verified?: Maybe<Boolean>;
+  verified_not?: Maybe<Boolean>;
   email?: Maybe<String>;
   email_not?: Maybe<String>;
   email_in?: Maybe<String[] | String>;
@@ -1254,6 +1582,98 @@ export interface ProjectImageWhereInput {
   NOT?: Maybe<ProjectImageWhereInput[] | ProjectImageWhereInput>;
 }
 
+export type ProjectApplicantsWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface ProjectApplicantsWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  project?: Maybe<ProjectWhereInput>;
+  profile?: Maybe<UserProfileWhereInput>;
+  trade?: Maybe<ProjectTradeWhereInput>;
+  coverLetter?: Maybe<String>;
+  coverLetter_not?: Maybe<String>;
+  coverLetter_in?: Maybe<String[] | String>;
+  coverLetter_not_in?: Maybe<String[] | String>;
+  coverLetter_lt?: Maybe<String>;
+  coverLetter_lte?: Maybe<String>;
+  coverLetter_gt?: Maybe<String>;
+  coverLetter_gte?: Maybe<String>;
+  coverLetter_contains?: Maybe<String>;
+  coverLetter_not_contains?: Maybe<String>;
+  coverLetter_starts_with?: Maybe<String>;
+  coverLetter_not_starts_with?: Maybe<String>;
+  coverLetter_ends_with?: Maybe<String>;
+  coverLetter_not_ends_with?: Maybe<String>;
+  status?: Maybe<Boolean>;
+  status_not?: Maybe<Boolean>;
+  AND?: Maybe<ProjectApplicantsWhereInput[] | ProjectApplicantsWhereInput>;
+  OR?: Maybe<ProjectApplicantsWhereInput[] | ProjectApplicantsWhereInput>;
+  NOT?: Maybe<ProjectApplicantsWhereInput[] | ProjectApplicantsWhereInput>;
+}
+
+export interface ProjectTradeWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  project?: Maybe<ProjectWhereInput>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  AND?: Maybe<ProjectTradeWhereInput[] | ProjectTradeWhereInput>;
+  OR?: Maybe<ProjectTradeWhereInput[] | ProjectTradeWhereInput>;
+  NOT?: Maybe<ProjectTradeWhereInput[] | ProjectTradeWhereInput>;
+}
+
 export type ProjectCommentWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
@@ -1271,6 +1691,171 @@ export type ProjectImageWhereUniqueInput = AtLeastOne<{
 }>;
 
 export type ProjectLikeWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type ProjectMasterTradesmanWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface ProjectMasterTradesmanWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  project?: Maybe<ProjectWhereInput>;
+  profile?: Maybe<UserProfileWhereInput>;
+  AND?: Maybe<
+    ProjectMasterTradesmanWhereInput[] | ProjectMasterTradesmanWhereInput
+  >;
+  OR?: Maybe<
+    ProjectMasterTradesmanWhereInput[] | ProjectMasterTradesmanWhereInput
+  >;
+  NOT?: Maybe<
+    ProjectMasterTradesmanWhereInput[] | ProjectMasterTradesmanWhereInput
+  >;
+}
+
+export type ProjectStudentWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface ProjectStudentWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  project?: Maybe<ProjectWhereInput>;
+  profile?: Maybe<UserProfileWhereInput>;
+  AND?: Maybe<ProjectStudentWhereInput[] | ProjectStudentWhereInput>;
+  OR?: Maybe<ProjectStudentWhereInput[] | ProjectStudentWhereInput>;
+  NOT?: Maybe<ProjectStudentWhereInput[] | ProjectStudentWhereInput>;
+}
+
+export type ProjectTaskApprenticesWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface ProjectTaskApprenticesWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  project?: Maybe<ProjectWhereInput>;
+  profile?: Maybe<UserProfileWhereInput>;
+  AND?: Maybe<
+    ProjectTaskApprenticesWhereInput[] | ProjectTaskApprenticesWhereInput
+  >;
+  OR?: Maybe<
+    ProjectTaskApprenticesWhereInput[] | ProjectTaskApprenticesWhereInput
+  >;
+  NOT?: Maybe<
+    ProjectTaskApprenticesWhereInput[] | ProjectTaskApprenticesWhereInput
+  >;
+}
+
+export type ProjectTasksWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface ProjectTasksWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  project?: Maybe<ProjectWhereInput>;
+  trade?: Maybe<ProjectTradeWhereInput>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  priority?: Maybe<String>;
+  priority_not?: Maybe<String>;
+  priority_in?: Maybe<String[] | String>;
+  priority_not_in?: Maybe<String[] | String>;
+  priority_lt?: Maybe<String>;
+  priority_lte?: Maybe<String>;
+  priority_gt?: Maybe<String>;
+  priority_gte?: Maybe<String>;
+  priority_contains?: Maybe<String>;
+  priority_not_contains?: Maybe<String>;
+  priority_starts_with?: Maybe<String>;
+  priority_not_starts_with?: Maybe<String>;
+  priority_ends_with?: Maybe<String>;
+  priority_not_ends_with?: Maybe<String>;
+  dueDate?: Maybe<DateTimeInput>;
+  dueDate_not?: Maybe<DateTimeInput>;
+  dueDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dueDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  dueDate_lt?: Maybe<DateTimeInput>;
+  dueDate_lte?: Maybe<DateTimeInput>;
+  dueDate_gt?: Maybe<DateTimeInput>;
+  dueDate_gte?: Maybe<DateTimeInput>;
+  budgetHours?: Maybe<Int>;
+  budgetHours_not?: Maybe<Int>;
+  budgetHours_in?: Maybe<Int[] | Int>;
+  budgetHours_not_in?: Maybe<Int[] | Int>;
+  budgetHours_lt?: Maybe<Int>;
+  budgetHours_lte?: Maybe<Int>;
+  budgetHours_gt?: Maybe<Int>;
+  budgetHours_gte?: Maybe<Int>;
+  apprentices?: Maybe<ProjectTaskApprenticesWhereInput>;
+  AND?: Maybe<ProjectTasksWhereInput[] | ProjectTasksWhereInput>;
+  OR?: Maybe<ProjectTasksWhereInput[] | ProjectTasksWhereInput>;
+  NOT?: Maybe<ProjectTasksWhereInput[] | ProjectTasksWhereInput>;
+}
+
+export type ProjectTradeWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
@@ -1391,6 +1976,7 @@ export interface UserProfileCreateOneWithoutProjectsInput {
 export interface UserProfileCreateWithoutProjectsInput {
   id?: Maybe<ID_Input>;
   userAccountId: ID_Input;
+  verified?: Maybe<Boolean>;
   email: String;
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
@@ -1486,6 +2072,7 @@ export interface UserProfileCreateOneWithoutLikedProjectsInput {
 export interface UserProfileCreateWithoutLikedProjectsInput {
   id?: Maybe<ID_Input>;
   userAccountId: ID_Input;
+  verified?: Maybe<Boolean>;
   email: String;
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
@@ -1554,6 +2141,7 @@ export interface UserProfileCreateOneWithoutDonationsInput {
 export interface UserProfileCreateWithoutDonationsInput {
   id?: Maybe<ID_Input>;
   userAccountId: ID_Input;
+  verified?: Maybe<Boolean>;
   email: String;
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
@@ -1634,6 +2222,7 @@ export interface UserProfileCreateOneWithoutCommentsInput {
 export interface UserProfileCreateWithoutCommentsInput {
   id?: Maybe<ID_Input>;
   userAccountId: ID_Input;
+  verified?: Maybe<Boolean>;
   email: String;
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
@@ -1726,6 +2315,7 @@ export interface UserProfileCreateOneWithoutLikedCommentsInput {
 export interface UserProfileCreateWithoutLikedCommentsInput {
   id?: Maybe<ID_Input>;
   userAccountId: ID_Input;
+  verified?: Maybe<Boolean>;
   email: String;
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
@@ -1789,6 +2379,7 @@ export interface UserProfileUpdateOneRequiredWithoutProjectsInput {
 
 export interface UserProfileUpdateWithoutProjectsDataInput {
   userAccountId?: Maybe<ID_Input>;
+  verified?: Maybe<Boolean>;
   email?: Maybe<String>;
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
@@ -2022,6 +2613,7 @@ export interface UserProfileUpdateOneRequiredWithoutLikedProjectsInput {
 
 export interface UserProfileUpdateWithoutLikedProjectsDataInput {
   userAccountId?: Maybe<ID_Input>;
+  verified?: Maybe<Boolean>;
   email?: Maybe<String>;
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
@@ -2139,6 +2731,7 @@ export interface UserProfileUpdateOneRequiredWithoutDonationsInput {
 
 export interface UserProfileUpdateWithoutDonationsDataInput {
   userAccountId?: Maybe<ID_Input>;
+  verified?: Maybe<Boolean>;
   email?: Maybe<String>;
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
@@ -2269,6 +2862,7 @@ export interface UserProfileUpdateOneRequiredWithoutCommentsInput {
 
 export interface UserProfileUpdateWithoutCommentsDataInput {
   userAccountId?: Maybe<ID_Input>;
+  verified?: Maybe<Boolean>;
   email?: Maybe<String>;
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
@@ -2475,6 +3069,7 @@ export interface UserProfileUpdateOneRequiredWithoutLikedCommentsInput {
 
 export interface UserProfileUpdateWithoutLikedCommentsDataInput {
   userAccountId?: Maybe<ID_Input>;
+  verified?: Maybe<Boolean>;
   email?: Maybe<String>;
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
@@ -2703,6 +3298,22 @@ export interface ProjectDonationScalarWhereInput {
   amount_lte?: Maybe<Float>;
   amount_gt?: Maybe<Float>;
   amount_gte?: Maybe<Float>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
   AND?: Maybe<
     ProjectDonationScalarWhereInput[] | ProjectDonationScalarWhereInput
   >;
@@ -2981,6 +3592,154 @@ export interface ProjectUpdateManyMutationInput {
   featuredImage?: Maybe<String>;
 }
 
+export interface ProjectApplicantsCreateInput {
+  id?: Maybe<ID_Input>;
+  project: ProjectCreateOneInput;
+  profile: UserProfileCreateOneInput;
+  trade: ProjectTradeCreateOneInput;
+  coverLetter: String;
+  status?: Maybe<Boolean>;
+}
+
+export interface ProjectCreateOneInput {
+  create?: Maybe<ProjectCreateInput>;
+  connect?: Maybe<ProjectWhereUniqueInput>;
+}
+
+export interface UserProfileCreateOneInput {
+  create?: Maybe<UserProfileCreateInput>;
+  connect?: Maybe<UserProfileWhereUniqueInput>;
+}
+
+export interface UserProfileCreateInput {
+  id?: Maybe<ID_Input>;
+  userAccountId: ID_Input;
+  verified?: Maybe<Boolean>;
+  email: String;
+  firstName?: Maybe<String>;
+  lastName?: Maybe<String>;
+  profileImage?: Maybe<String>;
+  country?: Maybe<String>;
+  address?: Maybe<String>;
+  state?: Maybe<String>;
+  city?: Maybe<String>;
+  zip?: Maybe<Int>;
+  aptNumber?: Maybe<String>;
+  donations?: Maybe<ProjectDonationCreateManyWithoutProfileInput>;
+  projects?: Maybe<ProjectCreateManyWithoutProfileInput>;
+  likedProjects?: Maybe<ProjectLikeCreateManyWithoutProfileInput>;
+  comments?: Maybe<ProjectCommentCreateManyWithoutProfileInput>;
+  likedComments?: Maybe<ProjectCommentLikeCreateManyWithoutProfileInput>;
+}
+
+export interface ProjectTradeCreateOneInput {
+  create?: Maybe<ProjectTradeCreateInput>;
+  connect?: Maybe<ProjectTradeWhereUniqueInput>;
+}
+
+export interface ProjectTradeCreateInput {
+  id?: Maybe<ID_Input>;
+  project: ProjectCreateOneInput;
+  name: String;
+  description: String;
+}
+
+export interface ProjectApplicantsUpdateInput {
+  project?: Maybe<ProjectUpdateOneRequiredInput>;
+  profile?: Maybe<UserProfileUpdateOneRequiredInput>;
+  trade?: Maybe<ProjectTradeUpdateOneRequiredInput>;
+  coverLetter?: Maybe<String>;
+  status?: Maybe<Boolean>;
+}
+
+export interface ProjectUpdateOneRequiredInput {
+  create?: Maybe<ProjectCreateInput>;
+  update?: Maybe<ProjectUpdateDataInput>;
+  upsert?: Maybe<ProjectUpsertNestedInput>;
+  connect?: Maybe<ProjectWhereUniqueInput>;
+}
+
+export interface ProjectUpdateDataInput {
+  profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
+  name?: Maybe<String>;
+  description?: Maybe<String>;
+  country?: Maybe<String>;
+  address?: Maybe<String>;
+  state?: Maybe<String>;
+  city?: Maybe<String>;
+  zip?: Maybe<Int>;
+  duration?: Maybe<Int>;
+  difficulty?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  goalAmount?: Maybe<Float>;
+  amountFunded?: Maybe<Float>;
+  featuredImage?: Maybe<String>;
+  donations?: Maybe<ProjectDonationUpdateManyWithoutProjectInput>;
+  images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
+  likes?: Maybe<ProjectLikeUpdateManyWithoutProjectInput>;
+  comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
+}
+
+export interface ProjectUpsertNestedInput {
+  update: ProjectUpdateDataInput;
+  create: ProjectCreateInput;
+}
+
+export interface UserProfileUpdateOneRequiredInput {
+  create?: Maybe<UserProfileCreateInput>;
+  update?: Maybe<UserProfileUpdateDataInput>;
+  upsert?: Maybe<UserProfileUpsertNestedInput>;
+  connect?: Maybe<UserProfileWhereUniqueInput>;
+}
+
+export interface UserProfileUpdateDataInput {
+  userAccountId?: Maybe<ID_Input>;
+  verified?: Maybe<Boolean>;
+  email?: Maybe<String>;
+  firstName?: Maybe<String>;
+  lastName?: Maybe<String>;
+  profileImage?: Maybe<String>;
+  country?: Maybe<String>;
+  address?: Maybe<String>;
+  state?: Maybe<String>;
+  city?: Maybe<String>;
+  zip?: Maybe<Int>;
+  aptNumber?: Maybe<String>;
+  donations?: Maybe<ProjectDonationUpdateManyWithoutProfileInput>;
+  projects?: Maybe<ProjectUpdateManyWithoutProfileInput>;
+  likedProjects?: Maybe<ProjectLikeUpdateManyWithoutProfileInput>;
+  comments?: Maybe<ProjectCommentUpdateManyWithoutProfileInput>;
+  likedComments?: Maybe<ProjectCommentLikeUpdateManyWithoutProfileInput>;
+}
+
+export interface UserProfileUpsertNestedInput {
+  update: UserProfileUpdateDataInput;
+  create: UserProfileCreateInput;
+}
+
+export interface ProjectTradeUpdateOneRequiredInput {
+  create?: Maybe<ProjectTradeCreateInput>;
+  update?: Maybe<ProjectTradeUpdateDataInput>;
+  upsert?: Maybe<ProjectTradeUpsertNestedInput>;
+  connect?: Maybe<ProjectTradeWhereUniqueInput>;
+}
+
+export interface ProjectTradeUpdateDataInput {
+  project?: Maybe<ProjectUpdateOneRequiredInput>;
+  name?: Maybe<String>;
+  description?: Maybe<String>;
+}
+
+export interface ProjectTradeUpsertNestedInput {
+  update: ProjectTradeUpdateDataInput;
+  create: ProjectTradeCreateInput;
+}
+
+export interface ProjectApplicantsUpdateManyMutationInput {
+  coverLetter?: Maybe<String>;
+  status?: Maybe<Boolean>;
+}
+
 export interface ProjectCommentCreateInput {
   id?: Maybe<ID_Input>;
   profile: UserProfileCreateOneWithoutCommentsInput;
@@ -3115,6 +3874,100 @@ export interface ProjectLikeUpdateInput {
   project?: Maybe<ProjectUpdateOneRequiredWithoutLikesInput>;
 }
 
+export interface ProjectMasterTradesmanCreateInput {
+  id?: Maybe<ID_Input>;
+  project: ProjectCreateOneInput;
+  profile: UserProfileCreateOneInput;
+}
+
+export interface ProjectMasterTradesmanUpdateInput {
+  project?: Maybe<ProjectUpdateOneRequiredInput>;
+  profile?: Maybe<UserProfileUpdateOneRequiredInput>;
+}
+
+export interface ProjectStudentCreateInput {
+  id?: Maybe<ID_Input>;
+  project: ProjectCreateOneInput;
+  profile: UserProfileCreateOneInput;
+}
+
+export interface ProjectStudentUpdateInput {
+  project?: Maybe<ProjectUpdateOneRequiredInput>;
+  profile?: Maybe<UserProfileUpdateOneRequiredInput>;
+}
+
+export interface ProjectTaskApprenticesCreateInput {
+  id?: Maybe<ID_Input>;
+  project: ProjectCreateOneInput;
+  profile: UserProfileCreateOneInput;
+}
+
+export interface ProjectTaskApprenticesUpdateInput {
+  project?: Maybe<ProjectUpdateOneRequiredInput>;
+  profile?: Maybe<UserProfileUpdateOneRequiredInput>;
+}
+
+export interface ProjectTasksCreateInput {
+  id?: Maybe<ID_Input>;
+  project: ProjectCreateOneInput;
+  trade: ProjectTradeCreateOneInput;
+  description: String;
+  priority: String;
+  dueDate: DateTimeInput;
+  budgetHours: Int;
+  apprentices: ProjectTaskApprenticesCreateOneInput;
+}
+
+export interface ProjectTaskApprenticesCreateOneInput {
+  create?: Maybe<ProjectTaskApprenticesCreateInput>;
+  connect?: Maybe<ProjectTaskApprenticesWhereUniqueInput>;
+}
+
+export interface ProjectTasksUpdateInput {
+  project?: Maybe<ProjectUpdateOneRequiredInput>;
+  trade?: Maybe<ProjectTradeUpdateOneRequiredInput>;
+  description?: Maybe<String>;
+  priority?: Maybe<String>;
+  dueDate?: Maybe<DateTimeInput>;
+  budgetHours?: Maybe<Int>;
+  apprentices?: Maybe<ProjectTaskApprenticesUpdateOneRequiredInput>;
+}
+
+export interface ProjectTaskApprenticesUpdateOneRequiredInput {
+  create?: Maybe<ProjectTaskApprenticesCreateInput>;
+  update?: Maybe<ProjectTaskApprenticesUpdateDataInput>;
+  upsert?: Maybe<ProjectTaskApprenticesUpsertNestedInput>;
+  connect?: Maybe<ProjectTaskApprenticesWhereUniqueInput>;
+}
+
+export interface ProjectTaskApprenticesUpdateDataInput {
+  project?: Maybe<ProjectUpdateOneRequiredInput>;
+  profile?: Maybe<UserProfileUpdateOneRequiredInput>;
+}
+
+export interface ProjectTaskApprenticesUpsertNestedInput {
+  update: ProjectTaskApprenticesUpdateDataInput;
+  create: ProjectTaskApprenticesCreateInput;
+}
+
+export interface ProjectTasksUpdateManyMutationInput {
+  description?: Maybe<String>;
+  priority?: Maybe<String>;
+  dueDate?: Maybe<DateTimeInput>;
+  budgetHours?: Maybe<Int>;
+}
+
+export interface ProjectTradeUpdateInput {
+  project?: Maybe<ProjectUpdateOneRequiredInput>;
+  name?: Maybe<String>;
+  description?: Maybe<String>;
+}
+
+export interface ProjectTradeUpdateManyMutationInput {
+  name?: Maybe<String>;
+  description?: Maybe<String>;
+}
+
 export interface UserAccountCreateInput {
   id?: Maybe<ID_Input>;
   email: String;
@@ -3131,28 +3984,9 @@ export interface UserAccountUpdateManyMutationInput {
   password?: Maybe<String>;
 }
 
-export interface UserProfileCreateInput {
-  id?: Maybe<ID_Input>;
-  userAccountId: ID_Input;
-  email: String;
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
-  profileImage?: Maybe<String>;
-  country?: Maybe<String>;
-  address?: Maybe<String>;
-  state?: Maybe<String>;
-  city?: Maybe<String>;
-  zip?: Maybe<Int>;
-  aptNumber?: Maybe<String>;
-  donations?: Maybe<ProjectDonationCreateManyWithoutProfileInput>;
-  projects?: Maybe<ProjectCreateManyWithoutProfileInput>;
-  likedProjects?: Maybe<ProjectLikeCreateManyWithoutProfileInput>;
-  comments?: Maybe<ProjectCommentCreateManyWithoutProfileInput>;
-  likedComments?: Maybe<ProjectCommentLikeCreateManyWithoutProfileInput>;
-}
-
 export interface UserProfileUpdateInput {
   userAccountId?: Maybe<ID_Input>;
+  verified?: Maybe<Boolean>;
   email?: Maybe<String>;
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
@@ -3172,6 +4006,7 @@ export interface UserProfileUpdateInput {
 
 export interface UserProfileUpdateManyMutationInput {
   userAccountId?: Maybe<ID_Input>;
+  verified?: Maybe<Boolean>;
   email?: Maybe<String>;
   firstName?: Maybe<String>;
   lastName?: Maybe<String>;
@@ -3213,6 +4048,26 @@ export interface ProjectSubscriptionWhereInput {
   AND?: Maybe<ProjectSubscriptionWhereInput[] | ProjectSubscriptionWhereInput>;
   OR?: Maybe<ProjectSubscriptionWhereInput[] | ProjectSubscriptionWhereInput>;
   NOT?: Maybe<ProjectSubscriptionWhereInput[] | ProjectSubscriptionWhereInput>;
+}
+
+export interface ProjectApplicantsSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ProjectApplicantsWhereInput>;
+  AND?: Maybe<
+    | ProjectApplicantsSubscriptionWhereInput[]
+    | ProjectApplicantsSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | ProjectApplicantsSubscriptionWhereInput[]
+    | ProjectApplicantsSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | ProjectApplicantsSubscriptionWhereInput[]
+    | ProjectApplicantsSubscriptionWhereInput
+  >;
 }
 
 export interface ProjectCommentSubscriptionWhereInput {
@@ -3306,6 +4161,100 @@ export interface ProjectLikeSubscriptionWhereInput {
   >;
   NOT?: Maybe<
     ProjectLikeSubscriptionWhereInput[] | ProjectLikeSubscriptionWhereInput
+  >;
+}
+
+export interface ProjectMasterTradesmanSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ProjectMasterTradesmanWhereInput>;
+  AND?: Maybe<
+    | ProjectMasterTradesmanSubscriptionWhereInput[]
+    | ProjectMasterTradesmanSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | ProjectMasterTradesmanSubscriptionWhereInput[]
+    | ProjectMasterTradesmanSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | ProjectMasterTradesmanSubscriptionWhereInput[]
+    | ProjectMasterTradesmanSubscriptionWhereInput
+  >;
+}
+
+export interface ProjectStudentSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ProjectStudentWhereInput>;
+  AND?: Maybe<
+    | ProjectStudentSubscriptionWhereInput[]
+    | ProjectStudentSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | ProjectStudentSubscriptionWhereInput[]
+    | ProjectStudentSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | ProjectStudentSubscriptionWhereInput[]
+    | ProjectStudentSubscriptionWhereInput
+  >;
+}
+
+export interface ProjectTaskApprenticesSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ProjectTaskApprenticesWhereInput>;
+  AND?: Maybe<
+    | ProjectTaskApprenticesSubscriptionWhereInput[]
+    | ProjectTaskApprenticesSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    | ProjectTaskApprenticesSubscriptionWhereInput[]
+    | ProjectTaskApprenticesSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    | ProjectTaskApprenticesSubscriptionWhereInput[]
+    | ProjectTaskApprenticesSubscriptionWhereInput
+  >;
+}
+
+export interface ProjectTasksSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ProjectTasksWhereInput>;
+  AND?: Maybe<
+    ProjectTasksSubscriptionWhereInput[] | ProjectTasksSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    ProjectTasksSubscriptionWhereInput[] | ProjectTasksSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    ProjectTasksSubscriptionWhereInput[] | ProjectTasksSubscriptionWhereInput
+  >;
+}
+
+export interface ProjectTradeSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ProjectTradeWhereInput>;
+  AND?: Maybe<
+    ProjectTradeSubscriptionWhereInput[] | ProjectTradeSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    ProjectTradeSubscriptionWhereInput[] | ProjectTradeSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    ProjectTradeSubscriptionWhereInput[] | ProjectTradeSubscriptionWhereInput
   >;
 }
 
@@ -3654,6 +4603,7 @@ export interface ProjectNullablePromise
 export interface UserProfile {
   id: ID_Output;
   userAccountId: ID_Output;
+  verified?: Boolean;
   email: String;
   firstName?: String;
   lastName?: String;
@@ -3671,6 +4621,7 @@ export interface UserProfile {
 export interface UserProfilePromise extends Promise<UserProfile>, Fragmentable {
   id: () => Promise<ID_Output>;
   userAccountId: () => Promise<ID_Output>;
+  verified: () => Promise<Boolean>;
   email: () => Promise<String>;
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
@@ -3735,6 +4686,7 @@ export interface UserProfileSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   userAccountId: () => Promise<AsyncIterator<ID_Output>>;
+  verified: () => Promise<AsyncIterator<Boolean>>;
   email: () => Promise<AsyncIterator<String>>;
   firstName: () => Promise<AsyncIterator<String>>;
   lastName: () => Promise<AsyncIterator<String>>;
@@ -3801,6 +4753,7 @@ export interface UserProfileNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   userAccountId: () => Promise<ID_Output>;
+  verified: () => Promise<Boolean>;
   email: () => Promise<String>;
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
@@ -3863,6 +4816,8 @@ export interface UserProfileNullablePromise
 export interface ProjectDonation {
   id: ID_Output;
   amount: Float;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface ProjectDonationPromise
@@ -3872,6 +4827,8 @@ export interface ProjectDonationPromise
   project: <T = ProjectPromise>() => T;
   profile: <T = UserProfilePromise>() => T;
   amount: () => Promise<Float>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface ProjectDonationSubscription
@@ -3881,6 +4838,8 @@ export interface ProjectDonationSubscription
   project: <T = ProjectSubscription>() => T;
   profile: <T = UserProfileSubscription>() => T;
   amount: () => Promise<AsyncIterator<Float>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface ProjectDonationNullablePromise
@@ -3890,6 +4849,8 @@ export interface ProjectDonationNullablePromise
   project: <T = ProjectPromise>() => T;
   profile: <T = UserProfilePromise>() => T;
   amount: () => Promise<Float>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface ProjectLike {
@@ -4112,6 +5073,134 @@ export interface AggregateProjectPromise
 
 export interface AggregateProjectSubscription
   extends Promise<AsyncIterator<AggregateProject>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProjectApplicants {
+  id: ID_Output;
+  coverLetter: String;
+  status?: Boolean;
+}
+
+export interface ProjectApplicantsPromise
+  extends Promise<ProjectApplicants>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  project: <T = ProjectPromise>() => T;
+  profile: <T = UserProfilePromise>() => T;
+  trade: <T = ProjectTradePromise>() => T;
+  coverLetter: () => Promise<String>;
+  status: () => Promise<Boolean>;
+}
+
+export interface ProjectApplicantsSubscription
+  extends Promise<AsyncIterator<ProjectApplicants>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  project: <T = ProjectSubscription>() => T;
+  profile: <T = UserProfileSubscription>() => T;
+  trade: <T = ProjectTradeSubscription>() => T;
+  coverLetter: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface ProjectApplicantsNullablePromise
+  extends Promise<ProjectApplicants | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  project: <T = ProjectPromise>() => T;
+  profile: <T = UserProfilePromise>() => T;
+  trade: <T = ProjectTradePromise>() => T;
+  coverLetter: () => Promise<String>;
+  status: () => Promise<Boolean>;
+}
+
+export interface ProjectTrade {
+  id: ID_Output;
+  name: String;
+  description: String;
+}
+
+export interface ProjectTradePromise
+  extends Promise<ProjectTrade>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  project: <T = ProjectPromise>() => T;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+}
+
+export interface ProjectTradeSubscription
+  extends Promise<AsyncIterator<ProjectTrade>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  project: <T = ProjectSubscription>() => T;
+  name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ProjectTradeNullablePromise
+  extends Promise<ProjectTrade | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  project: <T = ProjectPromise>() => T;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+}
+
+export interface ProjectApplicantsConnection {
+  pageInfo: PageInfo;
+  edges: ProjectApplicantsEdge[];
+}
+
+export interface ProjectApplicantsConnectionPromise
+  extends Promise<ProjectApplicantsConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProjectApplicantsEdge>>() => T;
+  aggregate: <T = AggregateProjectApplicantsPromise>() => T;
+}
+
+export interface ProjectApplicantsConnectionSubscription
+  extends Promise<AsyncIterator<ProjectApplicantsConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ProjectApplicantsEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateProjectApplicantsSubscription>() => T;
+}
+
+export interface ProjectApplicantsEdge {
+  node: ProjectApplicants;
+  cursor: String;
+}
+
+export interface ProjectApplicantsEdgePromise
+  extends Promise<ProjectApplicantsEdge>,
+    Fragmentable {
+  node: <T = ProjectApplicantsPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ProjectApplicantsEdgeSubscription
+  extends Promise<AsyncIterator<ProjectApplicantsEdge>>,
+    Fragmentable {
+  node: <T = ProjectApplicantsSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateProjectApplicants {
+  count: Int;
+}
+
+export interface AggregateProjectApplicantsPromise
+  extends Promise<AggregateProjectApplicants>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateProjectApplicantsSubscription
+  extends Promise<AsyncIterator<AggregateProjectApplicants>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -4394,6 +5483,421 @@ export interface AggregateProjectLikePromise
 
 export interface AggregateProjectLikeSubscription
   extends Promise<AsyncIterator<AggregateProjectLike>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProjectMasterTradesman {
+  id: ID_Output;
+}
+
+export interface ProjectMasterTradesmanPromise
+  extends Promise<ProjectMasterTradesman>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  project: <T = ProjectPromise>() => T;
+  profile: <T = UserProfilePromise>() => T;
+}
+
+export interface ProjectMasterTradesmanSubscription
+  extends Promise<AsyncIterator<ProjectMasterTradesman>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  project: <T = ProjectSubscription>() => T;
+  profile: <T = UserProfileSubscription>() => T;
+}
+
+export interface ProjectMasterTradesmanNullablePromise
+  extends Promise<ProjectMasterTradesman | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  project: <T = ProjectPromise>() => T;
+  profile: <T = UserProfilePromise>() => T;
+}
+
+export interface ProjectMasterTradesmanConnection {
+  pageInfo: PageInfo;
+  edges: ProjectMasterTradesmanEdge[];
+}
+
+export interface ProjectMasterTradesmanConnectionPromise
+  extends Promise<ProjectMasterTradesmanConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProjectMasterTradesmanEdge>>() => T;
+  aggregate: <T = AggregateProjectMasterTradesmanPromise>() => T;
+}
+
+export interface ProjectMasterTradesmanConnectionSubscription
+  extends Promise<AsyncIterator<ProjectMasterTradesmanConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<AsyncIterator<ProjectMasterTradesmanEdgeSubscription>>
+  >() => T;
+  aggregate: <T = AggregateProjectMasterTradesmanSubscription>() => T;
+}
+
+export interface ProjectMasterTradesmanEdge {
+  node: ProjectMasterTradesman;
+  cursor: String;
+}
+
+export interface ProjectMasterTradesmanEdgePromise
+  extends Promise<ProjectMasterTradesmanEdge>,
+    Fragmentable {
+  node: <T = ProjectMasterTradesmanPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ProjectMasterTradesmanEdgeSubscription
+  extends Promise<AsyncIterator<ProjectMasterTradesmanEdge>>,
+    Fragmentable {
+  node: <T = ProjectMasterTradesmanSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateProjectMasterTradesman {
+  count: Int;
+}
+
+export interface AggregateProjectMasterTradesmanPromise
+  extends Promise<AggregateProjectMasterTradesman>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateProjectMasterTradesmanSubscription
+  extends Promise<AsyncIterator<AggregateProjectMasterTradesman>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProjectStudent {
+  id: ID_Output;
+}
+
+export interface ProjectStudentPromise
+  extends Promise<ProjectStudent>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  project: <T = ProjectPromise>() => T;
+  profile: <T = UserProfilePromise>() => T;
+}
+
+export interface ProjectStudentSubscription
+  extends Promise<AsyncIterator<ProjectStudent>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  project: <T = ProjectSubscription>() => T;
+  profile: <T = UserProfileSubscription>() => T;
+}
+
+export interface ProjectStudentNullablePromise
+  extends Promise<ProjectStudent | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  project: <T = ProjectPromise>() => T;
+  profile: <T = UserProfilePromise>() => T;
+}
+
+export interface ProjectStudentConnection {
+  pageInfo: PageInfo;
+  edges: ProjectStudentEdge[];
+}
+
+export interface ProjectStudentConnectionPromise
+  extends Promise<ProjectStudentConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProjectStudentEdge>>() => T;
+  aggregate: <T = AggregateProjectStudentPromise>() => T;
+}
+
+export interface ProjectStudentConnectionSubscription
+  extends Promise<AsyncIterator<ProjectStudentConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ProjectStudentEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateProjectStudentSubscription>() => T;
+}
+
+export interface ProjectStudentEdge {
+  node: ProjectStudent;
+  cursor: String;
+}
+
+export interface ProjectStudentEdgePromise
+  extends Promise<ProjectStudentEdge>,
+    Fragmentable {
+  node: <T = ProjectStudentPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ProjectStudentEdgeSubscription
+  extends Promise<AsyncIterator<ProjectStudentEdge>>,
+    Fragmentable {
+  node: <T = ProjectStudentSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateProjectStudent {
+  count: Int;
+}
+
+export interface AggregateProjectStudentPromise
+  extends Promise<AggregateProjectStudent>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateProjectStudentSubscription
+  extends Promise<AsyncIterator<AggregateProjectStudent>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProjectTaskApprentices {
+  id: ID_Output;
+}
+
+export interface ProjectTaskApprenticesPromise
+  extends Promise<ProjectTaskApprentices>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  project: <T = ProjectPromise>() => T;
+  profile: <T = UserProfilePromise>() => T;
+}
+
+export interface ProjectTaskApprenticesSubscription
+  extends Promise<AsyncIterator<ProjectTaskApprentices>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  project: <T = ProjectSubscription>() => T;
+  profile: <T = UserProfileSubscription>() => T;
+}
+
+export interface ProjectTaskApprenticesNullablePromise
+  extends Promise<ProjectTaskApprentices | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  project: <T = ProjectPromise>() => T;
+  profile: <T = UserProfilePromise>() => T;
+}
+
+export interface ProjectTaskApprenticesConnection {
+  pageInfo: PageInfo;
+  edges: ProjectTaskApprenticesEdge[];
+}
+
+export interface ProjectTaskApprenticesConnectionPromise
+  extends Promise<ProjectTaskApprenticesConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProjectTaskApprenticesEdge>>() => T;
+  aggregate: <T = AggregateProjectTaskApprenticesPromise>() => T;
+}
+
+export interface ProjectTaskApprenticesConnectionSubscription
+  extends Promise<AsyncIterator<ProjectTaskApprenticesConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <
+    T = Promise<AsyncIterator<ProjectTaskApprenticesEdgeSubscription>>
+  >() => T;
+  aggregate: <T = AggregateProjectTaskApprenticesSubscription>() => T;
+}
+
+export interface ProjectTaskApprenticesEdge {
+  node: ProjectTaskApprentices;
+  cursor: String;
+}
+
+export interface ProjectTaskApprenticesEdgePromise
+  extends Promise<ProjectTaskApprenticesEdge>,
+    Fragmentable {
+  node: <T = ProjectTaskApprenticesPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ProjectTaskApprenticesEdgeSubscription
+  extends Promise<AsyncIterator<ProjectTaskApprenticesEdge>>,
+    Fragmentable {
+  node: <T = ProjectTaskApprenticesSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateProjectTaskApprentices {
+  count: Int;
+}
+
+export interface AggregateProjectTaskApprenticesPromise
+  extends Promise<AggregateProjectTaskApprentices>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateProjectTaskApprenticesSubscription
+  extends Promise<AsyncIterator<AggregateProjectTaskApprentices>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProjectTasks {
+  id: ID_Output;
+  description: String;
+  priority: String;
+  dueDate: DateTimeOutput;
+  budgetHours: Int;
+}
+
+export interface ProjectTasksPromise
+  extends Promise<ProjectTasks>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  project: <T = ProjectPromise>() => T;
+  trade: <T = ProjectTradePromise>() => T;
+  description: () => Promise<String>;
+  priority: () => Promise<String>;
+  dueDate: () => Promise<DateTimeOutput>;
+  budgetHours: () => Promise<Int>;
+  apprentices: <T = ProjectTaskApprenticesPromise>() => T;
+}
+
+export interface ProjectTasksSubscription
+  extends Promise<AsyncIterator<ProjectTasks>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  project: <T = ProjectSubscription>() => T;
+  trade: <T = ProjectTradeSubscription>() => T;
+  description: () => Promise<AsyncIterator<String>>;
+  priority: () => Promise<AsyncIterator<String>>;
+  dueDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  budgetHours: () => Promise<AsyncIterator<Int>>;
+  apprentices: <T = ProjectTaskApprenticesSubscription>() => T;
+}
+
+export interface ProjectTasksNullablePromise
+  extends Promise<ProjectTasks | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  project: <T = ProjectPromise>() => T;
+  trade: <T = ProjectTradePromise>() => T;
+  description: () => Promise<String>;
+  priority: () => Promise<String>;
+  dueDate: () => Promise<DateTimeOutput>;
+  budgetHours: () => Promise<Int>;
+  apprentices: <T = ProjectTaskApprenticesPromise>() => T;
+}
+
+export interface ProjectTasksConnection {
+  pageInfo: PageInfo;
+  edges: ProjectTasksEdge[];
+}
+
+export interface ProjectTasksConnectionPromise
+  extends Promise<ProjectTasksConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProjectTasksEdge>>() => T;
+  aggregate: <T = AggregateProjectTasksPromise>() => T;
+}
+
+export interface ProjectTasksConnectionSubscription
+  extends Promise<AsyncIterator<ProjectTasksConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ProjectTasksEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateProjectTasksSubscription>() => T;
+}
+
+export interface ProjectTasksEdge {
+  node: ProjectTasks;
+  cursor: String;
+}
+
+export interface ProjectTasksEdgePromise
+  extends Promise<ProjectTasksEdge>,
+    Fragmentable {
+  node: <T = ProjectTasksPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ProjectTasksEdgeSubscription
+  extends Promise<AsyncIterator<ProjectTasksEdge>>,
+    Fragmentable {
+  node: <T = ProjectTasksSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateProjectTasks {
+  count: Int;
+}
+
+export interface AggregateProjectTasksPromise
+  extends Promise<AggregateProjectTasks>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateProjectTasksSubscription
+  extends Promise<AsyncIterator<AggregateProjectTasks>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProjectTradeConnection {
+  pageInfo: PageInfo;
+  edges: ProjectTradeEdge[];
+}
+
+export interface ProjectTradeConnectionPromise
+  extends Promise<ProjectTradeConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProjectTradeEdge>>() => T;
+  aggregate: <T = AggregateProjectTradePromise>() => T;
+}
+
+export interface ProjectTradeConnectionSubscription
+  extends Promise<AsyncIterator<ProjectTradeConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ProjectTradeEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateProjectTradeSubscription>() => T;
+}
+
+export interface ProjectTradeEdge {
+  node: ProjectTrade;
+  cursor: String;
+}
+
+export interface ProjectTradeEdgePromise
+  extends Promise<ProjectTradeEdge>,
+    Fragmentable {
+  node: <T = ProjectTradePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ProjectTradeEdgeSubscription
+  extends Promise<AsyncIterator<ProjectTradeEdge>>,
+    Fragmentable {
+  node: <T = ProjectTradeSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateProjectTrade {
+  count: Int;
+}
+
+export interface AggregateProjectTradePromise
+  extends Promise<AggregateProjectTrade>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateProjectTradeSubscription
+  extends Promise<AsyncIterator<AggregateProjectTrade>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -4698,6 +6202,53 @@ export interface ProjectPreviousValuesSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
+export interface ProjectApplicantsSubscriptionPayload {
+  mutation: MutationType;
+  node: ProjectApplicants;
+  updatedFields: String[];
+  previousValues: ProjectApplicantsPreviousValues;
+}
+
+export interface ProjectApplicantsSubscriptionPayloadPromise
+  extends Promise<ProjectApplicantsSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ProjectApplicantsPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ProjectApplicantsPreviousValuesPromise>() => T;
+}
+
+export interface ProjectApplicantsSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ProjectApplicantsSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ProjectApplicantsSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ProjectApplicantsPreviousValuesSubscription>() => T;
+}
+
+export interface ProjectApplicantsPreviousValues {
+  id: ID_Output;
+  coverLetter: String;
+  status?: Boolean;
+}
+
+export interface ProjectApplicantsPreviousValuesPromise
+  extends Promise<ProjectApplicantsPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  coverLetter: () => Promise<String>;
+  status: () => Promise<Boolean>;
+}
+
+export interface ProjectApplicantsPreviousValuesSubscription
+  extends Promise<AsyncIterator<ProjectApplicantsPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  coverLetter: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<Boolean>>;
+}
+
 export interface ProjectCommentSubscriptionPayload {
   mutation: MutationType;
   node: ProjectComment;
@@ -4823,6 +6374,8 @@ export interface ProjectDonationSubscriptionPayloadSubscription
 export interface ProjectDonationPreviousValues {
   id: ID_Output;
   amount: Float;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
 }
 
 export interface ProjectDonationPreviousValuesPromise
@@ -4830,6 +6383,8 @@ export interface ProjectDonationPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   amount: () => Promise<Float>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface ProjectDonationPreviousValuesSubscription
@@ -4837,6 +6392,8 @@ export interface ProjectDonationPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   amount: () => Promise<AsyncIterator<Float>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface ProjectImageSubscriptionPayload {
@@ -4933,6 +6490,229 @@ export interface ProjectLikePreviousValuesSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
+export interface ProjectMasterTradesmanSubscriptionPayload {
+  mutation: MutationType;
+  node: ProjectMasterTradesman;
+  updatedFields: String[];
+  previousValues: ProjectMasterTradesmanPreviousValues;
+}
+
+export interface ProjectMasterTradesmanSubscriptionPayloadPromise
+  extends Promise<ProjectMasterTradesmanSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ProjectMasterTradesmanPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ProjectMasterTradesmanPreviousValuesPromise>() => T;
+}
+
+export interface ProjectMasterTradesmanSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ProjectMasterTradesmanSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ProjectMasterTradesmanSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ProjectMasterTradesmanPreviousValuesSubscription>() => T;
+}
+
+export interface ProjectMasterTradesmanPreviousValues {
+  id: ID_Output;
+}
+
+export interface ProjectMasterTradesmanPreviousValuesPromise
+  extends Promise<ProjectMasterTradesmanPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+}
+
+export interface ProjectMasterTradesmanPreviousValuesSubscription
+  extends Promise<AsyncIterator<ProjectMasterTradesmanPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+}
+
+export interface ProjectStudentSubscriptionPayload {
+  mutation: MutationType;
+  node: ProjectStudent;
+  updatedFields: String[];
+  previousValues: ProjectStudentPreviousValues;
+}
+
+export interface ProjectStudentSubscriptionPayloadPromise
+  extends Promise<ProjectStudentSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ProjectStudentPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ProjectStudentPreviousValuesPromise>() => T;
+}
+
+export interface ProjectStudentSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ProjectStudentSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ProjectStudentSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ProjectStudentPreviousValuesSubscription>() => T;
+}
+
+export interface ProjectStudentPreviousValues {
+  id: ID_Output;
+}
+
+export interface ProjectStudentPreviousValuesPromise
+  extends Promise<ProjectStudentPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+}
+
+export interface ProjectStudentPreviousValuesSubscription
+  extends Promise<AsyncIterator<ProjectStudentPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+}
+
+export interface ProjectTaskApprenticesSubscriptionPayload {
+  mutation: MutationType;
+  node: ProjectTaskApprentices;
+  updatedFields: String[];
+  previousValues: ProjectTaskApprenticesPreviousValues;
+}
+
+export interface ProjectTaskApprenticesSubscriptionPayloadPromise
+  extends Promise<ProjectTaskApprenticesSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ProjectTaskApprenticesPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ProjectTaskApprenticesPreviousValuesPromise>() => T;
+}
+
+export interface ProjectTaskApprenticesSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ProjectTaskApprenticesSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ProjectTaskApprenticesSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ProjectTaskApprenticesPreviousValuesSubscription>() => T;
+}
+
+export interface ProjectTaskApprenticesPreviousValues {
+  id: ID_Output;
+}
+
+export interface ProjectTaskApprenticesPreviousValuesPromise
+  extends Promise<ProjectTaskApprenticesPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+}
+
+export interface ProjectTaskApprenticesPreviousValuesSubscription
+  extends Promise<AsyncIterator<ProjectTaskApprenticesPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+}
+
+export interface ProjectTasksSubscriptionPayload {
+  mutation: MutationType;
+  node: ProjectTasks;
+  updatedFields: String[];
+  previousValues: ProjectTasksPreviousValues;
+}
+
+export interface ProjectTasksSubscriptionPayloadPromise
+  extends Promise<ProjectTasksSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ProjectTasksPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ProjectTasksPreviousValuesPromise>() => T;
+}
+
+export interface ProjectTasksSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ProjectTasksSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ProjectTasksSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ProjectTasksPreviousValuesSubscription>() => T;
+}
+
+export interface ProjectTasksPreviousValues {
+  id: ID_Output;
+  description: String;
+  priority: String;
+  dueDate: DateTimeOutput;
+  budgetHours: Int;
+}
+
+export interface ProjectTasksPreviousValuesPromise
+  extends Promise<ProjectTasksPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  description: () => Promise<String>;
+  priority: () => Promise<String>;
+  dueDate: () => Promise<DateTimeOutput>;
+  budgetHours: () => Promise<Int>;
+}
+
+export interface ProjectTasksPreviousValuesSubscription
+  extends Promise<AsyncIterator<ProjectTasksPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  description: () => Promise<AsyncIterator<String>>;
+  priority: () => Promise<AsyncIterator<String>>;
+  dueDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  budgetHours: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProjectTradeSubscriptionPayload {
+  mutation: MutationType;
+  node: ProjectTrade;
+  updatedFields: String[];
+  previousValues: ProjectTradePreviousValues;
+}
+
+export interface ProjectTradeSubscriptionPayloadPromise
+  extends Promise<ProjectTradeSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ProjectTradePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ProjectTradePreviousValuesPromise>() => T;
+}
+
+export interface ProjectTradeSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ProjectTradeSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ProjectTradeSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ProjectTradePreviousValuesSubscription>() => T;
+}
+
+export interface ProjectTradePreviousValues {
+  id: ID_Output;
+  name: String;
+  description: String;
+}
+
+export interface ProjectTradePreviousValuesPromise
+  extends Promise<ProjectTradePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  description: () => Promise<String>;
+}
+
+export interface ProjectTradePreviousValuesSubscription
+  extends Promise<AsyncIterator<ProjectTradePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  description: () => Promise<AsyncIterator<String>>;
+}
+
 export interface UserAccountSubscriptionPayload {
   mutation: MutationType;
   node: UserAccount;
@@ -5014,6 +6794,7 @@ export interface UserProfileSubscriptionPayloadSubscription
 export interface UserProfilePreviousValues {
   id: ID_Output;
   userAccountId: ID_Output;
+  verified?: Boolean;
   email: String;
   firstName?: String;
   lastName?: String;
@@ -5033,6 +6814,7 @@ export interface UserProfilePreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   userAccountId: () => Promise<ID_Output>;
+  verified: () => Promise<Boolean>;
   email: () => Promise<String>;
   firstName: () => Promise<String>;
   lastName: () => Promise<String>;
@@ -5052,6 +6834,7 @@ export interface UserProfilePreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   userAccountId: () => Promise<AsyncIterator<ID_Output>>;
+  verified: () => Promise<AsyncIterator<Boolean>>;
   email: () => Promise<AsyncIterator<String>>;
   firstName: () => Promise<AsyncIterator<String>>;
   lastName: () => Promise<AsyncIterator<String>>;
@@ -5143,6 +6926,30 @@ export const models: Model[] = [
   },
   {
     name: "ProjectCommentLike",
+    embedded: false
+  },
+  {
+    name: "ProjectTrade",
+    embedded: false
+  },
+  {
+    name: "ProjectStudent",
+    embedded: false
+  },
+  {
+    name: "ProjectMasterTradesman",
+    embedded: false
+  },
+  {
+    name: "ProjectApplicants",
+    embedded: false
+  },
+  {
+    name: "ProjectTasks",
+    embedded: false
+  },
+  {
+    name: "ProjectTaskApprentices",
     embedded: false
   }
 ];

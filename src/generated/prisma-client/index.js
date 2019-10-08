@@ -39,6 +39,30 @@ var models = [
   {
     name: "ProjectCommentLike",
     embedded: false
+  },
+  {
+    name: "ProjectTrade",
+    embedded: false
+  },
+  {
+    name: "ProjectStudent",
+    embedded: false
+  },
+  {
+    name: "ProjectMasterTradesman",
+    embedded: false
+  },
+  {
+    name: "ProjectApplicants",
+    embedded: false
+  },
+  {
+    name: "ProjectTasks",
+    embedded: false
+  },
+  {
+    name: "ProjectTaskApprentices",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
