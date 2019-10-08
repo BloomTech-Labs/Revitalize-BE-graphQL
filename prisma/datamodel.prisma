@@ -102,6 +102,13 @@ type ProjectCommentLike {
   updatedAt: DateTime! @updatedAt
 }
 
+
+type ProjectTrade {
+  id: ID! @id
+  project: Project!
+  name: String!
+  description: String!
+
 type ProjectStudent {
   id: ID! @id
   project: Project!
