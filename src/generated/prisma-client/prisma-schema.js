@@ -11,7 +11,7 @@ type AggregateProject {
   count: Int!
 }
 
-type AggregateProjectApplicants {
+type AggregateProjectApplicant {
   count: Int!
 }
 
@@ -206,12 +206,12 @@ type Mutation {
   upsertProject(where: ProjectWhereUniqueInput!, create: ProjectCreateInput!, update: ProjectUpdateInput!): Project!
   deleteProject(where: ProjectWhereUniqueInput!): Project
   deleteManyProjects(where: ProjectWhereInput): BatchPayload!
-  createProjectApplicants(data: ProjectApplicantsCreateInput!): ProjectApplicants!
-  updateProjectApplicants(data: ProjectApplicantsUpdateInput!, where: ProjectApplicantsWhereUniqueInput!): ProjectApplicants
-  updateManyProjectApplicantses(data: ProjectApplicantsUpdateManyMutationInput!, where: ProjectApplicantsWhereInput): BatchPayload!
-  upsertProjectApplicants(where: ProjectApplicantsWhereUniqueInput!, create: ProjectApplicantsCreateInput!, update: ProjectApplicantsUpdateInput!): ProjectApplicants!
-  deleteProjectApplicants(where: ProjectApplicantsWhereUniqueInput!): ProjectApplicants
-  deleteManyProjectApplicantses(where: ProjectApplicantsWhereInput): BatchPayload!
+  createProjectApplicant(data: ProjectApplicantCreateInput!): ProjectApplicant!
+  updateProjectApplicant(data: ProjectApplicantUpdateInput!, where: ProjectApplicantWhereUniqueInput!): ProjectApplicant
+  updateManyProjectApplicants(data: ProjectApplicantUpdateManyMutationInput!, where: ProjectApplicantWhereInput): BatchPayload!
+  upsertProjectApplicant(where: ProjectApplicantWhereUniqueInput!, create: ProjectApplicantCreateInput!, update: ProjectApplicantUpdateInput!): ProjectApplicant!
+  deleteProjectApplicant(where: ProjectApplicantWhereUniqueInput!): ProjectApplicant
+  deleteManyProjectApplicants(where: ProjectApplicantWhereInput): BatchPayload!
   createProjectApprenticeTask(data: ProjectApprenticeTaskCreateInput!): ProjectApprenticeTask!
   updateProjectApprenticeTask(data: ProjectApprenticeTaskUpdateInput!, where: ProjectApprenticeTaskWhereUniqueInput!): ProjectApprenticeTask
   upsertProjectApprenticeTask(where: ProjectApprenticeTaskWhereUniqueInput!, create: ProjectApprenticeTaskCreateInput!, update: ProjectApprenticeTaskUpdateInput!): ProjectApprenticeTask!
@@ -320,14 +320,14 @@ type Project {
   comments(where: ProjectCommentWhereInput, orderBy: ProjectCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectComment!]
   trades(where: ProjectTradeWhereInput, orderBy: ProjectTradeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectTrade!]
   tasks(where: ProjectTaskWhereInput, orderBy: ProjectTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectTask!]
-  applicants(where: ProjectApplicantsWhereInput, orderBy: ProjectApplicantsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectApplicants!]
+  applicants(where: ProjectApplicantWhereInput, orderBy: ProjectApplicantOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectApplicant!]
   students(where: ProjectStudentWhereInput, orderBy: ProjectStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectStudent!]
   tradeMasters(where: ProjectMasterTradesmanWhereInput, orderBy: ProjectMasterTradesmanOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectMasterTradesman!]
   createdAt: DateTime!
   updatedAt: DateTime!
 }
 
-type ProjectApplicants {
+type ProjectApplicant {
   id: ID!
   project: Project!
   profile: UserProfile!
@@ -336,13 +336,13 @@ type ProjectApplicants {
   status: Status!
 }
 
-type ProjectApplicantsConnection {
+type ProjectApplicantConnection {
   pageInfo: PageInfo!
-  edges: [ProjectApplicantsEdge]!
-  aggregate: AggregateProjectApplicants!
+  edges: [ProjectApplicantEdge]!
+  aggregate: AggregateProjectApplicant!
 }
 
-input ProjectApplicantsCreateInput {
+input ProjectApplicantCreateInput {
   id: ID
   project: ProjectCreateOneWithoutApplicantsInput!
   profile: UserProfileCreateOneWithoutApplicationsInput!
@@ -351,17 +351,17 @@ input ProjectApplicantsCreateInput {
   status: Status!
 }
 
-input ProjectApplicantsCreateManyWithoutProfileInput {
-  create: [ProjectApplicantsCreateWithoutProfileInput!]
-  connect: [ProjectApplicantsWhereUniqueInput!]
+input ProjectApplicantCreateManyWithoutProfileInput {
+  create: [ProjectApplicantCreateWithoutProfileInput!]
+  connect: [ProjectApplicantWhereUniqueInput!]
 }
 
-input ProjectApplicantsCreateManyWithoutProjectInput {
-  create: [ProjectApplicantsCreateWithoutProjectInput!]
-  connect: [ProjectApplicantsWhereUniqueInput!]
+input ProjectApplicantCreateManyWithoutProjectInput {
+  create: [ProjectApplicantCreateWithoutProjectInput!]
+  connect: [ProjectApplicantWhereUniqueInput!]
 }
 
-input ProjectApplicantsCreateWithoutProfileInput {
+input ProjectApplicantCreateWithoutProfileInput {
   id: ID
   project: ProjectCreateOneWithoutApplicantsInput!
   trade: ProjectTradeCreateOneInput!
@@ -369,7 +369,7 @@ input ProjectApplicantsCreateWithoutProfileInput {
   status: Status!
 }
 
-input ProjectApplicantsCreateWithoutProjectInput {
+input ProjectApplicantCreateWithoutProjectInput {
   id: ID
   profile: UserProfileCreateOneWithoutApplicationsInput!
   trade: ProjectTradeCreateOneInput!
@@ -377,12 +377,12 @@ input ProjectApplicantsCreateWithoutProjectInput {
   status: Status!
 }
 
-type ProjectApplicantsEdge {
-  node: ProjectApplicants!
+type ProjectApplicantEdge {
+  node: ProjectApplicant!
   cursor: String!
 }
 
-enum ProjectApplicantsOrderByInput {
+enum ProjectApplicantOrderByInput {
   id_ASC
   id_DESC
   coverLetter_ASC
@@ -391,13 +391,13 @@ enum ProjectApplicantsOrderByInput {
   status_DESC
 }
 
-type ProjectApplicantsPreviousValues {
+type ProjectApplicantPreviousValues {
   id: ID!
   coverLetter: String!
   status: Status!
 }
 
-input ProjectApplicantsScalarWhereInput {
+input ProjectApplicantScalarWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -430,30 +430,30 @@ input ProjectApplicantsScalarWhereInput {
   status_not: Status
   status_in: [Status!]
   status_not_in: [Status!]
-  AND: [ProjectApplicantsScalarWhereInput!]
-  OR: [ProjectApplicantsScalarWhereInput!]
-  NOT: [ProjectApplicantsScalarWhereInput!]
+  AND: [ProjectApplicantScalarWhereInput!]
+  OR: [ProjectApplicantScalarWhereInput!]
+  NOT: [ProjectApplicantScalarWhereInput!]
 }
 
-type ProjectApplicantsSubscriptionPayload {
+type ProjectApplicantSubscriptionPayload {
   mutation: MutationType!
-  node: ProjectApplicants
+  node: ProjectApplicant
   updatedFields: [String!]
-  previousValues: ProjectApplicantsPreviousValues
+  previousValues: ProjectApplicantPreviousValues
 }
 
-input ProjectApplicantsSubscriptionWhereInput {
+input ProjectApplicantSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: ProjectApplicantsWhereInput
-  AND: [ProjectApplicantsSubscriptionWhereInput!]
-  OR: [ProjectApplicantsSubscriptionWhereInput!]
-  NOT: [ProjectApplicantsSubscriptionWhereInput!]
+  node: ProjectApplicantWhereInput
+  AND: [ProjectApplicantSubscriptionWhereInput!]
+  OR: [ProjectApplicantSubscriptionWhereInput!]
+  NOT: [ProjectApplicantSubscriptionWhereInput!]
 }
 
-input ProjectApplicantsUpdateInput {
+input ProjectApplicantUpdateInput {
   project: ProjectUpdateOneRequiredWithoutApplicantsInput
   profile: UserProfileUpdateOneRequiredWithoutApplicationsInput
   trade: ProjectTradeUpdateOneRequiredInput
@@ -461,82 +461,82 @@ input ProjectApplicantsUpdateInput {
   status: Status
 }
 
-input ProjectApplicantsUpdateManyDataInput {
+input ProjectApplicantUpdateManyDataInput {
   coverLetter: String
   status: Status
 }
 
-input ProjectApplicantsUpdateManyMutationInput {
+input ProjectApplicantUpdateManyMutationInput {
   coverLetter: String
   status: Status
 }
 
-input ProjectApplicantsUpdateManyWithoutProfileInput {
-  create: [ProjectApplicantsCreateWithoutProfileInput!]
-  delete: [ProjectApplicantsWhereUniqueInput!]
-  connect: [ProjectApplicantsWhereUniqueInput!]
-  set: [ProjectApplicantsWhereUniqueInput!]
-  disconnect: [ProjectApplicantsWhereUniqueInput!]
-  update: [ProjectApplicantsUpdateWithWhereUniqueWithoutProfileInput!]
-  upsert: [ProjectApplicantsUpsertWithWhereUniqueWithoutProfileInput!]
-  deleteMany: [ProjectApplicantsScalarWhereInput!]
-  updateMany: [ProjectApplicantsUpdateManyWithWhereNestedInput!]
+input ProjectApplicantUpdateManyWithoutProfileInput {
+  create: [ProjectApplicantCreateWithoutProfileInput!]
+  delete: [ProjectApplicantWhereUniqueInput!]
+  connect: [ProjectApplicantWhereUniqueInput!]
+  set: [ProjectApplicantWhereUniqueInput!]
+  disconnect: [ProjectApplicantWhereUniqueInput!]
+  update: [ProjectApplicantUpdateWithWhereUniqueWithoutProfileInput!]
+  upsert: [ProjectApplicantUpsertWithWhereUniqueWithoutProfileInput!]
+  deleteMany: [ProjectApplicantScalarWhereInput!]
+  updateMany: [ProjectApplicantUpdateManyWithWhereNestedInput!]
 }
 
-input ProjectApplicantsUpdateManyWithoutProjectInput {
-  create: [ProjectApplicantsCreateWithoutProjectInput!]
-  delete: [ProjectApplicantsWhereUniqueInput!]
-  connect: [ProjectApplicantsWhereUniqueInput!]
-  set: [ProjectApplicantsWhereUniqueInput!]
-  disconnect: [ProjectApplicantsWhereUniqueInput!]
-  update: [ProjectApplicantsUpdateWithWhereUniqueWithoutProjectInput!]
-  upsert: [ProjectApplicantsUpsertWithWhereUniqueWithoutProjectInput!]
-  deleteMany: [ProjectApplicantsScalarWhereInput!]
-  updateMany: [ProjectApplicantsUpdateManyWithWhereNestedInput!]
+input ProjectApplicantUpdateManyWithoutProjectInput {
+  create: [ProjectApplicantCreateWithoutProjectInput!]
+  delete: [ProjectApplicantWhereUniqueInput!]
+  connect: [ProjectApplicantWhereUniqueInput!]
+  set: [ProjectApplicantWhereUniqueInput!]
+  disconnect: [ProjectApplicantWhereUniqueInput!]
+  update: [ProjectApplicantUpdateWithWhereUniqueWithoutProjectInput!]
+  upsert: [ProjectApplicantUpsertWithWhereUniqueWithoutProjectInput!]
+  deleteMany: [ProjectApplicantScalarWhereInput!]
+  updateMany: [ProjectApplicantUpdateManyWithWhereNestedInput!]
 }
 
-input ProjectApplicantsUpdateManyWithWhereNestedInput {
-  where: ProjectApplicantsScalarWhereInput!
-  data: ProjectApplicantsUpdateManyDataInput!
+input ProjectApplicantUpdateManyWithWhereNestedInput {
+  where: ProjectApplicantScalarWhereInput!
+  data: ProjectApplicantUpdateManyDataInput!
 }
 
-input ProjectApplicantsUpdateWithoutProfileDataInput {
+input ProjectApplicantUpdateWithoutProfileDataInput {
   project: ProjectUpdateOneRequiredWithoutApplicantsInput
   trade: ProjectTradeUpdateOneRequiredInput
   coverLetter: String
   status: Status
 }
 
-input ProjectApplicantsUpdateWithoutProjectDataInput {
+input ProjectApplicantUpdateWithoutProjectDataInput {
   profile: UserProfileUpdateOneRequiredWithoutApplicationsInput
   trade: ProjectTradeUpdateOneRequiredInput
   coverLetter: String
   status: Status
 }
 
-input ProjectApplicantsUpdateWithWhereUniqueWithoutProfileInput {
-  where: ProjectApplicantsWhereUniqueInput!
-  data: ProjectApplicantsUpdateWithoutProfileDataInput!
+input ProjectApplicantUpdateWithWhereUniqueWithoutProfileInput {
+  where: ProjectApplicantWhereUniqueInput!
+  data: ProjectApplicantUpdateWithoutProfileDataInput!
 }
 
-input ProjectApplicantsUpdateWithWhereUniqueWithoutProjectInput {
-  where: ProjectApplicantsWhereUniqueInput!
-  data: ProjectApplicantsUpdateWithoutProjectDataInput!
+input ProjectApplicantUpdateWithWhereUniqueWithoutProjectInput {
+  where: ProjectApplicantWhereUniqueInput!
+  data: ProjectApplicantUpdateWithoutProjectDataInput!
 }
 
-input ProjectApplicantsUpsertWithWhereUniqueWithoutProfileInput {
-  where: ProjectApplicantsWhereUniqueInput!
-  update: ProjectApplicantsUpdateWithoutProfileDataInput!
-  create: ProjectApplicantsCreateWithoutProfileInput!
+input ProjectApplicantUpsertWithWhereUniqueWithoutProfileInput {
+  where: ProjectApplicantWhereUniqueInput!
+  update: ProjectApplicantUpdateWithoutProfileDataInput!
+  create: ProjectApplicantCreateWithoutProfileInput!
 }
 
-input ProjectApplicantsUpsertWithWhereUniqueWithoutProjectInput {
-  where: ProjectApplicantsWhereUniqueInput!
-  update: ProjectApplicantsUpdateWithoutProjectDataInput!
-  create: ProjectApplicantsCreateWithoutProjectInput!
+input ProjectApplicantUpsertWithWhereUniqueWithoutProjectInput {
+  where: ProjectApplicantWhereUniqueInput!
+  update: ProjectApplicantUpdateWithoutProjectDataInput!
+  create: ProjectApplicantCreateWithoutProjectInput!
 }
 
-input ProjectApplicantsWhereInput {
+input ProjectApplicantWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -572,12 +572,12 @@ input ProjectApplicantsWhereInput {
   status_not: Status
   status_in: [Status!]
   status_not_in: [Status!]
-  AND: [ProjectApplicantsWhereInput!]
-  OR: [ProjectApplicantsWhereInput!]
-  NOT: [ProjectApplicantsWhereInput!]
+  AND: [ProjectApplicantWhereInput!]
+  OR: [ProjectApplicantWhereInput!]
+  NOT: [ProjectApplicantWhereInput!]
 }
 
-input ProjectApplicantsWhereUniqueInput {
+input ProjectApplicantWhereUniqueInput {
   id: ID
 }
 
@@ -1301,7 +1301,7 @@ input ProjectCreateInput {
   comments: ProjectCommentCreateManyWithoutProjectInput
   trades: ProjectTradeCreateManyWithoutProjectInput
   tasks: ProjectTaskCreateManyWithoutProjectInput
-  applicants: ProjectApplicantsCreateManyWithoutProjectInput
+  applicants: ProjectApplicantCreateManyWithoutProjectInput
   students: ProjectStudentCreateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanCreateManyWithoutProjectInput
 }
@@ -1403,7 +1403,7 @@ input ProjectCreateWithoutCommentsInput {
   likes: ProjectLikeCreateManyWithoutProjectInput
   trades: ProjectTradeCreateManyWithoutProjectInput
   tasks: ProjectTaskCreateManyWithoutProjectInput
-  applicants: ProjectApplicantsCreateManyWithoutProjectInput
+  applicants: ProjectApplicantCreateManyWithoutProjectInput
   students: ProjectStudentCreateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanCreateManyWithoutProjectInput
 }
@@ -1429,7 +1429,7 @@ input ProjectCreateWithoutDonationsInput {
   comments: ProjectCommentCreateManyWithoutProjectInput
   trades: ProjectTradeCreateManyWithoutProjectInput
   tasks: ProjectTaskCreateManyWithoutProjectInput
-  applicants: ProjectApplicantsCreateManyWithoutProjectInput
+  applicants: ProjectApplicantCreateManyWithoutProjectInput
   students: ProjectStudentCreateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanCreateManyWithoutProjectInput
 }
@@ -1455,7 +1455,7 @@ input ProjectCreateWithoutImagesInput {
   comments: ProjectCommentCreateManyWithoutProjectInput
   trades: ProjectTradeCreateManyWithoutProjectInput
   tasks: ProjectTaskCreateManyWithoutProjectInput
-  applicants: ProjectApplicantsCreateManyWithoutProjectInput
+  applicants: ProjectApplicantCreateManyWithoutProjectInput
   students: ProjectStudentCreateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanCreateManyWithoutProjectInput
 }
@@ -1481,7 +1481,7 @@ input ProjectCreateWithoutLikesInput {
   comments: ProjectCommentCreateManyWithoutProjectInput
   trades: ProjectTradeCreateManyWithoutProjectInput
   tasks: ProjectTaskCreateManyWithoutProjectInput
-  applicants: ProjectApplicantsCreateManyWithoutProjectInput
+  applicants: ProjectApplicantCreateManyWithoutProjectInput
   students: ProjectStudentCreateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanCreateManyWithoutProjectInput
 }
@@ -1507,7 +1507,7 @@ input ProjectCreateWithoutProfileInput {
   comments: ProjectCommentCreateManyWithoutProjectInput
   trades: ProjectTradeCreateManyWithoutProjectInput
   tasks: ProjectTaskCreateManyWithoutProjectInput
-  applicants: ProjectApplicantsCreateManyWithoutProjectInput
+  applicants: ProjectApplicantCreateManyWithoutProjectInput
   students: ProjectStudentCreateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanCreateManyWithoutProjectInput
 }
@@ -1534,7 +1534,7 @@ input ProjectCreateWithoutStudentsInput {
   comments: ProjectCommentCreateManyWithoutProjectInput
   trades: ProjectTradeCreateManyWithoutProjectInput
   tasks: ProjectTaskCreateManyWithoutProjectInput
-  applicants: ProjectApplicantsCreateManyWithoutProjectInput
+  applicants: ProjectApplicantCreateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanCreateManyWithoutProjectInput
 }
 
@@ -1559,7 +1559,7 @@ input ProjectCreateWithoutTasksInput {
   likes: ProjectLikeCreateManyWithoutProjectInput
   comments: ProjectCommentCreateManyWithoutProjectInput
   trades: ProjectTradeCreateManyWithoutProjectInput
-  applicants: ProjectApplicantsCreateManyWithoutProjectInput
+  applicants: ProjectApplicantCreateManyWithoutProjectInput
   students: ProjectStudentCreateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanCreateManyWithoutProjectInput
 }
@@ -1586,7 +1586,7 @@ input ProjectCreateWithoutTradeMastersInput {
   comments: ProjectCommentCreateManyWithoutProjectInput
   trades: ProjectTradeCreateManyWithoutProjectInput
   tasks: ProjectTaskCreateManyWithoutProjectInput
-  applicants: ProjectApplicantsCreateManyWithoutProjectInput
+  applicants: ProjectApplicantCreateManyWithoutProjectInput
   students: ProjectStudentCreateManyWithoutProjectInput
 }
 
@@ -1611,7 +1611,7 @@ input ProjectCreateWithoutTradesInput {
   likes: ProjectLikeCreateManyWithoutProjectInput
   comments: ProjectCommentCreateManyWithoutProjectInput
   tasks: ProjectTaskCreateManyWithoutProjectInput
-  applicants: ProjectApplicantsCreateManyWithoutProjectInput
+  applicants: ProjectApplicantCreateManyWithoutProjectInput
   students: ProjectStudentCreateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanCreateManyWithoutProjectInput
 }
@@ -3497,7 +3497,7 @@ input ProjectUpdateInput {
   comments: ProjectCommentUpdateManyWithoutProjectInput
   trades: ProjectTradeUpdateManyWithoutProjectInput
   tasks: ProjectTaskUpdateManyWithoutProjectInput
-  applicants: ProjectApplicantsUpdateManyWithoutProjectInput
+  applicants: ProjectApplicantUpdateManyWithoutProjectInput
   students: ProjectStudentUpdateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanUpdateManyWithoutProjectInput
 }
@@ -3659,7 +3659,7 @@ input ProjectUpdateWithoutCommentsDataInput {
   likes: ProjectLikeUpdateManyWithoutProjectInput
   trades: ProjectTradeUpdateManyWithoutProjectInput
   tasks: ProjectTaskUpdateManyWithoutProjectInput
-  applicants: ProjectApplicantsUpdateManyWithoutProjectInput
+  applicants: ProjectApplicantUpdateManyWithoutProjectInput
   students: ProjectStudentUpdateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanUpdateManyWithoutProjectInput
 }
@@ -3684,7 +3684,7 @@ input ProjectUpdateWithoutDonationsDataInput {
   comments: ProjectCommentUpdateManyWithoutProjectInput
   trades: ProjectTradeUpdateManyWithoutProjectInput
   tasks: ProjectTaskUpdateManyWithoutProjectInput
-  applicants: ProjectApplicantsUpdateManyWithoutProjectInput
+  applicants: ProjectApplicantUpdateManyWithoutProjectInput
   students: ProjectStudentUpdateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanUpdateManyWithoutProjectInput
 }
@@ -3709,7 +3709,7 @@ input ProjectUpdateWithoutImagesDataInput {
   comments: ProjectCommentUpdateManyWithoutProjectInput
   trades: ProjectTradeUpdateManyWithoutProjectInput
   tasks: ProjectTaskUpdateManyWithoutProjectInput
-  applicants: ProjectApplicantsUpdateManyWithoutProjectInput
+  applicants: ProjectApplicantUpdateManyWithoutProjectInput
   students: ProjectStudentUpdateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanUpdateManyWithoutProjectInput
 }
@@ -3734,7 +3734,7 @@ input ProjectUpdateWithoutLikesDataInput {
   comments: ProjectCommentUpdateManyWithoutProjectInput
   trades: ProjectTradeUpdateManyWithoutProjectInput
   tasks: ProjectTaskUpdateManyWithoutProjectInput
-  applicants: ProjectApplicantsUpdateManyWithoutProjectInput
+  applicants: ProjectApplicantUpdateManyWithoutProjectInput
   students: ProjectStudentUpdateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanUpdateManyWithoutProjectInput
 }
@@ -3759,7 +3759,7 @@ input ProjectUpdateWithoutProfileDataInput {
   comments: ProjectCommentUpdateManyWithoutProjectInput
   trades: ProjectTradeUpdateManyWithoutProjectInput
   tasks: ProjectTaskUpdateManyWithoutProjectInput
-  applicants: ProjectApplicantsUpdateManyWithoutProjectInput
+  applicants: ProjectApplicantUpdateManyWithoutProjectInput
   students: ProjectStudentUpdateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanUpdateManyWithoutProjectInput
 }
@@ -3785,7 +3785,7 @@ input ProjectUpdateWithoutStudentsDataInput {
   comments: ProjectCommentUpdateManyWithoutProjectInput
   trades: ProjectTradeUpdateManyWithoutProjectInput
   tasks: ProjectTaskUpdateManyWithoutProjectInput
-  applicants: ProjectApplicantsUpdateManyWithoutProjectInput
+  applicants: ProjectApplicantUpdateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanUpdateManyWithoutProjectInput
 }
 
@@ -3809,7 +3809,7 @@ input ProjectUpdateWithoutTasksDataInput {
   likes: ProjectLikeUpdateManyWithoutProjectInput
   comments: ProjectCommentUpdateManyWithoutProjectInput
   trades: ProjectTradeUpdateManyWithoutProjectInput
-  applicants: ProjectApplicantsUpdateManyWithoutProjectInput
+  applicants: ProjectApplicantUpdateManyWithoutProjectInput
   students: ProjectStudentUpdateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanUpdateManyWithoutProjectInput
 }
@@ -3835,7 +3835,7 @@ input ProjectUpdateWithoutTradeMastersDataInput {
   comments: ProjectCommentUpdateManyWithoutProjectInput
   trades: ProjectTradeUpdateManyWithoutProjectInput
   tasks: ProjectTaskUpdateManyWithoutProjectInput
-  applicants: ProjectApplicantsUpdateManyWithoutProjectInput
+  applicants: ProjectApplicantUpdateManyWithoutProjectInput
   students: ProjectStudentUpdateManyWithoutProjectInput
 }
 
@@ -3859,7 +3859,7 @@ input ProjectUpdateWithoutTradesDataInput {
   likes: ProjectLikeUpdateManyWithoutProjectInput
   comments: ProjectCommentUpdateManyWithoutProjectInput
   tasks: ProjectTaskUpdateManyWithoutProjectInput
-  applicants: ProjectApplicantsUpdateManyWithoutProjectInput
+  applicants: ProjectApplicantUpdateManyWithoutProjectInput
   students: ProjectStudentUpdateManyWithoutProjectInput
   tradeMasters: ProjectMasterTradesmanUpdateManyWithoutProjectInput
 }
@@ -4106,9 +4106,9 @@ input ProjectWhereInput {
   tasks_every: ProjectTaskWhereInput
   tasks_some: ProjectTaskWhereInput
   tasks_none: ProjectTaskWhereInput
-  applicants_every: ProjectApplicantsWhereInput
-  applicants_some: ProjectApplicantsWhereInput
-  applicants_none: ProjectApplicantsWhereInput
+  applicants_every: ProjectApplicantWhereInput
+  applicants_some: ProjectApplicantWhereInput
+  applicants_none: ProjectApplicantWhereInput
   students_every: ProjectStudentWhereInput
   students_some: ProjectStudentWhereInput
   students_none: ProjectStudentWhereInput
@@ -4147,9 +4147,9 @@ type Query {
   project(where: ProjectWhereUniqueInput!): Project
   projects(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Project]!
   projectsConnection(where: ProjectWhereInput, orderBy: ProjectOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectConnection!
-  projectApplicants(where: ProjectApplicantsWhereUniqueInput!): ProjectApplicants
-  projectApplicantses(where: ProjectApplicantsWhereInput, orderBy: ProjectApplicantsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectApplicants]!
-  projectApplicantsesConnection(where: ProjectApplicantsWhereInput, orderBy: ProjectApplicantsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectApplicantsConnection!
+  projectApplicant(where: ProjectApplicantWhereUniqueInput!): ProjectApplicant
+  projectApplicants(where: ProjectApplicantWhereInput, orderBy: ProjectApplicantOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectApplicant]!
+  projectApplicantsConnection(where: ProjectApplicantWhereInput, orderBy: ProjectApplicantOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectApplicantConnection!
   projectApprenticeTask(where: ProjectApprenticeTaskWhereUniqueInput!): ProjectApprenticeTask
   projectApprenticeTasks(where: ProjectApprenticeTaskWhereInput, orderBy: ProjectApprenticeTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectApprenticeTask]!
   projectApprenticeTasksConnection(where: ProjectApprenticeTaskWhereInput, orderBy: ProjectApprenticeTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProjectApprenticeTaskConnection!
@@ -4198,7 +4198,7 @@ enum Status {
 type Subscription {
   externalAccount(where: ExternalAccountSubscriptionWhereInput): ExternalAccountSubscriptionPayload
   project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
-  projectApplicants(where: ProjectApplicantsSubscriptionWhereInput): ProjectApplicantsSubscriptionPayload
+  projectApplicant(where: ProjectApplicantSubscriptionWhereInput): ProjectApplicantSubscriptionPayload
   projectApprenticeTask(where: ProjectApprenticeTaskSubscriptionWhereInput): ProjectApprenticeTaskSubscriptionPayload
   projectComment(where: ProjectCommentSubscriptionWhereInput): ProjectCommentSubscriptionPayload
   projectCommentLike(where: ProjectCommentLikeSubscriptionWhereInput): ProjectCommentLikeSubscriptionPayload
@@ -4379,7 +4379,7 @@ type UserProfile {
   likedProjects(where: ProjectLikeWhereInput, orderBy: ProjectLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectLike!]
   comments(where: ProjectCommentWhereInput, orderBy: ProjectCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectComment!]
   likedComments(where: ProjectCommentLikeWhereInput, orderBy: ProjectCommentLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectCommentLike!]
-  applications(where: ProjectApplicantsWhereInput, orderBy: ProjectApplicantsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectApplicants!]
+  applications(where: ProjectApplicantWhereInput, orderBy: ProjectApplicantOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectApplicant!]
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -4413,7 +4413,7 @@ input UserProfileCreateInput {
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
-  applications: ProjectApplicantsCreateManyWithoutProfileInput
+  applications: ProjectApplicantCreateManyWithoutProfileInput
 }
 
 input UserProfileCreateOneWithoutApplicationsInput {
@@ -4508,7 +4508,7 @@ input UserProfileCreateWithoutCommentsInput {
   tradeMasterProjects: ProjectMasterTradesmanCreateManyWithoutProfileInput
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
-  applications: ProjectApplicantsCreateManyWithoutProfileInput
+  applications: ProjectApplicantCreateManyWithoutProfileInput
 }
 
 input UserProfileCreateWithoutDonationsInput {
@@ -4533,7 +4533,7 @@ input UserProfileCreateWithoutDonationsInput {
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
-  applications: ProjectApplicantsCreateManyWithoutProfileInput
+  applications: ProjectApplicantCreateManyWithoutProfileInput
 }
 
 input UserProfileCreateWithoutLikedCommentsInput {
@@ -4558,7 +4558,7 @@ input UserProfileCreateWithoutLikedCommentsInput {
   tradeMasterProjects: ProjectMasterTradesmanCreateManyWithoutProfileInput
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
   comments: ProjectCommentCreateManyWithoutProfileInput
-  applications: ProjectApplicantsCreateManyWithoutProfileInput
+  applications: ProjectApplicantCreateManyWithoutProfileInput
 }
 
 input UserProfileCreateWithoutLikedProjectsInput {
@@ -4583,7 +4583,7 @@ input UserProfileCreateWithoutLikedProjectsInput {
   tradeMasterProjects: ProjectMasterTradesmanCreateManyWithoutProfileInput
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
-  applications: ProjectApplicantsCreateManyWithoutProfileInput
+  applications: ProjectApplicantCreateManyWithoutProfileInput
 }
 
 input UserProfileCreateWithoutProjectsInput {
@@ -4608,7 +4608,7 @@ input UserProfileCreateWithoutProjectsInput {
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
-  applications: ProjectApplicantsCreateManyWithoutProfileInput
+  applications: ProjectApplicantCreateManyWithoutProfileInput
 }
 
 input UserProfileCreateWithoutStudentProjectsInput {
@@ -4633,7 +4633,7 @@ input UserProfileCreateWithoutStudentProjectsInput {
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
-  applications: ProjectApplicantsCreateManyWithoutProfileInput
+  applications: ProjectApplicantCreateManyWithoutProfileInput
 }
 
 input UserProfileCreateWithoutTasksInput {
@@ -4658,7 +4658,7 @@ input UserProfileCreateWithoutTasksInput {
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
-  applications: ProjectApplicantsCreateManyWithoutProfileInput
+  applications: ProjectApplicantCreateManyWithoutProfileInput
 }
 
 input UserProfileCreateWithoutTradeMasterProjectsInput {
@@ -4683,7 +4683,7 @@ input UserProfileCreateWithoutTradeMasterProjectsInput {
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
-  applications: ProjectApplicantsCreateManyWithoutProfileInput
+  applications: ProjectApplicantCreateManyWithoutProfileInput
 }
 
 type UserProfileEdge {
@@ -4785,7 +4785,7 @@ input UserProfileUpdateInput {
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
-  applications: ProjectApplicantsUpdateManyWithoutProfileInput
+  applications: ProjectApplicantUpdateManyWithoutProfileInput
 }
 
 input UserProfileUpdateManyMutationInput {
@@ -4912,7 +4912,7 @@ input UserProfileUpdateWithoutCommentsDataInput {
   tradeMasterProjects: ProjectMasterTradesmanUpdateManyWithoutProfileInput
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
-  applications: ProjectApplicantsUpdateManyWithoutProfileInput
+  applications: ProjectApplicantUpdateManyWithoutProfileInput
 }
 
 input UserProfileUpdateWithoutDonationsDataInput {
@@ -4936,7 +4936,7 @@ input UserProfileUpdateWithoutDonationsDataInput {
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
-  applications: ProjectApplicantsUpdateManyWithoutProfileInput
+  applications: ProjectApplicantUpdateManyWithoutProfileInput
 }
 
 input UserProfileUpdateWithoutLikedCommentsDataInput {
@@ -4960,7 +4960,7 @@ input UserProfileUpdateWithoutLikedCommentsDataInput {
   tradeMasterProjects: ProjectMasterTradesmanUpdateManyWithoutProfileInput
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
   comments: ProjectCommentUpdateManyWithoutProfileInput
-  applications: ProjectApplicantsUpdateManyWithoutProfileInput
+  applications: ProjectApplicantUpdateManyWithoutProfileInput
 }
 
 input UserProfileUpdateWithoutLikedProjectsDataInput {
@@ -4984,7 +4984,7 @@ input UserProfileUpdateWithoutLikedProjectsDataInput {
   tradeMasterProjects: ProjectMasterTradesmanUpdateManyWithoutProfileInput
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
-  applications: ProjectApplicantsUpdateManyWithoutProfileInput
+  applications: ProjectApplicantUpdateManyWithoutProfileInput
 }
 
 input UserProfileUpdateWithoutProjectsDataInput {
@@ -5008,7 +5008,7 @@ input UserProfileUpdateWithoutProjectsDataInput {
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
-  applications: ProjectApplicantsUpdateManyWithoutProfileInput
+  applications: ProjectApplicantUpdateManyWithoutProfileInput
 }
 
 input UserProfileUpdateWithoutStudentProjectsDataInput {
@@ -5032,7 +5032,7 @@ input UserProfileUpdateWithoutStudentProjectsDataInput {
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
-  applications: ProjectApplicantsUpdateManyWithoutProfileInput
+  applications: ProjectApplicantUpdateManyWithoutProfileInput
 }
 
 input UserProfileUpdateWithoutTasksDataInput {
@@ -5056,7 +5056,7 @@ input UserProfileUpdateWithoutTasksDataInput {
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
-  applications: ProjectApplicantsUpdateManyWithoutProfileInput
+  applications: ProjectApplicantUpdateManyWithoutProfileInput
 }
 
 input UserProfileUpdateWithoutTradeMasterProjectsDataInput {
@@ -5080,7 +5080,7 @@ input UserProfileUpdateWithoutTradeMasterProjectsDataInput {
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
-  applications: ProjectApplicantsUpdateManyWithoutProfileInput
+  applications: ProjectApplicantUpdateManyWithoutProfileInput
 }
 
 input UserProfileUpsertWithoutApplicationsInput {
@@ -5325,9 +5325,9 @@ input UserProfileWhereInput {
   likedComments_every: ProjectCommentLikeWhereInput
   likedComments_some: ProjectCommentLikeWhereInput
   likedComments_none: ProjectCommentLikeWhereInput
-  applications_every: ProjectApplicantsWhereInput
-  applications_some: ProjectApplicantsWhereInput
-  applications_none: ProjectApplicantsWhereInput
+  applications_every: ProjectApplicantWhereInput
+  applications_some: ProjectApplicantWhereInput
+  applications_none: ProjectApplicantWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]

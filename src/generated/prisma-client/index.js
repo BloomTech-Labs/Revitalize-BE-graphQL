@@ -45,7 +45,7 @@ var models = [
     embedded: false
   },
   {
-    name: "ProjectApplicants",
+    name: "ProjectApplicant",
     embedded: false
   },
   {

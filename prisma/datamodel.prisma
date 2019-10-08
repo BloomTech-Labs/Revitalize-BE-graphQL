@@ -42,7 +42,7 @@ type UserProfile {
   likedProjects: [ProjectLike!]! @relation(name: "ProjectLikeToUserProfile", onDelete: CASCADE)
   comments: [ProjectComment!] @relation(name: "CommentToUserProfile", onDelete: CASCADE)
   likedComments: [ProjectCommentLike!]! @relation(name: "CommentLikeToUserProfile", onDelete: CASCADE)
-  applications: [ProjectApplicants!]! @relation(name: "ApplicantToUserProfile", onDelete: CASCADE)
+  applications: [ProjectApplicant!]! @relation(name: "ApplicantToUserProfile", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -69,7 +69,7 @@ type Project {
   comments: [ProjectComment!]! @relation(name: "ProjectComment", onDelete: CASCADE)
   trades: [ProjectTrade!]! @relation(name: "ProjectTradeToProject", onDelete: CASCADE)
   tasks: [ProjectTask!]! @relation(name: "ProjectTaskToProject", onDelete: CASCADE)
-  applicants: [ProjectApplicants!]! @relation(name: "ApplicantToProject", onDelete: CASCADE)
+  applicants: [ProjectApplicant!]! @relation(name: "ApplicantToProject", onDelete: CASCADE)
   students: [ProjectStudent!]! @relation(name: "ProjectStudentToProject", onDelete: CASCADE)
   tradeMasters: [ProjectMasterTradesman!]! @relation(name: "ProjectMasterTradesmanToProject", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
@@ -118,7 +118,14 @@ type ProjectCommentLike {
   updatedAt: DateTime! @updatedAt
 }
 
-type ProjectApplicants {
+type ProjectTrade {
+  id: ID! @id
+  project: Project! @relation(name: "ProjectTradeToProject", onDelete: SET_NULL)
+  name: String!
+  description: String!
+}
+
+type ProjectApplicant {
   id: ID! @id
   project: Project! @relation(name: "ApplicantToProject", onDelete: SET_NULL)
   profile: UserProfile! @relation(name: "ApplicantToUserProfile", onDelete: SET_NULL)
@@ -137,13 +144,6 @@ type ProjectMasterTradesman {
   id: ID! @id
   project: Project! @relation(name: "ProjectMasterTradesmanToProject", onDelete: SET_NULL)
   profile: UserProfile! @relation(name: "ProjectMasterTradesmanToProfile", onDelete: SET_NULL)
-}
-
-type ProjectTrade {
-  id: ID! @id
-  project: Project! @relation(name: "ProjectTradeToProject", onDelete: SET_NULL)
-  name: String!
-  description: String!
 }
 
 type ProjectTask {

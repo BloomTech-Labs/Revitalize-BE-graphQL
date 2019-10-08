@@ -18,7 +18,7 @@ export type Maybe<T> = T | undefined | null;
 export interface Exists {
   externalAccount: (where?: ExternalAccountWhereInput) => Promise<boolean>;
   project: (where?: ProjectWhereInput) => Promise<boolean>;
-  projectApplicants: (where?: ProjectApplicantsWhereInput) => Promise<boolean>;
+  projectApplicant: (where?: ProjectApplicantWhereInput) => Promise<boolean>;
   projectApprenticeTask: (
     where?: ProjectApprenticeTaskWhereInput
   ) => Promise<boolean>;
@@ -98,27 +98,27 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => ProjectConnectionPromise;
-  projectApplicants: (
-    where: ProjectApplicantsWhereUniqueInput
-  ) => ProjectApplicantsNullablePromise;
-  projectApplicantses: (args?: {
-    where?: ProjectApplicantsWhereInput;
-    orderBy?: ProjectApplicantsOrderByInput;
+  projectApplicant: (
+    where: ProjectApplicantWhereUniqueInput
+  ) => ProjectApplicantNullablePromise;
+  projectApplicants: (args?: {
+    where?: ProjectApplicantWhereInput;
+    orderBy?: ProjectApplicantOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => FragmentableArray<ProjectApplicants>;
-  projectApplicantsesConnection: (args?: {
-    where?: ProjectApplicantsWhereInput;
-    orderBy?: ProjectApplicantsOrderByInput;
+  }) => FragmentableArray<ProjectApplicant>;
+  projectApplicantsConnection: (args?: {
+    where?: ProjectApplicantWhereInput;
+    orderBy?: ProjectApplicantOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
     first?: Int;
     last?: Int;
-  }) => ProjectApplicantsConnectionPromise;
+  }) => ProjectApplicantConnectionPromise;
   projectApprenticeTask: (
     where: ProjectApprenticeTaskWhereUniqueInput
   ) => ProjectApprenticeTaskNullablePromise;
@@ -415,27 +415,27 @@ export interface Prisma {
   }) => ProjectPromise;
   deleteProject: (where: ProjectWhereUniqueInput) => ProjectPromise;
   deleteManyProjects: (where?: ProjectWhereInput) => BatchPayloadPromise;
-  createProjectApplicants: (
-    data: ProjectApplicantsCreateInput
-  ) => ProjectApplicantsPromise;
-  updateProjectApplicants: (args: {
-    data: ProjectApplicantsUpdateInput;
-    where: ProjectApplicantsWhereUniqueInput;
-  }) => ProjectApplicantsPromise;
-  updateManyProjectApplicantses: (args: {
-    data: ProjectApplicantsUpdateManyMutationInput;
-    where?: ProjectApplicantsWhereInput;
+  createProjectApplicant: (
+    data: ProjectApplicantCreateInput
+  ) => ProjectApplicantPromise;
+  updateProjectApplicant: (args: {
+    data: ProjectApplicantUpdateInput;
+    where: ProjectApplicantWhereUniqueInput;
+  }) => ProjectApplicantPromise;
+  updateManyProjectApplicants: (args: {
+    data: ProjectApplicantUpdateManyMutationInput;
+    where?: ProjectApplicantWhereInput;
   }) => BatchPayloadPromise;
-  upsertProjectApplicants: (args: {
-    where: ProjectApplicantsWhereUniqueInput;
-    create: ProjectApplicantsCreateInput;
-    update: ProjectApplicantsUpdateInput;
-  }) => ProjectApplicantsPromise;
-  deleteProjectApplicants: (
-    where: ProjectApplicantsWhereUniqueInput
-  ) => ProjectApplicantsPromise;
-  deleteManyProjectApplicantses: (
-    where?: ProjectApplicantsWhereInput
+  upsertProjectApplicant: (args: {
+    where: ProjectApplicantWhereUniqueInput;
+    create: ProjectApplicantCreateInput;
+    update: ProjectApplicantUpdateInput;
+  }) => ProjectApplicantPromise;
+  deleteProjectApplicant: (
+    where: ProjectApplicantWhereUniqueInput
+  ) => ProjectApplicantPromise;
+  deleteManyProjectApplicants: (
+    where?: ProjectApplicantWhereInput
   ) => BatchPayloadPromise;
   createProjectApprenticeTask: (
     data: ProjectApprenticeTaskCreateInput
@@ -676,9 +676,9 @@ export interface Subscription {
   project: (
     where?: ProjectSubscriptionWhereInput
   ) => ProjectSubscriptionPayloadSubscription;
-  projectApplicants: (
-    where?: ProjectApplicantsSubscriptionWhereInput
-  ) => ProjectApplicantsSubscriptionPayloadSubscription;
+  projectApplicant: (
+    where?: ProjectApplicantSubscriptionWhereInput
+  ) => ProjectApplicantSubscriptionPayloadSubscription;
   projectApprenticeTask: (
     where?: ProjectApprenticeTaskSubscriptionWhereInput
   ) => ProjectApprenticeTaskSubscriptionPayloadSubscription;
@@ -813,7 +813,7 @@ export type ProjectCommentLikeOrderByInput =
   | "updatedAt_ASC"
   | "updatedAt_DESC";
 
-export type ProjectApplicantsOrderByInput =
+export type ProjectApplicantOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "coverLetter_ASC"
@@ -1188,9 +1188,9 @@ export interface ProjectWhereInput {
   tasks_every?: Maybe<ProjectTaskWhereInput>;
   tasks_some?: Maybe<ProjectTaskWhereInput>;
   tasks_none?: Maybe<ProjectTaskWhereInput>;
-  applicants_every?: Maybe<ProjectApplicantsWhereInput>;
-  applicants_some?: Maybe<ProjectApplicantsWhereInput>;
-  applicants_none?: Maybe<ProjectApplicantsWhereInput>;
+  applicants_every?: Maybe<ProjectApplicantWhereInput>;
+  applicants_some?: Maybe<ProjectApplicantWhereInput>;
+  applicants_none?: Maybe<ProjectApplicantWhereInput>;
   students_every?: Maybe<ProjectStudentWhereInput>;
   students_some?: Maybe<ProjectStudentWhereInput>;
   students_none?: Maybe<ProjectStudentWhereInput>;
@@ -1415,9 +1415,9 @@ export interface UserProfileWhereInput {
   likedComments_every?: Maybe<ProjectCommentLikeWhereInput>;
   likedComments_some?: Maybe<ProjectCommentLikeWhereInput>;
   likedComments_none?: Maybe<ProjectCommentLikeWhereInput>;
-  applications_every?: Maybe<ProjectApplicantsWhereInput>;
-  applications_some?: Maybe<ProjectApplicantsWhereInput>;
-  applications_none?: Maybe<ProjectApplicantsWhereInput>;
+  applications_every?: Maybe<ProjectApplicantWhereInput>;
+  applications_some?: Maybe<ProjectApplicantWhereInput>;
+  applications_none?: Maybe<ProjectApplicantWhereInput>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -1766,7 +1766,7 @@ export interface ProjectCommentLikeWhereInput {
   NOT?: Maybe<ProjectCommentLikeWhereInput[] | ProjectCommentLikeWhereInput>;
 }
 
-export interface ProjectApplicantsWhereInput {
+export interface ProjectApplicantWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -1802,9 +1802,9 @@ export interface ProjectApplicantsWhereInput {
   status_not?: Maybe<Status>;
   status_in?: Maybe<Status[] | Status>;
   status_not_in?: Maybe<Status[] | Status>;
-  AND?: Maybe<ProjectApplicantsWhereInput[] | ProjectApplicantsWhereInput>;
-  OR?: Maybe<ProjectApplicantsWhereInput[] | ProjectApplicantsWhereInput>;
-  NOT?: Maybe<ProjectApplicantsWhereInput[] | ProjectApplicantsWhereInput>;
+  AND?: Maybe<ProjectApplicantWhereInput[] | ProjectApplicantWhereInput>;
+  OR?: Maybe<ProjectApplicantWhereInput[] | ProjectApplicantWhereInput>;
+  NOT?: Maybe<ProjectApplicantWhereInput[] | ProjectApplicantWhereInput>;
 }
 
 export interface ProjectImageWhereInput {
@@ -1856,7 +1856,7 @@ export interface ProjectImageWhereInput {
   NOT?: Maybe<ProjectImageWhereInput[] | ProjectImageWhereInput>;
 }
 
-export type ProjectApplicantsWhereUniqueInput = AtLeastOne<{
+export type ProjectApplicantWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
@@ -2009,7 +2009,7 @@ export interface ProjectCreateInput {
   comments?: Maybe<ProjectCommentCreateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeCreateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskCreateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsCreateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantCreateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentCreateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanCreateManyWithoutProjectInput>;
 }
@@ -2043,7 +2043,7 @@ export interface UserProfileCreateWithoutProjectsInput {
   likedProjects?: Maybe<ProjectLikeCreateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProfileInput>;
   likedComments?: Maybe<ProjectCommentLikeCreateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsCreateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantCreateManyWithoutProfileInput>;
 }
 
 export interface ProjectDonationCreateManyWithoutProfileInput {
@@ -2088,7 +2088,7 @@ export interface ProjectCreateWithoutDonationsInput {
   comments?: Maybe<ProjectCommentCreateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeCreateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskCreateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsCreateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantCreateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentCreateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanCreateManyWithoutProjectInput>;
 }
@@ -2151,7 +2151,7 @@ export interface UserProfileCreateWithoutLikedProjectsInput {
   >;
   comments?: Maybe<ProjectCommentCreateManyWithoutProfileInput>;
   likedComments?: Maybe<ProjectCommentLikeCreateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsCreateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantCreateManyWithoutProfileInput>;
 }
 
 export interface ProjectCreateManyWithoutProfileInput {
@@ -2182,7 +2182,7 @@ export interface ProjectCreateWithoutProfileInput {
   comments?: Maybe<ProjectCommentCreateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeCreateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskCreateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsCreateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantCreateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentCreateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanCreateManyWithoutProjectInput>;
 }
@@ -2232,7 +2232,7 @@ export interface UserProfileCreateWithoutDonationsInput {
   likedProjects?: Maybe<ProjectLikeCreateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProfileInput>;
   likedComments?: Maybe<ProjectCommentLikeCreateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsCreateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantCreateManyWithoutProfileInput>;
 }
 
 export interface ProjectStudentCreateManyWithoutProfileInput {
@@ -2277,7 +2277,7 @@ export interface ProjectCreateWithoutStudentsInput {
   comments?: Maybe<ProjectCommentCreateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeCreateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskCreateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsCreateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantCreateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanCreateManyWithoutProjectInput>;
 }
 
@@ -2327,7 +2327,7 @@ export interface UserProfileCreateWithoutCommentsInput {
   >;
   likedProjects?: Maybe<ProjectLikeCreateManyWithoutProfileInput>;
   likedComments?: Maybe<ProjectCommentLikeCreateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsCreateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantCreateManyWithoutProfileInput>;
 }
 
 export interface ProjectApprenticeTaskCreateManyWithoutProfileInput {
@@ -2387,7 +2387,7 @@ export interface ProjectCreateWithoutTasksInput {
   likes?: Maybe<ProjectLikeCreateManyWithoutProjectInput>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeCreateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsCreateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantCreateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentCreateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanCreateManyWithoutProjectInput>;
 }
@@ -2408,17 +2408,17 @@ export interface ProjectTradeCreateWithoutProjectInput {
   description: String;
 }
 
-export interface ProjectApplicantsCreateManyWithoutProjectInput {
+export interface ProjectApplicantCreateManyWithoutProjectInput {
   create?: Maybe<
-    | ProjectApplicantsCreateWithoutProjectInput[]
-    | ProjectApplicantsCreateWithoutProjectInput
+    | ProjectApplicantCreateWithoutProjectInput[]
+    | ProjectApplicantCreateWithoutProjectInput
   >;
   connect?: Maybe<
-    ProjectApplicantsWhereUniqueInput[] | ProjectApplicantsWhereUniqueInput
+    ProjectApplicantWhereUniqueInput[] | ProjectApplicantWhereUniqueInput
   >;
 }
 
-export interface ProjectApplicantsCreateWithoutProjectInput {
+export interface ProjectApplicantCreateWithoutProjectInput {
   id?: Maybe<ID_Input>;
   profile: UserProfileCreateOneWithoutApplicationsInput;
   trade: ProjectTradeCreateOneInput;
@@ -2501,7 +2501,7 @@ export interface ProjectCreateWithoutTradeMastersInput {
   comments?: Maybe<ProjectCommentCreateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeCreateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskCreateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsCreateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantCreateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentCreateManyWithoutProjectInput>;
 }
 
@@ -2561,7 +2561,7 @@ export interface ProjectCreateWithoutTradesInput {
   likes?: Maybe<ProjectLikeCreateManyWithoutProjectInput>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskCreateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsCreateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantCreateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentCreateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanCreateManyWithoutProjectInput>;
 }
@@ -2610,7 +2610,7 @@ export interface UserProfileCreateWithoutStudentProjectsInput {
   likedProjects?: Maybe<ProjectLikeCreateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProfileInput>;
   likedComments?: Maybe<ProjectCommentLikeCreateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsCreateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantCreateManyWithoutProfileInput>;
 }
 
 export interface ProjectLikeCreateManyWithoutProfileInput {
@@ -2652,7 +2652,7 @@ export interface ProjectCreateWithoutLikesInput {
   comments?: Maybe<ProjectCommentCreateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeCreateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskCreateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsCreateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantCreateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentCreateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanCreateManyWithoutProjectInput>;
 }
@@ -2700,7 +2700,7 @@ export interface UserProfileCreateWithoutTradeMasterProjectsInput {
   likedProjects?: Maybe<ProjectLikeCreateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProfileInput>;
   likedComments?: Maybe<ProjectCommentLikeCreateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsCreateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantCreateManyWithoutProfileInput>;
 }
 
 export interface ProjectCommentCreateManyWithoutProfileInput {
@@ -2746,7 +2746,7 @@ export interface ProjectCreateWithoutCommentsInput {
   likes?: Maybe<ProjectLikeCreateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeCreateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskCreateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsCreateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantCreateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentCreateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanCreateManyWithoutProjectInput>;
 }
@@ -2795,20 +2795,20 @@ export interface UserProfileCreateWithoutLikedCommentsInput {
   >;
   likedProjects?: Maybe<ProjectLikeCreateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsCreateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantCreateManyWithoutProfileInput>;
 }
 
-export interface ProjectApplicantsCreateManyWithoutProfileInput {
+export interface ProjectApplicantCreateManyWithoutProfileInput {
   create?: Maybe<
-    | ProjectApplicantsCreateWithoutProfileInput[]
-    | ProjectApplicantsCreateWithoutProfileInput
+    | ProjectApplicantCreateWithoutProfileInput[]
+    | ProjectApplicantCreateWithoutProfileInput
   >;
   connect?: Maybe<
-    ProjectApplicantsWhereUniqueInput[] | ProjectApplicantsWhereUniqueInput
+    ProjectApplicantWhereUniqueInput[] | ProjectApplicantWhereUniqueInput
   >;
 }
 
-export interface ProjectApplicantsCreateWithoutProfileInput {
+export interface ProjectApplicantCreateWithoutProfileInput {
   id?: Maybe<ID_Input>;
   project: ProjectCreateOneWithoutApplicantsInput;
   trade: ProjectTradeCreateOneInput;
@@ -2919,7 +2919,7 @@ export interface UserProfileCreateWithoutTasksInput {
   likedProjects?: Maybe<ProjectLikeCreateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProfileInput>;
   likedComments?: Maybe<ProjectCommentLikeCreateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsCreateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantCreateManyWithoutProfileInput>;
 }
 
 export interface ProjectUpdateInput {
@@ -2943,7 +2943,7 @@ export interface ProjectUpdateInput {
   comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeUpdateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskUpdateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsUpdateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantUpdateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentUpdateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanUpdateManyWithoutProjectInput>;
 }
@@ -2978,7 +2978,7 @@ export interface UserProfileUpdateWithoutProjectsDataInput {
   likedProjects?: Maybe<ProjectLikeUpdateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProfileInput>;
   likedComments?: Maybe<ProjectCommentLikeUpdateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsUpdateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantUpdateManyWithoutProfileInput>;
 }
 
 export interface ProjectDonationUpdateManyWithoutProfileInput {
@@ -3052,7 +3052,7 @@ export interface ProjectUpdateWithoutDonationsDataInput {
   comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeUpdateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskUpdateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsUpdateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantUpdateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentUpdateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanUpdateManyWithoutProjectInput>;
 }
@@ -3224,7 +3224,7 @@ export interface UserProfileUpdateWithoutLikedProjectsDataInput {
   >;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProfileInput>;
   likedComments?: Maybe<ProjectCommentLikeUpdateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsUpdateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantUpdateManyWithoutProfileInput>;
 }
 
 export interface ProjectUpdateManyWithoutProfileInput {
@@ -3275,7 +3275,7 @@ export interface ProjectUpdateWithoutProfileDataInput {
   comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeUpdateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskUpdateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsUpdateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantUpdateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentUpdateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanUpdateManyWithoutProjectInput>;
 }
@@ -3354,7 +3354,7 @@ export interface UserProfileUpdateWithoutDonationsDataInput {
   likedProjects?: Maybe<ProjectLikeUpdateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProfileInput>;
   likedComments?: Maybe<ProjectCommentLikeUpdateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsUpdateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantUpdateManyWithoutProfileInput>;
 }
 
 export interface ProjectStudentUpdateManyWithoutProfileInput {
@@ -3424,7 +3424,7 @@ export interface ProjectUpdateWithoutStudentsDataInput {
   comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeUpdateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskUpdateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsUpdateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantUpdateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanUpdateManyWithoutProjectInput>;
 }
 
@@ -3503,7 +3503,7 @@ export interface UserProfileUpdateWithoutCommentsDataInput {
   >;
   likedProjects?: Maybe<ProjectLikeUpdateManyWithoutProfileInput>;
   likedComments?: Maybe<ProjectCommentLikeUpdateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsUpdateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantUpdateManyWithoutProfileInput>;
 }
 
 export interface ProjectApprenticeTaskUpdateManyWithoutProfileInput {
@@ -3593,7 +3593,7 @@ export interface ProjectUpdateWithoutTasksDataInput {
   likes?: Maybe<ProjectLikeUpdateManyWithoutProjectInput>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeUpdateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsUpdateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantUpdateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentUpdateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanUpdateManyWithoutProjectInput>;
 }
@@ -3702,46 +3702,46 @@ export interface ProjectTradeUpdateManyDataInput {
   description?: Maybe<String>;
 }
 
-export interface ProjectApplicantsUpdateManyWithoutProjectInput {
+export interface ProjectApplicantUpdateManyWithoutProjectInput {
   create?: Maybe<
-    | ProjectApplicantsCreateWithoutProjectInput[]
-    | ProjectApplicantsCreateWithoutProjectInput
+    | ProjectApplicantCreateWithoutProjectInput[]
+    | ProjectApplicantCreateWithoutProjectInput
   >;
   delete?: Maybe<
-    ProjectApplicantsWhereUniqueInput[] | ProjectApplicantsWhereUniqueInput
+    ProjectApplicantWhereUniqueInput[] | ProjectApplicantWhereUniqueInput
   >;
   connect?: Maybe<
-    ProjectApplicantsWhereUniqueInput[] | ProjectApplicantsWhereUniqueInput
+    ProjectApplicantWhereUniqueInput[] | ProjectApplicantWhereUniqueInput
   >;
   set?: Maybe<
-    ProjectApplicantsWhereUniqueInput[] | ProjectApplicantsWhereUniqueInput
+    ProjectApplicantWhereUniqueInput[] | ProjectApplicantWhereUniqueInput
   >;
   disconnect?: Maybe<
-    ProjectApplicantsWhereUniqueInput[] | ProjectApplicantsWhereUniqueInput
+    ProjectApplicantWhereUniqueInput[] | ProjectApplicantWhereUniqueInput
   >;
   update?: Maybe<
-    | ProjectApplicantsUpdateWithWhereUniqueWithoutProjectInput[]
-    | ProjectApplicantsUpdateWithWhereUniqueWithoutProjectInput
+    | ProjectApplicantUpdateWithWhereUniqueWithoutProjectInput[]
+    | ProjectApplicantUpdateWithWhereUniqueWithoutProjectInput
   >;
   upsert?: Maybe<
-    | ProjectApplicantsUpsertWithWhereUniqueWithoutProjectInput[]
-    | ProjectApplicantsUpsertWithWhereUniqueWithoutProjectInput
+    | ProjectApplicantUpsertWithWhereUniqueWithoutProjectInput[]
+    | ProjectApplicantUpsertWithWhereUniqueWithoutProjectInput
   >;
   deleteMany?: Maybe<
-    ProjectApplicantsScalarWhereInput[] | ProjectApplicantsScalarWhereInput
+    ProjectApplicantScalarWhereInput[] | ProjectApplicantScalarWhereInput
   >;
   updateMany?: Maybe<
-    | ProjectApplicantsUpdateManyWithWhereNestedInput[]
-    | ProjectApplicantsUpdateManyWithWhereNestedInput
+    | ProjectApplicantUpdateManyWithWhereNestedInput[]
+    | ProjectApplicantUpdateManyWithWhereNestedInput
   >;
 }
 
-export interface ProjectApplicantsUpdateWithWhereUniqueWithoutProjectInput {
-  where: ProjectApplicantsWhereUniqueInput;
-  data: ProjectApplicantsUpdateWithoutProjectDataInput;
+export interface ProjectApplicantUpdateWithWhereUniqueWithoutProjectInput {
+  where: ProjectApplicantWhereUniqueInput;
+  data: ProjectApplicantUpdateWithoutProjectDataInput;
 }
 
-export interface ProjectApplicantsUpdateWithoutProjectDataInput {
+export interface ProjectApplicantUpdateWithoutProjectDataInput {
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutApplicationsInput>;
   trade?: Maybe<ProjectTradeUpdateOneRequiredInput>;
   coverLetter?: Maybe<String>;
@@ -3853,7 +3853,7 @@ export interface ProjectUpdateWithoutTradeMastersDataInput {
   comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeUpdateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskUpdateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsUpdateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantUpdateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentUpdateManyWithoutProjectInput>;
 }
 
@@ -3939,7 +3939,7 @@ export interface ProjectUpdateWithoutTradesDataInput {
   likes?: Maybe<ProjectLikeUpdateManyWithoutProjectInput>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskUpdateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsUpdateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantUpdateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentUpdateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanUpdateManyWithoutProjectInput>;
 }
@@ -4013,7 +4013,7 @@ export interface UserProfileUpdateWithoutStudentProjectsDataInput {
   likedProjects?: Maybe<ProjectLikeUpdateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProfileInput>;
   likedComments?: Maybe<ProjectCommentLikeUpdateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsUpdateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantUpdateManyWithoutProfileInput>;
 }
 
 export interface ProjectLikeUpdateManyWithoutProfileInput {
@@ -4076,7 +4076,7 @@ export interface ProjectUpdateWithoutLikesDataInput {
   comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeUpdateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskUpdateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsUpdateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantUpdateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentUpdateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanUpdateManyWithoutProjectInput>;
 }
@@ -4153,7 +4153,7 @@ export interface UserProfileUpdateWithoutTradeMasterProjectsDataInput {
   likedProjects?: Maybe<ProjectLikeUpdateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProfileInput>;
   likedComments?: Maybe<ProjectCommentLikeUpdateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsUpdateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantUpdateManyWithoutProfileInput>;
 }
 
 export interface ProjectCommentUpdateManyWithoutProfileInput {
@@ -4228,7 +4228,7 @@ export interface ProjectUpdateWithoutCommentsDataInput {
   likes?: Maybe<ProjectLikeUpdateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeUpdateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskUpdateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsUpdateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantUpdateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentUpdateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanUpdateManyWithoutProjectInput>;
 }
@@ -4307,49 +4307,49 @@ export interface UserProfileUpdateWithoutLikedCommentsDataInput {
   >;
   likedProjects?: Maybe<ProjectLikeUpdateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsUpdateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantUpdateManyWithoutProfileInput>;
 }
 
-export interface ProjectApplicantsUpdateManyWithoutProfileInput {
+export interface ProjectApplicantUpdateManyWithoutProfileInput {
   create?: Maybe<
-    | ProjectApplicantsCreateWithoutProfileInput[]
-    | ProjectApplicantsCreateWithoutProfileInput
+    | ProjectApplicantCreateWithoutProfileInput[]
+    | ProjectApplicantCreateWithoutProfileInput
   >;
   delete?: Maybe<
-    ProjectApplicantsWhereUniqueInput[] | ProjectApplicantsWhereUniqueInput
+    ProjectApplicantWhereUniqueInput[] | ProjectApplicantWhereUniqueInput
   >;
   connect?: Maybe<
-    ProjectApplicantsWhereUniqueInput[] | ProjectApplicantsWhereUniqueInput
+    ProjectApplicantWhereUniqueInput[] | ProjectApplicantWhereUniqueInput
   >;
   set?: Maybe<
-    ProjectApplicantsWhereUniqueInput[] | ProjectApplicantsWhereUniqueInput
+    ProjectApplicantWhereUniqueInput[] | ProjectApplicantWhereUniqueInput
   >;
   disconnect?: Maybe<
-    ProjectApplicantsWhereUniqueInput[] | ProjectApplicantsWhereUniqueInput
+    ProjectApplicantWhereUniqueInput[] | ProjectApplicantWhereUniqueInput
   >;
   update?: Maybe<
-    | ProjectApplicantsUpdateWithWhereUniqueWithoutProfileInput[]
-    | ProjectApplicantsUpdateWithWhereUniqueWithoutProfileInput
+    | ProjectApplicantUpdateWithWhereUniqueWithoutProfileInput[]
+    | ProjectApplicantUpdateWithWhereUniqueWithoutProfileInput
   >;
   upsert?: Maybe<
-    | ProjectApplicantsUpsertWithWhereUniqueWithoutProfileInput[]
-    | ProjectApplicantsUpsertWithWhereUniqueWithoutProfileInput
+    | ProjectApplicantUpsertWithWhereUniqueWithoutProfileInput[]
+    | ProjectApplicantUpsertWithWhereUniqueWithoutProfileInput
   >;
   deleteMany?: Maybe<
-    ProjectApplicantsScalarWhereInput[] | ProjectApplicantsScalarWhereInput
+    ProjectApplicantScalarWhereInput[] | ProjectApplicantScalarWhereInput
   >;
   updateMany?: Maybe<
-    | ProjectApplicantsUpdateManyWithWhereNestedInput[]
-    | ProjectApplicantsUpdateManyWithWhereNestedInput
+    | ProjectApplicantUpdateManyWithWhereNestedInput[]
+    | ProjectApplicantUpdateManyWithWhereNestedInput
   >;
 }
 
-export interface ProjectApplicantsUpdateWithWhereUniqueWithoutProfileInput {
-  where: ProjectApplicantsWhereUniqueInput;
-  data: ProjectApplicantsUpdateWithoutProfileDataInput;
+export interface ProjectApplicantUpdateWithWhereUniqueWithoutProfileInput {
+  where: ProjectApplicantWhereUniqueInput;
+  data: ProjectApplicantUpdateWithoutProfileDataInput;
 }
 
-export interface ProjectApplicantsUpdateWithoutProfileDataInput {
+export interface ProjectApplicantUpdateWithoutProfileDataInput {
   project?: Maybe<ProjectUpdateOneRequiredWithoutApplicantsInput>;
   trade?: Maybe<ProjectTradeUpdateOneRequiredInput>;
   coverLetter?: Maybe<String>;
@@ -4393,13 +4393,13 @@ export interface ProjectUpsertWithoutApplicantsInput {
   create: ProjectCreateWithoutApplicantsInput;
 }
 
-export interface ProjectApplicantsUpsertWithWhereUniqueWithoutProfileInput {
-  where: ProjectApplicantsWhereUniqueInput;
-  update: ProjectApplicantsUpdateWithoutProfileDataInput;
-  create: ProjectApplicantsCreateWithoutProfileInput;
+export interface ProjectApplicantUpsertWithWhereUniqueWithoutProfileInput {
+  where: ProjectApplicantWhereUniqueInput;
+  update: ProjectApplicantUpdateWithoutProfileDataInput;
+  create: ProjectApplicantCreateWithoutProfileInput;
 }
 
-export interface ProjectApplicantsScalarWhereInput {
+export interface ProjectApplicantScalarWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
   id_in?: Maybe<ID_Input[] | ID_Input>;
@@ -4433,22 +4433,22 @@ export interface ProjectApplicantsScalarWhereInput {
   status_in?: Maybe<Status[] | Status>;
   status_not_in?: Maybe<Status[] | Status>;
   AND?: Maybe<
-    ProjectApplicantsScalarWhereInput[] | ProjectApplicantsScalarWhereInput
+    ProjectApplicantScalarWhereInput[] | ProjectApplicantScalarWhereInput
   >;
   OR?: Maybe<
-    ProjectApplicantsScalarWhereInput[] | ProjectApplicantsScalarWhereInput
+    ProjectApplicantScalarWhereInput[] | ProjectApplicantScalarWhereInput
   >;
   NOT?: Maybe<
-    ProjectApplicantsScalarWhereInput[] | ProjectApplicantsScalarWhereInput
+    ProjectApplicantScalarWhereInput[] | ProjectApplicantScalarWhereInput
   >;
 }
 
-export interface ProjectApplicantsUpdateManyWithWhereNestedInput {
-  where: ProjectApplicantsScalarWhereInput;
-  data: ProjectApplicantsUpdateManyDataInput;
+export interface ProjectApplicantUpdateManyWithWhereNestedInput {
+  where: ProjectApplicantScalarWhereInput;
+  data: ProjectApplicantUpdateManyDataInput;
 }
 
-export interface ProjectApplicantsUpdateManyDataInput {
+export interface ProjectApplicantUpdateManyDataInput {
   coverLetter?: Maybe<String>;
   status?: Maybe<Status>;
 }
@@ -4844,7 +4844,7 @@ export interface UserProfileUpdateWithoutTasksDataInput {
   likedProjects?: Maybe<ProjectLikeUpdateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProfileInput>;
   likedComments?: Maybe<ProjectCommentLikeUpdateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsUpdateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantUpdateManyWithoutProfileInput>;
 }
 
 export interface UserProfileUpsertWithoutTasksInput {
@@ -4985,10 +4985,10 @@ export interface UserProfileUpsertWithoutApplicationsInput {
   create: UserProfileCreateWithoutApplicationsInput;
 }
 
-export interface ProjectApplicantsUpsertWithWhereUniqueWithoutProjectInput {
-  where: ProjectApplicantsWhereUniqueInput;
-  update: ProjectApplicantsUpdateWithoutProjectDataInput;
-  create: ProjectApplicantsCreateWithoutProjectInput;
+export interface ProjectApplicantUpsertWithWhereUniqueWithoutProjectInput {
+  where: ProjectApplicantWhereUniqueInput;
+  update: ProjectApplicantUpdateWithoutProjectDataInput;
+  create: ProjectApplicantCreateWithoutProjectInput;
 }
 
 export interface ProjectUpsertWithoutTasksInput {
@@ -5357,7 +5357,7 @@ export interface ProjectUpdateManyMutationInput {
   featuredImage?: Maybe<String>;
 }
 
-export interface ProjectApplicantsCreateInput {
+export interface ProjectApplicantCreateInput {
   id?: Maybe<ID_Input>;
   project: ProjectCreateOneWithoutApplicantsInput;
   profile: UserProfileCreateOneWithoutApplicationsInput;
@@ -5366,7 +5366,7 @@ export interface ProjectApplicantsCreateInput {
   status: Status;
 }
 
-export interface ProjectApplicantsUpdateInput {
+export interface ProjectApplicantUpdateInput {
   project?: Maybe<ProjectUpdateOneRequiredWithoutApplicantsInput>;
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutApplicationsInput>;
   trade?: Maybe<ProjectTradeUpdateOneRequiredInput>;
@@ -5374,7 +5374,7 @@ export interface ProjectApplicantsUpdateInput {
   status?: Maybe<Status>;
 }
 
-export interface ProjectApplicantsUpdateManyMutationInput {
+export interface ProjectApplicantUpdateManyMutationInput {
   coverLetter?: Maybe<String>;
   status?: Maybe<Status>;
 }
@@ -5470,7 +5470,7 @@ export interface ProjectCreateWithoutImagesInput {
   comments?: Maybe<ProjectCommentCreateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeCreateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskCreateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsCreateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantCreateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentCreateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanCreateManyWithoutProjectInput>;
 }
@@ -5508,7 +5508,7 @@ export interface ProjectUpdateWithoutImagesDataInput {
   comments?: Maybe<ProjectCommentUpdateManyWithoutProjectInput>;
   trades?: Maybe<ProjectTradeUpdateManyWithoutProjectInput>;
   tasks?: Maybe<ProjectTaskUpdateManyWithoutProjectInput>;
-  applicants?: Maybe<ProjectApplicantsUpdateManyWithoutProjectInput>;
+  applicants?: Maybe<ProjectApplicantUpdateManyWithoutProjectInput>;
   students?: Maybe<ProjectStudentUpdateManyWithoutProjectInput>;
   tradeMasters?: Maybe<ProjectMasterTradesmanUpdateManyWithoutProjectInput>;
 }
@@ -5636,7 +5636,7 @@ export interface UserProfileCreateInput {
   likedProjects?: Maybe<ProjectLikeCreateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentCreateManyWithoutProfileInput>;
   likedComments?: Maybe<ProjectCommentLikeCreateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsCreateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantCreateManyWithoutProfileInput>;
 }
 
 export interface UserProfileUpdateInput {
@@ -5663,7 +5663,7 @@ export interface UserProfileUpdateInput {
   likedProjects?: Maybe<ProjectLikeUpdateManyWithoutProfileInput>;
   comments?: Maybe<ProjectCommentUpdateManyWithoutProfileInput>;
   likedComments?: Maybe<ProjectCommentLikeUpdateManyWithoutProfileInput>;
-  applications?: Maybe<ProjectApplicantsUpdateManyWithoutProfileInput>;
+  applications?: Maybe<ProjectApplicantUpdateManyWithoutProfileInput>;
 }
 
 export interface UserProfileUpdateManyMutationInput {
@@ -5713,23 +5713,23 @@ export interface ProjectSubscriptionWhereInput {
   NOT?: Maybe<ProjectSubscriptionWhereInput[] | ProjectSubscriptionWhereInput>;
 }
 
-export interface ProjectApplicantsSubscriptionWhereInput {
+export interface ProjectApplicantSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ProjectApplicantsWhereInput>;
+  node?: Maybe<ProjectApplicantWhereInput>;
   AND?: Maybe<
-    | ProjectApplicantsSubscriptionWhereInput[]
-    | ProjectApplicantsSubscriptionWhereInput
+    | ProjectApplicantSubscriptionWhereInput[]
+    | ProjectApplicantSubscriptionWhereInput
   >;
   OR?: Maybe<
-    | ProjectApplicantsSubscriptionWhereInput[]
-    | ProjectApplicantsSubscriptionWhereInput
+    | ProjectApplicantSubscriptionWhereInput[]
+    | ProjectApplicantSubscriptionWhereInput
   >;
   NOT?: Maybe<
-    | ProjectApplicantsSubscriptionWhereInput[]
-    | ProjectApplicantsSubscriptionWhereInput
+    | ProjectApplicantSubscriptionWhereInput[]
+    | ProjectApplicantSubscriptionWhereInput
   >;
 }
 
@@ -6161,9 +6161,9 @@ export interface ProjectPromise extends Promise<Project>, Fragmentable {
     first?: Int;
     last?: Int;
   }) => T;
-  applicants: <T = FragmentableArray<ProjectApplicants>>(args?: {
-    where?: ProjectApplicantsWhereInput;
-    orderBy?: ProjectApplicantsOrderByInput;
+  applicants: <T = FragmentableArray<ProjectApplicant>>(args?: {
+    where?: ProjectApplicantWhereInput;
+    orderBy?: ProjectApplicantOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
@@ -6265,10 +6265,10 @@ export interface ProjectSubscription
     last?: Int;
   }) => T;
   applicants: <
-    T = Promise<AsyncIterator<ProjectApplicantsSubscription>>
+    T = Promise<AsyncIterator<ProjectApplicantSubscription>>
   >(args?: {
-    where?: ProjectApplicantsWhereInput;
-    orderBy?: ProjectApplicantsOrderByInput;
+    where?: ProjectApplicantWhereInput;
+    orderBy?: ProjectApplicantOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
@@ -6371,9 +6371,9 @@ export interface ProjectNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
-  applicants: <T = FragmentableArray<ProjectApplicants>>(args?: {
-    where?: ProjectApplicantsWhereInput;
-    orderBy?: ProjectApplicantsOrderByInput;
+  applicants: <T = FragmentableArray<ProjectApplicant>>(args?: {
+    where?: ProjectApplicantWhereInput;
+    orderBy?: ProjectApplicantOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
@@ -6508,9 +6508,9 @@ export interface UserProfilePromise extends Promise<UserProfile>, Fragmentable {
     first?: Int;
     last?: Int;
   }) => T;
-  applications: <T = FragmentableArray<ProjectApplicants>>(args?: {
-    where?: ProjectApplicantsWhereInput;
-    orderBy?: ProjectApplicantsOrderByInput;
+  applications: <T = FragmentableArray<ProjectApplicant>>(args?: {
+    where?: ProjectApplicantWhereInput;
+    orderBy?: ProjectApplicantOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
@@ -6619,10 +6619,10 @@ export interface UserProfileSubscription
     last?: Int;
   }) => T;
   applications: <
-    T = Promise<AsyncIterator<ProjectApplicantsSubscription>>
+    T = Promise<AsyncIterator<ProjectApplicantSubscription>>
   >(args?: {
-    where?: ProjectApplicantsWhereInput;
-    orderBy?: ProjectApplicantsOrderByInput;
+    where?: ProjectApplicantWhereInput;
+    orderBy?: ProjectApplicantOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
@@ -6722,9 +6722,9 @@ export interface UserProfileNullablePromise
     first?: Int;
     last?: Int;
   }) => T;
-  applications: <T = FragmentableArray<ProjectApplicants>>(args?: {
-    where?: ProjectApplicantsWhereInput;
-    orderBy?: ProjectApplicantsOrderByInput;
+  applications: <T = FragmentableArray<ProjectApplicant>>(args?: {
+    where?: ProjectApplicantWhereInput;
+    orderBy?: ProjectApplicantOrderByInput;
     skip?: Int;
     after?: String;
     before?: String;
@@ -7100,14 +7100,14 @@ export interface ProjectCommentLikeNullablePromise
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface ProjectApplicants {
+export interface ProjectApplicant {
   id: ID_Output;
   coverLetter: String;
   status: Status;
 }
 
-export interface ProjectApplicantsPromise
-  extends Promise<ProjectApplicants>,
+export interface ProjectApplicantPromise
+  extends Promise<ProjectApplicant>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   project: <T = ProjectPromise>() => T;
@@ -7117,8 +7117,8 @@ export interface ProjectApplicantsPromise
   status: () => Promise<Status>;
 }
 
-export interface ProjectApplicantsSubscription
-  extends Promise<AsyncIterator<ProjectApplicants>>,
+export interface ProjectApplicantSubscription
+  extends Promise<AsyncIterator<ProjectApplicant>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   project: <T = ProjectSubscription>() => T;
@@ -7128,8 +7128,8 @@ export interface ProjectApplicantsSubscription
   status: () => Promise<AsyncIterator<Status>>;
 }
 
-export interface ProjectApplicantsNullablePromise
-  extends Promise<ProjectApplicants | null>,
+export interface ProjectApplicantNullablePromise
+  extends Promise<ProjectApplicant | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   project: <T = ProjectPromise>() => T;
@@ -7226,58 +7226,58 @@ export interface AggregateProjectSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface ProjectApplicantsConnection {
+export interface ProjectApplicantConnection {
   pageInfo: PageInfo;
-  edges: ProjectApplicantsEdge[];
+  edges: ProjectApplicantEdge[];
 }
 
-export interface ProjectApplicantsConnectionPromise
-  extends Promise<ProjectApplicantsConnection>,
+export interface ProjectApplicantConnectionPromise
+  extends Promise<ProjectApplicantConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<ProjectApplicantsEdge>>() => T;
-  aggregate: <T = AggregateProjectApplicantsPromise>() => T;
+  edges: <T = FragmentableArray<ProjectApplicantEdge>>() => T;
+  aggregate: <T = AggregateProjectApplicantPromise>() => T;
 }
 
-export interface ProjectApplicantsConnectionSubscription
-  extends Promise<AsyncIterator<ProjectApplicantsConnection>>,
+export interface ProjectApplicantConnectionSubscription
+  extends Promise<AsyncIterator<ProjectApplicantConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<ProjectApplicantsEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateProjectApplicantsSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ProjectApplicantEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateProjectApplicantSubscription>() => T;
 }
 
-export interface ProjectApplicantsEdge {
-  node: ProjectApplicants;
+export interface ProjectApplicantEdge {
+  node: ProjectApplicant;
   cursor: String;
 }
 
-export interface ProjectApplicantsEdgePromise
-  extends Promise<ProjectApplicantsEdge>,
+export interface ProjectApplicantEdgePromise
+  extends Promise<ProjectApplicantEdge>,
     Fragmentable {
-  node: <T = ProjectApplicantsPromise>() => T;
+  node: <T = ProjectApplicantPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface ProjectApplicantsEdgeSubscription
-  extends Promise<AsyncIterator<ProjectApplicantsEdge>>,
+export interface ProjectApplicantEdgeSubscription
+  extends Promise<AsyncIterator<ProjectApplicantEdge>>,
     Fragmentable {
-  node: <T = ProjectApplicantsSubscription>() => T;
+  node: <T = ProjectApplicantSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface AggregateProjectApplicants {
+export interface AggregateProjectApplicant {
   count: Int;
 }
 
-export interface AggregateProjectApplicantsPromise
-  extends Promise<AggregateProjectApplicants>,
+export interface AggregateProjectApplicantPromise
+  extends Promise<AggregateProjectApplicant>,
     Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateProjectApplicantsSubscription
-  extends Promise<AsyncIterator<AggregateProjectApplicants>>,
+export interface AggregateProjectApplicantSubscription
+  extends Promise<AsyncIterator<AggregateProjectApplicant>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
@@ -8148,47 +8148,47 @@ export interface ProjectPreviousValuesSubscription
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface ProjectApplicantsSubscriptionPayload {
+export interface ProjectApplicantSubscriptionPayload {
   mutation: MutationType;
-  node: ProjectApplicants;
+  node: ProjectApplicant;
   updatedFields: String[];
-  previousValues: ProjectApplicantsPreviousValues;
+  previousValues: ProjectApplicantPreviousValues;
 }
 
-export interface ProjectApplicantsSubscriptionPayloadPromise
-  extends Promise<ProjectApplicantsSubscriptionPayload>,
+export interface ProjectApplicantSubscriptionPayloadPromise
+  extends Promise<ProjectApplicantSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = ProjectApplicantsPromise>() => T;
+  node: <T = ProjectApplicantPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = ProjectApplicantsPreviousValuesPromise>() => T;
+  previousValues: <T = ProjectApplicantPreviousValuesPromise>() => T;
 }
 
-export interface ProjectApplicantsSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<ProjectApplicantsSubscriptionPayload>>,
+export interface ProjectApplicantSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ProjectApplicantSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = ProjectApplicantsSubscription>() => T;
+  node: <T = ProjectApplicantSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = ProjectApplicantsPreviousValuesSubscription>() => T;
+  previousValues: <T = ProjectApplicantPreviousValuesSubscription>() => T;
 }
 
-export interface ProjectApplicantsPreviousValues {
+export interface ProjectApplicantPreviousValues {
   id: ID_Output;
   coverLetter: String;
   status: Status;
 }
 
-export interface ProjectApplicantsPreviousValuesPromise
-  extends Promise<ProjectApplicantsPreviousValues>,
+export interface ProjectApplicantPreviousValuesPromise
+  extends Promise<ProjectApplicantPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
   coverLetter: () => Promise<String>;
   status: () => Promise<Status>;
 }
 
-export interface ProjectApplicantsPreviousValuesSubscription
-  extends Promise<AsyncIterator<ProjectApplicantsPreviousValues>>,
+export interface ProjectApplicantPreviousValuesSubscription
+  extends Promise<AsyncIterator<ProjectApplicantPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   coverLetter: () => Promise<AsyncIterator<String>>;
@@ -8882,7 +8882,7 @@ export const models: Model[] = [
     embedded: false
   },
   {
-    name: "ProjectApplicants",
+    name: "ProjectApplicant",
     embedded: false
   },
   {
