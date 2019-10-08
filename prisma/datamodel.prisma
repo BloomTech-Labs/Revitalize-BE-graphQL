@@ -102,7 +102,6 @@ type ProjectCommentLike {
   updatedAt: DateTime! @updatedAt
 }
 
-
 type ProjectTrade {
   id: ID! @id
   project: Project!
@@ -121,6 +120,14 @@ type ProjectMasterTradesman {
   profile: UserProfile!
 }
 
+type ProjectApplicants {
+  id: ID! @id
+  project: Project!
+  profile: UserProfile!
+  trade: ProjectTrade!
+  coverLetter: String!
+  status: boolean @default(value: false)
+}
 
 // @WIP for direct messages
 type DirectMessage {
