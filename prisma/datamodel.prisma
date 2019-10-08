@@ -102,6 +102,12 @@ type ProjectCommentLike {
   updatedAt: DateTime! @updatedAt
 }
 
+type ProjectStudents {
+  id: ID! @id
+  project: Project!
+  profile: UserProfile!
+}
+
 // @WIP for direct messages
 type DirectMessage {
   id: ID! @id
