@@ -143,12 +143,12 @@ type ProjectStudent {
 type ProjectMasterTradesman {
   id: ID! @id
   project: Project! @relation(name: "ProjectMasterTradesmanToProject", onDelete: SET_NULL)
-  profile: UserProfile! @relation(name: "ProjectMasterTradesmanToProfile", onDelete: SET_NULL)
+  profile: UserProfile! @relation(name: "ProjectMasterTradesmanToProfile")
 }
 
 type ProjectTask {
   id: ID! @id
-  project: Project! @relation(name: "ProjectTaskToProject", onDelete: SET_NULL)
+  project: Project! @relation(name: "ProjectTaskToProject")
   trade: ProjectTrade!
   description: String!
   priority: String!
@@ -159,7 +159,7 @@ type ProjectTask {
 
 type ProjectApprenticeTask {
   id: ID! @id
-  projectTask: ProjectTask! @relation(name: "ProjectApprenticeTaskToProjectTask", onDelete: SET_NULL)
-  profile: UserProfile! @relation(name: "ProjectApprenticeTaskToUserProfile", onDelete: SET_NULL)
+  projectTask: ProjectTask! @relation(name: "ProjectApprenticeTaskToProjectTask")
+  profile: UserProfile! @relation(name: "ProjectApprenticeTaskToUserProfile")
 }
 
