@@ -45,6 +45,10 @@ var models = [
     embedded: false
   },
   {
+    name: "ProjectTrade",
+    embedded: false
+  },
+  {
     name: "ProjectApplicant",
     embedded: false
   },
@@ -54,10 +58,6 @@ var models = [
   },
   {
     name: "ProjectMasterTradesman",
-    embedded: false
-  },
-  {
-    name: "ProjectTrade",
     embedded: false
   },
   {

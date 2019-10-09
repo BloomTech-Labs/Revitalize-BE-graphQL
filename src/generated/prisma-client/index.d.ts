@@ -8882,6 +8882,10 @@ export const models: Model[] = [
     embedded: false
   },
   {
+    name: "ProjectTrade",
+    embedded: false
+  },
+  {
     name: "ProjectApplicant",
     embedded: false
   },
@@ -8891,10 +8895,6 @@ export const models: Model[] = [
   },
   {
     name: "ProjectMasterTradesman",
-    embedded: false
-  },
-  {
-    name: "ProjectTrade",
     embedded: false
   },
   {
