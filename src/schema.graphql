@@ -3,12 +3,18 @@ scalar Date
 
 # Enums
 enum Status {
-  PENDING
-  ACCEPTED
-  DECLINED
+	PENDING
+	ACCEPTED
+	DECLINED
 }
 
-# Returned auth payload type
+enum Priority {
+	LOW
+	MEDIUM
+	HIGH
+}
+
+# Custom Auth payload
 type AuthPayload {
 	token: String!
 	profile: UserProfile!
@@ -67,6 +73,18 @@ type Mutation {
 
 	# Project Applicant
 	createProjectApplicant(data: CreateProjectApplicant!): ProjectApplicant!
+
+	# Project Student
+	createProjectStudent(data: CreateProjectStudent!): ProjectStudent!
+
+	# Project Master Tradesman
+	createProjectMasterTradesman(data: CreateProjectMasterTradesman!): ProjectMasterTradesman!
+
+	# Project tasks
+	createProjectTask(data: CreateProjectTask!): ProjectTask!
+
+	# Project task apprentices
+	createProjectApprenticeTask(data: CreateProjectApprenticeTask!): ProjectApprenticeTask!
 }
 
 # UserAccount
@@ -118,6 +136,10 @@ type UserProfile {
 	comments: [ProjectComment!]
 	likedComments: [ProjectCommentLike!]!
 	applications: [ProjectApplicant!]!
+	projects: [Project!]!
+	studentProjects: [ProjectStudent!]!
+	tasks: [ProjectApprenticeTask!]!
+	tradeMasterProjects: [ProjectMasterTradesman!]
 }
 
 input CreateUserProfileInput {
@@ -170,6 +192,9 @@ type Project {
 	comments: [ProjectComment!]!
 	images: [ProjectImage!]!
 	applicants: [ProjectApplicant!]!
+	tradeMasters: [ProjectMasterTradesman!]!
+	students: [ProjectStudent!]!
+	tasks: [ProjectTask!]!
 }
 
 type ProjectDonation {
@@ -257,44 +282,102 @@ type ProjectCommentLike {
 
 # Project Trade
 type ProjectTrade {
-  id: ID!
-  project: Project!
-  name: String!
-  description: String!
+	id: ID!
+	project: Project!
+	name: String!
+	description: String!
 }
 
 input CreateProjectTrade {
-  project: ID!
-  name: String!
-  description: String!
+	project: ID!
+	name: String!
+	description: String!
 }
 
 input UpdateProjectTrade {
-  project: ID!
-  name: String
-  description: String
+	project: ID!
+	name: String
+	description: String
 }
 
 # Project Applicant
 type ProjectApplicant {
-  id: ID!
-  project: Project!
-  profile: UserProfile!
-  trade: ProjectTrade!
-  coverLetter: String!
-  status: Status!
+	id: ID!
+	project: Project!
+	profile: UserProfile!
+	trade: ProjectTrade!
+	coverLetter: String!
+	status: Status!
 }
 
 input CreateProjectApplicant {
-  project: ID!
-  trade: ID!
-  coverLetter: String!
-  status: Status!
+	project: ID!
+	trade: ID!
+	coverLetter: String!
+	status: Status!
 }
 
 input UpdateProjectApplicant {
-  project: ID!
-  trade: ID!
-  coverLetter: String
-  status: Status
+	project: ID!
+	trade: ID!
+	coverLetter: String
+	status: Status
+}
+
+# Project Student
+type ProjectStudent {
+	id: ID!
+	project: Project!
+	profile: UserProfile!
+}
+
+input CreateProjectStudent {
+	project: ID!
+	profile: ID!
+}
+
+# Project Master Tradesman
+type ProjectMasterTradesman {
+	id: ID!
+	project: Project!
+	profile: UserProfile!
+}
+
+input CreateProjectMasterTradesman {
+	project: ID!
+	profile: ID!
+}
+
+# Project Tasks
+type ProjectTask {
+	id: ID!
+	project: Project!
+	trade: ProjectTrade!
+	description: String!
+	priority: Priority!
+	dueDate: Date!
+	budgetHours: Int!
+	apprentices: [ProjectApprenticeTask!]!
+}
+
+input CreateProjectTask {
+	project: ID!
+	trade: ID!
+	description: String!
+	priority: Priority!
+	dueDate: Date!
+	budgetHours: Int!
+	apprentices: [CreateProjectApprenticeTask!]
+}
+
+type ProjectApprenticeTask {
+	id: ID!
+	projectTask: ProjectTask!
+	profile: UserProfile!
+}
+
+
+input CreateProjectApprenticeTask {
+	projectTask: ID!
+	profile: ID!
 }
