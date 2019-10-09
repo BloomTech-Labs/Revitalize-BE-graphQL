@@ -5,6 +5,10 @@ import { Project } from './Project';
 import { ProjectComment } from './ProjectComment';
 import { ProjectDonation } from './ProjectDonation';
 import { ProjectApplicant } from './ProjectApplicant';
+import { ProjectTrade } from './ProjectTrade';
+import { ProjectStudent } from './ProjectStudent';
+import { ProjectMasterTradesman } from './ProjectMasterTradesman';
+import { ProjectTask } from './ProjectTask';
 
 export const Mutation = {
 	...UserAccount,
@@ -13,5 +17,9 @@ export const Mutation = {
 	...Project,
 	...ProjectComment,
 	...ProjectDonation,
-	...ProjectApplicant
+	...ProjectApplicant,
+	...ProjectTrade,
+	...ProjectStudent,
+	...ProjectMasterTradesman,
+	...ProjectTask
 };
