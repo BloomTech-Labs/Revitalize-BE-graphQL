@@ -19,6 +19,15 @@ export const UserProfile = {
 	},
 	async applications(parent) {
 		return await prisma.userProfile({ id: parent.id }).applications();
+	},
+	async studentProjects(parent) {
+		return await prisma.userProfile({ id: parent.id }).studentProjects();
+	},
+	async tasks(parent) {
+		return await prisma.userProfile({ id: parent.id }).tasks();
+	},
+	async tradeMasterProjects(parent) {
+		return await prisma.userProfile({ id: parent.id }).tradeMasterProjects();
 	}
 	// email: {
 	// 	fragment: 'fragment userId on UserProfile { id }',
