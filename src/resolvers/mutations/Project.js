@@ -33,7 +33,7 @@ export const Project = {
 
 		args.data.images.map(async image => {
 			const result = await uploadImage(image);
-			console.log(result);
+
 			await prisma.createProjectImage({
 				project: {
 					connect: {
