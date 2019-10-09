@@ -18,5 +18,14 @@ export const Project = {
 	},
 	async applicants(parent) {
 		return prisma.project({ id: parent.id }).applicants();
+	},
+	async students(parent) {
+		return prisma.project({ id: parent.id }).students();
+	},
+	async tradeMasters(parent) {
+		return prisma.project({ id: parent.id }).tradeMasters();
+	},
+	async tasks(parent) {
+		return prisma.project({ id: parent.id }).tasks();
 	}
 };
