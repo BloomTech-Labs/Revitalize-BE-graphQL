@@ -4,19 +4,19 @@ export const ProjectStudent = {
     async createProjectStudent(parent, args, { prisma, request }, info) {
         const profileId = getProfileId(request);
 
-        const project = await prisma.$exists.project({ project: args.id, profile: profileId })
+        const project = await prisma.$exists.project({ project: args.data.id, profile: profileId })
         if (!project) throw new Error("Sorry, but that project does not exist")
 
         prisma.createProjectStudent({
             data: {
                 project: {
                     connect: {
-                        id: args.project
+                        id: args.data.project
                     }
                 },
                 profile: {
                     connect: {
-                        id: args.profile
+                        id: args.data.profile
                     }
                 }
             }

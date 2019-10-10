@@ -4,13 +4,13 @@ export const ProjectTask = {
     async createProjectTask(parent, args, { prisma, request }, info) {
         const profileId = getProfileId(request);
 
-        const project = await prisma.$exists.project({ project: args.id, profile: profileId })
+        const project = await prisma.$exists.project({ project: args.data.id, profile: profileId })
         if (!project) throw new Error("Sorry, but that project does not exist")
 
         let apprentices = [];
 
-        if (args.apprentices) {
-            apprentices = args.apprentices.map(apprentice => {
+        if (args.data.apprentices) {
+            apprentices = args.data.apprentices.map(apprentice => {
                 return {
                     profile: {
                         connect: apprentice.id
@@ -22,18 +22,18 @@ export const ProjectTask = {
         return prisma.createProjectTask({
             project: {
                 connect: {
-                    id: args.project
+                    id: args.data.project
                 }
             },
             trade: {
                 connect: {
-                    id: args.trade
+                    id: args.data.trade
                 }
             },
-            description: args.description,
-            priority: args.priority,
-            dueDate: args.dueDate,
-            budgetHours: args.budgetHours,
+            description: args.data.description,
+            priority: args.data.priority,
+            dueDate: args.data.dueDate,
+            budgetHours: args.data.budgetHours,
             apprentices
         })
     }
