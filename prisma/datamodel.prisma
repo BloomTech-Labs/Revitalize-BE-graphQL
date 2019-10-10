@@ -148,7 +148,7 @@ type ProjectMasterTradesman {
 
 type ProjectTask {
   id: ID! @id
-  project: Project! @relation(name: "ProjectTaskToProject")
+  project: Project! @relation(name: "ProjectTaskToProject", onDelete: SET_NULL)
   trade: ProjectTrade!
   description: String!
   priority: String!
