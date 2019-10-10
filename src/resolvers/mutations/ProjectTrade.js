@@ -4,7 +4,7 @@ export const ProjectTrade = {
     async createProjectTrade(parent, args, { prisma, request }, info) {
         const profileId = getProfileId(request);
 
-        const project = await prisma.$exists.project({ project: args.data.id, profile: profileId })
+        const project = await prisma.$exists.project({ project: args.data.project, profile: profileId })
 
         if (!project) throw new Error("Sorry, but that project does not exist")
 
@@ -14,7 +14,7 @@ export const ProjectTrade = {
                 description: args.data.description,
                 project: {
                     connect: {
-                        id: args.data.id
+                        id: args.data.project
                     }
                 }
 
