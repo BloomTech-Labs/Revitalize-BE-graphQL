@@ -69,7 +69,7 @@ type Mutation {
 	deleteProjectCommentLike(id: ID!): ProjectComment!
 
 	# Project Trade
-	createProjectTrade(data: CreateProjectTrade!): ProjectApplicant!
+	createProjectTrade(data: CreateProjectTrade!): ProjectTrade!
 
 	# Project Applicant
 	createProjectApplicant(data: CreateProjectApplicant!): ProjectApplicant!
