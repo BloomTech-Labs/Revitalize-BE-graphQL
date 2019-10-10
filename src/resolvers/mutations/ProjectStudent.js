@@ -9,8 +9,7 @@ export const ProjectStudent = {
         if (!project) throw new Error("Sorry, but that project does not exist")
 
 
-        prisma.createProjectStudent({
-            data: {
+        return prisma.createProjectStudent({
                 project: {
                     connect: {
                         id: args.data.project
@@ -21,7 +20,6 @@ export const ProjectStudent = {
                         id: args.data.profile
                     }
                 }
-            }
         })
     }
 }
