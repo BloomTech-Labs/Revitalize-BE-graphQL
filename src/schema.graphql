@@ -84,7 +84,7 @@ type Mutation {
 	createProjectTask(data: CreateProjectTask!): ProjectTask!
 
 	# Project task apprentices
-	createProjectApprenticeTask(data: CreateProjectApprenticeTask!): ProjectApprenticeTask!
+	CreateProjectApprenticeTask(data: CreateProjectApprenticeTask!): ProjectApprenticeTask!
 }
 
 # UserAccount
