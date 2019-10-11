@@ -135,7 +135,6 @@ type UserProfile {
 	likedProjects: [ProjectLike!]!
 	comments: [ProjectComment!]
 	likedComments: [ProjectCommentLike!]!
-	trades: [ProjectTrade!]!
 	applications: [ProjectApplicant!]!
 	studentProjects: [ProjectStudent!]!
 	tasks: [ProjectApprenticeTask!]!
@@ -191,6 +190,7 @@ type Project {
 	likes: [ProjectLike!]!
 	comments: [ProjectComment!]!
 	images: [ProjectImage!]!
+	trades: [ProjectTrade!]!
 	applicants: [ProjectApplicant!]!
 	tradeMasters: [ProjectMasterTradesman!]!
 	students: [ProjectStudent!]!
