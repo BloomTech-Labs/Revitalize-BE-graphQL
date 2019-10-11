@@ -5,6 +5,8 @@ import { Project } from './Project';
 import { ProjectComment } from './ProjectComment';
 import { ProjectTask } from './ProjectTask';
 import { ProjectApprenticeTask } from './ProjectApprenticeTask';
+import { ProjectStudent } from './ProjectStudent';
+import { ProjectMasterTradesman } from './ProjectMasterTradesman';
 
 export const Types = {
 	UserAccount,
@@ -13,5 +15,7 @@ export const Types = {
 	Project,
 	ProjectComment,
 	ProjectTask,
-	ProjectApprenticeTask
+	ProjectApprenticeTask,
+	ProjectStudent,
+	ProjectMasterTradesman,
 };
