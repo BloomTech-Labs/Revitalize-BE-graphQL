@@ -1,3 +1,5 @@
+import { getProfileId } from '../../utils/getProfileId';
+
 export const ProjectMasterTradesman = {
     async createProjectMasterTradesman(parent, args, { prisma, request }, info) {
         const profileId = getProfileId(request);
