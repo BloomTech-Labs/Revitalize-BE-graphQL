@@ -1,5 +1,6 @@
 import { getProfileId } from '../../utils/getProfileId';
 import { uploadImage } from '../../utils/uploadImage';
+import slugify from '../../utils/slugify';
 
 export const Project = {
 	async createProject(parent, args, { prisma, request }, info) {
@@ -10,7 +11,10 @@ export const Project = {
 			featuredImage = await uploadImage(args.data.featuredImage).imageUrl;
 		}
 
+		const slug = slugify(args.data.name);
+
 		const project = await prisma.createProject({
+			slug,
 			name: args.data.name,
 			description: args.data.description,
 			country: args.data.country,
@@ -31,19 +35,20 @@ export const Project = {
 			},
 		});
 
-		args.data.images && args.data.images.map(async image => {
-			const result = await uploadImage(image);
+		args.data.images &&
+			args.data.images.map(async image => {
+				const result = await uploadImage(image);
 
-			await prisma.createProjectImage({
-				project: {
-					connect: {
-						id: project.id,
+				await prisma.createProjectImage({
+					project: {
+						connect: {
+							id: project.id,
+						},
 					},
-				},
-				imageUrl: result.secure_url,
-				public_id: result.public_id,
+					imageUrl: result.secure_url,
+					public_id: result.public_id,
+				});
 			});
-		});
 
 		return prisma.project({ id: project.id }, info);
 	},

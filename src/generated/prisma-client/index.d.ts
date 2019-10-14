@@ -750,6 +750,8 @@ export type ProjectDonationOrderByInput =
 export type ProjectOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "slug_ASC"
+  | "slug_DESC"
   | "name_ASC"
   | "name_DESC"
   | "description_ASC"
@@ -1017,6 +1019,20 @@ export interface ProjectWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
+  slug?: Maybe<String>;
+  slug_not?: Maybe<String>;
+  slug_in?: Maybe<String[] | String>;
+  slug_not_in?: Maybe<String[] | String>;
+  slug_lt?: Maybe<String>;
+  slug_lte?: Maybe<String>;
+  slug_gt?: Maybe<String>;
+  slug_gte?: Maybe<String>;
+  slug_contains?: Maybe<String>;
+  slug_not_contains?: Maybe<String>;
+  slug_starts_with?: Maybe<String>;
+  slug_not_starts_with?: Maybe<String>;
+  slug_ends_with?: Maybe<String>;
+  slug_not_ends_with?: Maybe<String>;
   profile?: Maybe<UserProfileWhereInput>;
   name?: Maybe<String>;
   name_not?: Maybe<String>;
@@ -1989,6 +2005,7 @@ export interface ExternalAccountUpdateManyMutationInput {
 
 export interface ProjectCreateInput {
   id?: Maybe<ID_Input>;
+  slug: String;
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
@@ -2069,6 +2086,7 @@ export interface ProjectCreateOneWithoutDonationsInput {
 
 export interface ProjectCreateWithoutDonationsInput {
   id?: Maybe<ID_Input>;
+  slug: String;
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
@@ -2163,6 +2181,7 @@ export interface ProjectCreateManyWithoutProfileInput {
 
 export interface ProjectCreateWithoutProfileInput {
   id?: Maybe<ID_Input>;
+  slug: String;
   name: String;
   description: String;
   country: String;
@@ -2257,6 +2276,7 @@ export interface ProjectCreateOneWithoutStudentsInput {
 
 export interface ProjectCreateWithoutStudentsInput {
   id?: Maybe<ID_Input>;
+  slug: String;
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
@@ -2368,6 +2388,7 @@ export interface ProjectCreateOneWithoutTasksInput {
 
 export interface ProjectCreateWithoutTasksInput {
   id?: Maybe<ID_Input>;
+  slug: String;
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
@@ -2481,6 +2502,7 @@ export interface ProjectCreateOneWithoutTradeMastersInput {
 
 export interface ProjectCreateWithoutTradeMastersInput {
   id?: Maybe<ID_Input>;
+  slug: String;
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
@@ -2542,6 +2564,7 @@ export interface ProjectCreateOneWithoutTradesInput {
 
 export interface ProjectCreateWithoutTradesInput {
   id?: Maybe<ID_Input>;
+  slug: String;
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
@@ -2633,6 +2656,7 @@ export interface ProjectCreateOneWithoutLikesInput {
 
 export interface ProjectCreateWithoutLikesInput {
   id?: Maybe<ID_Input>;
+  slug: String;
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
@@ -2727,6 +2751,7 @@ export interface ProjectCreateOneWithoutCommentsInput {
 
 export interface ProjectCreateWithoutCommentsInput {
   id?: Maybe<ID_Input>;
+  slug: String;
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
@@ -2823,6 +2848,7 @@ export interface ProjectCreateOneWithoutApplicantsInput {
 
 export interface ProjectCreateWithoutApplicantsInput {
   id?: Maybe<ID_Input>;
+  slug: String;
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
@@ -2923,6 +2949,7 @@ export interface UserProfileCreateWithoutTasksInput {
 }
 
 export interface ProjectUpdateInput {
+  slug?: Maybe<String>;
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
@@ -3033,6 +3060,7 @@ export interface ProjectUpdateOneRequiredWithoutDonationsInput {
 }
 
 export interface ProjectUpdateWithoutDonationsDataInput {
+  slug?: Maybe<String>;
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
@@ -3256,6 +3284,7 @@ export interface ProjectUpdateWithWhereUniqueWithoutProfileInput {
 }
 
 export interface ProjectUpdateWithoutProfileDataInput {
+  slug?: Maybe<String>;
   name?: Maybe<String>;
   description?: Maybe<String>;
   country?: Maybe<String>;
@@ -3404,6 +3433,7 @@ export interface ProjectUpdateOneRequiredWithoutStudentsInput {
 }
 
 export interface ProjectUpdateWithoutStudentsDataInput {
+  slug?: Maybe<String>;
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
@@ -3574,6 +3604,7 @@ export interface ProjectUpdateOneRequiredWithoutTasksInput {
 }
 
 export interface ProjectUpdateWithoutTasksDataInput {
+  slug?: Maybe<String>;
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
@@ -3833,6 +3864,7 @@ export interface ProjectUpdateOneRequiredWithoutTradeMastersInput {
 }
 
 export interface ProjectUpdateWithoutTradeMastersDataInput {
+  slug?: Maybe<String>;
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
@@ -3920,6 +3952,7 @@ export interface ProjectUpdateOneRequiredWithoutTradesInput {
 }
 
 export interface ProjectUpdateWithoutTradesDataInput {
+  slug?: Maybe<String>;
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
@@ -4057,6 +4090,7 @@ export interface ProjectUpdateOneRequiredWithoutLikesInput {
 }
 
 export interface ProjectUpdateWithoutLikesDataInput {
+  slug?: Maybe<String>;
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
@@ -4209,6 +4243,7 @@ export interface ProjectUpdateOneRequiredWithoutCommentsInput {
 }
 
 export interface ProjectUpdateWithoutCommentsDataInput {
+  slug?: Maybe<String>;
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
@@ -4364,6 +4399,7 @@ export interface ProjectUpdateOneRequiredWithoutApplicantsInput {
 }
 
 export interface ProjectUpdateWithoutApplicantsDataInput {
+  slug?: Maybe<String>;
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
@@ -5120,6 +5156,20 @@ export interface ProjectScalarWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
+  slug?: Maybe<String>;
+  slug_not?: Maybe<String>;
+  slug_in?: Maybe<String[] | String>;
+  slug_not_in?: Maybe<String[] | String>;
+  slug_lt?: Maybe<String>;
+  slug_lte?: Maybe<String>;
+  slug_gt?: Maybe<String>;
+  slug_gte?: Maybe<String>;
+  slug_contains?: Maybe<String>;
+  slug_not_contains?: Maybe<String>;
+  slug_starts_with?: Maybe<String>;
+  slug_not_starts_with?: Maybe<String>;
+  slug_ends_with?: Maybe<String>;
+  slug_not_ends_with?: Maybe<String>;
   name?: Maybe<String>;
   name_not?: Maybe<String>;
   name_in?: Maybe<String[] | String>;
@@ -5299,6 +5349,7 @@ export interface ProjectUpdateManyWithWhereNestedInput {
 }
 
 export interface ProjectUpdateManyDataInput {
+  slug?: Maybe<String>;
   name?: Maybe<String>;
   description?: Maybe<String>;
   country?: Maybe<String>;
@@ -5342,6 +5393,7 @@ export interface UserProfileUpsertWithoutProjectsInput {
 }
 
 export interface ProjectUpdateManyMutationInput {
+  slug?: Maybe<String>;
   name?: Maybe<String>;
   description?: Maybe<String>;
   country?: Maybe<String>;
@@ -5451,6 +5503,7 @@ export interface ProjectCreateOneWithoutImagesInput {
 
 export interface ProjectCreateWithoutImagesInput {
   id?: Maybe<ID_Input>;
+  slug: String;
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
@@ -5489,6 +5542,7 @@ export interface ProjectUpdateOneRequiredWithoutImagesInput {
 }
 
 export interface ProjectUpdateWithoutImagesDataInput {
+  slug?: Maybe<String>;
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutProjectsInput>;
   name?: Maybe<String>;
   description?: Maybe<String>;
@@ -6074,6 +6128,7 @@ export interface AggregateExternalAccountSubscription
 
 export interface Project {
   id: ID_Output;
+  slug: String;
   name: String;
   description: String;
   country: String;
@@ -6093,6 +6148,7 @@ export interface Project {
 
 export interface ProjectPromise extends Promise<Project>, Fragmentable {
   id: () => Promise<ID_Output>;
+  slug: () => Promise<String>;
   profile: <T = UserProfilePromise>() => T;
   name: () => Promise<String>;
   description: () => Promise<String>;
@@ -6196,6 +6252,7 @@ export interface ProjectSubscription
   extends Promise<AsyncIterator<Project>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  slug: () => Promise<AsyncIterator<String>>;
   profile: <T = UserProfileSubscription>() => T;
   name: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
@@ -6303,6 +6360,7 @@ export interface ProjectNullablePromise
   extends Promise<Project | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  slug: () => Promise<String>;
   profile: <T = UserProfilePromise>() => T;
   name: () => Promise<String>;
   description: () => Promise<String>;
@@ -8089,6 +8147,7 @@ export interface ProjectSubscriptionPayloadSubscription
 
 export interface ProjectPreviousValues {
   id: ID_Output;
+  slug: String;
   name: String;
   description: String;
   country: String;
@@ -8110,6 +8169,7 @@ export interface ProjectPreviousValuesPromise
   extends Promise<ProjectPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  slug: () => Promise<String>;
   name: () => Promise<String>;
   description: () => Promise<String>;
   country: () => Promise<String>;
@@ -8131,6 +8191,7 @@ export interface ProjectPreviousValuesSubscription
   extends Promise<AsyncIterator<ProjectPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  slug: () => Promise<AsyncIterator<String>>;
   name: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
   country: () => Promise<AsyncIterator<String>>;

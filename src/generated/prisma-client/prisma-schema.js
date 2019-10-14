@@ -300,6 +300,7 @@ type PageInfo {
 
 type Project {
   id: ID!
+  slug: String!
   profile: UserProfile!
   name: String!
   description: String!
@@ -1281,6 +1282,7 @@ type ProjectConnection {
 
 input ProjectCreateInput {
   id: ID
+  slug: String!
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
@@ -1358,6 +1360,7 @@ input ProjectCreateOneWithoutTradesInput {
 
 input ProjectCreateWithoutApplicantsInput {
   id: ID
+  slug: String!
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
@@ -1384,6 +1387,7 @@ input ProjectCreateWithoutApplicantsInput {
 
 input ProjectCreateWithoutCommentsInput {
   id: ID
+  slug: String!
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
@@ -1410,6 +1414,7 @@ input ProjectCreateWithoutCommentsInput {
 
 input ProjectCreateWithoutDonationsInput {
   id: ID
+  slug: String!
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
@@ -1436,6 +1441,7 @@ input ProjectCreateWithoutDonationsInput {
 
 input ProjectCreateWithoutImagesInput {
   id: ID
+  slug: String!
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
@@ -1462,6 +1468,7 @@ input ProjectCreateWithoutImagesInput {
 
 input ProjectCreateWithoutLikesInput {
   id: ID
+  slug: String!
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
@@ -1488,6 +1495,7 @@ input ProjectCreateWithoutLikesInput {
 
 input ProjectCreateWithoutProfileInput {
   id: ID
+  slug: String!
   name: String!
   description: String!
   country: String!
@@ -1514,6 +1522,7 @@ input ProjectCreateWithoutProfileInput {
 
 input ProjectCreateWithoutStudentsInput {
   id: ID
+  slug: String!
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
@@ -1540,6 +1549,7 @@ input ProjectCreateWithoutStudentsInput {
 
 input ProjectCreateWithoutTasksInput {
   id: ID
+  slug: String!
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
@@ -1566,6 +1576,7 @@ input ProjectCreateWithoutTasksInput {
 
 input ProjectCreateWithoutTradeMastersInput {
   id: ID
+  slug: String!
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
@@ -1592,6 +1603,7 @@ input ProjectCreateWithoutTradeMastersInput {
 
 input ProjectCreateWithoutTradesInput {
   id: ID
+  slug: String!
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
@@ -2483,6 +2495,8 @@ input ProjectMasterTradesmanWhereUniqueInput {
 enum ProjectOrderByInput {
   id_ASC
   id_DESC
+  slug_ASC
+  slug_DESC
   name_ASC
   name_DESC
   description_ASC
@@ -2517,6 +2531,7 @@ enum ProjectOrderByInput {
 
 type ProjectPreviousValues {
   id: ID!
+  slug: String!
   name: String!
   description: String!
   country: String!
@@ -2549,6 +2564,20 @@ input ProjectScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
   name: String
   name_not: String
   name_in: [String!]
@@ -3477,6 +3506,7 @@ input ProjectTradeWhereUniqueInput {
 }
 
 input ProjectUpdateInput {
+  slug: String
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
   name: String
   description: String
@@ -3503,6 +3533,7 @@ input ProjectUpdateInput {
 }
 
 input ProjectUpdateManyDataInput {
+  slug: String
   name: String
   description: String
   country: String
@@ -3519,6 +3550,7 @@ input ProjectUpdateManyDataInput {
 }
 
 input ProjectUpdateManyMutationInput {
+  slug: String
   name: String
   description: String
   country: String
@@ -3615,6 +3647,7 @@ input ProjectUpdateOneRequiredWithoutTradesInput {
 }
 
 input ProjectUpdateWithoutApplicantsDataInput {
+  slug: String
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
   name: String
   description: String
@@ -3640,6 +3673,7 @@ input ProjectUpdateWithoutApplicantsDataInput {
 }
 
 input ProjectUpdateWithoutCommentsDataInput {
+  slug: String
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
   name: String
   description: String
@@ -3665,6 +3699,7 @@ input ProjectUpdateWithoutCommentsDataInput {
 }
 
 input ProjectUpdateWithoutDonationsDataInput {
+  slug: String
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
   name: String
   description: String
@@ -3690,6 +3725,7 @@ input ProjectUpdateWithoutDonationsDataInput {
 }
 
 input ProjectUpdateWithoutImagesDataInput {
+  slug: String
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
   name: String
   description: String
@@ -3715,6 +3751,7 @@ input ProjectUpdateWithoutImagesDataInput {
 }
 
 input ProjectUpdateWithoutLikesDataInput {
+  slug: String
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
   name: String
   description: String
@@ -3740,6 +3777,7 @@ input ProjectUpdateWithoutLikesDataInput {
 }
 
 input ProjectUpdateWithoutProfileDataInput {
+  slug: String
   name: String
   description: String
   country: String
@@ -3765,6 +3803,7 @@ input ProjectUpdateWithoutProfileDataInput {
 }
 
 input ProjectUpdateWithoutStudentsDataInput {
+  slug: String
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
   name: String
   description: String
@@ -3790,6 +3829,7 @@ input ProjectUpdateWithoutStudentsDataInput {
 }
 
 input ProjectUpdateWithoutTasksDataInput {
+  slug: String
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
   name: String
   description: String
@@ -3815,6 +3855,7 @@ input ProjectUpdateWithoutTasksDataInput {
 }
 
 input ProjectUpdateWithoutTradeMastersDataInput {
+  slug: String
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
   name: String
   description: String
@@ -3840,6 +3881,7 @@ input ProjectUpdateWithoutTradeMastersDataInput {
 }
 
 input ProjectUpdateWithoutTradesDataInput {
+  slug: String
   profile: UserProfileUpdateOneRequiredWithoutProjectsInput
   name: String
   description: String
@@ -3935,6 +3977,20 @@ input ProjectWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  slug: String
+  slug_not: String
+  slug_in: [String!]
+  slug_not_in: [String!]
+  slug_lt: String
+  slug_lte: String
+  slug_gt: String
+  slug_gte: String
+  slug_contains: String
+  slug_not_contains: String
+  slug_starts_with: String
+  slug_not_starts_with: String
+  slug_ends_with: String
+  slug_not_ends_with: String
   profile: UserProfileWhereInput
   name: String
   name_not: String

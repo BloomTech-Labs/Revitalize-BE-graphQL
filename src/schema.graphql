@@ -173,6 +173,7 @@ input UpdateUserProfileInput {
 type Project {
 	id: ID!
 	profile: UserProfile!
+	slug: String!
 	name: String!
 	description: String!
 	country: String!

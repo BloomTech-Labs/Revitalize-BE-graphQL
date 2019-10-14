@@ -66,6 +66,7 @@ async function main() {
             projects: {
                 create: [
                     {
+                        slug: 'murals-of-hope',
                         name: 'Murals of Hope',
                         description: 'Atlanta gets a mural upgrade with apprentice artits showcasing their skills and process',
                         featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1569880022/start%20page/Murals_Of_Hope_i49iqz.png',
@@ -98,6 +99,7 @@ async function main() {
             projects: {
                 create: [
                     {
+                        slug: 'mission-zero',
                         name: 'Mission Zero',
                         featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1569879306/start%20page/Mission_Zero_image_cvd99p',
                         description: 'Javontay investigates the construction rubble of a collapsed building after tornado strikes.',
@@ -153,6 +155,7 @@ async function main() {
             projects: {
                 create: [
                     {
+                        slug: 'alger-theater',
                         name: 'Alger Theater',
                         featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1569879306/start%20page/Mission_Zero_image_cvd99p',
                         description: 'The Alger sits at the corner of Warren Avenue and Outer Drive. It is constructed of structural steel faced with brick. A two-story square-plan tower structure with an instepped parapet stands at the corner, dominating the building\'s facade. The tower houses the theater entrance and box office. A vertical sign with the theater\'s name extends from the tower toward the street. Along the Warren facade, four single-story commercial spaces faced with painted yellow brick line the sidewalk; the facade of the theater proper above is set back.',
@@ -217,6 +220,7 @@ async function main() {
             projects: {
                 create: [
                     {
+                        slug: 'providence-theater',
                         name: 'Providence Theater',
                         featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1569879306/start%20page/Mission_Zero_image_cvd99p',
                         description: 'The tower houses the theater entrance and box office. A vertical sign with the theater\'s name extends from the tower toward the street. Along the Warren facade, four single-story commercial spaces faced with painted yellow brick line the sidewalk; the facade of the theater proper above is set back.',
@@ -289,6 +293,7 @@ async function main() {
             projects: {
                 create: [
                     {
+                        slug: 'cottonwood-paper-mill',
                         name: 'Cottonwood Paper Mill',
                         featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1569879306/start%20page/Mission_Zero_image_cvd99p',
                         description: 'The tower houses the theater entrance and box office. A vertical sign with the theater\'s name extends from the tower toward the street. Along the Warren facade, four single-story commercial spaces faced with painted yellow brick line the sidewalk; the facade of the theater proper above is set back.',
@@ -361,6 +366,7 @@ async function main() {
             projects: {
                 create: [
                     {
+                        slug: 'edgewater-medical-center',
                         name: 'Edgewater Medical Center',
                         featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1569879306/start%20page/Mission_Zero_image_cvd99p',
                         description: 'A healthy portion of large abandoned buildings that urban explorers seek out are left behind after major changes in economic markets, competition and innovation leave stagnant companies behind. That is not the case with Edgewater Medical Center. What sets this building apart from other urbex locations is that it was created by criminal acts over an extended period of time. Even though the hospital was dated, they were still operating in a capacity that for the most part benefitted patients. By the time the FBI discovered the corruption it had already metastasized and killed Edgewater Medical Center.',
@@ -433,6 +439,7 @@ async function main() {
             projects: {
                 create: [
                     {
+                        slug: 'georgia-girl-drive-in',
                         name: 'Georgia Girl Drive-In',
                         featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1569879306/start%20page/Mission_Zero_image_cvd99p',
                         description: 'Just south of Woodbine, Georgia on the nearly forgotten stretch of highway known as US-17 sits the remains of the Georgia Girl Drive-In. The catchy old neon sign and rapidly crumbling building is all that remains of this once-groovy hangout from the 1960s.',
@@ -505,6 +512,7 @@ async function main() {
             projects: {
                 create: [
                     {
+                        slug: 'hawthorne-mall',
                         name: 'Hawthorne Mall',
                         featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1569879306/start%20page/Mission_Zero_image_cvd99p',
                         description: 'Hawthorne Plaza is a dead mall along Hawthorne Boulevard between 120th Street and El Segundo Blvd in Hawthorne, California. The 40-acre (16 ha) property opened in 1977 and included an indoor mall and free standing stores at the property\'s south end. The mall largely catered to the middle class residents living in and around Hawthorne and featured cheaper stores than other nearby malls such as South Bay Galleria and Manhattan Village.',
@@ -577,6 +585,7 @@ async function main() {
             projects: {
                 create: [
                     {
+                        slug: 'hawthorne-mall-2',
                         name: 'Hawthorne Mall',
                         featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1569879306/start%20page/Mission_Zero_image_cvd99p',
                         description: 'The original 16th Street depot was a smaller wood structure, built when the tracks were on the shoreline of San Francisco Bay. Later the shoreline was filled and now lies nearly a mile west. It was replaced in 1912 by a Beaux-Arts building designed by architect Jarvis Hunt.',
@@ -649,6 +658,7 @@ async function main() {
             projects: {
                 create: [
                     {
+                        slug: 'cosson-hall',
                         name: 'Cosson Hall',
                         featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1569879306/start%20page/Mission_Zero_image_cvd99p',
                         description: 'Opened in 1969 on sadly treasure-less Treasure Island, Cosson Hall was an asterisk-shaped barracks that featured six wings, all of which were occupied by male sailors stationed on the island.',

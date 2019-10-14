@@ -49,6 +49,7 @@ type UserProfile {
 
 type Project {
   id: ID! @id
+  slug: String!
   profile: UserProfile! @relation(name: "ProjectToUserProfile", onDelete: SET_NULL)
   name: String!
   description: String!
