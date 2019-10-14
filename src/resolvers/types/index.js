@@ -2,6 +2,7 @@ import { UserAccount } from './UserAccount';
 import { ExternalAccount } from './ExternalAccount';
 import { UserProfile } from './UserProfile';
 import { Project } from './Project';
+import { ProjectLike } from './ProjectLike';
 import { ProjectDonation } from './ProjectDonation';
 import { ProjectTrade } from './ProjectTrade';
 import { ProjectComment } from './ProjectComment';
@@ -15,6 +16,7 @@ export const Types = {
 	ExternalAccount,
 	UserProfile,
 	Project,
+	ProjectLike,
 	ProjectDonation,
 	ProjectTrade,
 	ProjectComment,
