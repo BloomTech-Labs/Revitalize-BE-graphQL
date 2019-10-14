@@ -1,4 +1,6 @@
-Test suite
-Types
+Donation query
+Create project like
+Slugification
 Featured image upload
+Test suite
 Continuous integration script
