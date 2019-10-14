@@ -691,7 +691,32 @@ async function main() {
                                             id: frankProfile.id
                                         },
                                     },
-                                    comment: "This building is huge! Good luck!"
+                                    comment: "This building is huge! Good luck!",
+                                    likes: {
+                                        create: [
+                                            {
+                                                profile: {
+                                                    connect: {
+                                                        id:  anthonyProfile.id
+                                                    }
+                                                },
+                                            },
+                                            {
+                                                profile: {
+                                                    connect: {
+                                                        id: elanProfile.id
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                profile: {
+                                                    connect: {
+                                                        id: frankProfile.id
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
                                 },
                                 {
                                     profile: {
@@ -699,7 +724,39 @@ async function main() {
                                             id: skyelarProfile.id
                                         },
                                     },
-                                    comment: "This building is iconic!"
+                                    comment: "This building is iconic!",
+                                    likes: {
+                                        create: [
+                                            {
+                                                profile: {
+                                                    connect: {
+                                                        id: ruthProfile.id
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                profile: {
+                                                    connect: {
+                                                        id: anthonyProfile.id
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                profile: {
+                                                    connect: {
+                                                        id: elanProfile.id
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                profile: {
+                                                    connect: {
+                                                        id: frankProfile.id
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
                                 },
                                 {
                                     profile: {
@@ -711,12 +768,202 @@ async function main() {
                                 }
 
                             ],
+                        },
+                        donations: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 25.54
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: joseProfile.id
+                                        }
+                                    },
+                                    amount: 50.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        }
+                                    },
+                                    amount: 100.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: clarkProfile.id
+                                        }
+                                    },
+                                    amount: 25.00
+                                }
+                            ]
+                        },
+                        trades: {
+                            create: [
+                                {
+                                    id: "1",
+                                    name: "HVAC",
+                                    description: "HVAC Certification"
+                                },
+                                {
+                                    id: "2",
+                                    name: "Plumber",
+                                    description: "Plumbing Certification"
+                                },
+                                {
+                                     id: "3",
+                                    name: "Carpentry",
+                                    description: "Carpentry Certification"
+                                },
+                                {
+                                     id: "4",
+                                    name: "Electrician",
+                                    description: "Electrician Certification"
+                                }
+                            ]
+                        },
+                        applicants: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: clarkProfile.id
+                                        }
+                                    },
+                                    trade: {
+                                        connect: {
+                                            id: "1"
+                                        }
+                                    },
+                                    coverLetter: "This is a cover letter :)",
+                                    status: "PENDING"
+                                }
+                            ]
+                        },
+                        tradeMasters: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        }
+                                    },
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                }
+                            ]
+                        },
+                        students: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        }
+                                    },
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: joseProfile.id
+                                        }
+                                    },
+                                }
+                            ]
+                        },
+                        tasks: {
+                            create: [
+                                {
+                                    trade: {
+                                        connect: {
+                                            id: "1"
+                                        }
+                                    },
+                                    dueDate: "2019-10-16T22:12:34.296Z",
+                                    description: "Mow the lawn",
+                                    priority: "LOW",
+                                    budgetHours: 40,
+                                    apprentices: {
+                                        create: [
+                                            {
+                                                profile: {
+                                                    connect: {
+                                                        id: joseProfile.id
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    trade: {
+                                        connect: {
+                                            id: "2"
+                                        }
+                                    },
+                                    dueDate: "2019-10-18T22:12:34.296Z",
+                                    description: "Take out the trash",
+                                    priority: "LOW",
+                                    budgetHours: 40,
+                                    apprentices: {
+                                        create: [
+                                            {
+                                                profile: {
+                                                    connect: {
+                                                        id: skyelarProfile.id
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                profile: {
+                                                    connect: {
+                                                        id: joseProfile.id
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    trade: {
+                                        connect: {
+                                            id: "4"
+                                        }
+                                    },
+                                    dueDate: "2019-10-22T22:12:34.296Z",
+                                    description: "Do something :)",
+                                    priority: "LOW",
+                                    budgetHours: 40,
+                                    apprentices: {
+                                        create: [
+                                            {
+                                                profile: {
+                                                    connect: {
+                                                        id: skyelarProfile.id
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
                         }
                     }
                 ],
             },
         })
-
 
     } catch (error) {
         console.log(error);
