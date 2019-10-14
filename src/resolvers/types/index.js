@@ -3,6 +3,7 @@ import { ExternalAccount } from './ExternalAccount';
 import { UserProfile } from './UserProfile';
 import { Project } from './Project';
 import { ProjectLike } from './ProjectLike';
+import { ProjectCommentLike } from './ProjectCommentLike';
 import { ProjectDonation } from './ProjectDonation';
 import { ProjectTrade } from './ProjectTrade';
 import { ProjectComment } from './ProjectComment';
@@ -17,6 +18,7 @@ export const Types = {
 	UserProfile,
 	Project,
 	ProjectLike,
+	ProjectCommentLike,
 	ProjectDonation,
 	ProjectTrade,
 	ProjectComment,
