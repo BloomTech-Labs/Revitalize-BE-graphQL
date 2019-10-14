@@ -376,7 +376,6 @@ type ProjectApprenticeTask {
 	profile: UserProfile!
 }
 
-
 input CreateProjectApprenticeTask {
 	projectTask: ID!
 	profile: ID!

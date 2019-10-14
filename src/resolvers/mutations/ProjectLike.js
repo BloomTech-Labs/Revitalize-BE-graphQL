@@ -9,16 +9,14 @@ export const ProjectLike = {
 		if (!projectExists) throw new Error('Sorry, but that project does not exist');
 
 		return prisma.createProjectLike({
-			data: {
-				profile: {
-					connect: {
-						id: profileId,
-					},
+			profile: {
+				connect: {
+					id: profileId,
 				},
-				project: {
-					connect: {
-						id: args.data.id,
-					},
+			},
+			project: {
+				connect: {
+					id: args.id,
 				},
 			},
 		});
