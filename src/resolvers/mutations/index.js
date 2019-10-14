@@ -2,7 +2,9 @@ import { UserAccount } from './UserAccount';
 import { ExternalAccount } from './ExternalAccount';
 import { UserProfile } from './UserProfile';
 import { Project } from './Project';
+import { ProjectLike } from './ProjectLike';
 import { ProjectComment } from './ProjectComment';
+import { ProjectCommentLike } from './ProjectCommentLike ';
 import { ProjectDonation } from './ProjectDonation';
 import { ProjectApplicant } from './ProjectApplicant';
 import { ProjectTrade } from './ProjectTrade';
@@ -15,11 +17,13 @@ export const Mutation = {
 	...ExternalAccount,
 	...UserProfile,
 	...Project,
+	...ProjectLike,
 	...ProjectComment,
+	...ProjectCommentLike,
 	...ProjectDonation,
 	...ProjectApplicant,
 	...ProjectTrade,
 	...ProjectStudent,
 	...ProjectMasterTradesman,
-	...ProjectTask
+	...ProjectTask,
 };
