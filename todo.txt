@@ -1,0 +1,4 @@
+Test suite
+Types
+Featured image upload
+Continuous integration script
