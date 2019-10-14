@@ -25,7 +25,8 @@ type Query {
 	me: UserProfile!
 	user(id: ID!): UserProfile!
 	users(query: String): [UserProfile!]!
-	project(id: ID!): Project!
+	projectById(id: ID!): Project!
+	projectBySlug(slug: String!): Project!
 	projects(query: String): [Project!]!
 	myProjects: [Project!]!
 	userProjects(id: ID!): [Project!]!

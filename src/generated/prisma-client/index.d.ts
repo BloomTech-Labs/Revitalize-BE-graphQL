@@ -956,6 +956,7 @@ export interface ExternalAccountWhereInput {
 
 export type ProjectWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  slug?: Maybe<String>;
 }>;
 
 export interface ProjectDonationWhereInput {

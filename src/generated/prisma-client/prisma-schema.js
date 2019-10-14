@@ -4194,6 +4194,7 @@ input ProjectWhereInput {
 
 input ProjectWhereUniqueInput {
   id: ID
+  slug: String
 }
 
 type Query {
