@@ -848,6 +848,8 @@ export type ProjectTradeOrderByInput =
 export type ProjectTaskOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "title_ASC"
+  | "title_DESC"
   | "description_ASC"
   | "description_DESC"
   | "priority_ASC"
@@ -1523,6 +1525,20 @@ export interface ProjectTaskWhereInput {
   id_not_ends_with?: Maybe<ID_Input>;
   project?: Maybe<ProjectWhereInput>;
   trade?: Maybe<ProjectTradeWhereInput>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
   description?: Maybe<String>;
   description_not?: Maybe<String>;
   description_in?: Maybe<String[] | String>;
@@ -2418,6 +2434,7 @@ export interface ProjectTaskCreateWithoutApprenticesInput {
   id?: Maybe<ID_Input>;
   project: ProjectCreateOneWithoutTasksInput;
   trade: ProjectTradeCreateOneInput;
+  title: String;
   description: String;
   priority: String;
   dueDate: DateTimeInput;
@@ -2584,6 +2601,7 @@ export interface ProjectTaskCreateManyWithoutProjectInput {
 export interface ProjectTaskCreateWithoutProjectInput {
   id?: Maybe<ID_Input>;
   trade: ProjectTradeCreateOneInput;
+  title: String;
   description: String;
   priority: String;
   dueDate: DateTimeInput;
@@ -3633,6 +3651,7 @@ export interface ProjectTaskUpdateOneRequiredWithoutApprenticesInput {
 export interface ProjectTaskUpdateWithoutApprenticesDataInput {
   project?: Maybe<ProjectUpdateOneRequiredWithoutTasksInput>;
   trade?: Maybe<ProjectTradeUpdateOneRequiredInput>;
+  title?: Maybe<String>;
   description?: Maybe<String>;
   priority?: Maybe<String>;
   dueDate?: Maybe<DateTimeInput>;
@@ -3970,6 +3989,7 @@ export interface ProjectTaskUpdateWithWhereUniqueWithoutProjectInput {
 
 export interface ProjectTaskUpdateWithoutProjectDataInput {
   trade?: Maybe<ProjectTradeUpdateOneRequiredInput>;
+  title?: Maybe<String>;
   description?: Maybe<String>;
   priority?: Maybe<String>;
   dueDate?: Maybe<DateTimeInput>;
@@ -5039,6 +5059,20 @@ export interface ProjectTaskScalarWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
   description?: Maybe<String>;
   description_not?: Maybe<String>;
   description_in?: Maybe<String[] | String>;
@@ -5096,6 +5130,7 @@ export interface ProjectTaskUpdateManyWithWhereNestedInput {
 }
 
 export interface ProjectTaskUpdateManyDataInput {
+  title?: Maybe<String>;
   description?: Maybe<String>;
   priority?: Maybe<String>;
   dueDate?: Maybe<DateTimeInput>;
@@ -5712,6 +5747,7 @@ export interface ProjectTaskCreateInput {
   id?: Maybe<ID_Input>;
   project: ProjectCreateOneWithoutTasksInput;
   trade: ProjectTradeCreateOneInput;
+  title: String;
   description: String;
   priority: String;
   dueDate: DateTimeInput;
@@ -5723,6 +5759,7 @@ export interface ProjectTaskCreateInput {
 export interface ProjectTaskUpdateInput {
   project?: Maybe<ProjectUpdateOneRequiredWithoutTasksInput>;
   trade?: Maybe<ProjectTradeUpdateOneRequiredInput>;
+  title?: Maybe<String>;
   description?: Maybe<String>;
   priority?: Maybe<String>;
   dueDate?: Maybe<DateTimeInput>;
@@ -5732,6 +5769,7 @@ export interface ProjectTaskUpdateInput {
 }
 
 export interface ProjectTaskUpdateManyMutationInput {
+  title?: Maybe<String>;
   description?: Maybe<String>;
   priority?: Maybe<String>;
   dueDate?: Maybe<DateTimeInput>;
@@ -6988,6 +7026,7 @@ export interface ProjectApprenticeTaskNullablePromise
 
 export interface ProjectTask {
   id: ID_Output;
+  title: String;
   description: String;
   priority: String;
   dueDate: DateTimeOutput;
@@ -6999,6 +7038,7 @@ export interface ProjectTaskPromise extends Promise<ProjectTask>, Fragmentable {
   id: () => Promise<ID_Output>;
   project: <T = ProjectPromise>() => T;
   trade: <T = ProjectTradePromise>() => T;
+  title: () => Promise<String>;
   description: () => Promise<String>;
   priority: () => Promise<String>;
   dueDate: () => Promise<DateTimeOutput>;
@@ -7021,6 +7061,7 @@ export interface ProjectTaskSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   project: <T = ProjectSubscription>() => T;
   trade: <T = ProjectTradeSubscription>() => T;
+  title: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
   priority: () => Promise<AsyncIterator<String>>;
   dueDate: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -7045,6 +7086,7 @@ export interface ProjectTaskNullablePromise
   id: () => Promise<ID_Output>;
   project: <T = ProjectPromise>() => T;
   trade: <T = ProjectTradePromise>() => T;
+  title: () => Promise<String>;
   description: () => Promise<String>;
   priority: () => Promise<String>;
   dueDate: () => Promise<DateTimeOutput>;
@@ -8773,6 +8815,7 @@ export interface ProjectTaskSubscriptionPayloadSubscription
 
 export interface ProjectTaskPreviousValues {
   id: ID_Output;
+  title: String;
   description: String;
   priority: String;
   dueDate: DateTimeOutput;
@@ -8784,6 +8827,7 @@ export interface ProjectTaskPreviousValuesPromise
   extends Promise<ProjectTaskPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
   description: () => Promise<String>;
   priority: () => Promise<String>;
   dueDate: () => Promise<DateTimeOutput>;
@@ -8795,6 +8839,7 @@ export interface ProjectTaskPreviousValuesSubscription
   extends Promise<AsyncIterator<ProjectTaskPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
   description: () => Promise<AsyncIterator<String>>;
   priority: () => Promise<AsyncIterator<String>>;
   dueDate: () => Promise<AsyncIterator<DateTimeOutput>>;

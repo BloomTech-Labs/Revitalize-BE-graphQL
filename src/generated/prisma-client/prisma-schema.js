@@ -3059,6 +3059,7 @@ type ProjectTask {
   id: ID!
   project: Project!
   trade: ProjectTrade!
+  title: String!
   description: String!
   priority: String!
   dueDate: DateTime!
@@ -3077,6 +3078,7 @@ input ProjectTaskCreateInput {
   id: ID
   project: ProjectCreateOneWithoutTasksInput!
   trade: ProjectTradeCreateOneInput!
+  title: String!
   description: String!
   priority: String!
   dueDate: DateTime!
@@ -3099,6 +3101,7 @@ input ProjectTaskCreateWithoutApprenticesInput {
   id: ID
   project: ProjectCreateOneWithoutTasksInput!
   trade: ProjectTradeCreateOneInput!
+  title: String!
   description: String!
   priority: String!
   dueDate: DateTime!
@@ -3109,6 +3112,7 @@ input ProjectTaskCreateWithoutApprenticesInput {
 input ProjectTaskCreateWithoutProjectInput {
   id: ID
   trade: ProjectTradeCreateOneInput!
+  title: String!
   description: String!
   priority: String!
   dueDate: DateTime!
@@ -3125,6 +3129,8 @@ type ProjectTaskEdge {
 enum ProjectTaskOrderByInput {
   id_ASC
   id_DESC
+  title_ASC
+  title_DESC
   description_ASC
   description_DESC
   priority_ASC
@@ -3139,6 +3145,7 @@ enum ProjectTaskOrderByInput {
 
 type ProjectTaskPreviousValues {
   id: ID!
+  title: String!
   description: String!
   priority: String!
   dueDate: DateTime!
@@ -3161,6 +3168,20 @@ input ProjectTaskScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
   description: String
   description_not: String
   description_in: [String!]
@@ -3233,6 +3254,7 @@ input ProjectTaskSubscriptionWhereInput {
 input ProjectTaskUpdateInput {
   project: ProjectUpdateOneRequiredWithoutTasksInput
   trade: ProjectTradeUpdateOneRequiredInput
+  title: String
   description: String
   priority: String
   dueDate: DateTime
@@ -3242,6 +3264,7 @@ input ProjectTaskUpdateInput {
 }
 
 input ProjectTaskUpdateManyDataInput {
+  title: String
   description: String
   priority: String
   dueDate: DateTime
@@ -3250,6 +3273,7 @@ input ProjectTaskUpdateManyDataInput {
 }
 
 input ProjectTaskUpdateManyMutationInput {
+  title: String
   description: String
   priority: String
   dueDate: DateTime
@@ -3284,6 +3308,7 @@ input ProjectTaskUpdateOneRequiredWithoutApprenticesInput {
 input ProjectTaskUpdateWithoutApprenticesDataInput {
   project: ProjectUpdateOneRequiredWithoutTasksInput
   trade: ProjectTradeUpdateOneRequiredInput
+  title: String
   description: String
   priority: String
   dueDate: DateTime
@@ -3293,6 +3318,7 @@ input ProjectTaskUpdateWithoutApprenticesDataInput {
 
 input ProjectTaskUpdateWithoutProjectDataInput {
   trade: ProjectTradeUpdateOneRequiredInput
+  title: String
   description: String
   priority: String
   dueDate: DateTime
@@ -3334,6 +3360,20 @@ input ProjectTaskWhereInput {
   id_not_ends_with: ID
   project: ProjectWhereInput
   trade: ProjectTradeWhereInput
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
   description: String
   description_not: String
   description_in: [String!]
