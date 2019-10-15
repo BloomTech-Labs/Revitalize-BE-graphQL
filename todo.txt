@@ -1,7 +1,6 @@
-
 V3
+Analytics - Page Views, Unique Page Views
 Algorithms - Implement Omar's Project recommendation, Create local project recommendation
-Analytics - Donors, Students, Applicants, Tasks, Trades, Page Views, Unique Page Views
 
 Test suite
 Continuous integration script

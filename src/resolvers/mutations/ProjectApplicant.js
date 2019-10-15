@@ -45,7 +45,7 @@ export const ProjectApplicant = {
 
 		const isProjectOwner = await prisma.$exists.project({ id: args.data.project, profile: { id: profileId } });
 		const isProjectTradesman = await prisma.$exists.projectMasterTradesman({
-			project: { id: args.data.id },
+			project: { id: args.data.project },
 			profile: { id: profileId },
 		});
 
@@ -114,7 +114,7 @@ export const ProjectApplicant = {
 
 		const isProjectOwner = await prisma.$exists.project({ id: args.data.project, profile: { id: profileId } });
 		const isProjectTradesman = await prisma.$exists.projectMasterTradesman({
-			project: { id: args.data.id },
+			project: { id: args.data.project },
 			profile: { id: profileId },
 		});
 
