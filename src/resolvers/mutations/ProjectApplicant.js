@@ -76,7 +76,7 @@ export const ProjectApplicant = {
 		});
 
 		if (!updatedApplication.licensed) {
-			return await prisma.createProjectStudent(
+			return prisma.createProjectStudent(
 				{
 					project: {
 						connect: {
@@ -92,7 +92,7 @@ export const ProjectApplicant = {
 				info,
 			);
 		} else {
-			return await prisma.createProjectMasterTradesman(
+			return prisma.createProjectMasterTradesman(
 				{
 					project: {
 						connect: {
@@ -108,5 +108,40 @@ export const ProjectApplicant = {
 				info,
 			);
 		}
+	},
+	async declineProjectApplicant(parent, args, { prisma, request }, info) {
+		const profileId = getProfileId(request);
+
+		const isProjectOwner = await prisma.$exists.project({ id: args.data.project, profile: { id: profileId } });
+		const isProjectTradesman = await prisma.$exists.projectMasterTradesman({
+			project: { id: args.data.id },
+			profile: { id: profileId },
+		});
+
+		if (!isProjectOwner && !isProjectTradesman) throw new Error('Sorry, but that project does not exist');
+
+		const applicant = await prisma.$exists.projectApplicant({
+			id: args.data.application,
+			project: { id: args.data.project },
+			profile: { id: args.data.profile },
+		});
+
+		if (!applicant) throw new Error("Sorry, but that applicant doesn't exist");
+
+		const isProjectStudent = await prisma.$exists.projectStudent({
+			project: { id: args.data.project },
+			profile: { id: args.data.profile },
+		});
+
+		if (isProjectStudent) throw new Error('Student already exists');
+
+		return prisma.updateProjectApplicant({
+			where: {
+				id: args.data.application,
+			},
+			data: {
+				status: 'DECLINED',
+			},
+		});
 	},
 };

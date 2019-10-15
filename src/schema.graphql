@@ -74,7 +74,8 @@ type Mutation {
 
 	# Project Applicant
 	createProjectApplicant(data: CreateProjectApplicant!): ProjectApplicant!
-	acceptProjectApplicant(data: AcceptProjectApplicant!): ProjectStudent!
+	acceptProjectApplicant(data: AssignProjectApplicant!): ProjectStudent!
+	declineProjectApplicant(data: AssignProjectApplicant!): ProjectStudent!
 
 	# Project Student
 	createProjectStudent(data: CreateProjectStudent!): ProjectStudent!
@@ -335,7 +336,7 @@ input UpdateProjectApplicant {
 	availability: String!
 }
 
-input AcceptProjectApplicant {
+input AssignProjectApplicant {
 	project: ID!
 	profile: ID!
 	application: ID!

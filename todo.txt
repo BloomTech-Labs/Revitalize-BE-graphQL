@@ -1,6 +1,3 @@
-V2
-Allow trademasters to create task
-Allow trademasters to approve students
 
 V3
 Algorithms - Implement Omar's Project recommendation, Create local project recommendation
