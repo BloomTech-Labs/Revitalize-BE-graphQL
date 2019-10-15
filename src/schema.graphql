@@ -372,6 +372,7 @@ type ProjectTask {
 	id: ID!
 	project: Project!
 	trade: ProjectTrade!
+	title: String!
 	description: String!
 	priority: Priority!
 	dueDate: Date!
