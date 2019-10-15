@@ -31,6 +31,7 @@ export const ProjectTask = {
 					id: args.data.trade,
 				},
 			},
+			title: args.data.title,
 			description: args.data.description,
 			priority: args.data.priority,
 			dueDate: args.data.dueDate,

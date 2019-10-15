@@ -1,10 +1,6 @@
 import { getProfileId } from '../../utils/getProfileId';
-import { resolveIp } from '../../utils/resolveIp';
 
 export const Project = {
-	async ip(parent, args, { prisma, request }, info) {
-		return resolveIp(request);
-	},
 	async projectById(parent, args, { prisma }, info) {
 		return prisma.project(
 			{

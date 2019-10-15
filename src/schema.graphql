@@ -22,7 +22,6 @@ type AuthPayload {
 
 # Queries
 type Query {
-	ip: String
 	me: UserProfile!
 	user(id: ID!): UserProfile!
 	users(query: String): [UserProfile!]!
@@ -384,6 +383,7 @@ type ProjectTask {
 input CreateProjectTask {
 	project: ID!
 	trade: ID!
+	title: String!
 	description: String!
 	priority: Priority!
 	dueDate: Date!
@@ -394,6 +394,7 @@ input CreateProjectTask {
 input UpdateProjectTask {
 	project: ID!
 	trade: ID!
+	title: String!
 	description: String!
 	priority: Priority!
 	dueDate: Date!

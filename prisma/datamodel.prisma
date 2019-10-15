@@ -154,6 +154,7 @@ type ProjectTask {
   id: ID! @id
   project: Project! @relation(name: "ProjectTaskToProject", onDelete: SET_NULL)
   trade: ProjectTrade!
+  title: String!
   description: String!
   priority: String!
   dueDate: DateTime!
