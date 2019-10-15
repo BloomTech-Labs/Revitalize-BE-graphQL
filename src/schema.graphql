@@ -206,6 +206,7 @@ type ProjectDonation {
 	project: Project!
 	profile: UserProfile!
 	amount: Float!
+	createdAt: Date!
 }
 
 input CreateProjectDonationInput {
