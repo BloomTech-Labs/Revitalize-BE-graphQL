@@ -1,7 +1,4 @@
 V2
-Add completed boolean to task
-Create UpdateApplicant Mutation
-Applicants after updated become students
 Allow trademasters to create task
 Allow trademasters to approve students
 
