@@ -22,6 +22,7 @@ type AuthPayload {
 
 # Queries
 type Query {
+	ip: String
 	me: UserProfile!
 	user(id: ID!): UserProfile!
 	users(query: String): [UserProfile!]!

@@ -1,6 +1,10 @@
 import { getProfileId } from '../../utils/getProfileId';
+import { resolveIp } from '../../utils/resolveIp';
 
 export const Project = {
+	async ip(parent, args, { prisma, request }, info) {
+		return resolveIp(request);
+	},
 	async projectById(parent, args, { prisma }, info) {
 		return prisma.project(
 			{
@@ -21,7 +25,7 @@ export const Project = {
 
 		return project[0];
 	},
-	async projects(parent, args, { prisma }, info) {
+	async projects(parent, args, { prisma, request }, info) {
 		const opArgs = {};
 
 		if (args.query) {
