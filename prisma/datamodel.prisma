@@ -62,7 +62,6 @@ type Project {
   difficulty: String!
   startDate: DateTime!
   goalAmount: Float!
-  amountFunded: Float! @default(value: 0)
   featuredImage: String
   donations: [ProjectDonation!]! @relation(name: "ProjectDonationToProject", onDelete: CASCADE)
   images: [ProjectImage!]! @relation(name: "ImagesToProject", onDelete: CASCADE)

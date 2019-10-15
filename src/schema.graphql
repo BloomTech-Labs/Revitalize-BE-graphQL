@@ -183,7 +183,6 @@ type Project {
 	zip: Int!
 	address: String!
 	goalAmount: Float!
-	amountFunded: Float!
 	duration: Int!
 	difficulty: String!
 	startDate: Date!
@@ -246,7 +245,6 @@ input UpdateProjectInput {
 	difficulty: String
 	startDate: Date
 	goalAmount: Float
-	amountFunded: Float
 }
 
 # Project Like

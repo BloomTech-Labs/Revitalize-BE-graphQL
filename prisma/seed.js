@@ -76,7 +76,6 @@ async function main() {
                         zip: 30339,
                         city: 'Atlanta',
                         goalAmount: 250000,
-                        amountFunded: 24313,
                         duration: 24,
                         difficulty: "Easy",
                         startDate: "2019-10-09",
@@ -109,10 +108,21 @@ async function main() {
                         zip: 60007,
                         city: 'Chicago',
                         goalAmount: 100000,
-                        amountFunded: 67432,
                         duration: 24,
                         difficulty: "Easy",
                         startDate: "2019-10-09",
+                        donations: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        }
+                                    },
+                                    amount: 5000.50
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -165,10 +175,29 @@ async function main() {
                         zip: 48224,
                         city: 'Detroit',
                         goalAmount: 1000000,
-                        amountFunded: 237432.34,
                         duration: 24,
                         difficulty: "Easy",
                         startDate: "2019-10-09",
+                        donations: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        }
+                                    },
+                                    amount: 50.23
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        }
+                                    },
+                                    amount: 500.00
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -230,10 +259,37 @@ async function main() {
                         zip: 10018,
                         city: 'New York',
                         goalAmount: 1300000,
-                        amountFunded: 537432.34,
                         duration: 24,
                         difficulty: "Easy",
                         startDate: "2019-10-09",
+                        donations: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        }
+                                    },
+                                    amount: 50.23
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        }
+                                    },
+                                    amount: 500.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 2000.00
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -303,10 +359,21 @@ async function main() {
                         zip: 84121,
                         city: 'Cottonwood Heights',
                         goalAmount: 1100000,
-                        amountFunded: 237432.34,
                         duration: 24,
                         difficulty: "Easy",
                         startDate: "2019-10-09",
+                        donations: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 2000.00
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -376,10 +443,45 @@ async function main() {
                         zip: 60660,
                         city: 'Chicago',
                         goalAmount: 1300000,
-                        amountFunded: 437432.34,
                         duration: 24,
                         difficulty: "Easy",
                         startDate: "2019-10-09",
+                        donations: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        }
+                                    },
+                                    amount: 50.23
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        }
+                                    },
+                                    amount: 500.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 2000.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 10000.00
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -449,10 +551,45 @@ async function main() {
                         zip: 31569,
                         city: 'Atlanta',
                         goalAmount: 1120000,
-                        amountFunded: 633433.34,
                         duration: 24,
                         difficulty: "Easy",
                         startDate: "2019-10-09",
+                        donations: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        }
+                                    },
+                                    amount: 25550.23
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        }
+                                    },
+                                    amount: 500.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 2000.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 10000.00
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -522,10 +659,45 @@ async function main() {
                         zip: 90250,
                         city: 'Atlanta',
                         goalAmount: 21120000,
-                        amountFunded: 1633433.34,
                         duration: 24,
                         difficulty: "Easy",
                         startDate: "2019-10-09",
+                        donations: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        }
+                                    },
+                                    amount: 50.23
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        }
+                                    },
+                                    amount: 500.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 2000.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 1200.00
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -595,10 +767,45 @@ async function main() {
                         zip: 94607,
                         city: 'Oakland',
                         goalAmount: 19120000,
-                        amountFunded: 1233433.34,
                         duration: 24,
                         difficulty: "Easy",
                         startDate: "2019-10-09",
+                        donations: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        }
+                                    },
+                                    amount: 5423.23
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        }
+                                    },
+                                    amount: 500.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 2000.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 10000.00
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -668,7 +875,6 @@ async function main() {
                         zip: 94130,
                         city: 'San Francisco',
                         goalAmount: 29120000,
-                        amountFunded: 12233433,
                         duration: 24,
                         difficulty: "Easy",
                         startDate: "2019-10-09",
@@ -777,7 +983,7 @@ async function main() {
                                             id: anthonyProfile.id
                                         }
                                     },
-                                    amount: 25.54
+                                    amount: 3325.54
                                 },
                                 {
                                     profile: {
@@ -785,7 +991,7 @@ async function main() {
                                             id: joseProfile.id
                                         }
                                     },
-                                    amount: 50.00
+                                    amount: 250.00
                                 },
                                 {
                                     profile: {
@@ -793,7 +999,7 @@ async function main() {
                                             id: frankProfile.id
                                         }
                                     },
-                                    amount: 100.00
+                                    amount: 1200.00
                                 },
                                 {
                                     profile: {
@@ -801,7 +1007,7 @@ async function main() {
                                             id: clarkProfile.id
                                         }
                                     },
-                                    amount: 25.00
+                                    amount: 225.00
                                 }
                             ]
                         },
