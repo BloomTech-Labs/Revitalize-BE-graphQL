@@ -774,8 +774,6 @@ export type ProjectOrderByInput =
   | "startDate_DESC"
   | "goalAmount_ASC"
   | "goalAmount_DESC"
-  | "amountFunded_ASC"
-  | "amountFunded_DESC"
   | "featuredImage_ASC"
   | "featuredImage_DESC"
   | "createdAt_ASC"
@@ -818,8 +816,16 @@ export type ProjectCommentLikeOrderByInput =
 export type ProjectApplicantOrderByInput =
   | "id_ASC"
   | "id_DESC"
+  | "licensed_ASC"
+  | "licensed_DESC"
   | "coverLetter_ASC"
   | "coverLetter_DESC"
+  | "jobExperience_ASC"
+  | "jobExperience_DESC"
+  | "education_ASC"
+  | "education_DESC"
+  | "availability_ASC"
+  | "availability_DESC"
   | "status_ASC"
   | "status_DESC";
 
@@ -1165,14 +1171,6 @@ export interface ProjectWhereInput {
   goalAmount_lte?: Maybe<Float>;
   goalAmount_gt?: Maybe<Float>;
   goalAmount_gte?: Maybe<Float>;
-  amountFunded?: Maybe<Float>;
-  amountFunded_not?: Maybe<Float>;
-  amountFunded_in?: Maybe<Float[] | Float>;
-  amountFunded_not_in?: Maybe<Float[] | Float>;
-  amountFunded_lt?: Maybe<Float>;
-  amountFunded_lte?: Maybe<Float>;
-  amountFunded_gt?: Maybe<Float>;
-  amountFunded_gte?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   featuredImage_not?: Maybe<String>;
   featuredImage_in?: Maybe<String[] | String>;
@@ -1801,6 +1799,8 @@ export interface ProjectApplicantWhereInput {
   project?: Maybe<ProjectWhereInput>;
   profile?: Maybe<UserProfileWhereInput>;
   trade?: Maybe<ProjectTradeWhereInput>;
+  licensed?: Maybe<Boolean>;
+  licensed_not?: Maybe<Boolean>;
   coverLetter?: Maybe<String>;
   coverLetter_not?: Maybe<String>;
   coverLetter_in?: Maybe<String[] | String>;
@@ -1815,6 +1815,48 @@ export interface ProjectApplicantWhereInput {
   coverLetter_not_starts_with?: Maybe<String>;
   coverLetter_ends_with?: Maybe<String>;
   coverLetter_not_ends_with?: Maybe<String>;
+  jobExperience?: Maybe<String>;
+  jobExperience_not?: Maybe<String>;
+  jobExperience_in?: Maybe<String[] | String>;
+  jobExperience_not_in?: Maybe<String[] | String>;
+  jobExperience_lt?: Maybe<String>;
+  jobExperience_lte?: Maybe<String>;
+  jobExperience_gt?: Maybe<String>;
+  jobExperience_gte?: Maybe<String>;
+  jobExperience_contains?: Maybe<String>;
+  jobExperience_not_contains?: Maybe<String>;
+  jobExperience_starts_with?: Maybe<String>;
+  jobExperience_not_starts_with?: Maybe<String>;
+  jobExperience_ends_with?: Maybe<String>;
+  jobExperience_not_ends_with?: Maybe<String>;
+  education?: Maybe<String>;
+  education_not?: Maybe<String>;
+  education_in?: Maybe<String[] | String>;
+  education_not_in?: Maybe<String[] | String>;
+  education_lt?: Maybe<String>;
+  education_lte?: Maybe<String>;
+  education_gt?: Maybe<String>;
+  education_gte?: Maybe<String>;
+  education_contains?: Maybe<String>;
+  education_not_contains?: Maybe<String>;
+  education_starts_with?: Maybe<String>;
+  education_not_starts_with?: Maybe<String>;
+  education_ends_with?: Maybe<String>;
+  education_not_ends_with?: Maybe<String>;
+  availability?: Maybe<String>;
+  availability_not?: Maybe<String>;
+  availability_in?: Maybe<String[] | String>;
+  availability_not_in?: Maybe<String[] | String>;
+  availability_lt?: Maybe<String>;
+  availability_lte?: Maybe<String>;
+  availability_gt?: Maybe<String>;
+  availability_gte?: Maybe<String>;
+  availability_contains?: Maybe<String>;
+  availability_not_contains?: Maybe<String>;
+  availability_starts_with?: Maybe<String>;
+  availability_not_starts_with?: Maybe<String>;
+  availability_ends_with?: Maybe<String>;
+  availability_not_ends_with?: Maybe<String>;
   status?: Maybe<Status>;
   status_not?: Maybe<Status>;
   status_in?: Maybe<Status[] | Status>;
@@ -2019,7 +2061,6 @@ export interface ProjectCreateInput {
   difficulty: String;
   startDate: DateTimeInput;
   goalAmount: Float;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationCreateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
@@ -2100,7 +2141,6 @@ export interface ProjectCreateWithoutDonationsInput {
   difficulty: String;
   startDate: DateTimeInput;
   goalAmount: Float;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
   likes?: Maybe<ProjectLikeCreateManyWithoutProjectInput>;
@@ -2194,7 +2234,6 @@ export interface ProjectCreateWithoutProfileInput {
   difficulty: String;
   startDate: DateTimeInput;
   goalAmount: Float;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationCreateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
@@ -2290,7 +2329,6 @@ export interface ProjectCreateWithoutStudentsInput {
   difficulty: String;
   startDate: DateTimeInput;
   goalAmount: Float;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationCreateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
@@ -2402,7 +2440,6 @@ export interface ProjectCreateWithoutTasksInput {
   difficulty: String;
   startDate: DateTimeInput;
   goalAmount: Float;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationCreateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
@@ -2444,8 +2481,12 @@ export interface ProjectApplicantCreateWithoutProjectInput {
   id?: Maybe<ID_Input>;
   profile: UserProfileCreateOneWithoutApplicationsInput;
   trade: ProjectTradeCreateOneInput;
+  licensed: Boolean;
   coverLetter: String;
-  status: Status;
+  jobExperience: String;
+  education: String;
+  availability: String;
+  status?: Maybe<Status>;
 }
 
 export interface UserProfileCreateOneWithoutApplicationsInput {
@@ -2516,7 +2557,6 @@ export interface ProjectCreateWithoutTradeMastersInput {
   difficulty: String;
   startDate: DateTimeInput;
   goalAmount: Float;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationCreateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
@@ -2578,7 +2618,6 @@ export interface ProjectCreateWithoutTradesInput {
   difficulty: String;
   startDate: DateTimeInput;
   goalAmount: Float;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationCreateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
@@ -2670,7 +2709,6 @@ export interface ProjectCreateWithoutLikesInput {
   difficulty: String;
   startDate: DateTimeInput;
   goalAmount: Float;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationCreateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
@@ -2765,7 +2803,6 @@ export interface ProjectCreateWithoutCommentsInput {
   difficulty: String;
   startDate: DateTimeInput;
   goalAmount: Float;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationCreateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
@@ -2838,8 +2875,12 @@ export interface ProjectApplicantCreateWithoutProfileInput {
   id?: Maybe<ID_Input>;
   project: ProjectCreateOneWithoutApplicantsInput;
   trade: ProjectTradeCreateOneInput;
+  licensed: Boolean;
   coverLetter: String;
-  status: Status;
+  jobExperience: String;
+  education: String;
+  availability: String;
+  status?: Maybe<Status>;
 }
 
 export interface ProjectCreateOneWithoutApplicantsInput {
@@ -2862,7 +2903,6 @@ export interface ProjectCreateWithoutApplicantsInput {
   difficulty: String;
   startDate: DateTimeInput;
   goalAmount: Float;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationCreateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageCreateManyWithoutProjectInput>;
@@ -2963,7 +3003,6 @@ export interface ProjectUpdateInput {
   difficulty?: Maybe<String>;
   startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationUpdateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
@@ -3074,7 +3113,6 @@ export interface ProjectUpdateWithoutDonationsDataInput {
   difficulty?: Maybe<String>;
   startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
   likes?: Maybe<ProjectLikeUpdateManyWithoutProjectInput>;
@@ -3297,7 +3335,6 @@ export interface ProjectUpdateWithoutProfileDataInput {
   difficulty?: Maybe<String>;
   startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationUpdateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
@@ -3447,7 +3484,6 @@ export interface ProjectUpdateWithoutStudentsDataInput {
   difficulty?: Maybe<String>;
   startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationUpdateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
@@ -3618,7 +3654,6 @@ export interface ProjectUpdateWithoutTasksDataInput {
   difficulty?: Maybe<String>;
   startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationUpdateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
@@ -3776,7 +3811,11 @@ export interface ProjectApplicantUpdateWithWhereUniqueWithoutProjectInput {
 export interface ProjectApplicantUpdateWithoutProjectDataInput {
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutApplicationsInput>;
   trade?: Maybe<ProjectTradeUpdateOneRequiredInput>;
+  licensed?: Maybe<Boolean>;
   coverLetter?: Maybe<String>;
+  jobExperience?: Maybe<String>;
+  education?: Maybe<String>;
+  availability?: Maybe<String>;
   status?: Maybe<Status>;
 }
 
@@ -3878,7 +3917,6 @@ export interface ProjectUpdateWithoutTradeMastersDataInput {
   difficulty?: Maybe<String>;
   startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationUpdateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
@@ -3966,7 +4004,6 @@ export interface ProjectUpdateWithoutTradesDataInput {
   difficulty?: Maybe<String>;
   startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationUpdateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
@@ -4104,7 +4141,6 @@ export interface ProjectUpdateWithoutLikesDataInput {
   difficulty?: Maybe<String>;
   startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationUpdateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
@@ -4257,7 +4293,6 @@ export interface ProjectUpdateWithoutCommentsDataInput {
   difficulty?: Maybe<String>;
   startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationUpdateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
@@ -4388,7 +4423,11 @@ export interface ProjectApplicantUpdateWithWhereUniqueWithoutProfileInput {
 export interface ProjectApplicantUpdateWithoutProfileDataInput {
   project?: Maybe<ProjectUpdateOneRequiredWithoutApplicantsInput>;
   trade?: Maybe<ProjectTradeUpdateOneRequiredInput>;
+  licensed?: Maybe<Boolean>;
   coverLetter?: Maybe<String>;
+  jobExperience?: Maybe<String>;
+  education?: Maybe<String>;
+  availability?: Maybe<String>;
   status?: Maybe<Status>;
 }
 
@@ -4413,7 +4452,6 @@ export interface ProjectUpdateWithoutApplicantsDataInput {
   difficulty?: Maybe<String>;
   startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationUpdateManyWithoutProjectInput>;
   images?: Maybe<ProjectImageUpdateManyWithoutProjectInput>;
@@ -4451,6 +4489,8 @@ export interface ProjectApplicantScalarWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
+  licensed?: Maybe<Boolean>;
+  licensed_not?: Maybe<Boolean>;
   coverLetter?: Maybe<String>;
   coverLetter_not?: Maybe<String>;
   coverLetter_in?: Maybe<String[] | String>;
@@ -4465,6 +4505,48 @@ export interface ProjectApplicantScalarWhereInput {
   coverLetter_not_starts_with?: Maybe<String>;
   coverLetter_ends_with?: Maybe<String>;
   coverLetter_not_ends_with?: Maybe<String>;
+  jobExperience?: Maybe<String>;
+  jobExperience_not?: Maybe<String>;
+  jobExperience_in?: Maybe<String[] | String>;
+  jobExperience_not_in?: Maybe<String[] | String>;
+  jobExperience_lt?: Maybe<String>;
+  jobExperience_lte?: Maybe<String>;
+  jobExperience_gt?: Maybe<String>;
+  jobExperience_gte?: Maybe<String>;
+  jobExperience_contains?: Maybe<String>;
+  jobExperience_not_contains?: Maybe<String>;
+  jobExperience_starts_with?: Maybe<String>;
+  jobExperience_not_starts_with?: Maybe<String>;
+  jobExperience_ends_with?: Maybe<String>;
+  jobExperience_not_ends_with?: Maybe<String>;
+  education?: Maybe<String>;
+  education_not?: Maybe<String>;
+  education_in?: Maybe<String[] | String>;
+  education_not_in?: Maybe<String[] | String>;
+  education_lt?: Maybe<String>;
+  education_lte?: Maybe<String>;
+  education_gt?: Maybe<String>;
+  education_gte?: Maybe<String>;
+  education_contains?: Maybe<String>;
+  education_not_contains?: Maybe<String>;
+  education_starts_with?: Maybe<String>;
+  education_not_starts_with?: Maybe<String>;
+  education_ends_with?: Maybe<String>;
+  education_not_ends_with?: Maybe<String>;
+  availability?: Maybe<String>;
+  availability_not?: Maybe<String>;
+  availability_in?: Maybe<String[] | String>;
+  availability_not_in?: Maybe<String[] | String>;
+  availability_lt?: Maybe<String>;
+  availability_lte?: Maybe<String>;
+  availability_gt?: Maybe<String>;
+  availability_gte?: Maybe<String>;
+  availability_contains?: Maybe<String>;
+  availability_not_contains?: Maybe<String>;
+  availability_starts_with?: Maybe<String>;
+  availability_not_starts_with?: Maybe<String>;
+  availability_ends_with?: Maybe<String>;
+  availability_not_ends_with?: Maybe<String>;
   status?: Maybe<Status>;
   status_not?: Maybe<Status>;
   status_in?: Maybe<Status[] | Status>;
@@ -4486,7 +4568,11 @@ export interface ProjectApplicantUpdateManyWithWhereNestedInput {
 }
 
 export interface ProjectApplicantUpdateManyDataInput {
+  licensed?: Maybe<Boolean>;
   coverLetter?: Maybe<String>;
+  jobExperience?: Maybe<String>;
+  education?: Maybe<String>;
+  availability?: Maybe<String>;
   status?: Maybe<Status>;
 }
 
@@ -5301,14 +5387,6 @@ export interface ProjectScalarWhereInput {
   goalAmount_lte?: Maybe<Float>;
   goalAmount_gt?: Maybe<Float>;
   goalAmount_gte?: Maybe<Float>;
-  amountFunded?: Maybe<Float>;
-  amountFunded_not?: Maybe<Float>;
-  amountFunded_in?: Maybe<Float[] | Float>;
-  amountFunded_not_in?: Maybe<Float[] | Float>;
-  amountFunded_lt?: Maybe<Float>;
-  amountFunded_lte?: Maybe<Float>;
-  amountFunded_gt?: Maybe<Float>;
-  amountFunded_gte?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   featuredImage_not?: Maybe<String>;
   featuredImage_in?: Maybe<String[] | String>;
@@ -5362,7 +5440,6 @@ export interface ProjectUpdateManyDataInput {
   difficulty?: Maybe<String>;
   startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
 }
 
@@ -5406,7 +5483,6 @@ export interface ProjectUpdateManyMutationInput {
   difficulty?: Maybe<String>;
   startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
 }
 
@@ -5415,20 +5491,32 @@ export interface ProjectApplicantCreateInput {
   project: ProjectCreateOneWithoutApplicantsInput;
   profile: UserProfileCreateOneWithoutApplicationsInput;
   trade: ProjectTradeCreateOneInput;
+  licensed: Boolean;
   coverLetter: String;
-  status: Status;
+  jobExperience: String;
+  education: String;
+  availability: String;
+  status?: Maybe<Status>;
 }
 
 export interface ProjectApplicantUpdateInput {
   project?: Maybe<ProjectUpdateOneRequiredWithoutApplicantsInput>;
   profile?: Maybe<UserProfileUpdateOneRequiredWithoutApplicationsInput>;
   trade?: Maybe<ProjectTradeUpdateOneRequiredInput>;
+  licensed?: Maybe<Boolean>;
   coverLetter?: Maybe<String>;
+  jobExperience?: Maybe<String>;
+  education?: Maybe<String>;
+  availability?: Maybe<String>;
   status?: Maybe<Status>;
 }
 
 export interface ProjectApplicantUpdateManyMutationInput {
+  licensed?: Maybe<Boolean>;
   coverLetter?: Maybe<String>;
+  jobExperience?: Maybe<String>;
+  education?: Maybe<String>;
+  availability?: Maybe<String>;
   status?: Maybe<Status>;
 }
 
@@ -5517,7 +5605,6 @@ export interface ProjectCreateWithoutImagesInput {
   difficulty: String;
   startDate: DateTimeInput;
   goalAmount: Float;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationCreateManyWithoutProjectInput>;
   likes?: Maybe<ProjectLikeCreateManyWithoutProjectInput>;
@@ -5556,7 +5643,6 @@ export interface ProjectUpdateWithoutImagesDataInput {
   difficulty?: Maybe<String>;
   startDate?: Maybe<DateTimeInput>;
   goalAmount?: Maybe<Float>;
-  amountFunded?: Maybe<Float>;
   featuredImage?: Maybe<String>;
   donations?: Maybe<ProjectDonationUpdateManyWithoutProjectInput>;
   likes?: Maybe<ProjectLikeUpdateManyWithoutProjectInput>;
@@ -6141,7 +6227,6 @@ export interface Project {
   difficulty: String;
   startDate: DateTimeOutput;
   goalAmount: Float;
-  amountFunded: Float;
   featuredImage?: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
@@ -6162,7 +6247,6 @@ export interface ProjectPromise extends Promise<Project>, Fragmentable {
   difficulty: () => Promise<String>;
   startDate: () => Promise<DateTimeOutput>;
   goalAmount: () => Promise<Float>;
-  amountFunded: () => Promise<Float>;
   featuredImage: () => Promise<String>;
   donations: <T = FragmentableArray<ProjectDonation>>(args?: {
     where?: ProjectDonationWhereInput;
@@ -6266,7 +6350,6 @@ export interface ProjectSubscription
   difficulty: () => Promise<AsyncIterator<String>>;
   startDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   goalAmount: () => Promise<AsyncIterator<Float>>;
-  amountFunded: () => Promise<AsyncIterator<Float>>;
   featuredImage: () => Promise<AsyncIterator<String>>;
   donations: <T = Promise<AsyncIterator<ProjectDonationSubscription>>>(args?: {
     where?: ProjectDonationWhereInput;
@@ -6374,7 +6457,6 @@ export interface ProjectNullablePromise
   difficulty: () => Promise<String>;
   startDate: () => Promise<DateTimeOutput>;
   goalAmount: () => Promise<Float>;
-  amountFunded: () => Promise<Float>;
   featuredImage: () => Promise<String>;
   donations: <T = FragmentableArray<ProjectDonation>>(args?: {
     where?: ProjectDonationWhereInput;
@@ -7161,7 +7243,11 @@ export interface ProjectCommentLikeNullablePromise
 
 export interface ProjectApplicant {
   id: ID_Output;
+  licensed: Boolean;
   coverLetter: String;
+  jobExperience: String;
+  education: String;
+  availability: String;
   status: Status;
 }
 
@@ -7172,7 +7258,11 @@ export interface ProjectApplicantPromise
   project: <T = ProjectPromise>() => T;
   profile: <T = UserProfilePromise>() => T;
   trade: <T = ProjectTradePromise>() => T;
+  licensed: () => Promise<Boolean>;
   coverLetter: () => Promise<String>;
+  jobExperience: () => Promise<String>;
+  education: () => Promise<String>;
+  availability: () => Promise<String>;
   status: () => Promise<Status>;
 }
 
@@ -7183,7 +7273,11 @@ export interface ProjectApplicantSubscription
   project: <T = ProjectSubscription>() => T;
   profile: <T = UserProfileSubscription>() => T;
   trade: <T = ProjectTradeSubscription>() => T;
+  licensed: () => Promise<AsyncIterator<Boolean>>;
   coverLetter: () => Promise<AsyncIterator<String>>;
+  jobExperience: () => Promise<AsyncIterator<String>>;
+  education: () => Promise<AsyncIterator<String>>;
+  availability: () => Promise<AsyncIterator<String>>;
   status: () => Promise<AsyncIterator<Status>>;
 }
 
@@ -7194,7 +7288,11 @@ export interface ProjectApplicantNullablePromise
   project: <T = ProjectPromise>() => T;
   profile: <T = UserProfilePromise>() => T;
   trade: <T = ProjectTradePromise>() => T;
+  licensed: () => Promise<Boolean>;
   coverLetter: () => Promise<String>;
+  jobExperience: () => Promise<String>;
+  education: () => Promise<String>;
+  availability: () => Promise<String>;
   status: () => Promise<Status>;
 }
 
@@ -8160,7 +8258,6 @@ export interface ProjectPreviousValues {
   difficulty: String;
   startDate: DateTimeOutput;
   goalAmount: Float;
-  amountFunded: Float;
   featuredImage?: String;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
@@ -8182,7 +8279,6 @@ export interface ProjectPreviousValuesPromise
   difficulty: () => Promise<String>;
   startDate: () => Promise<DateTimeOutput>;
   goalAmount: () => Promise<Float>;
-  amountFunded: () => Promise<Float>;
   featuredImage: () => Promise<String>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
@@ -8204,7 +8300,6 @@ export interface ProjectPreviousValuesSubscription
   difficulty: () => Promise<AsyncIterator<String>>;
   startDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   goalAmount: () => Promise<AsyncIterator<Float>>;
-  amountFunded: () => Promise<AsyncIterator<Float>>;
   featuredImage: () => Promise<AsyncIterator<String>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
@@ -8237,7 +8332,11 @@ export interface ProjectApplicantSubscriptionPayloadSubscription
 
 export interface ProjectApplicantPreviousValues {
   id: ID_Output;
+  licensed: Boolean;
   coverLetter: String;
+  jobExperience: String;
+  education: String;
+  availability: String;
   status: Status;
 }
 
@@ -8245,7 +8344,11 @@ export interface ProjectApplicantPreviousValuesPromise
   extends Promise<ProjectApplicantPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
+  licensed: () => Promise<Boolean>;
   coverLetter: () => Promise<String>;
+  jobExperience: () => Promise<String>;
+  education: () => Promise<String>;
+  availability: () => Promise<String>;
   status: () => Promise<Status>;
 }
 
@@ -8253,7 +8356,11 @@ export interface ProjectApplicantPreviousValuesSubscription
   extends Promise<AsyncIterator<ProjectApplicantPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
+  licensed: () => Promise<AsyncIterator<Boolean>>;
   coverLetter: () => Promise<AsyncIterator<String>>;
+  jobExperience: () => Promise<AsyncIterator<String>>;
+  education: () => Promise<AsyncIterator<String>>;
+  availability: () => Promise<AsyncIterator<String>>;
   status: () => Promise<AsyncIterator<Status>>;
 }
 

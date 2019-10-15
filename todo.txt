@@ -1,6 +1,4 @@
 V2
-Update donations for every seed
-Update Application Mutation - Boolean trade, description, experience, education, time
 Add completed boolean to task
 Create UpdateApplicant Mutation
 Applicants after updated become students

@@ -1049,7 +1049,11 @@ async function main() {
                                         }
                                     },
                                     coverLetter: "This is a cover letter :)",
-                                    status: "PENDING"
+                                    licensed: false,
+                                    coverLetter: "Cover letter",
+                                    jobExperience: "This is my job exp",
+                                    education: "This is my education",
+                                    availability: "All the time",
                                 }
                             ]
                         },

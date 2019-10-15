@@ -306,22 +306,32 @@ type ProjectApplicant {
 	project: Project!
 	profile: UserProfile!
 	trade: ProjectTrade!
+	licensed: Boolean!
 	coverLetter: String!
+	jobExperience: String!
+	education: String!
+	availability: String!
 	status: Status!
 }
 
 input CreateProjectApplicant {
 	project: ID!
 	trade: ID!
+	licensed: Boolean!
 	coverLetter: String!
-	status: Status!
+	jobExperience: String!
+	education: String!
+	availability: String!
 }
 
 input UpdateProjectApplicant {
 	project: ID!
 	trade: ID!
-	coverLetter: String
-	status: Status
+	licensed: Boolean!
+	coverLetter: String!
+	jobExperience: String!
+	education: String!
+	availability: String!
 }
 
 # Project Student
@@ -357,6 +367,7 @@ type ProjectTask {
 	priority: Priority!
 	dueDate: Date!
 	budgetHours: Int!
+	completed: Boolean!
 	apprentices: [ProjectApprenticeTask!]!
 }
 
@@ -368,6 +379,16 @@ input CreateProjectTask {
 	dueDate: Date!
 	budgetHours: Int!
 	apprentices: [CreateProjectApprenticeTask!]
+}
+
+input UpdateProjectTask {
+	project: ID!
+	trade: ID!
+	description: String!
+	priority: Priority!
+	dueDate: Date!
+	budgetHours: Int!
+	completed: Boolean!
 }
 
 type ProjectApprenticeTask {

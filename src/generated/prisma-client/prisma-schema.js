@@ -313,7 +313,6 @@ type Project {
   difficulty: String!
   startDate: DateTime!
   goalAmount: Float!
-  amountFunded: Float!
   featuredImage: String
   donations(where: ProjectDonationWhereInput, orderBy: ProjectDonationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectDonation!]
   images(where: ProjectImageWhereInput, orderBy: ProjectImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectImage!]
@@ -333,7 +332,11 @@ type ProjectApplicant {
   project: Project!
   profile: UserProfile!
   trade: ProjectTrade!
+  licensed: Boolean!
   coverLetter: String!
+  jobExperience: String!
+  education: String!
+  availability: String!
   status: Status!
 }
 
@@ -348,8 +351,12 @@ input ProjectApplicantCreateInput {
   project: ProjectCreateOneWithoutApplicantsInput!
   profile: UserProfileCreateOneWithoutApplicationsInput!
   trade: ProjectTradeCreateOneInput!
+  licensed: Boolean!
   coverLetter: String!
-  status: Status!
+  jobExperience: String!
+  education: String!
+  availability: String!
+  status: Status
 }
 
 input ProjectApplicantCreateManyWithoutProfileInput {
@@ -366,16 +373,24 @@ input ProjectApplicantCreateWithoutProfileInput {
   id: ID
   project: ProjectCreateOneWithoutApplicantsInput!
   trade: ProjectTradeCreateOneInput!
+  licensed: Boolean!
   coverLetter: String!
-  status: Status!
+  jobExperience: String!
+  education: String!
+  availability: String!
+  status: Status
 }
 
 input ProjectApplicantCreateWithoutProjectInput {
   id: ID
   profile: UserProfileCreateOneWithoutApplicationsInput!
   trade: ProjectTradeCreateOneInput!
+  licensed: Boolean!
   coverLetter: String!
-  status: Status!
+  jobExperience: String!
+  education: String!
+  availability: String!
+  status: Status
 }
 
 type ProjectApplicantEdge {
@@ -386,15 +401,27 @@ type ProjectApplicantEdge {
 enum ProjectApplicantOrderByInput {
   id_ASC
   id_DESC
+  licensed_ASC
+  licensed_DESC
   coverLetter_ASC
   coverLetter_DESC
+  jobExperience_ASC
+  jobExperience_DESC
+  education_ASC
+  education_DESC
+  availability_ASC
+  availability_DESC
   status_ASC
   status_DESC
 }
 
 type ProjectApplicantPreviousValues {
   id: ID!
+  licensed: Boolean!
   coverLetter: String!
+  jobExperience: String!
+  education: String!
+  availability: String!
   status: Status!
 }
 
@@ -413,6 +440,8 @@ input ProjectApplicantScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
+  licensed: Boolean
+  licensed_not: Boolean
   coverLetter: String
   coverLetter_not: String
   coverLetter_in: [String!]
@@ -427,6 +456,48 @@ input ProjectApplicantScalarWhereInput {
   coverLetter_not_starts_with: String
   coverLetter_ends_with: String
   coverLetter_not_ends_with: String
+  jobExperience: String
+  jobExperience_not: String
+  jobExperience_in: [String!]
+  jobExperience_not_in: [String!]
+  jobExperience_lt: String
+  jobExperience_lte: String
+  jobExperience_gt: String
+  jobExperience_gte: String
+  jobExperience_contains: String
+  jobExperience_not_contains: String
+  jobExperience_starts_with: String
+  jobExperience_not_starts_with: String
+  jobExperience_ends_with: String
+  jobExperience_not_ends_with: String
+  education: String
+  education_not: String
+  education_in: [String!]
+  education_not_in: [String!]
+  education_lt: String
+  education_lte: String
+  education_gt: String
+  education_gte: String
+  education_contains: String
+  education_not_contains: String
+  education_starts_with: String
+  education_not_starts_with: String
+  education_ends_with: String
+  education_not_ends_with: String
+  availability: String
+  availability_not: String
+  availability_in: [String!]
+  availability_not_in: [String!]
+  availability_lt: String
+  availability_lte: String
+  availability_gt: String
+  availability_gte: String
+  availability_contains: String
+  availability_not_contains: String
+  availability_starts_with: String
+  availability_not_starts_with: String
+  availability_ends_with: String
+  availability_not_ends_with: String
   status: Status
   status_not: Status
   status_in: [Status!]
@@ -458,17 +529,29 @@ input ProjectApplicantUpdateInput {
   project: ProjectUpdateOneRequiredWithoutApplicantsInput
   profile: UserProfileUpdateOneRequiredWithoutApplicationsInput
   trade: ProjectTradeUpdateOneRequiredInput
+  licensed: Boolean
   coverLetter: String
+  jobExperience: String
+  education: String
+  availability: String
   status: Status
 }
 
 input ProjectApplicantUpdateManyDataInput {
+  licensed: Boolean
   coverLetter: String
+  jobExperience: String
+  education: String
+  availability: String
   status: Status
 }
 
 input ProjectApplicantUpdateManyMutationInput {
+  licensed: Boolean
   coverLetter: String
+  jobExperience: String
+  education: String
+  availability: String
   status: Status
 }
 
@@ -504,14 +587,22 @@ input ProjectApplicantUpdateManyWithWhereNestedInput {
 input ProjectApplicantUpdateWithoutProfileDataInput {
   project: ProjectUpdateOneRequiredWithoutApplicantsInput
   trade: ProjectTradeUpdateOneRequiredInput
+  licensed: Boolean
   coverLetter: String
+  jobExperience: String
+  education: String
+  availability: String
   status: Status
 }
 
 input ProjectApplicantUpdateWithoutProjectDataInput {
   profile: UserProfileUpdateOneRequiredWithoutApplicationsInput
   trade: ProjectTradeUpdateOneRequiredInput
+  licensed: Boolean
   coverLetter: String
+  jobExperience: String
+  education: String
+  availability: String
   status: Status
 }
 
@@ -555,6 +646,8 @@ input ProjectApplicantWhereInput {
   project: ProjectWhereInput
   profile: UserProfileWhereInput
   trade: ProjectTradeWhereInput
+  licensed: Boolean
+  licensed_not: Boolean
   coverLetter: String
   coverLetter_not: String
   coverLetter_in: [String!]
@@ -569,6 +662,48 @@ input ProjectApplicantWhereInput {
   coverLetter_not_starts_with: String
   coverLetter_ends_with: String
   coverLetter_not_ends_with: String
+  jobExperience: String
+  jobExperience_not: String
+  jobExperience_in: [String!]
+  jobExperience_not_in: [String!]
+  jobExperience_lt: String
+  jobExperience_lte: String
+  jobExperience_gt: String
+  jobExperience_gte: String
+  jobExperience_contains: String
+  jobExperience_not_contains: String
+  jobExperience_starts_with: String
+  jobExperience_not_starts_with: String
+  jobExperience_ends_with: String
+  jobExperience_not_ends_with: String
+  education: String
+  education_not: String
+  education_in: [String!]
+  education_not_in: [String!]
+  education_lt: String
+  education_lte: String
+  education_gt: String
+  education_gte: String
+  education_contains: String
+  education_not_contains: String
+  education_starts_with: String
+  education_not_starts_with: String
+  education_ends_with: String
+  education_not_ends_with: String
+  availability: String
+  availability_not: String
+  availability_in: [String!]
+  availability_not_in: [String!]
+  availability_lt: String
+  availability_lte: String
+  availability_gt: String
+  availability_gte: String
+  availability_contains: String
+  availability_not_contains: String
+  availability_starts_with: String
+  availability_not_starts_with: String
+  availability_ends_with: String
+  availability_not_ends_with: String
   status: Status
   status_not: Status
   status_in: [Status!]
@@ -1295,7 +1430,6 @@ input ProjectCreateInput {
   difficulty: String!
   startDate: DateTime!
   goalAmount: Float!
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationCreateManyWithoutProjectInput
   images: ProjectImageCreateManyWithoutProjectInput
@@ -1373,7 +1507,6 @@ input ProjectCreateWithoutApplicantsInput {
   difficulty: String!
   startDate: DateTime!
   goalAmount: Float!
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationCreateManyWithoutProjectInput
   images: ProjectImageCreateManyWithoutProjectInput
@@ -1400,7 +1533,6 @@ input ProjectCreateWithoutCommentsInput {
   difficulty: String!
   startDate: DateTime!
   goalAmount: Float!
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationCreateManyWithoutProjectInput
   images: ProjectImageCreateManyWithoutProjectInput
@@ -1427,7 +1559,6 @@ input ProjectCreateWithoutDonationsInput {
   difficulty: String!
   startDate: DateTime!
   goalAmount: Float!
-  amountFunded: Float
   featuredImage: String
   images: ProjectImageCreateManyWithoutProjectInput
   likes: ProjectLikeCreateManyWithoutProjectInput
@@ -1454,7 +1585,6 @@ input ProjectCreateWithoutImagesInput {
   difficulty: String!
   startDate: DateTime!
   goalAmount: Float!
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationCreateManyWithoutProjectInput
   likes: ProjectLikeCreateManyWithoutProjectInput
@@ -1481,7 +1611,6 @@ input ProjectCreateWithoutLikesInput {
   difficulty: String!
   startDate: DateTime!
   goalAmount: Float!
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationCreateManyWithoutProjectInput
   images: ProjectImageCreateManyWithoutProjectInput
@@ -1507,7 +1636,6 @@ input ProjectCreateWithoutProfileInput {
   difficulty: String!
   startDate: DateTime!
   goalAmount: Float!
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationCreateManyWithoutProjectInput
   images: ProjectImageCreateManyWithoutProjectInput
@@ -1535,7 +1663,6 @@ input ProjectCreateWithoutStudentsInput {
   difficulty: String!
   startDate: DateTime!
   goalAmount: Float!
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationCreateManyWithoutProjectInput
   images: ProjectImageCreateManyWithoutProjectInput
@@ -1562,7 +1689,6 @@ input ProjectCreateWithoutTasksInput {
   difficulty: String!
   startDate: DateTime!
   goalAmount: Float!
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationCreateManyWithoutProjectInput
   images: ProjectImageCreateManyWithoutProjectInput
@@ -1589,7 +1715,6 @@ input ProjectCreateWithoutTradeMastersInput {
   difficulty: String!
   startDate: DateTime!
   goalAmount: Float!
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationCreateManyWithoutProjectInput
   images: ProjectImageCreateManyWithoutProjectInput
@@ -1616,7 +1741,6 @@ input ProjectCreateWithoutTradesInput {
   difficulty: String!
   startDate: DateTime!
   goalAmount: Float!
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationCreateManyWithoutProjectInput
   images: ProjectImageCreateManyWithoutProjectInput
@@ -2519,8 +2643,6 @@ enum ProjectOrderByInput {
   startDate_DESC
   goalAmount_ASC
   goalAmount_DESC
-  amountFunded_ASC
-  amountFunded_DESC
   featuredImage_ASC
   featuredImage_DESC
   createdAt_ASC
@@ -2543,7 +2665,6 @@ type ProjectPreviousValues {
   difficulty: String!
   startDate: DateTime!
   goalAmount: Float!
-  amountFunded: Float!
   featuredImage: String
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -2708,14 +2829,6 @@ input ProjectScalarWhereInput {
   goalAmount_lte: Float
   goalAmount_gt: Float
   goalAmount_gte: Float
-  amountFunded: Float
-  amountFunded_not: Float
-  amountFunded_in: [Float!]
-  amountFunded_not_in: [Float!]
-  amountFunded_lt: Float
-  amountFunded_lte: Float
-  amountFunded_gt: Float
-  amountFunded_gte: Float
   featuredImage: String
   featuredImage_not: String
   featuredImage_in: [String!]
@@ -3519,7 +3632,6 @@ input ProjectUpdateInput {
   difficulty: String
   startDate: DateTime
   goalAmount: Float
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationUpdateManyWithoutProjectInput
   images: ProjectImageUpdateManyWithoutProjectInput
@@ -3545,7 +3657,6 @@ input ProjectUpdateManyDataInput {
   difficulty: String
   startDate: DateTime
   goalAmount: Float
-  amountFunded: Float
   featuredImage: String
 }
 
@@ -3562,7 +3673,6 @@ input ProjectUpdateManyMutationInput {
   difficulty: String
   startDate: DateTime
   goalAmount: Float
-  amountFunded: Float
   featuredImage: String
 }
 
@@ -3660,7 +3770,6 @@ input ProjectUpdateWithoutApplicantsDataInput {
   difficulty: String
   startDate: DateTime
   goalAmount: Float
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationUpdateManyWithoutProjectInput
   images: ProjectImageUpdateManyWithoutProjectInput
@@ -3686,7 +3795,6 @@ input ProjectUpdateWithoutCommentsDataInput {
   difficulty: String
   startDate: DateTime
   goalAmount: Float
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationUpdateManyWithoutProjectInput
   images: ProjectImageUpdateManyWithoutProjectInput
@@ -3712,7 +3820,6 @@ input ProjectUpdateWithoutDonationsDataInput {
   difficulty: String
   startDate: DateTime
   goalAmount: Float
-  amountFunded: Float
   featuredImage: String
   images: ProjectImageUpdateManyWithoutProjectInput
   likes: ProjectLikeUpdateManyWithoutProjectInput
@@ -3738,7 +3845,6 @@ input ProjectUpdateWithoutImagesDataInput {
   difficulty: String
   startDate: DateTime
   goalAmount: Float
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationUpdateManyWithoutProjectInput
   likes: ProjectLikeUpdateManyWithoutProjectInput
@@ -3764,7 +3870,6 @@ input ProjectUpdateWithoutLikesDataInput {
   difficulty: String
   startDate: DateTime
   goalAmount: Float
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationUpdateManyWithoutProjectInput
   images: ProjectImageUpdateManyWithoutProjectInput
@@ -3789,7 +3894,6 @@ input ProjectUpdateWithoutProfileDataInput {
   difficulty: String
   startDate: DateTime
   goalAmount: Float
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationUpdateManyWithoutProjectInput
   images: ProjectImageUpdateManyWithoutProjectInput
@@ -3816,7 +3920,6 @@ input ProjectUpdateWithoutStudentsDataInput {
   difficulty: String
   startDate: DateTime
   goalAmount: Float
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationUpdateManyWithoutProjectInput
   images: ProjectImageUpdateManyWithoutProjectInput
@@ -3842,7 +3945,6 @@ input ProjectUpdateWithoutTasksDataInput {
   difficulty: String
   startDate: DateTime
   goalAmount: Float
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationUpdateManyWithoutProjectInput
   images: ProjectImageUpdateManyWithoutProjectInput
@@ -3868,7 +3970,6 @@ input ProjectUpdateWithoutTradeMastersDataInput {
   difficulty: String
   startDate: DateTime
   goalAmount: Float
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationUpdateManyWithoutProjectInput
   images: ProjectImageUpdateManyWithoutProjectInput
@@ -3894,7 +3995,6 @@ input ProjectUpdateWithoutTradesDataInput {
   difficulty: String
   startDate: DateTime
   goalAmount: Float
-  amountFunded: Float
   featuredImage: String
   donations: ProjectDonationUpdateManyWithoutProjectInput
   images: ProjectImageUpdateManyWithoutProjectInput
@@ -4122,14 +4222,6 @@ input ProjectWhereInput {
   goalAmount_lte: Float
   goalAmount_gt: Float
   goalAmount_gte: Float
-  amountFunded: Float
-  amountFunded_not: Float
-  amountFunded_in: [Float!]
-  amountFunded_not_in: [Float!]
-  amountFunded_lt: Float
-  amountFunded_lte: Float
-  amountFunded_gt: Float
-  amountFunded_gte: Float
   featuredImage: String
   featuredImage_not: String
   featuredImage_in: [String!]

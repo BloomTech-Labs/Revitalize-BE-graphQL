@@ -130,8 +130,12 @@ type ProjectApplicant {
   project: Project! @relation(name: "ApplicantToProject", onDelete: SET_NULL)
   profile: UserProfile! @relation(name: "ApplicantToUserProfile", onDelete: SET_NULL)
   trade: ProjectTrade!
+  licensed: Boolean!
   coverLetter: String!
-  status: Status!
+  jobExperience: String!
+  education: String!
+  availability: String!
+  status: Status! @default(value: PENDING)
 }
 
 type ProjectStudent {
@@ -154,6 +158,7 @@ type ProjectTask {
   priority: String!
   dueDate: DateTime!
   budgetHours: Int!
+  completed: Boolean! @default(value: false)
   apprentices: [ProjectApprenticeTask!] @relation(name: "ProjectApprenticeTaskToProjectTask", onDelete: CASCADE)
 }
 
