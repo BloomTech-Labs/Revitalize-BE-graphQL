@@ -1,5 +1,14 @@
-Create project like
-Slugification
-Featured image upload
+V2
+Update donations for every seed
+Update Application Mutation - Boolean trade, description, experience, education, time
+Add completed boolean to task
+Create UpdateApplicant Mutation
+Applicants after updated become students
+Allow trademasters to create task
+
+V3
+Algorithms - Implement Omar's Project recommendation, Create local project recommendation
+Analytics - Donors, Students, Applicants, Tasks, Trades, Page Views, Unique Page Views
+
 Test suite
 Continuous integration script
