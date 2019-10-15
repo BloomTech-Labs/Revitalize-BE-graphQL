@@ -855,7 +855,9 @@ export type ProjectTaskOrderByInput =
   | "dueDate_ASC"
   | "dueDate_DESC"
   | "budgetHours_ASC"
-  | "budgetHours_DESC";
+  | "budgetHours_DESC"
+  | "completed_ASC"
+  | "completed_DESC";
 
 export type UserAccountOrderByInput =
   | "id_ASC"
@@ -1565,6 +1567,8 @@ export interface ProjectTaskWhereInput {
   budgetHours_lte?: Maybe<Int>;
   budgetHours_gt?: Maybe<Int>;
   budgetHours_gte?: Maybe<Int>;
+  completed?: Maybe<Boolean>;
+  completed_not?: Maybe<Boolean>;
   apprentices_every?: Maybe<ProjectApprenticeTaskWhereInput>;
   apprentices_some?: Maybe<ProjectApprenticeTaskWhereInput>;
   apprentices_none?: Maybe<ProjectApprenticeTaskWhereInput>;
@@ -2418,6 +2422,7 @@ export interface ProjectTaskCreateWithoutApprenticesInput {
   priority: String;
   dueDate: DateTimeInput;
   budgetHours: Int;
+  completed?: Maybe<Boolean>;
 }
 
 export interface ProjectCreateOneWithoutTasksInput {
@@ -2583,6 +2588,7 @@ export interface ProjectTaskCreateWithoutProjectInput {
   priority: String;
   dueDate: DateTimeInput;
   budgetHours: Int;
+  completed?: Maybe<Boolean>;
   apprentices?: Maybe<ProjectApprenticeTaskCreateManyWithoutProjectTaskInput>;
 }
 
@@ -3631,6 +3637,7 @@ export interface ProjectTaskUpdateWithoutApprenticesDataInput {
   priority?: Maybe<String>;
   dueDate?: Maybe<DateTimeInput>;
   budgetHours?: Maybe<Int>;
+  completed?: Maybe<Boolean>;
 }
 
 export interface ProjectUpdateOneRequiredWithoutTasksInput {
@@ -3967,6 +3974,7 @@ export interface ProjectTaskUpdateWithoutProjectDataInput {
   priority?: Maybe<String>;
   dueDate?: Maybe<DateTimeInput>;
   budgetHours?: Maybe<Int>;
+  completed?: Maybe<Boolean>;
   apprentices?: Maybe<ProjectApprenticeTaskUpdateManyWithoutProjectTaskInput>;
 }
 
@@ -5075,6 +5083,8 @@ export interface ProjectTaskScalarWhereInput {
   budgetHours_lte?: Maybe<Int>;
   budgetHours_gt?: Maybe<Int>;
   budgetHours_gte?: Maybe<Int>;
+  completed?: Maybe<Boolean>;
+  completed_not?: Maybe<Boolean>;
   AND?: Maybe<ProjectTaskScalarWhereInput[] | ProjectTaskScalarWhereInput>;
   OR?: Maybe<ProjectTaskScalarWhereInput[] | ProjectTaskScalarWhereInput>;
   NOT?: Maybe<ProjectTaskScalarWhereInput[] | ProjectTaskScalarWhereInput>;
@@ -5090,6 +5100,7 @@ export interface ProjectTaskUpdateManyDataInput {
   priority?: Maybe<String>;
   dueDate?: Maybe<DateTimeInput>;
   budgetHours?: Maybe<Int>;
+  completed?: Maybe<Boolean>;
 }
 
 export interface ProjectUpsertWithoutTradeMastersInput {
@@ -5705,6 +5716,7 @@ export interface ProjectTaskCreateInput {
   priority: String;
   dueDate: DateTimeInput;
   budgetHours: Int;
+  completed?: Maybe<Boolean>;
   apprentices?: Maybe<ProjectApprenticeTaskCreateManyWithoutProjectTaskInput>;
 }
 
@@ -5715,6 +5727,7 @@ export interface ProjectTaskUpdateInput {
   priority?: Maybe<String>;
   dueDate?: Maybe<DateTimeInput>;
   budgetHours?: Maybe<Int>;
+  completed?: Maybe<Boolean>;
   apprentices?: Maybe<ProjectApprenticeTaskUpdateManyWithoutProjectTaskInput>;
 }
 
@@ -5723,6 +5736,7 @@ export interface ProjectTaskUpdateManyMutationInput {
   priority?: Maybe<String>;
   dueDate?: Maybe<DateTimeInput>;
   budgetHours?: Maybe<Int>;
+  completed?: Maybe<Boolean>;
 }
 
 export interface ProjectTradeUpdateInput {
@@ -6978,6 +6992,7 @@ export interface ProjectTask {
   priority: String;
   dueDate: DateTimeOutput;
   budgetHours: Int;
+  completed: Boolean;
 }
 
 export interface ProjectTaskPromise extends Promise<ProjectTask>, Fragmentable {
@@ -6988,6 +7003,7 @@ export interface ProjectTaskPromise extends Promise<ProjectTask>, Fragmentable {
   priority: () => Promise<String>;
   dueDate: () => Promise<DateTimeOutput>;
   budgetHours: () => Promise<Int>;
+  completed: () => Promise<Boolean>;
   apprentices: <T = FragmentableArray<ProjectApprenticeTask>>(args?: {
     where?: ProjectApprenticeTaskWhereInput;
     orderBy?: ProjectApprenticeTaskOrderByInput;
@@ -7009,6 +7025,7 @@ export interface ProjectTaskSubscription
   priority: () => Promise<AsyncIterator<String>>;
   dueDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   budgetHours: () => Promise<AsyncIterator<Int>>;
+  completed: () => Promise<AsyncIterator<Boolean>>;
   apprentices: <
     T = Promise<AsyncIterator<ProjectApprenticeTaskSubscription>>
   >(args?: {
@@ -7032,6 +7049,7 @@ export interface ProjectTaskNullablePromise
   priority: () => Promise<String>;
   dueDate: () => Promise<DateTimeOutput>;
   budgetHours: () => Promise<Int>;
+  completed: () => Promise<Boolean>;
   apprentices: <T = FragmentableArray<ProjectApprenticeTask>>(args?: {
     where?: ProjectApprenticeTaskWhereInput;
     orderBy?: ProjectApprenticeTaskOrderByInput;
@@ -8759,6 +8777,7 @@ export interface ProjectTaskPreviousValues {
   priority: String;
   dueDate: DateTimeOutput;
   budgetHours: Int;
+  completed: Boolean;
 }
 
 export interface ProjectTaskPreviousValuesPromise
@@ -8769,6 +8788,7 @@ export interface ProjectTaskPreviousValuesPromise
   priority: () => Promise<String>;
   dueDate: () => Promise<DateTimeOutput>;
   budgetHours: () => Promise<Int>;
+  completed: () => Promise<Boolean>;
 }
 
 export interface ProjectTaskPreviousValuesSubscription
@@ -8779,6 +8799,7 @@ export interface ProjectTaskPreviousValuesSubscription
   priority: () => Promise<AsyncIterator<String>>;
   dueDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   budgetHours: () => Promise<AsyncIterator<Int>>;
+  completed: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface ProjectTradeSubscriptionPayload {
