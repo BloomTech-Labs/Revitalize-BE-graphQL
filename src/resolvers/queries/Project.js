@@ -87,15 +87,15 @@ export const Project = {
 				where: {
 					AND: [{ id: profileId }, { state_not: null }, { city_not: null }, { zip_not: null }],
 				},
-			})[0];
+			});
 		}
 
-		if (profile) {
+		if (profile[0]) {
 			// Set location
 			location = {
-				state: profile.state,
-				city: profile.city,
-				zip: profile.zip,
+				state: profile[0].state,
+				city: profile[0].city,
+				zip: profile[0].zip,
 			};
 		} else {
 			// @NOTE:Geolocation does not work on localhost! Please pass a token when querying this data on localhost
