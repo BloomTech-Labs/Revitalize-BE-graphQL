@@ -6,6 +6,7 @@ import { ProjectLike } from './ProjectLike';
 import { ProjectCommentLike } from './ProjectCommentLike';
 import { ProjectDonation } from './ProjectDonation';
 import { ProjectTrade } from './ProjectTrade';
+import { ProjectApplicant } from './ProjectApplicant';
 import { ProjectComment } from './ProjectComment';
 import { ProjectTask } from './ProjectTask';
 import { ProjectApprenticeTask } from './ProjectApprenticeTask';
@@ -21,6 +22,7 @@ export const Types = {
 	ProjectCommentLike,
 	ProjectDonation,
 	ProjectTrade,
+	ProjectApplicant,
 	ProjectComment,
 	ProjectTask,
 	ProjectApprenticeTask,
