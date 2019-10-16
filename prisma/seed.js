@@ -62,7 +62,7 @@ async function main() {
             city: "Kelseyville",
             zip: 95451,
             address: "This is an address",
-            state: "Califorina",
+            state: "California",
             projects: {
                 create: [
                     {
@@ -642,7 +642,7 @@ async function main() {
             lastName: "Piroumian",
             profileImage: "https://avatars3.githubusercontent.com/u/43027065?s=400&v=4",
             country: "United States",
-            state: "CA",
+            state: "California",
             city: "Palmdale",
             address: "667 Williams Avenue",
             zip: 93552,
@@ -654,7 +654,7 @@ async function main() {
                         featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1571093414/seed%20images/maxresdefault_gevrek.jpg',
                         description: 'Hawthorne Plaza is a dead mall along Hawthorne Boulevard between 120th Street and El Segundo Blvd in Hawthorne, California. The 40-acre (16 ha) property opened in 1977 and included an indoor mall and free standing stores at the property\'s south end. The mall largely catered to the middle class residents living in and around Hawthorne and featured cheaper stores than other nearby malls such as South Bay Galleria and Manhattan Village.',
                         country:'United States',
-                        state: 'CA',
+                        state: 'California',
                         address: '12000 Hawthorne Blvd. ',
                         zip: 90250,
                         city: 'Atlanta',

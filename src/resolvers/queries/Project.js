@@ -1,4 +1,6 @@
 import { getProfileId } from '../../utils/getProfileId';
+import { resolveIp } from '../../utils/resolveIp';
+const iplocation = require("iplocation").default;
 
 export const Project = {
 	async projectById(parent, args, { prisma }, info) {
@@ -71,4 +73,50 @@ export const Project = {
 			info,
 		);
 	},
+	async projectsNearMe(parent, args, { prisma, request }, info) {
+		let location = {}
+
+		// Get user profile id
+		const profileId = getProfileId(request, false);
+
+		if (profileId) {
+			// Query user profile
+			const profile = await prisma.userProfile({
+				id: profileId
+			})
+
+			if (profile.state !== null && profile.zip !== null) {
+				// Set location
+				location = {
+					state: profile.state,
+					zip: profile.zip
+				}
+			}
+		} else {
+			// @note - Geolocation does not work on localhost! Please pass a token when querying this data on localhost
+
+			// Resolve ip if user profile doesn't exist
+			const ip = resolveIp(request)
+
+			// Get geolocation
+			const ipLocation = await iplocation(ip)
+
+			// Set location
+			location = {
+				state: ipLocation.city,
+				zip: parseInt(ipLocation.zip, 10)
+			}
+		}
+		console.log(location)
+		return location;
+		// Resolve client ip or user profile
+
+		// Pull all projects in by state
+
+		// Pull all project zipcodes into an array
+
+		// Calculate the distance between each zipcode with the current user zipcode or client ip zipcode
+
+		// Sort zipcode distances
+	}
 };

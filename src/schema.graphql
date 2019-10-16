@@ -30,6 +30,7 @@ type Query {
 	projects(query: String): [Project!]!
 	myProjects: [Project!]!
 	userProjects(id: ID!): [Project!]!
+	projectsNearMe: LocationThingy!
 	projectLikes(id: ID!): [ProjectLike!]!
 }
 
@@ -88,6 +89,11 @@ type Mutation {
 
 	# Project task apprentices
 	CreateProjectApprenticeTask(data: CreateProjectApprenticeTask!): ProjectApprenticeTask!
+}
+
+type LocationThingy {
+	state: String!
+	zip: Int!
 }
 
 # UserAccount
