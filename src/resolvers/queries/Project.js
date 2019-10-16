@@ -1,6 +1,7 @@
 import { getProfileId } from '../../utils/getProfileId';
 import { resolveIp } from '../../utils/resolveIp';
-const iplocation = require("iplocation").default;
+import iplocation from 'iplocation';
+import zipcodes from 'zipcodes';
 
 export const Project = {
 	async projectById(parent, args, { prisma }, info) {
@@ -74,49 +75,74 @@ export const Project = {
 		);
 	},
 	async projectsNearMe(parent, args, { prisma, request }, info) {
-		let location = {}
+		let location = {};
+		let profile;
 
 		// Get user profile id
 		const profileId = getProfileId(request, false);
 
 		if (profileId) {
 			// Query user profile
-			const profile = await prisma.userProfile({
-				id: profileId
-			})
+			profile = await prisma.userProfiles({
+				where: {
+					AND: [{ id: profileId }, { state_not: null }, { city_not: null }, { zip_not: null }],
+				},
+			})[0];
+		}
 
-			if (profile.state !== null && profile.zip !== null) {
-				// Set location
-				location = {
-					state: profile.state,
-					zip: profile.zip
-				}
-			}
+		if (profile) {
+			// Set location
+			location = {
+				state: profile.state,
+				city: profile.city,
+				zip: profile.zip,
+			};
 		} else {
-			// @note - Geolocation does not work on localhost! Please pass a token when querying this data on localhost
+			// @NOTE:Geolocation does not work on localhost! Please pass a token when querying this data on localhost
 
 			// Resolve ip if user profile doesn't exist
-			const ip = resolveIp(request)
+			const ip = resolveIp(request);
 
 			// Get geolocation
-			const ipLocation = await iplocation(ip)
+			const ipLocation = await iplocation(ip);
 
 			// Set location
 			location = {
-				state: ipLocation.city,
-				zip: parseInt(ipLocation.zip, 10)
-			}
+				state: ipLocation.region,
+				city: ipLocation.city,
+				zip: parseInt(ipLocation.postal, 10),
+			};
 		}
-		console.log(location)
-		return location;
-		// Resolve client ip or user profile
 
-		// Pull all projects in by state
+		// Query all projects that are relevant by state, city or zip
+		let projects = await prisma.projects(
+			{
+				where: {
+					OR: [
+						{
+							state: location.state,
+						},
+						{
+							city: location.city,
+						},
+						{
+							zip: location.zip,
+						},
+					],
+				},
+			},
+			info,
+		);
 
-		// Pull all project zipcodes into an array
-
-		// Calculate the distance between each zipcode with the current user zipcode or client ip zipcode
-
-		// Sort zipcode distances
-	}
+		// Return a sorted array based off of zipcode distance
+		return projects
+			.map(project => {
+				return {
+					...project,
+					// Calculate the distances between the project zipcode and location zipcode
+					distance: zipcodes.distance(project.zip, location.zip),
+				};
+			})
+			.sort((a, b) => a.distance - b.distance);
+	},
 };

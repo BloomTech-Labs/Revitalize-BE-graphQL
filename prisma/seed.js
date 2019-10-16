@@ -79,7 +79,7 @@ async function main() {
                         duration: 24,
                         difficulty: "Easy",
                         startDate: "2019-10-09",
-                    }
+                    },
                 ],
             },
         })
@@ -330,7 +330,90 @@ async function main() {
 
                             ],
                         }
-                    }
+                    },
+                    {
+                        slug: 'lake-dolores-waterpark',
+                        name: 'Lake Dolores Waterpark',
+                        description: 'Lake Dolores Waterpark is an abandoned waterpark off Interstate 15 in the Mojave Desert in the community of Newberry Springs, California, United States. The waterpark had operated under numerous names in the past, including Lake Dolores, Rock–A–Hoola Waterpark, and Discovery Waterpark.',
+                        featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1571252406/seed%20images/rock-a-hoola_juzsww.jpg',
+                        country:'United States',
+                        state: 'California',
+                        address: 'Dolores Lake, California 92365',
+                        zip: 92365,
+                        city: 'Newberry Springs',
+                        goalAmount: 100000,
+                        duration: 24,
+                        difficulty: "Easy",
+                        startDate: "2019-10-09",
+                        donations: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        }
+                                    },
+                                    amount: 50.23
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        }
+                                    },
+                                    amount: 500.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 2000.00
+                                }
+                            ]
+                        },
+                        likes: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        },
+                                    },
+                                }
+                            ]
+                        },
+                        comments: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        },
+                                    },
+                                    comment: "We miss Providence Theater!"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        },
+                                    },
+                                    comment: "This building is iconic!"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        },
+                                    },
+                                    comment: "Billy Joel was here"
+                                }
+
+                            ],
+                        }
+                    },
                 ],
             },
         })
@@ -414,7 +497,74 @@ async function main() {
 
                             ],
                         }
-                    }
+                    },
+                    {
+                        slug: 'chemung-mine',
+                        name: 'Chemung Mine',
+                        description: 'Chemung Mine. Located near the ghost town of Masonic, CA, the Chemung Mine was founded in 1909. It was reputedly a good producer of gold (although the area was consistently overshadowed by the mining operations in Bodie), but legal issues were a constant problem.',
+                        featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1571252755/seed%20images/chemung_mine_whyr8b.jpg',
+                        country:'United States',
+                        state: 'California',
+                        address: 'Bridgeport, California 93517',
+                        zip: 93517,
+                        city: 'Bridgeport',
+                        goalAmount: 220000,
+                        duration: 24,
+                        difficulty: "Medium",
+                        startDate: "2019-10-09",
+                        donations: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 2000.00
+                                }
+                            ]
+                        },
+                        likes: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        },
+                                    },
+                                }
+                            ]
+                        },
+                        comments: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        },
+                                    },
+                                    comment: "We miss Cottonwood Paper Mill!"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        },
+                                    },
+                                    comment: "This building is iconic!"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        },
+                                    },
+                                    comment: "Let's make some paper!"
+                                }
+
+                            ],
+                        }
+                    },
                 ],
             },
         })
@@ -630,6 +780,97 @@ async function main() {
 
                             ],
                         }
+                    },
+                     {
+                        slug: 'ano-nuevo-island',
+                        name: 'Año Nuevo Island',
+                        description: "Off the California coast between SF and Santa Cruz, the nine-acre Año Nuevo Island once served as a light station, but was abandoned in 1948. It's closed to the public, but has become home to hundreds of Northern elephant seals/endangered sea lions.",
+                        featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1571252989/seed%20images/ano_nuevo_island_itzrar.jpg',
+                        country:'United States',
+                        state: 'California',
+                        address: 'Island in San Mateo County, California 94065',
+                        zip: 94065,
+                        city: 'Island in San Mateo County',
+                        goalAmount: 220000,
+                        duration: 24,
+                        difficulty: "Medium",
+                        startDate: "2019-10-09",
+                        donations: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        }
+                                    },
+                                    amount: 25550.23
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        }
+                                    },
+                                    amount: 500.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 2000.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 10000.00
+                                }
+                            ]
+                        },
+                        likes: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: clarkProfile.id
+                                        },
+                                    },
+                                }
+                            ]
+                        },
+                        comments: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        },
+                                    },
+                                    comment: "Looks like a fantastic building!!"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        },
+                                    },
+                                    comment: "This building is iconic!"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        },
+                                    },
+                                    comment: "What an awesome project"
+                                }
+
+                            ],
+                        }
                     }
                 ],
             },
@@ -657,7 +898,7 @@ async function main() {
                         state: 'California',
                         address: '12000 Hawthorne Blvd. ',
                         zip: 90250,
-                        city: 'Atlanta',
+                        city: 'Hawthorne',
                         goalAmount: 21120000,
                         duration: 24,
                         difficulty: "Easy",
@@ -757,8 +998,8 @@ async function main() {
             projects: {
                 create: [
                     {
-                        slug: 'hawthorne-mall-2',
-                        name: 'Hawthorne Mall',
+                        slug: '16th-street-station',
+                        name: '16th Street Station',
                         featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1571093581/seed%20images/16thSt_IMG_9176_nggf1t.jpg',
                         description: 'The original 16th Street depot was a smaller wood structure, built when the tracks were on the shoreline of San Francisco Bay. Later the shoreline was filled and now lies nearly a mile west. It was replaced in 1912 by a Beaux-Arts building designed by architect Jarvis Hunt.',
                         country:'United States',

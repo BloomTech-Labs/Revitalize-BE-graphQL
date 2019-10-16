@@ -53,7 +53,7 @@ type Project {
   profile: UserProfile! @relation(name: "ProjectToUserProfile", onDelete: SET_NULL)
   name: String!
   description: String!
-  country: String!
+  country: String! @default(value: "United States")
   address: String!
   state: String!
   city: String!

@@ -30,7 +30,7 @@ type Query {
 	projects(query: String): [Project!]!
 	myProjects: [Project!]!
 	userProjects(id: ID!): [Project!]!
-	projectsNearMe: LocationThingy!
+	projectsNearMe: [Project!]!
 	projectLikes(id: ID!): [ProjectLike!]!
 }
 
@@ -93,6 +93,7 @@ type Mutation {
 
 type LocationThingy {
 	state: String!
+	city: String!
 	zip: Int!
 }
 
