@@ -7,4 +7,7 @@ export const ProjectTask = {
     async project(parent) {
 		return await prisma.projectTask({ id: parent.id }).project();
 	},
+	async apprentices(parent) {
+		return await prisma.projectTask({ id: parent.id }).apprentices();
+	},
 };

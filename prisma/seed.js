@@ -1414,6 +1414,96 @@ async function main() {
                                 }
                             ]
                         }
+                    },
+                    {
+                        slug: 'govan-schoolhouse',
+                        name: 'Govan Schoolhouse',
+                        featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1571256845/seed%20images/govanschoolhouse_rxzklk.jpg',
+                        description: "Govan is a ghost town in central Washington State. There are remnants of several buildings, most notably the old Govan Schoolhouse. Govan once was a small farming community, large enough to boast a post office, school, two churches, and several businesses, and in 1909 listed a population of 114. However, a fire in 1927 devastated the business district, and many stores chose not to rebuild. The 1933 bypass of the town by Highway 2 hasted its demise, and the school closed in 1942. The post office and final business closed in 1967.",
+                        country:'United States',
+                        state: 'Washington',
+                        address: 'School House Rd, Wilbur, WA 99185',
+                        zip: 99185,
+                        city: 'Wilbur',
+                        goalAmount: 150000,
+                        duration: 124,
+                        difficulty: "Hard",
+                        startDate: "2020-10-09",
+                        donations: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        }
+                                    },
+                                    amount: 420.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        }
+                                    },
+                                    amount: 500.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 200.00
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        }
+                                    },
+                                    amount: 10000.00
+                                }
+                            ]
+                        },
+                        likes: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: alexanderProfile.id
+                                        },
+                                    },
+                                }
+                            ]
+                        },
+                        comments: {
+                            create: [
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: frankProfile.id
+                                        },
+                                    },
+                                    comment: "Wow. Such a sad fire."
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: skyelarProfile.id
+                                        },
+                                    },
+                                    comment: "This is going to take years to rebuild! Good Luck"
+                                },
+                                {
+                                    profile: {
+                                        connect: {
+                                            id: anthonyProfile.id
+                                        },
+                                    },
+                                    comment: "Please donate to this amazing project. This is so cool."
+                                }
+                            ],
+                        }
                     }
                 ],
             },

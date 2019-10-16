@@ -81,7 +81,7 @@ export const Project = {
 		// Get user profile id
 		const profileId = getProfileId(request, false);
 
-		if (profileId) {
+		if (profileId && profileId !== null) {
 			// Query user profile
 			profile = await prisma.userProfiles({
 				where: {
@@ -90,7 +90,7 @@ export const Project = {
 			});
 		}
 
-		if (profile[0]) {
+		if (profile && profile[0]) {
 			// Set location
 			location = {
 				state: profile[0].state,
@@ -102,6 +102,9 @@ export const Project = {
 
 			// Resolve ip if user profile doesn't exist
 			const ip = resolveIp(request);
+
+			// If on localhost return all the projects
+			if (!ip) return prisma.projects()
 
 			// Get geolocation
 			const ipLocation = await iplocation(ip);

@@ -1421,7 +1421,7 @@ input ProjectCreateInput {
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
-  country: String!
+  country: String
   address: String!
   state: String!
   city: String!
@@ -1498,7 +1498,7 @@ input ProjectCreateWithoutApplicantsInput {
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
-  country: String!
+  country: String
   address: String!
   state: String!
   city: String!
@@ -1524,7 +1524,7 @@ input ProjectCreateWithoutCommentsInput {
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
-  country: String!
+  country: String
   address: String!
   state: String!
   city: String!
@@ -1550,7 +1550,7 @@ input ProjectCreateWithoutDonationsInput {
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
-  country: String!
+  country: String
   address: String!
   state: String!
   city: String!
@@ -1576,7 +1576,7 @@ input ProjectCreateWithoutImagesInput {
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
-  country: String!
+  country: String
   address: String!
   state: String!
   city: String!
@@ -1602,7 +1602,7 @@ input ProjectCreateWithoutLikesInput {
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
-  country: String!
+  country: String
   address: String!
   state: String!
   city: String!
@@ -1627,7 +1627,7 @@ input ProjectCreateWithoutProfileInput {
   slug: String!
   name: String!
   description: String!
-  country: String!
+  country: String
   address: String!
   state: String!
   city: String!
@@ -1654,7 +1654,7 @@ input ProjectCreateWithoutStudentsInput {
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
-  country: String!
+  country: String
   address: String!
   state: String!
   city: String!
@@ -1680,7 +1680,7 @@ input ProjectCreateWithoutTasksInput {
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
-  country: String!
+  country: String
   address: String!
   state: String!
   city: String!
@@ -1706,7 +1706,7 @@ input ProjectCreateWithoutTradeMastersInput {
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
-  country: String!
+  country: String
   address: String!
   state: String!
   city: String!
@@ -1732,7 +1732,7 @@ input ProjectCreateWithoutTradesInput {
   profile: UserProfileCreateOneWithoutProjectsInput!
   name: String!
   description: String!
-  country: String!
+  country: String
   address: String!
   state: String!
   city: String!

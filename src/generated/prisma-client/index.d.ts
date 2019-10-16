@@ -2072,7 +2072,7 @@ export interface ProjectCreateInput {
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
-  country: String;
+  country?: Maybe<String>;
   address: String;
   state: String;
   city: String;
@@ -2152,7 +2152,7 @@ export interface ProjectCreateWithoutDonationsInput {
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
-  country: String;
+  country?: Maybe<String>;
   address: String;
   state: String;
   city: String;
@@ -2245,7 +2245,7 @@ export interface ProjectCreateWithoutProfileInput {
   slug: String;
   name: String;
   description: String;
-  country: String;
+  country?: Maybe<String>;
   address: String;
   state: String;
   city: String;
@@ -2340,7 +2340,7 @@ export interface ProjectCreateWithoutStudentsInput {
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
-  country: String;
+  country?: Maybe<String>;
   address: String;
   state: String;
   city: String;
@@ -2453,7 +2453,7 @@ export interface ProjectCreateWithoutTasksInput {
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
-  country: String;
+  country?: Maybe<String>;
   address: String;
   state: String;
   city: String;
@@ -2570,7 +2570,7 @@ export interface ProjectCreateWithoutTradeMastersInput {
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
-  country: String;
+  country?: Maybe<String>;
   address: String;
   state: String;
   city: String;
@@ -2633,7 +2633,7 @@ export interface ProjectCreateWithoutTradesInput {
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
-  country: String;
+  country?: Maybe<String>;
   address: String;
   state: String;
   city: String;
@@ -2724,7 +2724,7 @@ export interface ProjectCreateWithoutLikesInput {
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
-  country: String;
+  country?: Maybe<String>;
   address: String;
   state: String;
   city: String;
@@ -2818,7 +2818,7 @@ export interface ProjectCreateWithoutCommentsInput {
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
-  country: String;
+  country?: Maybe<String>;
   address: String;
   state: String;
   city: String;
@@ -2918,7 +2918,7 @@ export interface ProjectCreateWithoutApplicantsInput {
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
-  country: String;
+  country?: Maybe<String>;
   address: String;
   state: String;
   city: String;
@@ -5642,7 +5642,7 @@ export interface ProjectCreateWithoutImagesInput {
   profile: UserProfileCreateOneWithoutProjectsInput;
   name: String;
   description: String;
-  country: String;
+  country?: Maybe<String>;
   address: String;
   state: String;
   city: String;
