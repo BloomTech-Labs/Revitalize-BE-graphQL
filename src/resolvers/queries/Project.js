@@ -142,7 +142,7 @@ export const Project = {
 			.map(project => {
 				return {
 					...project,
-					// Calculate the distances between the project zipcode and location zipcode
+					// Calculate the distances between the project zipcode and location object zipcode
 					distance: zipcodes.distance(project.zip, location.zip),
 				};
 			})

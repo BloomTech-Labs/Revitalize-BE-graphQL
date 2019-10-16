@@ -1,6 +1,10 @@
+Update project mutation
+Delete project with images mutation
+
+Create distance util
+
 V3
 Analytics - Page Views, Unique Page Views
-Algorithms - Implement Omar's Project recommendation, Create local project recommendation
 
 Test suite
 Continuous integration script
