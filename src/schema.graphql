@@ -421,3 +421,13 @@ input CreateProjectApprenticeTask {
 	projectTask: ID!
 	profile: ID!
 }
+
+type DirectMessage {
+  id: ID!
+  sender: UserProfile!
+  recipient: UserProfile!
+  message: String!
+  read: Boolean!
+  createdAt: Date!
+  updatedAt: Date!
+}

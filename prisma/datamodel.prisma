@@ -169,3 +169,12 @@ type ProjectApprenticeTask {
   profile: UserProfile! @relation(name: "ProjectApprenticeTaskToUserProfile")
 }
 
+type DirectMessage {
+  id: ID! @id
+  sender: UserProfile!
+  recipient: UserProfile!
+  message: String!
+  read: Boolean! @default(value: false)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
