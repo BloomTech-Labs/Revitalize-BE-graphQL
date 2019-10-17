@@ -1,5 +1,8 @@
 import { getProfileId } from '../../utils/getProfileId';
 import { resolveIp } from '../../utils/resolveIp';
+import { weightSort } from '../../utils/projectWeightedSort';
+import { recommendedProject } from '../../fragments/RecommendedProject';
+
 import iplocation from 'iplocation';
 import zipcodes from 'zipcodes';
 
@@ -73,6 +76,10 @@ export const Project = {
 			},
 			info,
 		);
+	},
+	async recommendedProjects(parent, args, { prisma }, info) {
+		const projects = await prisma.projects({}, info).$fragment(recommendedProject);
+		return weightSort(projects)
 	},
 	async projectsNearMe(parent, args, { prisma, request }, info) {
 		let location = {};
