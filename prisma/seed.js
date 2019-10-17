@@ -1509,6 +1509,51 @@ async function main() {
             },
         })
 
+        await prisma.directMessage({
+            sender: {
+                connect: {
+                    id: skyelarProfile.id
+                }
+            },
+            recipient: {
+                connect: {
+                    id: frankProfile.id
+                }
+            },
+            message: "Hey Frank!",
+            read: false,
+        })
+
+        await prisma.directMessage({
+            sender: {
+                connect: {
+                    id: frankProfile.id
+                }
+            },
+            recipient: {
+                connect: {
+                    id: skyelarProfile.id
+                }
+            },
+            message: "Hey Skyelar! How are you?",
+            read: false,
+        })
+
+        await prisma.directMessage({
+            sender: {
+                connect: {
+                    id: anthonyProfile.id
+                }
+            },
+            recipient: {
+                connect: {
+                    id: skyelarProfile.id
+                }
+            },
+            message: "Hey!",
+            read: false,
+        })
+
     } catch (error) {
         console.log(error);
     }

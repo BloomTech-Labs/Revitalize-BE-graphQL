@@ -431,3 +431,10 @@ type DirectMessage {
   createdAt: Date!
   updatedAt: Date!
 }
+
+input CreateDirectMessage {
+  sender: UserProfile!
+  recipient: UserProfile!
+  message: String!
+  read: Boolean!
+}
