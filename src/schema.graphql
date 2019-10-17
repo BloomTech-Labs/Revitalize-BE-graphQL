@@ -31,6 +31,7 @@ type Query {
 	myProjects: [Project!]!
 	userProjects(id: ID!): [Project!]!
 	projectsNearMe: [Project!]!
+	recommendedProjects: [Project!]!
 	projectLikes(id: ID!): [ProjectLike!]!
 }
 
