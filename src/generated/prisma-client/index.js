@@ -67,6 +67,10 @@ var models = [
   {
     name: "ProjectApprenticeTask",
     embedded: false
+  },
+  {
+    name: "DirectMessage",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({

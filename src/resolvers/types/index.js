@@ -1,6 +1,7 @@
 import { UserAccount } from './UserAccount';
 import { ExternalAccount } from './ExternalAccount';
 import { UserProfile } from './UserProfile';
+
 import { Project } from './Project';
 import { ProjectLike } from './ProjectLike';
 import { ProjectCommentLike } from './ProjectCommentLike';
@@ -12,6 +13,8 @@ import { ProjectTask } from './ProjectTask';
 import { ProjectApprenticeTask } from './ProjectApprenticeTask';
 import { ProjectStudent } from './ProjectStudent';
 import { ProjectMasterTradesman } from './ProjectMasterTradesman';
+
+import { DirectMessage } from './DirectMessage';
 
 export const Types = {
 	UserAccount,
@@ -28,4 +31,5 @@ export const Types = {
 	ProjectApprenticeTask,
 	ProjectStudent,
 	ProjectMasterTradesman,
+	DirectMessage
 };

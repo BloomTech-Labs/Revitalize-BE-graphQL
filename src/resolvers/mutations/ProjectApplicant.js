@@ -9,7 +9,7 @@ export const ProjectApplicant = {
 
 		const applicantExists = await prisma.$exists.projectApplicant({
 			project: { id: args.data.project },
-			profile: { id: args.data.profile },
+			profile: { id: profileId },
 		});
 
 		if (applicantExists) throw new Error('Sorry, but you have already applied to that project');

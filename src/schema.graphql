@@ -33,6 +33,7 @@ type Query {
 	projectsNearMe: [Project!]!
 	recommendedProjects: [Project!]!
 	projectLikes(id: ID!): [ProjectLike!]!
+	directMessages: [DirectMessage!]!
 }
 
 # Mutations

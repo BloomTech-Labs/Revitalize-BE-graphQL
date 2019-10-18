@@ -1509,7 +1509,7 @@ async function main() {
             },
         })
 
-        await prisma.directMessage({
+        await prisma.createDirectMessage({
             sender: {
                 connect: {
                     id: skyelarProfile.id
@@ -1524,7 +1524,7 @@ async function main() {
             read: false,
         })
 
-        await prisma.directMessage({
+        await prisma.createDirectMessage({
             sender: {
                 connect: {
                     id: frankProfile.id
@@ -1539,7 +1539,23 @@ async function main() {
             read: false,
         })
 
-        await prisma.directMessage({
+        await prisma.createDirectMessage({
+            sender: {
+                connect: {
+                    id: frankProfile.id
+                }
+            },
+            recipient: {
+                connect: {
+                    id: skyelarProfile.id
+                }
+            },
+            message: "Good! How about yourself?",
+            read: false,
+        })
+
+
+        await prisma.createDirectMessage({
             sender: {
                 connect: {
                     id: anthonyProfile.id

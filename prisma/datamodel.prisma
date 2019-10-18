@@ -43,6 +43,8 @@ type UserProfile {
   comments: [ProjectComment!] @relation(name: "CommentToUserProfile", onDelete: CASCADE)
   likedComments: [ProjectCommentLike!]! @relation(name: "CommentLikeToUserProfile", onDelete: CASCADE)
   applications: [ProjectApplicant!]! @relation(name: "ApplicantToUserProfile", onDelete: CASCADE)
+  sentMessages: [DirectMessage!]! @relation(name: "SentDirectMessageToUserProfile", onDelete: CASCADE)
+  recipientMessages: [DirectMessage!]! @relation(name: "RecipientDirectMessageToUserProfile", onDelete: CASCADE)
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
@@ -171,8 +173,8 @@ type ProjectApprenticeTask {
 
 type DirectMessage {
   id: ID! @id
-  sender: UserProfile!
-  recipient: UserProfile!
+  sender: UserProfile! @relation(name: "SentDirectMessageToUserProfile", onDelete: SET_NULL)
+  recipient: UserProfile! @relation(name: "RecipientDirectMessageToUserProfile", onDelete: SET_NULL)
   message: String!
   read: Boolean! @default(value: false)
   createdAt: DateTime! @createdAt

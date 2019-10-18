@@ -3,7 +3,11 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateExternalAccount {
+/* GraphQL */ `type AggregateDirectMessage {
+  count: Int!
+}
+
+type AggregateExternalAccount {
   count: Int!
 }
 
@@ -68,6 +72,288 @@ type BatchPayload {
 }
 
 scalar DateTime
+
+type DirectMessage {
+  id: ID!
+  sender: UserProfile!
+  recipient: UserProfile!
+  message: String!
+  read: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type DirectMessageConnection {
+  pageInfo: PageInfo!
+  edges: [DirectMessageEdge]!
+  aggregate: AggregateDirectMessage!
+}
+
+input DirectMessageCreateInput {
+  id: ID
+  sender: UserProfileCreateOneWithoutSentMessagesInput!
+  recipient: UserProfileCreateOneWithoutRecipientMessagesInput!
+  message: String!
+  read: Boolean
+}
+
+input DirectMessageCreateManyWithoutRecipientInput {
+  create: [DirectMessageCreateWithoutRecipientInput!]
+  connect: [DirectMessageWhereUniqueInput!]
+}
+
+input DirectMessageCreateManyWithoutSenderInput {
+  create: [DirectMessageCreateWithoutSenderInput!]
+  connect: [DirectMessageWhereUniqueInput!]
+}
+
+input DirectMessageCreateWithoutRecipientInput {
+  id: ID
+  sender: UserProfileCreateOneWithoutSentMessagesInput!
+  message: String!
+  read: Boolean
+}
+
+input DirectMessageCreateWithoutSenderInput {
+  id: ID
+  recipient: UserProfileCreateOneWithoutRecipientMessagesInput!
+  message: String!
+  read: Boolean
+}
+
+type DirectMessageEdge {
+  node: DirectMessage!
+  cursor: String!
+}
+
+enum DirectMessageOrderByInput {
+  id_ASC
+  id_DESC
+  message_ASC
+  message_DESC
+  read_ASC
+  read_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type DirectMessagePreviousValues {
+  id: ID!
+  message: String!
+  read: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input DirectMessageScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  message: String
+  message_not: String
+  message_in: [String!]
+  message_not_in: [String!]
+  message_lt: String
+  message_lte: String
+  message_gt: String
+  message_gte: String
+  message_contains: String
+  message_not_contains: String
+  message_starts_with: String
+  message_not_starts_with: String
+  message_ends_with: String
+  message_not_ends_with: String
+  read: Boolean
+  read_not: Boolean
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [DirectMessageScalarWhereInput!]
+  OR: [DirectMessageScalarWhereInput!]
+  NOT: [DirectMessageScalarWhereInput!]
+}
+
+type DirectMessageSubscriptionPayload {
+  mutation: MutationType!
+  node: DirectMessage
+  updatedFields: [String!]
+  previousValues: DirectMessagePreviousValues
+}
+
+input DirectMessageSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: DirectMessageWhereInput
+  AND: [DirectMessageSubscriptionWhereInput!]
+  OR: [DirectMessageSubscriptionWhereInput!]
+  NOT: [DirectMessageSubscriptionWhereInput!]
+}
+
+input DirectMessageUpdateInput {
+  sender: UserProfileUpdateOneRequiredWithoutSentMessagesInput
+  recipient: UserProfileUpdateOneRequiredWithoutRecipientMessagesInput
+  message: String
+  read: Boolean
+}
+
+input DirectMessageUpdateManyDataInput {
+  message: String
+  read: Boolean
+}
+
+input DirectMessageUpdateManyMutationInput {
+  message: String
+  read: Boolean
+}
+
+input DirectMessageUpdateManyWithoutRecipientInput {
+  create: [DirectMessageCreateWithoutRecipientInput!]
+  delete: [DirectMessageWhereUniqueInput!]
+  connect: [DirectMessageWhereUniqueInput!]
+  set: [DirectMessageWhereUniqueInput!]
+  disconnect: [DirectMessageWhereUniqueInput!]
+  update: [DirectMessageUpdateWithWhereUniqueWithoutRecipientInput!]
+  upsert: [DirectMessageUpsertWithWhereUniqueWithoutRecipientInput!]
+  deleteMany: [DirectMessageScalarWhereInput!]
+  updateMany: [DirectMessageUpdateManyWithWhereNestedInput!]
+}
+
+input DirectMessageUpdateManyWithoutSenderInput {
+  create: [DirectMessageCreateWithoutSenderInput!]
+  delete: [DirectMessageWhereUniqueInput!]
+  connect: [DirectMessageWhereUniqueInput!]
+  set: [DirectMessageWhereUniqueInput!]
+  disconnect: [DirectMessageWhereUniqueInput!]
+  update: [DirectMessageUpdateWithWhereUniqueWithoutSenderInput!]
+  upsert: [DirectMessageUpsertWithWhereUniqueWithoutSenderInput!]
+  deleteMany: [DirectMessageScalarWhereInput!]
+  updateMany: [DirectMessageUpdateManyWithWhereNestedInput!]
+}
+
+input DirectMessageUpdateManyWithWhereNestedInput {
+  where: DirectMessageScalarWhereInput!
+  data: DirectMessageUpdateManyDataInput!
+}
+
+input DirectMessageUpdateWithoutRecipientDataInput {
+  sender: UserProfileUpdateOneRequiredWithoutSentMessagesInput
+  message: String
+  read: Boolean
+}
+
+input DirectMessageUpdateWithoutSenderDataInput {
+  recipient: UserProfileUpdateOneRequiredWithoutRecipientMessagesInput
+  message: String
+  read: Boolean
+}
+
+input DirectMessageUpdateWithWhereUniqueWithoutRecipientInput {
+  where: DirectMessageWhereUniqueInput!
+  data: DirectMessageUpdateWithoutRecipientDataInput!
+}
+
+input DirectMessageUpdateWithWhereUniqueWithoutSenderInput {
+  where: DirectMessageWhereUniqueInput!
+  data: DirectMessageUpdateWithoutSenderDataInput!
+}
+
+input DirectMessageUpsertWithWhereUniqueWithoutRecipientInput {
+  where: DirectMessageWhereUniqueInput!
+  update: DirectMessageUpdateWithoutRecipientDataInput!
+  create: DirectMessageCreateWithoutRecipientInput!
+}
+
+input DirectMessageUpsertWithWhereUniqueWithoutSenderInput {
+  where: DirectMessageWhereUniqueInput!
+  update: DirectMessageUpdateWithoutSenderDataInput!
+  create: DirectMessageCreateWithoutSenderInput!
+}
+
+input DirectMessageWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  sender: UserProfileWhereInput
+  recipient: UserProfileWhereInput
+  message: String
+  message_not: String
+  message_in: [String!]
+  message_not_in: [String!]
+  message_lt: String
+  message_lte: String
+  message_gt: String
+  message_gte: String
+  message_contains: String
+  message_not_contains: String
+  message_starts_with: String
+  message_not_starts_with: String
+  message_ends_with: String
+  message_not_ends_with: String
+  read: Boolean
+  read_not: Boolean
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [DirectMessageWhereInput!]
+  OR: [DirectMessageWhereInput!]
+  NOT: [DirectMessageWhereInput!]
+}
+
+input DirectMessageWhereUniqueInput {
+  id: ID
+}
 
 type ExternalAccount {
   id: ID!
@@ -194,6 +480,12 @@ input ExternalAccountWhereUniqueInput {
 scalar Long
 
 type Mutation {
+  createDirectMessage(data: DirectMessageCreateInput!): DirectMessage!
+  updateDirectMessage(data: DirectMessageUpdateInput!, where: DirectMessageWhereUniqueInput!): DirectMessage
+  updateManyDirectMessages(data: DirectMessageUpdateManyMutationInput!, where: DirectMessageWhereInput): BatchPayload!
+  upsertDirectMessage(where: DirectMessageWhereUniqueInput!, create: DirectMessageCreateInput!, update: DirectMessageUpdateInput!): DirectMessage!
+  deleteDirectMessage(where: DirectMessageWhereUniqueInput!): DirectMessage
+  deleteManyDirectMessages(where: DirectMessageWhereInput): BatchPayload!
   createExternalAccount(data: ExternalAccountCreateInput!): ExternalAccount!
   updateExternalAccount(data: ExternalAccountUpdateInput!, where: ExternalAccountWhereUniqueInput!): ExternalAccount
   updateManyExternalAccounts(data: ExternalAccountUpdateManyMutationInput!, where: ExternalAccountWhereInput): BatchPayload!
@@ -4346,6 +4638,9 @@ input ProjectWhereUniqueInput {
 }
 
 type Query {
+  directMessage(where: DirectMessageWhereUniqueInput!): DirectMessage
+  directMessages(where: DirectMessageWhereInput, orderBy: DirectMessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DirectMessage]!
+  directMessagesConnection(where: DirectMessageWhereInput, orderBy: DirectMessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): DirectMessageConnection!
   externalAccount(where: ExternalAccountWhereUniqueInput!): ExternalAccount
   externalAccounts(where: ExternalAccountWhereInput, orderBy: ExternalAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ExternalAccount]!
   externalAccountsConnection(where: ExternalAccountWhereInput, orderBy: ExternalAccountOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ExternalAccountConnection!
@@ -4401,6 +4696,7 @@ enum Status {
 }
 
 type Subscription {
+  directMessage(where: DirectMessageSubscriptionWhereInput): DirectMessageSubscriptionPayload
   externalAccount(where: ExternalAccountSubscriptionWhereInput): ExternalAccountSubscriptionPayload
   project(where: ProjectSubscriptionWhereInput): ProjectSubscriptionPayload
   projectApplicant(where: ProjectApplicantSubscriptionWhereInput): ProjectApplicantSubscriptionPayload
@@ -4585,6 +4881,8 @@ type UserProfile {
   comments(where: ProjectCommentWhereInput, orderBy: ProjectCommentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectComment!]
   likedComments(where: ProjectCommentLikeWhereInput, orderBy: ProjectCommentLikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectCommentLike!]
   applications(where: ProjectApplicantWhereInput, orderBy: ProjectApplicantOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectApplicant!]
+  sentMessages(where: DirectMessageWhereInput, orderBy: DirectMessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DirectMessage!]
+  recipientMessages(where: DirectMessageWhereInput, orderBy: DirectMessageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [DirectMessage!]
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -4619,6 +4917,8 @@ input UserProfileCreateInput {
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
   applications: ProjectApplicantCreateManyWithoutProfileInput
+  sentMessages: DirectMessageCreateManyWithoutSenderInput
+  recipientMessages: DirectMessageCreateManyWithoutRecipientInput
 }
 
 input UserProfileCreateOneWithoutApplicationsInput {
@@ -4648,6 +4948,16 @@ input UserProfileCreateOneWithoutLikedProjectsInput {
 
 input UserProfileCreateOneWithoutProjectsInput {
   create: UserProfileCreateWithoutProjectsInput
+  connect: UserProfileWhereUniqueInput
+}
+
+input UserProfileCreateOneWithoutRecipientMessagesInput {
+  create: UserProfileCreateWithoutRecipientMessagesInput
+  connect: UserProfileWhereUniqueInput
+}
+
+input UserProfileCreateOneWithoutSentMessagesInput {
+  create: UserProfileCreateWithoutSentMessagesInput
   connect: UserProfileWhereUniqueInput
 }
 
@@ -4689,6 +4999,8 @@ input UserProfileCreateWithoutApplicationsInput {
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
+  sentMessages: DirectMessageCreateManyWithoutSenderInput
+  recipientMessages: DirectMessageCreateManyWithoutRecipientInput
 }
 
 input UserProfileCreateWithoutCommentsInput {
@@ -4714,6 +5026,8 @@ input UserProfileCreateWithoutCommentsInput {
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
   applications: ProjectApplicantCreateManyWithoutProfileInput
+  sentMessages: DirectMessageCreateManyWithoutSenderInput
+  recipientMessages: DirectMessageCreateManyWithoutRecipientInput
 }
 
 input UserProfileCreateWithoutDonationsInput {
@@ -4739,6 +5053,8 @@ input UserProfileCreateWithoutDonationsInput {
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
   applications: ProjectApplicantCreateManyWithoutProfileInput
+  sentMessages: DirectMessageCreateManyWithoutSenderInput
+  recipientMessages: DirectMessageCreateManyWithoutRecipientInput
 }
 
 input UserProfileCreateWithoutLikedCommentsInput {
@@ -4764,6 +5080,8 @@ input UserProfileCreateWithoutLikedCommentsInput {
   likedProjects: ProjectLikeCreateManyWithoutProfileInput
   comments: ProjectCommentCreateManyWithoutProfileInput
   applications: ProjectApplicantCreateManyWithoutProfileInput
+  sentMessages: DirectMessageCreateManyWithoutSenderInput
+  recipientMessages: DirectMessageCreateManyWithoutRecipientInput
 }
 
 input UserProfileCreateWithoutLikedProjectsInput {
@@ -4789,6 +5107,8 @@ input UserProfileCreateWithoutLikedProjectsInput {
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
   applications: ProjectApplicantCreateManyWithoutProfileInput
+  sentMessages: DirectMessageCreateManyWithoutSenderInput
+  recipientMessages: DirectMessageCreateManyWithoutRecipientInput
 }
 
 input UserProfileCreateWithoutProjectsInput {
@@ -4814,6 +5134,62 @@ input UserProfileCreateWithoutProjectsInput {
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
   applications: ProjectApplicantCreateManyWithoutProfileInput
+  sentMessages: DirectMessageCreateManyWithoutSenderInput
+  recipientMessages: DirectMessageCreateManyWithoutRecipientInput
+}
+
+input UserProfileCreateWithoutRecipientMessagesInput {
+  id: ID
+  userAccountId: ID!
+  verified: Boolean
+  email: String!
+  firstName: String
+  lastName: String
+  profileImage: String
+  country: String
+  address: String
+  state: String
+  city: String
+  zip: Int
+  phone: Int
+  aptNumber: String
+  donations: ProjectDonationCreateManyWithoutProfileInput
+  projects: ProjectCreateManyWithoutProfileInput
+  studentProjects: ProjectStudentCreateManyWithoutProfileInput
+  tasks: ProjectApprenticeTaskCreateManyWithoutProfileInput
+  tradeMasterProjects: ProjectMasterTradesmanCreateManyWithoutProfileInput
+  likedProjects: ProjectLikeCreateManyWithoutProfileInput
+  comments: ProjectCommentCreateManyWithoutProfileInput
+  likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
+  applications: ProjectApplicantCreateManyWithoutProfileInput
+  sentMessages: DirectMessageCreateManyWithoutSenderInput
+}
+
+input UserProfileCreateWithoutSentMessagesInput {
+  id: ID
+  userAccountId: ID!
+  verified: Boolean
+  email: String!
+  firstName: String
+  lastName: String
+  profileImage: String
+  country: String
+  address: String
+  state: String
+  city: String
+  zip: Int
+  phone: Int
+  aptNumber: String
+  donations: ProjectDonationCreateManyWithoutProfileInput
+  projects: ProjectCreateManyWithoutProfileInput
+  studentProjects: ProjectStudentCreateManyWithoutProfileInput
+  tasks: ProjectApprenticeTaskCreateManyWithoutProfileInput
+  tradeMasterProjects: ProjectMasterTradesmanCreateManyWithoutProfileInput
+  likedProjects: ProjectLikeCreateManyWithoutProfileInput
+  comments: ProjectCommentCreateManyWithoutProfileInput
+  likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
+  applications: ProjectApplicantCreateManyWithoutProfileInput
+  recipientMessages: DirectMessageCreateManyWithoutRecipientInput
 }
 
 input UserProfileCreateWithoutStudentProjectsInput {
@@ -4839,6 +5215,8 @@ input UserProfileCreateWithoutStudentProjectsInput {
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
   applications: ProjectApplicantCreateManyWithoutProfileInput
+  sentMessages: DirectMessageCreateManyWithoutSenderInput
+  recipientMessages: DirectMessageCreateManyWithoutRecipientInput
 }
 
 input UserProfileCreateWithoutTasksInput {
@@ -4864,6 +5242,8 @@ input UserProfileCreateWithoutTasksInput {
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
   applications: ProjectApplicantCreateManyWithoutProfileInput
+  sentMessages: DirectMessageCreateManyWithoutSenderInput
+  recipientMessages: DirectMessageCreateManyWithoutRecipientInput
 }
 
 input UserProfileCreateWithoutTradeMasterProjectsInput {
@@ -4889,6 +5269,8 @@ input UserProfileCreateWithoutTradeMasterProjectsInput {
   comments: ProjectCommentCreateManyWithoutProfileInput
   likedComments: ProjectCommentLikeCreateManyWithoutProfileInput
   applications: ProjectApplicantCreateManyWithoutProfileInput
+  sentMessages: DirectMessageCreateManyWithoutSenderInput
+  recipientMessages: DirectMessageCreateManyWithoutRecipientInput
 }
 
 type UserProfileEdge {
@@ -4991,6 +5373,8 @@ input UserProfileUpdateInput {
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
   applications: ProjectApplicantUpdateManyWithoutProfileInput
+  sentMessages: DirectMessageUpdateManyWithoutSenderInput
+  recipientMessages: DirectMessageUpdateManyWithoutRecipientInput
 }
 
 input UserProfileUpdateManyMutationInput {
@@ -5051,6 +5435,20 @@ input UserProfileUpdateOneRequiredWithoutProjectsInput {
   connect: UserProfileWhereUniqueInput
 }
 
+input UserProfileUpdateOneRequiredWithoutRecipientMessagesInput {
+  create: UserProfileCreateWithoutRecipientMessagesInput
+  update: UserProfileUpdateWithoutRecipientMessagesDataInput
+  upsert: UserProfileUpsertWithoutRecipientMessagesInput
+  connect: UserProfileWhereUniqueInput
+}
+
+input UserProfileUpdateOneRequiredWithoutSentMessagesInput {
+  create: UserProfileCreateWithoutSentMessagesInput
+  update: UserProfileUpdateWithoutSentMessagesDataInput
+  upsert: UserProfileUpsertWithoutSentMessagesInput
+  connect: UserProfileWhereUniqueInput
+}
+
 input UserProfileUpdateOneRequiredWithoutStudentProjectsInput {
   create: UserProfileCreateWithoutStudentProjectsInput
   update: UserProfileUpdateWithoutStudentProjectsDataInput
@@ -5094,6 +5492,8 @@ input UserProfileUpdateWithoutApplicationsDataInput {
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
+  sentMessages: DirectMessageUpdateManyWithoutSenderInput
+  recipientMessages: DirectMessageUpdateManyWithoutRecipientInput
 }
 
 input UserProfileUpdateWithoutCommentsDataInput {
@@ -5118,6 +5518,8 @@ input UserProfileUpdateWithoutCommentsDataInput {
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
   applications: ProjectApplicantUpdateManyWithoutProfileInput
+  sentMessages: DirectMessageUpdateManyWithoutSenderInput
+  recipientMessages: DirectMessageUpdateManyWithoutRecipientInput
 }
 
 input UserProfileUpdateWithoutDonationsDataInput {
@@ -5142,6 +5544,8 @@ input UserProfileUpdateWithoutDonationsDataInput {
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
   applications: ProjectApplicantUpdateManyWithoutProfileInput
+  sentMessages: DirectMessageUpdateManyWithoutSenderInput
+  recipientMessages: DirectMessageUpdateManyWithoutRecipientInput
 }
 
 input UserProfileUpdateWithoutLikedCommentsDataInput {
@@ -5166,6 +5570,8 @@ input UserProfileUpdateWithoutLikedCommentsDataInput {
   likedProjects: ProjectLikeUpdateManyWithoutProfileInput
   comments: ProjectCommentUpdateManyWithoutProfileInput
   applications: ProjectApplicantUpdateManyWithoutProfileInput
+  sentMessages: DirectMessageUpdateManyWithoutSenderInput
+  recipientMessages: DirectMessageUpdateManyWithoutRecipientInput
 }
 
 input UserProfileUpdateWithoutLikedProjectsDataInput {
@@ -5190,6 +5596,8 @@ input UserProfileUpdateWithoutLikedProjectsDataInput {
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
   applications: ProjectApplicantUpdateManyWithoutProfileInput
+  sentMessages: DirectMessageUpdateManyWithoutSenderInput
+  recipientMessages: DirectMessageUpdateManyWithoutRecipientInput
 }
 
 input UserProfileUpdateWithoutProjectsDataInput {
@@ -5214,6 +5622,60 @@ input UserProfileUpdateWithoutProjectsDataInput {
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
   applications: ProjectApplicantUpdateManyWithoutProfileInput
+  sentMessages: DirectMessageUpdateManyWithoutSenderInput
+  recipientMessages: DirectMessageUpdateManyWithoutRecipientInput
+}
+
+input UserProfileUpdateWithoutRecipientMessagesDataInput {
+  userAccountId: ID
+  verified: Boolean
+  email: String
+  firstName: String
+  lastName: String
+  profileImage: String
+  country: String
+  address: String
+  state: String
+  city: String
+  zip: Int
+  phone: Int
+  aptNumber: String
+  donations: ProjectDonationUpdateManyWithoutProfileInput
+  projects: ProjectUpdateManyWithoutProfileInput
+  studentProjects: ProjectStudentUpdateManyWithoutProfileInput
+  tasks: ProjectApprenticeTaskUpdateManyWithoutProfileInput
+  tradeMasterProjects: ProjectMasterTradesmanUpdateManyWithoutProfileInput
+  likedProjects: ProjectLikeUpdateManyWithoutProfileInput
+  comments: ProjectCommentUpdateManyWithoutProfileInput
+  likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
+  applications: ProjectApplicantUpdateManyWithoutProfileInput
+  sentMessages: DirectMessageUpdateManyWithoutSenderInput
+}
+
+input UserProfileUpdateWithoutSentMessagesDataInput {
+  userAccountId: ID
+  verified: Boolean
+  email: String
+  firstName: String
+  lastName: String
+  profileImage: String
+  country: String
+  address: String
+  state: String
+  city: String
+  zip: Int
+  phone: Int
+  aptNumber: String
+  donations: ProjectDonationUpdateManyWithoutProfileInput
+  projects: ProjectUpdateManyWithoutProfileInput
+  studentProjects: ProjectStudentUpdateManyWithoutProfileInput
+  tasks: ProjectApprenticeTaskUpdateManyWithoutProfileInput
+  tradeMasterProjects: ProjectMasterTradesmanUpdateManyWithoutProfileInput
+  likedProjects: ProjectLikeUpdateManyWithoutProfileInput
+  comments: ProjectCommentUpdateManyWithoutProfileInput
+  likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
+  applications: ProjectApplicantUpdateManyWithoutProfileInput
+  recipientMessages: DirectMessageUpdateManyWithoutRecipientInput
 }
 
 input UserProfileUpdateWithoutStudentProjectsDataInput {
@@ -5238,6 +5700,8 @@ input UserProfileUpdateWithoutStudentProjectsDataInput {
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
   applications: ProjectApplicantUpdateManyWithoutProfileInput
+  sentMessages: DirectMessageUpdateManyWithoutSenderInput
+  recipientMessages: DirectMessageUpdateManyWithoutRecipientInput
 }
 
 input UserProfileUpdateWithoutTasksDataInput {
@@ -5262,6 +5726,8 @@ input UserProfileUpdateWithoutTasksDataInput {
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
   applications: ProjectApplicantUpdateManyWithoutProfileInput
+  sentMessages: DirectMessageUpdateManyWithoutSenderInput
+  recipientMessages: DirectMessageUpdateManyWithoutRecipientInput
 }
 
 input UserProfileUpdateWithoutTradeMasterProjectsDataInput {
@@ -5286,6 +5752,8 @@ input UserProfileUpdateWithoutTradeMasterProjectsDataInput {
   comments: ProjectCommentUpdateManyWithoutProfileInput
   likedComments: ProjectCommentLikeUpdateManyWithoutProfileInput
   applications: ProjectApplicantUpdateManyWithoutProfileInput
+  sentMessages: DirectMessageUpdateManyWithoutSenderInput
+  recipientMessages: DirectMessageUpdateManyWithoutRecipientInput
 }
 
 input UserProfileUpsertWithoutApplicationsInput {
@@ -5316,6 +5784,16 @@ input UserProfileUpsertWithoutLikedProjectsInput {
 input UserProfileUpsertWithoutProjectsInput {
   update: UserProfileUpdateWithoutProjectsDataInput!
   create: UserProfileCreateWithoutProjectsInput!
+}
+
+input UserProfileUpsertWithoutRecipientMessagesInput {
+  update: UserProfileUpdateWithoutRecipientMessagesDataInput!
+  create: UserProfileCreateWithoutRecipientMessagesInput!
+}
+
+input UserProfileUpsertWithoutSentMessagesInput {
+  update: UserProfileUpdateWithoutSentMessagesDataInput!
+  create: UserProfileCreateWithoutSentMessagesInput!
 }
 
 input UserProfileUpsertWithoutStudentProjectsInput {
@@ -5533,6 +6011,12 @@ input UserProfileWhereInput {
   applications_every: ProjectApplicantWhereInput
   applications_some: ProjectApplicantWhereInput
   applications_none: ProjectApplicantWhereInput
+  sentMessages_every: DirectMessageWhereInput
+  sentMessages_some: DirectMessageWhereInput
+  sentMessages_none: DirectMessageWhereInput
+  recipientMessages_every: DirectMessageWhereInput
+  recipientMessages_some: DirectMessageWhereInput
+  recipientMessages_none: DirectMessageWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
