@@ -93,12 +93,6 @@ type Mutation {
 	CreateProjectApprenticeTask(data: CreateProjectApprenticeTask!): ProjectApprenticeTask!
 }
 
-type LocationThingy {
-	state: String!
-	city: String!
-	zip: Int!
-}
-
 # UserAccount
 type UserAccount {
 	id: ID!
@@ -434,8 +428,8 @@ type DirectMessage {
 }
 
 input CreateDirectMessage {
-  sender: UserProfile!
-  recipient: UserProfile!
+  sender: ID!
+  recipient: ID!
   message: String!
   read: Boolean!
 }
