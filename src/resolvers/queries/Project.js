@@ -130,6 +130,9 @@ export const Project = {
 				where: {
 					OR: [
 						{
+							country: 'United States',
+						},
+						{
 							state: location.state,
 						},
 						{
