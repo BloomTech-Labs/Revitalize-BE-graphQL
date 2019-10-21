@@ -111,10 +111,10 @@ export const Project = {
 			const ip = resolveIp(request);
 
 			// If on localhost return all the projects
-			if (!ip) return prisma.projects();
+			// if (!ip) return prisma.projects();
 
 			// Get geolocation
-			const ipLocation = await iplocation(ip);
+			const ipLocation = await iplocation(`136.24.47.252`);
 
 			// Set location
 			location = {
@@ -150,12 +150,16 @@ export const Project = {
 		// Return a sorted array based off of zipcode distance
 		return projects
 			.map(project => {
+				let distance = zipcodes.distance(project.zip, location.zip);
+				if (distance === null) distance = 99999;
+				// look up the city/state, get the zip based off of that
+
 				return {
 					...project,
 					// Calculate the distances between the project zipcode and location object zipcode
-					distance: zipcodes.distance(project.zip, location.zip),
+					distance,
 				};
 			})
-			.sort((a, b) => a.distance < b.distance);
+			.sort((a, b) => a.distance - b.distance);
 	},
 };

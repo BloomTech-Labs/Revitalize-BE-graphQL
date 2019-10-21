@@ -1791,8 +1791,10 @@ async function main() {
 					{
 						slug: 'seaside-sanatorium',
 						name: 'Seaside Sanatorium',
-						featuredImage:'https://assets.atlasobscura.com/media/W1siZiIsInVwbG9hZHMvcGxhY2VfaW1hZ2VzLzFjOTA1NWVkLTMzZmYtNDc5NC04NGQ5LTdmZGZjNDMwNjYxN2ZkMTdlMmZiNWU3ZDJkNTQzM18zQTQyNjI1Qi1BNDA0LTQwMTQtODAxNi0yRTNDQkY2OUEyM0UuanBlZyJdLFsicCIsInRodW1iIiwiMTIwMHg-Il0sWyJwIiwiY29udmVydCIsIi1xdWFsaXR5IDgxIC1hdXRvLW9yaWVudCJdXQ/3A42625B-A404-4014-8016-2E3CBF69A23E.jpeg',
-						description:'This brick fortress, designed in 1934 by architect Cass Gilbert, was America’s first medical facility designed to offer heliotropic treatment to children with tuberculosis. As such, the building’s role would shift several times over the next six decades before it was added to the National Register of Historic Places in 1995.',
+						featuredImage:
+							'https://assets.atlasobscura.com/media/W1siZiIsInVwbG9hZHMvcGxhY2VfaW1hZ2VzLzFjOTA1NWVkLTMzZmYtNDc5NC04NGQ5LTdmZGZjNDMwNjYxN2ZkMTdlMmZiNWU3ZDJkNTQzM18zQTQyNjI1Qi1BNDA0LTQwMTQtODAxNi0yRTNDQkY2OUEyM0UuanBlZyJdLFsicCIsInRodW1iIiwiMTIwMHg-Il0sWyJwIiwiY29udmVydCIsIi1xdWFsaXR5IDgxIC1hdXRvLW9yaWVudCJdXQ/3A42625B-A404-4014-8016-2E3CBF69A23E.jpeg',
+						description:
+							'This brick fortress, designed in 1934 by architect Cass Gilbert, was America’s first medical facility designed to offer heliotropic treatment to children with tuberculosis. As such, the building’s role would shift several times over the next six decades before it was added to the National Register of Historic Places in 1995.',
 						country: 'United States',
 						state: 'Connecticut',
 						address: '36 Shore Road',
@@ -1881,8 +1883,10 @@ async function main() {
 					{
 						slug: 'annie-lytle-elementary-school',
 						name: 'Annie Lytle Elementary School',
-						featuredImage:'https://res.cloudinary.com/revitalize/image/upload/v1571630731/seed%20images/Screen_Shot_2017-01-03_at_5.22.10_PM_udcray.png',
-						description:'Built in 1915, this gigantic schoolhouse was originally christened as Public School Number Four, but was renamed Annie Lytle Elementary in 1957 in honor of a former principal. Unfortunately, the school only got to live under its new name for a few years before it was shuttered and abandoned.',
+						featuredImage:
+							'https://res.cloudinary.com/revitalize/image/upload/v1571630731/seed%20images/Screen_Shot_2017-01-03_at_5.22.10_PM_udcray.png',
+						description:
+							'Built in 1915, this gigantic schoolhouse was originally christened as Public School Number Four, but was renamed Annie Lytle Elementary in 1957 in honor of a former principal. Unfortunately, the school only got to live under its new name for a few years before it was shuttered and abandoned.',
 						country: 'United States',
 						state: 'Florida',
 						address: '699 Chelsea Ave',
@@ -1971,8 +1975,10 @@ async function main() {
 					{
 						slug: 'comet-diner',
 						name: 'Comet Diner',
-						featuredImage:'https://res.cloudinary.com/revitalize/image/upload/v1571630606/seed%20images/IMG_2347_copy_r3fnfr.jpg',
-						description:'Just down the street from Mark Twain’s house and museum in Hartford, Connecticut, is one of the city’s other most recognizable buildings, a vintage chrome and steel diner, glinting in the sun. The old Comet Diner, however, has been sadly left abandoned for nearly two years.',
+						featuredImage:
+							'https://res.cloudinary.com/revitalize/image/upload/v1571630606/seed%20images/IMG_2347_copy_r3fnfr.jpg',
+						description:
+							'Just down the street from Mark Twain’s house and museum in Hartford, Connecticut, is one of the city’s other most recognizable buildings, a vintage chrome and steel diner, glinting in the sun. The old Comet Diner, however, has been sadly left abandoned for nearly two years.',
 						country: 'United States',
 						state: 'Connecticut',
 						address: '267 Farmington Ave',
@@ -2713,7 +2719,7 @@ async function main() {
 						country: 'United States',
 						state: 'Ohio',
 						address: '1112 Walnut Street',
-						zip: 45210,
+						zip: 41073,
 						city: 'Cincinnati',
 						goalAmount: 250000,
 						duration: 150,
@@ -3568,7 +3574,7 @@ async function main() {
 					},
 				],
 			},
-        });
+		});
 
 		const omarProfile = await prisma.createUserProfile({
 			userAccountId: omar.id,
@@ -3604,7 +3610,7 @@ async function main() {
 								{
 									profile: {
 										connect: {
-                                            id: alexanderProfile.id,
+											id: alexanderProfile.id,
 										},
 									},
 								},
