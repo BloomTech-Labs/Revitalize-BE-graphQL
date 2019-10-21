@@ -79,7 +79,7 @@ export const Project = {
 	},
 	async recommendedProjects(parent, args, { prisma }, info) {
 		const projects = await prisma.projects({}, info).$fragment(recommendedProject);
-		return weightSort(projects)
+		return weightSort(projects);
 	},
 	async projectsNearMe(parent, args, { prisma, request }, info) {
 		let location = {};
@@ -111,7 +111,7 @@ export const Project = {
 			const ip = resolveIp(request);
 
 			// If on localhost return all the projects
-			if (!ip) return prisma.projects()
+			if (!ip) return prisma.projects();
 
 			// Get geolocation
 			const ipLocation = await iplocation(ip);
@@ -130,7 +130,7 @@ export const Project = {
 				where: {
 					OR: [
 						{
-							country: 'United States',
+							zip: location.zip,
 						},
 						{
 							state: location.state,
@@ -139,7 +139,7 @@ export const Project = {
 							city: location.city,
 						},
 						{
-							zip: location.zip,
+							country: 'United States',
 						},
 					],
 				},
@@ -156,6 +156,6 @@ export const Project = {
 					distance: zipcodes.distance(project.zip, location.zip),
 				};
 			})
-			.sort((a, b) => a.distance - b.distance);
+			.sort((a, b) => a.distance < b.distance);
 	},
 };
