@@ -111,10 +111,10 @@ export const Project = {
 			const ip = resolveIp(request);
 
 			// If on localhost return all the projects
-			// if (!ip) return prisma.projects();
+			if (!ip) return prisma.projects();
 
 			// Get geolocation
-			const ipLocation = await iplocation(`136.24.47.252`);
+			const ipLocation = await iplocation(ip);
 
 			// Set location
 			location = {
