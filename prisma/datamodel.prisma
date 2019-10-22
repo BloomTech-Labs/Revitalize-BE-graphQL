@@ -161,6 +161,7 @@ type ProjectTask {
   priority: String!
   dueDate: DateTime!
   budgetHours: Int!
+  hoursCompleted: Int @default(value: 0)
   completed: Boolean! @default(value: false)
   apprentices: [ProjectApprenticeTask!] @relation(name: "ProjectApprenticeTaskToProjectTask", onDelete: CASCADE)
 }

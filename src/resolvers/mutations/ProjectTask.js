@@ -26,6 +26,25 @@ export const ProjectTask = {
 			budgetHours: args.data.budgetHours,
 		});
 	},
+	async updateProjectTask(parent, args, { prisma, request }, info) {
+		const profileId = getProfileId(request);
+
+		const isProjectOwner = await prisma.$exists.project({ id: args.project, profile: { id: profileId } });
+		const isProjectTradesman = await prisma.$exists.projectMasterTradesman({
+			project: { id: args.project },
+			profile: { id: profileId },
+		});
+
+		if (!isProjectOwner && !isProjectTradesman) throw new Error('Sorry, but that project does not exist');
+
+		return prisma.updateProjectTask(
+			{
+				id: args.id,
+				data: args.data,
+			},
+			info,
+		);
+	},
 	// Add a student to a created task
 	async CreateProjectApprenticeTask(parent, args, { prisma, request }, info) {
 		const profileId = getProfileId(request);

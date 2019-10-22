@@ -88,6 +88,7 @@ type Mutation {
 
 	# Project tasks
 	createProjectTask(data: CreateProjectTask!): ProjectTask!
+	updateProjectTask(id: ID!, project: ID!, data: UpdateProjectTask!): ProjectTask!
 
 	# Project task apprentices
 	CreateProjectApprenticeTask(data: CreateProjectApprenticeTask!): ProjectApprenticeTask!
@@ -392,18 +393,18 @@ input CreateProjectTask {
 	priority: Priority!
 	dueDate: Date!
 	budgetHours: Int!
+	hoursCompleted: Int!
 	apprentices: [CreateProjectApprenticeTask!]
 }
 
 input UpdateProjectTask {
-	project: ID!
-	trade: ID!
-	title: String!
-	description: String!
-	priority: Priority!
-	dueDate: Date!
-	budgetHours: Int!
-	completed: Boolean!
+	title: String
+	description: String
+	priority: Priority
+	dueDate: Date
+	budgetHours: Int
+	hoursCompleted: Int
+	completed: Boolean
 }
 
 type ProjectApprenticeTask {
@@ -418,18 +419,18 @@ input CreateProjectApprenticeTask {
 }
 
 type DirectMessage {
-  id: ID!
-  sender: UserProfile!
-  recipient: UserProfile!
-  message: String!
-  read: Boolean!
-  createdAt: Date!
-  updatedAt: Date!
+	id: ID!
+	sender: UserProfile!
+	recipient: UserProfile!
+	message: String!
+	read: Boolean!
+	createdAt: Date!
+	updatedAt: Date!
 }
 
 input CreateDirectMessage {
-  sender: ID!
-  recipient: ID!
-  message: String!
-  read: Boolean!
+	sender: ID!
+	recipient: ID!
+	message: String!
+	read: Boolean!
 }
