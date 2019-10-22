@@ -34,8 +34,13 @@ export const ProjectTask = {
 			project: { id: args.project },
 			profile: { id: profileId },
 		});
+		const isProjectStudent = await prisma.$exists.projectStudent({
+			project: { id: args.project },
+			profile: { id: profileId },
+		});
 
-		if (!isProjectOwner && !isProjectTradesman) throw new Error('Sorry, but that project does not exist');
+		if (!isProjectOwner && !isProjectTradesman && !isProjectStudent)
+			throw new Error('Sorry, but that project does not exist');
 
 		return prisma.updateProjectTask(
 			{
