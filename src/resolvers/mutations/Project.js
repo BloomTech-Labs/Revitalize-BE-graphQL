@@ -6,11 +6,6 @@ export const Project = {
 	async createProject(parent, args, { prisma, request }, info) {
 		const profileId = getProfileId(request);
 
-		let featuredImage = '';
-		if (args.data.featuredImage) {
-			featuredImage = await uploadImage(args.data.featuredImage).imageUrl;
-		}
-
 		const slug = slugify(args.data.name);
 
 		const project = await prisma.createProject({
@@ -27,7 +22,6 @@ export const Project = {
 			duration: args.data.duration,
 			difficulty: args.data.difficulty,
 			startDate: args.data.startDate,
-			featuredImage,
 			profile: {
 				connect: {
 					id: profileId,
@@ -35,8 +29,21 @@ export const Project = {
 			},
 		});
 
-		args.data.images &&
-			args.data.images.map(async image => {
+		const imagesUploaded = await args.data.images.map(async image => {
+			const currentImage = await image;
+			const isFeaturedImage = currentImage.filename == args.data.featuredImage;
+
+			if (isFeaturedImage) {
+				const result = await uploadImage(image);
+				await prisma.updateProject({
+					where: {
+						id: project.id,
+					},
+					data: {
+						featuredImage: result.secure_url,
+					},
+				});
+			} else {
 				const result = await uploadImage(image);
 
 				await prisma.createProjectImage({
@@ -48,7 +55,8 @@ export const Project = {
 					imageUrl: result.secure_url,
 					public_id: result.public_id,
 				});
-			});
+			}
+		});
 
 		return prisma.project({ id: project.id }, info);
 	},

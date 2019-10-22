@@ -23,11 +23,10 @@ export const ProjectLike = {
 	},
 	async deleteProjectLike(parent, args, { prisma, request }, info) {
 		const profileId = getProfileId(request);
-
+		console.log(args.id);
 		const userProjectLikeExists = await prisma.$exists.projectLike({ id: args.id, profile: { id: profileId } });
 
-		if (!userProjectLikeExists)
-			throw new Error('Sorry, but something went wrong while trying to delete that comment');
+		if (!userProjectLikeExists) throw new Error('Sorry, but something went wrong while trying to delete that like');
 
 		return prisma.deleteProjectLike({
 			where: {
