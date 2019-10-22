@@ -60,8 +60,8 @@ type Mutation {
 	createProjectDonation(id: ID!, data: CreateProjectDonationInput!): ProjectDonation!
 
 	# Project likes
-	createProjectLike(id: ID!): Project!
-	deleteProjectLike(id: ID!): Project!
+	createProjectLike(id: ID!): ProjectLike!
+	deleteProjectLike(id: ID!): ProjectLike!
 
 	# Project comments
 	createProjectComment(data: CreateProjectCommentInput!): ProjectComment!
