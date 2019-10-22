@@ -123,6 +123,28 @@ async function main() {
                                 }
                             ]
                         },
+                        trades: {
+                            create: [
+                                {
+                                     id: "3",
+                                    name: "Carpentry",
+                                    description: "Carpentry Certification"
+                                },
+                                {
+                                     id: "4",
+                                    name: "Electrician",
+                                    description: "Electrician Certification"
+                                },
+                                {    id: "5",
+                                    name: "Mason",
+                                    description: "Mason Certification"
+                                },
+                                {     id: "6",
+                                     name: "Interior Design",
+                                     description: "Interior Design Certification"
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -195,6 +217,28 @@ async function main() {
                                         }
                                     },
                                     amount: 500.00
+                                }
+                            ]
+                        },
+                        trades: {
+                            create: [
+                                {
+                                     id: "3",
+                                    name: "Carpentry",
+                                    description: "Carpentry Certification"
+                                },
+                                {
+                                     id: "4",
+                                    name: "Electrician",
+                                    description: "Electrician Certification"
+                                },
+                                {    id: "5",
+                                    name: "Mason",
+                                    description: "Mason Certification"
+                                },
+                                {     id: "6",
+                                     name: "Interior Design",
+                                     description: "Interior Design Certification"
                                 }
                             ]
                         },
@@ -290,6 +334,29 @@ async function main() {
                                 }
                             ]
                         },
+                        trades: {
+                            create: [
+                                {
+                                    id: "1",
+                                    name: "HVAC",
+                                    description: "HVAC Certification"
+                                },
+                                {
+                                    id: "2",
+                                    name: "Plumber",
+                                    description: "Plumbing Certification"
+                                },
+                                {
+                                     id: "3",
+                                    name: "Carpentry",
+                                    description: "Carpentry Certification"
+                                },
+                                {     id: "6",
+                                     name: "Interior Design",
+                                     description: "Interior Design Certification"
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -370,6 +437,23 @@ async function main() {
                                         }
                                     },
                                     amount: 2000.00
+                                }
+                            ]
+                        },
+                        trades: {
+                            create: [
+                                {
+                                    id: "1",
+                                    name: "HVAC",
+                                    description: "HVAC Certification"
+                                },
+                                {    id: "5",
+                                    name: "Mason",
+                                    description: "Mason Certification"
+                                },
+                                {     id: "6",
+                                     name: "Interior Design",
+                                     description: "Interior Design Certification"
                                 }
                             ]
                         },
@@ -454,6 +538,21 @@ async function main() {
                                         }
                                     },
                                     amount: 2000.00
+                                }
+                            ]
+                        },
+                        trades: {
+                            create: [
+                                
+                                {
+                                     id: "3",
+                                    name: "Carpentry",
+                                    description: "Carpentry Certification"
+                                },
+                                {
+                                     id: "4",
+                                    name: "Electrician",
+                                    description: "Electrician Certification"
                                 }
                             ]
                         },
@@ -548,6 +647,20 @@ async function main() {
                                                         }
                                                     ]
                                                 },
+                                                trades: {
+                                                    create: [
+                                                        {
+                                                            id: "1",
+                                                            name: "HVAC",
+                                                            description: "HVAC Certification"
+                                                        },
+                                                       
+                                                        {    id: "5",
+                                                            name: "Mason",
+                                                            description: "Mason Certification"
+                                                        }
+                                                    ]
+                                                },
                                                 likes: {
                                                     create: [
                                                         {
@@ -635,6 +748,28 @@ async function main() {
                                                                 }
                                                             },
                                                             amount: 15000.00
+                                                        }
+                                                    ]
+                                                },
+                                                trades: {
+                                                    create: [
+                                                        {
+                                                             id: "3",
+                                                            name: "Carpentry",
+                                                            description: "Carpentry Certification"
+                                                        },
+                                                        {
+                                                             id: "4",
+                                                            name: "Electrician",
+                                                            description: "Electrician Certification"
+                                                        },
+                                                        {    id: "5",
+                                                            name: "Mason",
+                                                            description: "Mason Certification"
+                                                        },
+                                                        {     id: "6",
+                                                             name: "Interior Design",
+                                                             description: "Interior Design Certification"
                                                         }
                                                     ]
                                                 },
@@ -728,6 +863,38 @@ async function main() {
                                                         }
                                                     ]
                                                 },
+                                                trades: {
+                                                    create: [
+                                                        {
+                                                            id: "1",
+                                                            name: "HVAC",
+                                                            description: "HVAC Certification"
+                                                        },
+                                                        {
+                                                            id: "2",
+                                                            name: "Plumber",
+                                                            description: "Plumbing Certification"
+                                                        },
+                                                        {
+                                                             id: "3",
+                                                            name: "Carpentry",
+                                                            description: "Carpentry Certification"
+                                                        },
+                                                        {
+                                                             id: "4",
+                                                            name: "Electrician",
+                                                            description: "Electrician Certification"
+                                                        },
+                                                        {    id: "5",
+                                                            name: "Mason",
+                                                            description: "Mason Certification"
+                                                        },
+                                                        {     id: "6",
+                                                             name: "Interior Design",
+                                                             description: "Interior Design Certification"
+                                                        }
+                                                    ]
+                                                },
                                                 likes: {
                                                     create: [
                                                         {
@@ -791,6 +958,28 @@ async function main() {
                                         }
                                     },
                                     amount: 2000.00
+                                }
+                            ]
+                        },
+                        trades: {
+                            create: [
+                                {
+                                    id: "1",
+                                    name: "HVAC",
+                                    description: "HVAC Certification"
+                                },
+                                {
+                                    id: "2",
+                                    name: "Plumber",
+                                    description: "Plumbing Certification"
+                                },
+                                {    id: "5",
+                                    name: "Mason",
+                                    description: "Mason Certification"
+                                },
+                                {     id: "6",
+                                     name: "Interior Design",
+                                     description: "Interior Design Certification"
                                 }
                             ]
                         },
@@ -885,6 +1074,16 @@ async function main() {
                                                         }
                                                     ]
                                                 },
+                                                trades: {
+                                                    create: [
+                                                       
+                                                        {
+                                                            id: "2",
+                                                            name: "Plumber",
+                                                            description: "Plumbing Certification"
+                                                        }
+                                                    ]
+                                                },
                                                 likes: {
                                                     create: [
                                                         {
@@ -972,6 +1171,15 @@ async function main() {
                                                                                         }
                                                                                     },
                                                                                     amount: 15000.00
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        trades: {
+                                                                            create: [
+                                                                                
+                                                                                {     id: "6",
+                                                                                     name: "Interior Design",
+                                                                                     description: "Interior Design Certification"
                                                                                 }
                                                                             ]
                                                                         },
@@ -1065,6 +1273,24 @@ async function main() {
                                                                                                         }
                                                                                                     ]
                                                                                                 },
+                                                                                                trades: {
+                                                                                                    create: [
+                                                                                                        
+                                                                                                        {
+                                                                                                             id: "4",
+                                                                                                            name: "Electrician",
+                                                                                                            description: "Electrician Certification"
+                                                                                                        },
+                                                                                                        {    id: "5",
+                                                                                                            name: "Mason",
+                                                                                                            description: "Mason Certification"
+                                                                                                        },
+                                                                                                        {     id: "6",
+                                                                                                             name: "Interior Design",
+                                                                                                             description: "Interior Design Certification"
+                                                                                                        }
+                                                                                                    ]
+                                                                                                },
                                                                                                 likes: {
                                                                                                     create: [
                                                                                                         {
@@ -1152,6 +1378,38 @@ async function main() {
                                                                                                                                         }
                                                                                                                                     },
                                                                                                                                     amount: 15000.00
+                                                                                                                                }
+                                                                                                                            ]
+                                                                                                                        },
+                                                                                                                        trades: {
+                                                                                                                            create: [
+                                                                                                                                {
+                                                                                                                                    id: "1",
+                                                                                                                                    name: "HVAC",
+                                                                                                                                    description: "HVAC Certification"
+                                                                                                                                },
+                                                                                                                                {
+                                                                                                                                    id: "2",
+                                                                                                                                    name: "Plumber",
+                                                                                                                                    description: "Plumbing Certification"
+                                                                                                                                },
+                                                                                                                                {
+                                                                                                                                     id: "3",
+                                                                                                                                    name: "Carpentry",
+                                                                                                                                    description: "Carpentry Certification"
+                                                                                                                                },
+                                                                                                                                {
+                                                                                                                                     id: "4",
+                                                                                                                                    name: "Electrician",
+                                                                                                                                    description: "Electrician Certification"
+                                                                                                                                },
+                                                                                                                                {    id: "5",
+                                                                                                                                    name: "Mason",
+                                                                                                                                    description: "Mason Certification"
+                                                                                                                                },
+                                                                                                                                {     id: "6",
+                                                                                                                                     name: "Interior Design",
+                                                                                                                                     description: "Interior Design Certification"
                                                                                                                                 }
                                                                                                                             ]
                                                                                                                         },
@@ -1263,6 +1521,30 @@ async function main() {
                                 }
                             ]
                         },
+                        trades: {
+                            create: [
+                                {
+                                    id: "1",
+                                    name: "HVAC",
+                                    description: "HVAC Certification"
+                                },
+                                {
+                                    id: "2",
+                                    name: "Plumber",
+                                    description: "Plumbing Certification"
+                                },
+                                {
+                                     id: "3",
+                                    name: "Carpentry",
+                                    description: "Carpentry Certification"
+                                },
+                                {
+                                     id: "4",
+                                    name: "Electrician",
+                                    description: "Electrician Certification"
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -1354,6 +1636,28 @@ async function main() {
                                                         }
                                                     ]
                                                 },
+                                                trades: {
+                                                    create: [
+                                                        {
+                                                             id: "3",
+                                                            name: "Carpentry",
+                                                            description: "Carpentry Certification"
+                                                        },
+                                                        {
+                                                             id: "4",
+                                                            name: "Electrician",
+                                                            description: "Electrician Certification"
+                                                        },
+                                                        {    id: "5",
+                                                            name: "Mason",
+                                                            description: "Mason Certification"
+                                                        },
+                                                        {     id: "6",
+                                                             name: "Interior Design",
+                                                             description: "Interior Design Certification"
+                                                        }
+                                                    ]
+                                                },
                                                 likes: {
                                                     create: [
                                                         {
@@ -1393,279 +1697,7 @@ async function main() {
                                                         }
                                                     ],
                                                 }
-                                            },  
-                                            {
-                                                slug:'abundant-life-building',
-                                                                        name: 'Abundant Life Building',
-                                                                        featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1571630420/seed%20images/14945430933_71a8eb853b_k_1_tjjcp1.jpg',
-                                                                        description: 'One of the most unusual and fascinating buildings in Tulsa is a huge, windowless, seven-story concrete block sitting empty in south downtown. Abandoned, dark, and in a state of decay, the Abundant Life Building could not be less like its name. 
-                                                Of course, it didn’t start out that way. It was designed in 1958 during the midcentury trend toward modernist, futuristic architecture. It was built as the world headquarters for the Oral Roberts Ministries, which at the time was a gigantic televangelist enterprise reaching millions of followers around the globe.
-                                                By the middle of the 1960s, however, Oral Roberts had moved his operation to the new university he founded in his name. By the early ‘70s, Abundant Life was completely abandoned. It has sat empty for decades, boarded up and closed to the public. ',
-                                                                        country:'United States',
-                                                                        state: 'Oklahoma',
-                                                                        address: '1720 S Boulder Ave’,
-                                                                        zip:74119,
-                                                                        city: 'Tulsa',
-                                                                        goalAmount: 250000,
-                                                                        duration: 150,
-                                                                        difficulty: "Medium",
-                                                                        startDate: "2020-6-1",
-                                                                        donations: {
-                                                                            create: [
-                                                                                {
-                                                                                    profile: {
-                                                                                        connect: {
-                                                                                            id: frankProfile.id
-                                                                                        }
-                                                                                    },
-                                                                                    amount: 1950.00
-                                                                                },
-                                                                                {
-                                                                                    profile: {
-                                                                                        connect: {
-                                                                                            id: skyelarProfile.id
-                                                                                        }
-                                                                                    },
-                                                                                    amount: 12000.00
-                                                                                },
-                                                                                {
-                                                                                    profile: {
-                                                                                        connect: {
-                                                                                            id: anthonyProfile.id
-                                                                                        }
-                                                                                    },
-                                                                                    amount: 100000.00
-                                                                                },
-                                                                                {
-                                                                                    profile: {
-                                                                                        connect: {
-                                                                                            id: anthonyProfile.id
-                                                                                        }
-                                                                                    },
-                                                                                    amount: 15000.00
-                                                                                }
-                                                                            ]
-                                                                        },
-                                                                        likes: {
-                                                                            create: [
-                                                                                {
-                                                                                    profile: {
-                                                                                        connect: {
-                                                                                            id: alexanderProfile.id
-                                                                                        },
-                                                                                    },
-                                                                                }
-                                                                            ]
-                                                                        },
-                                                                        comments: {
-                                                                            create: [
-                                                                                {
-                                                                                    profile: {
-                                                                                        connect: {
-                                                                                            id: frankProfile.id
-                                                                                        },
-                                                                                    },
-                                                                                    comment: "What a beautiful building. Wish you the best in your endeavor."
-                                                                                },
-                                                                                {
-                                                                                    profile: {
-                                                                                        connect: {
-                                                                                            id: skyelarProfile.id
-                                                                                        },
-                                                                                    },
-                                                                                    comment: "Amazing architecture. Good luck."
-                                                                                },
-                                                                                {
-                                                                                    profile: {
-                                                                                        connect: {
-                                                                                            id: anthonyProfile.id
-                                                                                        },
-                                                                                    },
-                                                                                    comment: "Please donate to this amazing project. This is so cool."
-                                                                                }
-                                                                            ],
-                                                                        }
-                                                                    },
-                                                                    {
-                                                                        slug:'general-laundry-building',
-                                                                                                name: 'General Laundry Building',
-                                                                                                featuredImage: 'https://res.cloudinary.com/revitalize/image/upload/v1571630509/seed%20images/gl2_potkkm.jpg',
-                                                                                                description: 'Splashes of color stand out among the rest of this abandoned building’s decaying, vandalized exterior. The bright pigment and intricate designs peeking out from behind tangles of vines and weeds hint that this Art Deco gem was no ordinary laundry facility.Built in the 1930s, the General Laundry Building is an example of Art Deco architecture. As its artful exterior suggests, the building was for more than washing clothes. During its heyday, the laundromat hosted monthly fashion shows. With the invention of the in-home modern washing machine, Chapoit closed the facilities in 1945 and sold the building.',
-                                                                                                country:'United States',
-                                                                                                state: 'Louisiana',
-                                                                                                address: '2544 St Peter St',
-                                                                                                zip:70119,
-                                                                                                city: 'New Orleans',
-                                                                                                goalAmount: 250000,
-                                                                                                duration: 150,
-                                                                                                difficulty: "Medium",
-                                                                                                startDate: "2020-6-1",
-                                                                                                donations: {
-                                                                                                    create: [
-                                                                                                        {
-                                                                                                            profile: {
-                                                                                                                connect: {
-                                                                                                                    id: frankProfile.id
-                                                                                                                }
-                                                                                                            },
-                                                                                                            amount: 1950.00
-                                                                                                        },
-                                                                                                        {
-                                                                                                            profile: {
-                                                                                                                connect: {
-                                                                                                                    id: skyelarProfile.id
-                                                                                                                }
-                                                                                                            },
-                                                                                                            amount: 12000.00
-                                                                                                        },
-                                                                                                        {
-                                                                                                            profile: {
-                                                                                                                connect: {
-                                                                                                                    id: anthonyProfile.id
-                                                                                                                }
-                                                                                                            },
-                                                                                                            amount: 100000.00
-                                                                                                        },
-                                                                                                        {
-                                                                                                            profile: {
-                                                                                                                connect: {
-                                                                                                                    id: anthonyProfile.id
-                                                                                                                }
-                                                                                                            },
-                                                                                                            amount: 15000.00
-                                                                                                        }
-                                                                                                    ]
-                                                                                                },
-                                                                                                likes: {
-                                                                                                    create: [
-                                                                                                        {
-                                                                                                            profile: {
-                                                                                                                connect: {
-                                                                                                                    id: alexanderProfile.id
-                                                                                                                },
-                                                                                                            },
-                                                                                                        }
-                                                                                                    ]
-                                                                                                },
-                                                                                                comments: {
-                                                                                                    create: [
-                                                                                                        {
-                                                                                                            profile: {
-                                                                                                                connect: {
-                                                                                                                    id: frankProfile.id
-                                                                                                                },
-                                                                                                            },
-                                                                                                            comment: "What a beautiful building. Wish you the best in your endeavor."
-                                                                                                        },
-                                                                                                        {
-                                                                                                            profile: {
-                                                                                                                connect: {
-                                                                                                                    id: skyelarProfile.id
-                                                                                                                },
-                                                                                                            },
-                                                                                                            comment: "Amazing architecture. Good luck."
-                                                                                                        },
-                                                                                                        {
-                                                                                                            profile: {
-                                                                                                                connect: {
-                                                                                                                    id: anthonyProfile.id
-                                                                                                                },
-                                                                                                            },
-                                                                                                            comment: "Please donate to this amazing project. This is so cool."
-                                                                                                        }
-                                                                                                    ],
-                                                                                                }
-                                                                                            },                                                                                                                        
-                                            {
-                                                slug:'wonder-bread-factory',
-                                                                        name: 'Wonder Bread Factory',
-                                                                        featuredImage: 'https://assets.atlasobscura.com/media/W1siZiIsInVwbG9hZHMvcGxhY2VfaW1hZ2VzLzk1NDA0OTZhLWI3ZDUtNGU4Zi04NGM1LTZhOTExZjBkNTA1MzM5YWNjM2UyOTA2OGYyYWI5Y19JTUdfMDI2NS5qcGciXSxbInAiLCJ0aHVtYiIsIjEyMDB4PiJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA4MSAtYXV0by1vcmllbnQiXV0/IMG_0265.jpg',
-                                                                        description: 'The Wonder Bread factory, built in 1923, was once an industrial icon of Buffalo’s East Side. While it was in operation, the facility produced that classic mid century staple, as well as Hostess brand snacks. The factory closed in 2004, and has sat empty ever since, in an ever-worsening state of decay.',
-                                                                        country:'United States',
-                                                                        state: 'New York',
-                                                                        address: '313 Fugerson St',
-                                                                        Zip: 14211,
-                                                                        city: 'Buffalo',
-                                                                        goalAmount: 250000,
-                                                                        duration: 150,
-                                                                        difficulty: "Medium",
-                                                                        startDate: "2020-6-1",
-                                                                        donations: {
-                                                                            create: [
-                                                                                {
-                                                                                    profile: {
-                                                                                        connect: {
-                                                                                            id: frankProfile.id
-                                                                                        }
-                                                                                    },
-                                                                                    amount: 1950.00
-                                                                                },
-                                                                                {
-                                                                                    profile: {
-                                                                                        connect: {
-                                                                                            id: skyelarProfile.id
-                                                                                        }
-                                                                                    },
-                                                                                    amount: 12000.00
-                                                                                },
-                                                                                {
-                                                                                    profile: {
-                                                                                        connect: {
-                                                                                            id: anthonyProfile.id
-                                                                                        }
-                                                                                    },
-                                                                                    amount: 100000.00
-                                                                                },
-                                                                                {
-                                                                                    profile: {
-                                                                                        connect: {
-                                                                                            id: anthonyProfile.id
-                                                                                        }
-                                                                                    },
-                                                                                    amount: 15000.00
-                                                                                }
-                                                                            ]
-                                                                        },
-                                                                        likes: {
-                                                                            create: [
-                                                                                {
-                                                                                    profile: {
-                                                                                        connect: {
-                                                                                            id: alexanderProfile.id
-                                                                                        },
-                                                                                    },
-                                                                                }
-                                                                            ]
-                                                                        },
-                                                                        comments: {
-                                                                            create: [
-                                                                                {
-                                                                                    profile: {
-                                                                                        connect: {
-                                                                                            id: frankProfile.id
-                                                                                        },
-                                                                                    },
-                                                                                    comment: "What a beautiful building. Wish you the best in your endeavor."
-                                                                                },
-                                                                                {
-                                                                                    profile: {
-                                                                                        connect: {
-                                                                                            id: skyelarProfile.id
-                                                                                        },
-                                                                                    },
-                                                                                    comment: "Amazing architecture. Good luck."
-                                                                                },
-                                                                                {
-                                                                                    profile: {
-                                                                                        connect: {
-                                                                                            id: anthonyProfile.id
-                                                                                        },
-                                                                                    },
-                                                                                    comment: "Please donate to this amazing project. This is so cool."
-                                                                                }
-                                                                            ],
-                                                                        }
-                                                                    },                                                
+                                            },                                       
                                             {
                                                 slug:'neponsit-health-care-center',
                                                                         name: 'Neponsit Health Care Center',
@@ -1713,6 +1745,28 @@ async function main() {
                                                                                         }
                                                                                     },
                                                                                     amount: 15000.00
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        trades: {
+                                                                            create: [
+                                                                                {
+                                                                                    id: "1",
+                                                                                    name: "HVAC",
+                                                                                    description: "HVAC Certification"
+                                                                                },
+                                                                                {
+                                                                                    id: "2",
+                                                                                    name: "Plumber",
+                                                                                    description: "Plumbing Certification"
+                                                                                },
+                                                                                {    id: "5",
+                                                                                    name: "Mason",
+                                                                                    description: "Mason Certification"
+                                                                                },
+                                                                                {     id: "6",
+                                                                                     name: "Interior Design",
+                                                                                     description: "Interior Design Certification"
                                                                                 }
                                                                             ]
                                                                         },
@@ -1808,6 +1862,34 @@ async function main() {
                                                                                 }
                                                                             ]
                                                                         },
+                                                                        trades: {
+                                                                            create: [
+                                                                                
+                                                                                {
+                                                                                    id: "2",
+                                                                                    name: "Plumber",
+                                                                                    description: "Plumbing Certification"
+                                                                                },
+                                                                                {
+                                                                                     id: "3",
+                                                                                    name: "Carpentry",
+                                                                                    description: "Carpentry Certification"
+                                                                                },
+                                                                                {
+                                                                                     id: "4",
+                                                                                    name: "Electrician",
+                                                                                    description: "Electrician Certification"
+                                                                                },
+                                                                                {    id: "5",
+                                                                                    name: "Mason",
+                                                                                    description: "Mason Certification"
+                                                                                },
+                                                                                {     id: "6",
+                                                                                     name: "Interior Design",
+                                                                                     description: "Interior Design Certification"
+                                                                                }
+                                                                            ]
+                                                                        },
                                                                         likes: {
                                                                             create: [
                                                                                 {
@@ -1856,7 +1938,7 @@ async function main() {
                                                                                                 country:'United States',
                                                                                                 state: 'Florida',
                                                                                                 address: '699 Chelsea Ave',
-                                                                                                zip:32204,
+                                                                                                zip: 32204,
                                                                                                 city: 'Jacksonville',
                                                                                                 goalAmount: 250000,
                                                                                                 duration: 150,
@@ -1896,6 +1978,31 @@ async function main() {
                                                                                                             },
                                                                                                             amount: 15000.00
                                                                                                         }
+                                                                                                    ]
+                                                                                                },
+                                                                                                trades: {
+                                                                                                    create: [
+                                                                                                        {
+                                                                                                            id: "1",
+                                                                                                            name: "HVAC",
+                                                                                                            description: "HVAC Certification"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            id: "2",
+                                                                                                            name: "Plumber",
+                                                                                                            description: "Plumbing Certification"
+                                                                                                        },
+                                                                                                        {
+                                                                                                             id: "3",
+                                                                                                            name: "Carpentry",
+                                                                                                            description: "Carpentry Certification"
+                                                                                                        },
+                                                                                                        {
+                                                                                                             id: "4",
+                                                                                                            name: "Electrician",
+                                                                                                            description: "Electrician Certification"
+                                                                                                        }
+                                                                                                        
                                                                                                     ]
                                                                                                 },
                                                                                                 likes: {
@@ -1946,7 +2053,7 @@ async function main() {
                                                                                                 country:'United States',
                                                                                                 state: 'Connecticut',
                                                                                                 address: '267 Farmington Ave',
-                                                                                                zip:06105,
+                                                                                                zip: 06105,
                                                                                                 city: 'Hartford',
                                                                                                 goalAmount: 250000,
                                                                                                 duration: 150,
@@ -1985,6 +2092,25 @@ async function main() {
                                                                                                                 }
                                                                                                             },
                                                                                                             amount: 15000.00
+                                                                                                        }
+                                                                                                    ]
+                                                                                                },
+                                                                                                trades: {
+                                                                                                    create: [
+                                                                                                        {
+                                                                                                            id: "1",
+                                                                                                            name: "HVAC",
+                                                                                                            description: "HVAC Certification"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            id: "2",
+                                                                                                            name: "Plumber",
+                                                                                                            description: "Plumbing Certification"
+                                                                                                        },
+                                                                                                        {
+                                                                                                             id: "3",
+                                                                                                            name: "Carpentry",
+                                                                                                            description: "Carpentry Certification"
                                                                                                         }
                                                                                                     ]
                                                                                                 },
@@ -2037,7 +2163,7 @@ async function main() {
                                                                         country:'United States',
                                                                         state: 'New York',
                                                                         address: '4110 1st Ave',
-                                                                        zip:11232,
+                                                                        zip: 11232,
                                                                         city: 'Brooklyn',
                                                                         goalAmount: 450000,
                                                                         duration: 150,
@@ -2076,6 +2202,33 @@ async function main() {
                                                                                         }
                                                                                     },
                                                                                     amount: 15000.00
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        trades: {
+                                                                            create: [
+                                                                                {
+                                                                                    id: "1",
+                                                                                    name: "HVAC",
+                                                                                    description: "HVAC Certification"
+                                                                                },
+                                                                                {
+                                                                                    id: "2",
+                                                                                    name: "Plumber",
+                                                                                    description: "Plumbing Certification"
+                                                                                },
+                                                                                {
+                                                                                     id: "4",
+                                                                                    name: "Electrician",
+                                                                                    description: "Electrician Certification"
+                                                                                },
+                                                                                {    id: "5",
+                                                                                    name: "Mason",
+                                                                                    description: "Mason Certification"
+                                                                                },
+                                                                                {     id: "6",
+                                                                                     name: "Interior Design",
+                                                                                     description: "Interior Design Certification"
                                                                                 }
                                                                             ]
                                                                         },
@@ -2127,7 +2280,7 @@ async function main() {
                                                 country:'United States',
                                                 state: 'Alabama',
                                                 address: '9518 Cahaba Road',
-                                                zip:36767,
+                                                zip: 36767,
                                                 city: 'Orrville',
                                                 goalAmount: 250000,
                                                 duration: 150,
@@ -2166,6 +2319,15 @@ async function main() {
                                                                 }
                                                             },
                                                             amount: 15000.00
+                                                        }
+                                                    ]
+                                                },
+                                                trades: {
+                                                    create: [
+                                                        {
+                                                            id: "1",
+                                                            name: "HVAC",
+                                                            description: "HVAC Certification"
                                                         }
                                                     ]
                                                 },
@@ -2217,7 +2379,7 @@ slug:'heritage-usa',
                         country:'United States',
                         state: 'South Carolina',
                         address: '375 Star Light Dr',
-                        zip:29715,
+                        zip: 29715,
                         city: 'Fort Mill',
                         goalAmount: 250000,
                         duration: 150,
@@ -2256,6 +2418,16 @@ slug:'heritage-usa',
                                         }
                                     },
                                     amount: 15000.00
+                                }
+                            ]
+                        },
+                        trades: {
+                            create: [
+                                
+                                {
+                                    id: "2",
+                                    name: "Plumber",
+                                    description: "Plumbing Certification"
                                 }
                             ]
                         },
@@ -2349,6 +2521,16 @@ slug:'heritage-usa',
                                 }
                             ]
                         },
+                        trades: {
+                            create: [
+                                
+                                {
+                                     id: "3",
+                                    name: "Carpentry",
+                                    description: "Carpentry Certification"
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -2398,7 +2580,7 @@ slug:'heritage-usa',
                                                 country:'United States',
                                                 state: 'New York',
                                                 address: '7 Craig House Lane',
-                                                zip:12508,
+                                                zip: 12508,
                                                 city: 'Beacon',
                                                 goalAmount: 250000,
                                                 duration: 150,
@@ -2437,6 +2619,16 @@ slug:'heritage-usa',
                                                                 }
                                                             },
                                                             amount: 15000.00
+                                                        }
+                                                    ]
+                                                },
+                                                trades: {
+                                                    create: [
+                                                        
+                                                        {
+                                                             id: "4",
+                                                            name: "Electrician",
+                                                            description: "Electrician Certification"
                                                         }
                                                     ]
                                                 },
@@ -2530,6 +2722,15 @@ slug:'heritage-usa',
                                 }
                             ]
                         },
+                        trades: {
+                            create: [
+                                
+                                {    id: "5",
+                                    name: "Mason",
+                                    description: "Mason Certification"
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -2579,7 +2780,7 @@ slug:'heritage-usa',
                                                 country:'United States',
                                                 state: 'New Jersey',
                                                 address: '195 Market Street',
-                                                zip:07012,
+                                                zip: 07012,
                                                 city: 'Newark',
                                                 goalAmount: 250000,
                                                 duration: 150,
@@ -2618,6 +2819,14 @@ slug:'heritage-usa',
                                                                 }
                                                             },
                                                             amount: 15000.00
+                                                        }
+                                                    ]
+                                                },
+                                                trades: {
+                                                    create: [
+                                                        {     id: "6",
+                                                             name: "Interior Design",
+                                                             description: "Interior Design Certification"
                                                         }
                                                     ]
                                                 },
@@ -2711,6 +2920,15 @@ slug:'heritage-usa',
                                 }
                             ]
                         },
+                        trades: {
+                            create: [
+                                {
+                                    id: "1",
+                                    name: "HVAC",
+                                    description: "HVAC Certification"
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -2799,6 +3017,16 @@ slug:'heritage-usa',
                                                                 }
                                                             },
                                                             amount: 15000.00
+                                                        }
+                                                    ]
+                                                },
+                                                trades: {
+                                                    create: [
+                                                        
+                                                        {
+                                                            id: "2",
+                                                            name: "Plumber",
+                                                            description: "Plumbing Certification"
                                                         }
                                                     ]
                                                 },
@@ -2916,6 +3144,16 @@ slug:'heritage-usa',
                                 }
                             ]
                         },
+                        trades: {
+                            create: [
+                                
+                                {
+                                     id: "3",
+                                    name: "Carpentry",
+                                    description: "Carpentry Certification"
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -3004,6 +3242,16 @@ slug:'heritage-usa',
                                         }
                                     },
                                     amount: 10000.00
+                                }
+                            ]
+                        },
+                        trades: {
+                            create: [
+                               
+                                {
+                                     id: "4",
+                                    name: "Electrician",
+                                    description: "Electrician Certification"
                                 }
                             ]
                         },
@@ -3098,6 +3346,15 @@ slug:'heritage-usa',
                                 }
                             ]
                         },
+                        trades: {
+                            create: [
+                              
+                                {    id: "5",
+                                    name: "Mason",
+                                    description: "Mason Certification"
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -3186,6 +3443,15 @@ slug:'heritage-usa',
                                                                 }
                                                             },
                                                             amount: 15000.00
+                                                        }
+                                                    ]
+                                                },
+                                                trades: {
+                                                    create: [
+                                                       
+                                                        {     id: "6",
+                                                             name: "Interior Design",
+                                                             description: "Interior Design Certification"
                                                         }
                                                     ]
                                                 },
@@ -3298,6 +3564,20 @@ slug:'heritage-usa',
                                 }
                             ]
                         },
+                        trades: {
+                            create: [
+                                {
+                                    id: "1",
+                                    name: "HVAC",
+                                    description: "HVAC Certification"
+                                },
+                                {
+                                    id: "2",
+                                    name: "Plumber",
+                                    description: "Plumbing Certification"
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -3386,6 +3666,21 @@ slug:'heritage-usa',
                                         }
                                     },
                                     amount: 25000.00
+                                }
+                            ]
+                        },
+                        trades: {
+                            create: [
+                                
+                                {
+                                     id: "3",
+                                    name: "Carpentry",
+                                    description: "Carpentry Certification"
+                                },
+                                {
+                                     id: "4",
+                                    name: "Electrician",
+                                    description: "Electrician Certification"
                                 }
                             ]
                         },
@@ -3480,6 +3775,19 @@ slug:'heritage-usa',
                                 }
                             ]
                         },
+                        trades: {
+                            create: [
+                                
+                                {    id: "5",
+                                    name: "Mason",
+                                    description: "Mason Certification"
+                                },
+                                {     id: "6",
+                                     name: "Interior Design",
+                                     description: "Interior Design Certification"
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -3568,6 +3876,19 @@ slug:'heritage-usa',
                                                                 }
                                                             },
                                                             amount: 15000.00
+                                                        }
+                                                    ]
+                                                },
+                                                trades: {
+                                                    create: [
+                                                        {
+                                                            id: "1",
+                                                            name: "HVAC",
+                                                            description: "HVAC Certification"
+                                                        },
+                                                        {     id: "6",
+                                                             name: "Interior Design",
+                                                             description: "Interior Design Certification"
                                                         }
                                                     ]
                                                 },
@@ -3680,6 +4001,20 @@ slug:'heritage-usa',
                                 }
                             ]
                         },
+                        trades: {
+                            create: [
+                                
+                                {
+                                    id: "2",
+                                    name: "Plumber",
+                                    description: "Plumbing Certification"
+                                },
+                                {    id: "5",
+                                    name: "Mason",
+                                    description: "Mason Certification"
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -3771,6 +4106,20 @@ slug:'heritage-usa',
                                 }
                             ]
                         },
+                        trades: {
+                            create: [
+                                {
+                                    id: "1",
+                                    name: "HVAC",
+                                    description: "HVAC Certification"
+                                },
+                                {
+                                     id: "3",
+                                    name: "Carpentry",
+                                    description: "Carpentry Certification"
+                                }
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -3855,6 +4204,20 @@ slug:'heritage-usa',
                                                                             }
                                                                         },
                                                                         amount: 15000.00
+                                                                    }
+                                                                ]
+                                                            },
+                                                            trades: {
+                                                                create: [
+                                                                    
+                                                                    {
+                                                                         id: "4",
+                                                                        name: "Electrician",
+                                                                        description: "Electrician Certification"
+                                                                    },
+                                                                    {    id: "5",
+                                                                        name: "Mason",
+                                                                        description: "Mason Certification"
                                                                     }
                                                                 ]
                                                             },
@@ -3948,6 +4311,21 @@ slug:'heritage-usa',
                                                                                             }
                                                                                         ]
                                                                                     },
+                                                                                    trades: {
+                                                                                        create: [
+                                                                                          
+                                                                                            {
+                                                                                                id: "2",
+                                                                                                name: "Plumber",
+                                                                                                description: "Plumbing Certification"
+                                                                                            },
+                                                                                            
+                                                                                            {     id: "6",
+                                                                                                 name: "Interior Design",
+                                                                                                 description: "Interior Design Certification"
+                                                                                            }
+                                                                                        ]
+                                                                                    },
                                                                                     likes: {
                                                                                         create: [
                                                                                             {
@@ -4035,6 +4413,38 @@ slug:'heritage-usa',
                                                                                                     }
                                                                                                 },
                                                                                                 amount: 15000.00
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    trades: {
+                                                                                        create: [
+                                                                                            {
+                                                                                                id: "1",
+                                                                                                name: "HVAC",
+                                                                                                description: "HVAC Certification"
+                                                                                            },
+                                                                                            {
+                                                                                                id: "2",
+                                                                                                name: "Plumber",
+                                                                                                description: "Plumbing Certification"
+                                                                                            },
+                                                                                            {
+                                                                                                 id: "3",
+                                                                                                name: "Carpentry",
+                                                                                                description: "Carpentry Certification"
+                                                                                            },
+                                                                                            {
+                                                                                                 id: "4",
+                                                                                                name: "Electrician",
+                                                                                                description: "Electrician Certification"
+                                                                                            },
+                                                                                            {    id: "5",
+                                                                                                name: "Mason",
+                                                                                                description: "Mason Certification"
+                                                                                            },
+                                                                                            {     id: "6",
+                                                                                                 name: "Interior Design",
+                                                                                                 description: "Interior Design Certification"
                                                                                             }
                                                                                         ]
                                                                                     },
@@ -4269,6 +4679,14 @@ slug:'heritage-usa',
                                      id: "4",
                                     name: "Electrician",
                                     description: "Electrician Certification"
+                                },
+                                {    id: "5",
+                                    name: "Mason",
+                                    description: "Mason Certification"
+                                },
+                                {     id: "6",
+                                     name: "Interior Design",
+                                     description: "Interior Design Certification"
                                 }
                             ]
                         },
@@ -4461,6 +4879,35 @@ slug:'heritage-usa',
                                 }
                             ]
                         },
+                        trades: {
+                            create: [
+                                {
+                                    id: "1",
+                                    name: "HVAC",
+                                    description: "HVAC Certification"
+                                },
+                                {
+                                    id: "2",
+                                    name: "Plumber",
+                                    description: "Plumbing Certification"
+                                },
+                                {
+                                     id: "3",
+                                    name: "Carpentry",
+                                    description: "Carpentry Certification"
+                                },
+                                {
+                                     id: "4",
+                                    name: "Electrician",
+                                    description: "Electrician Certification"
+                                },
+                                {    id: "5",
+                                    name: "Mason",
+                                    description: "Mason Certification"
+                                }
+                                
+                            ]
+                        },
                         likes: {
                             create: [
                                 {
@@ -4552,6 +4999,31 @@ slug:'heritage-usa',
                                                         }
                                                     ]
                                                 },
+                                                trades: {
+                                                    create: [
+                                                        {
+                                                            id: "1",
+                                                            name: "HVAC",
+                                                            description: "HVAC Certification"
+                                                        },
+                                                       
+                                                        {
+                                                             id: "3",
+                                                            name: "Carpentry",
+                                                            description: "Carpentry Certification"
+                                                        },
+                                                        
+                                                        {    id: "5",
+                                                            name: "Mason",
+                                                            description: "Mason Certification"
+                                                        },
+                                                        {     id: "6",
+                                                             name: "Interior Design",
+                                                             description: "Interior Design Certification"
+                                                        }
+                                                    ]
+                                                },
+
                                                 likes: {
                                                     create: [
                                                         {
@@ -4642,6 +5114,21 @@ slug:'heritage-usa',
                                                         }
                                                     ]
                                                 },
+                                                trades: {
+                                                    create: [
+                                                        {
+                                                            id: "1",
+                                                            name: "HVAC",
+                                                            description: "HVAC Certification"
+                                                        },
+                                                        {
+                                                            id: "2",
+                                                            name: "Plumber",
+                                                            description: "Plumbing Certification"
+                                                        }
+                                                    ]
+                                                },
+
                                                 likes: {
                                                     create: [
                                                         {
