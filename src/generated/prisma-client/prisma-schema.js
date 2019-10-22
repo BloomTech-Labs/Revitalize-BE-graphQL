@@ -3356,6 +3356,7 @@ type ProjectTask {
   priority: String!
   dueDate: DateTime!
   budgetHours: Int!
+  hoursCompleted: Int
   completed: Boolean!
   apprentices(where: ProjectApprenticeTaskWhereInput, orderBy: ProjectApprenticeTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProjectApprenticeTask!]
 }
@@ -3375,6 +3376,7 @@ input ProjectTaskCreateInput {
   priority: String!
   dueDate: DateTime!
   budgetHours: Int!
+  hoursCompleted: Int
   completed: Boolean
   apprentices: ProjectApprenticeTaskCreateManyWithoutProjectTaskInput
 }
@@ -3398,6 +3400,7 @@ input ProjectTaskCreateWithoutApprenticesInput {
   priority: String!
   dueDate: DateTime!
   budgetHours: Int!
+  hoursCompleted: Int
   completed: Boolean
 }
 
@@ -3409,6 +3412,7 @@ input ProjectTaskCreateWithoutProjectInput {
   priority: String!
   dueDate: DateTime!
   budgetHours: Int!
+  hoursCompleted: Int
   completed: Boolean
   apprentices: ProjectApprenticeTaskCreateManyWithoutProjectTaskInput
 }
@@ -3431,6 +3435,8 @@ enum ProjectTaskOrderByInput {
   dueDate_DESC
   budgetHours_ASC
   budgetHours_DESC
+  hoursCompleted_ASC
+  hoursCompleted_DESC
   completed_ASC
   completed_DESC
 }
@@ -3442,6 +3448,7 @@ type ProjectTaskPreviousValues {
   priority: String!
   dueDate: DateTime!
   budgetHours: Int!
+  hoursCompleted: Int
   completed: Boolean!
 }
 
@@ -3518,6 +3525,14 @@ input ProjectTaskScalarWhereInput {
   budgetHours_lte: Int
   budgetHours_gt: Int
   budgetHours_gte: Int
+  hoursCompleted: Int
+  hoursCompleted_not: Int
+  hoursCompleted_in: [Int!]
+  hoursCompleted_not_in: [Int!]
+  hoursCompleted_lt: Int
+  hoursCompleted_lte: Int
+  hoursCompleted_gt: Int
+  hoursCompleted_gte: Int
   completed: Boolean
   completed_not: Boolean
   AND: [ProjectTaskScalarWhereInput!]
@@ -3551,6 +3566,7 @@ input ProjectTaskUpdateInput {
   priority: String
   dueDate: DateTime
   budgetHours: Int
+  hoursCompleted: Int
   completed: Boolean
   apprentices: ProjectApprenticeTaskUpdateManyWithoutProjectTaskInput
 }
@@ -3561,6 +3577,7 @@ input ProjectTaskUpdateManyDataInput {
   priority: String
   dueDate: DateTime
   budgetHours: Int
+  hoursCompleted: Int
   completed: Boolean
 }
 
@@ -3570,6 +3587,7 @@ input ProjectTaskUpdateManyMutationInput {
   priority: String
   dueDate: DateTime
   budgetHours: Int
+  hoursCompleted: Int
   completed: Boolean
 }
 
@@ -3605,6 +3623,7 @@ input ProjectTaskUpdateWithoutApprenticesDataInput {
   priority: String
   dueDate: DateTime
   budgetHours: Int
+  hoursCompleted: Int
   completed: Boolean
 }
 
@@ -3615,6 +3634,7 @@ input ProjectTaskUpdateWithoutProjectDataInput {
   priority: String
   dueDate: DateTime
   budgetHours: Int
+  hoursCompleted: Int
   completed: Boolean
   apprentices: ProjectApprenticeTaskUpdateManyWithoutProjectTaskInput
 }
@@ -3710,6 +3730,14 @@ input ProjectTaskWhereInput {
   budgetHours_lte: Int
   budgetHours_gt: Int
   budgetHours_gte: Int
+  hoursCompleted: Int
+  hoursCompleted_not: Int
+  hoursCompleted_in: [Int!]
+  hoursCompleted_not_in: [Int!]
+  hoursCompleted_lt: Int
+  hoursCompleted_lte: Int
+  hoursCompleted_gt: Int
+  hoursCompleted_gte: Int
   completed: Boolean
   completed_not: Boolean
   apprentices_every: ProjectApprenticeTaskWhereInput
