@@ -23,15 +23,12 @@ export const ProjectLike = {
 	},
 	async deleteProjectLike(parent, args, { prisma, request }, info) {
 		const profileId = getProfileId(request);
-		console.log(args.id);
-		const userProjectLikeExists = await prisma.$exists.projectLike({ id: args.id, profile: { id: profileId } });
 
-		if (!userProjectLikeExists) throw new Error('Sorry, but something went wrong while trying to delete that like');
+		const userProjectLikeExists = await prisma.$exists.projectLike({ id: args.id, profile: { id: profileId } });
+		if (!userProjectLikeExists) throw new Error('Sorry, but that like does not exist');
 
 		return prisma.deleteProjectLike({
-			where: {
-				id: args.data.id,
-			},
+			id: args.id,
 		});
 	},
 };
