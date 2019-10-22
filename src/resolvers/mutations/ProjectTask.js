@@ -44,7 +44,9 @@ export const ProjectTask = {
 
 		return prisma.updateProjectTask(
 			{
-				id: args.id,
+				where: {
+					id: args.id,
+				},
 				data: args.data,
 			},
 			info,
