@@ -20,6 +20,14 @@ type AuthPayload {
 	profile: UserProfile!
 }
 
+# Custom browse type
+type Browse {
+	spotlight: Project!
+	recommendedProjects: [Project!]!
+	projectsNearYou: [Project!]!
+	newAndNoteworthyProjects: [Project!]!
+}
+
 # Queries
 type Query {
 	me: UserProfile!
@@ -34,6 +42,7 @@ type Query {
 	recommendedProjects: [Project!]!
 	projectLikes(id: ID!): [ProjectLike!]!
 	directMessages: [DirectMessage!]!
+	getProjectsView: Browse!
 }
 
 # Mutations
