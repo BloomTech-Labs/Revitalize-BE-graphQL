@@ -393,7 +393,6 @@ input CreateProjectTask {
 	priority: Priority!
 	dueDate: Date!
 	budgetHours: Int!
-	hoursCompleted: Int!
 	apprentices: [CreateProjectApprenticeTask!]
 }
 
@@ -403,7 +402,6 @@ input UpdateProjectTask {
 	priority: Priority
 	dueDate: Date
 	budgetHours: Int
-	hoursCompleted: Int
 	completed: Boolean
 }
 

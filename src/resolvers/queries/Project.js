@@ -40,8 +40,6 @@ export const Project = {
 			};
 		}
 
-		// console.log(opArgs);
-
 		return prisma.projects(opArgs, info);
 	},
 	async myProjects(parent, args, { prisma, request }, info) {
