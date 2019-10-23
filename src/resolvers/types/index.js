@@ -31,5 +31,5 @@ export const Types = {
 	ProjectApprenticeTask,
 	ProjectStudent,
 	ProjectMasterTradesman,
-	DirectMessage
+	DirectMessage,
 };
