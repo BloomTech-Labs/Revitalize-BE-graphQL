@@ -32,20 +32,11 @@ export const Project = {
 
 		if (args.query) {
 			opArgs.where = {
-				OR: [
-					{
-						slug_contains: args.query,
-					},
-					{
+				trades: {
+					trades_every: {
 						name_contains: args.query,
 					},
-					{
-						city_contains: args.query,
-					},
-					{
-						state_contains: args.query,
-					},
-				],
+				},
 			};
 		}
 
