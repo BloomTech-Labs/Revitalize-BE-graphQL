@@ -30,8 +30,11 @@ export const ProjectLike = {
 		const userProjectLikeExists = await prisma.$exists.projectLike({ id: args.id, profile: { id: profileId } });
 		if (!userProjectLikeExists) throw new Error('Sorry, but that like does not exist');
 
-		return prisma.deleteProjectLike({
-			id: args.id,
-		});
+		return prisma.deleteProjectLike(
+			{
+				id: args.id,
+			},
+			info,
+		);
 	},
 };
