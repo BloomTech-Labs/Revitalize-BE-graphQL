@@ -28,17 +28,19 @@ export const Project = {
 		return project[0];
 	},
 	async projects(parent, args, { prisma, request }, info) {
-		const opArgs = {};
+		let opArgs = {};
 
 		if (args.query) {
-			opArgs.where = {
-				trades: {
-					trades_every: {
+			opArgs = {
+				where: {
+					trades_some: {
 						name_contains: args.query,
 					},
 				},
 			};
 		}
+
+		// console.log(opArgs);
 
 		return prisma.projects(opArgs, info);
 	},
