@@ -73,10 +73,10 @@ export const Project = {
 	async projectsNearMe(parent, args, { prisma, request }, info) {
 		return nearYou(prisma, request);
 	},
-	async getProjectsView(parent, args, { prisma, request }, info) {
+	async getProjectsView(parent, args, { prisma, request, redis }, info) {
 		const projects = {};
 
-		const recommendedProjects = await prisma.projects({}, info).$fragment(recommendedProject);
+		const recommendedProjects = await prisma.projects({}).$fragment(recommendedProject);
 		projects.recommendedProjects = weightSort(recommendedProjects);
 
 		const projectsNearYou = await nearYou(prisma, request);
@@ -87,6 +87,8 @@ export const Project = {
 		});
 
 		projects.newAndNoteworthyProjects = newAndNoteworthyProjects;
+
+		await redis.setex('getProjectsView', 86400, JSON.stringify(projects));
 
 		return projects;
 	},
