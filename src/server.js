@@ -8,14 +8,18 @@ import './services/passport';
 import { generateToken } from './utils/generateToken';
 
 import * as Sentry from '@sentry/node';
+import redis from '../config/redis';
+import { cache } from './cache';
 
 export const server = new GraphQLServer({
 	typeDefs: __dirname + '/schema.graphql',
 	resolvers,
+	middlewares: [cache],
 	context(request) {
 		return {
 			prisma,
 			request,
+			redis,
 		};
 	},
 });
@@ -25,7 +29,7 @@ Sentry.init({
 });
 
 // middleware
-server.express.use(Sentry.Handlers.requestHandler()); // The request handler must be the first middleware on the app
+server.express.use(Sentry.Handlers.requestHandler()); // The request handler must be the first middleware
 server.express.use(passport.initialize());
 
 server.express.get(
