@@ -3,6 +3,7 @@ import { getProfileId } from '../../utils/getProfileId';
 import { recommendedProject } from '../../fragments/RecommendedProject';
 import { weightSort } from '../../utils/projectWeightedSort';
 import { nearYou } from '../../utils/nearYou';
+import { resolveIp } from '../../utils/resolveIp';
 
 export const Project = {
 	async projectById(parent, args, { prisma }, info) {
@@ -88,7 +89,11 @@ export const Project = {
 
 		projects.newAndNoteworthyProjects = newAndNoteworthyProjects;
 
-		await redis.setex('getProjectsView', 86400, JSON.stringify(projects));
+		const ip = resolveIp(request);
+
+		if (ip !== null) {
+			await redis.setex(`getProjectsView${ip}`, 86400, JSON.stringify(projects));
+		}
 
 		return projects;
 	},
