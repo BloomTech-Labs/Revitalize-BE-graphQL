@@ -1,57 +1,58 @@
 {
-  "name": "revitalize",
-  "version": "1.0.0",
-  "description": "Debt free tradeschool back-end",
-  "main": "server.js",
-  "scripts": {
-    "start": "node dist/server.js",
-    "heroku-postbuild": "babel src --out-dir dist --copy-files",
-    "deploy": "bash bin/deploy.sh",
-    "build": "babel src --out-dir dist --copy-files",
-    "dev": "env-cmd -f ./config/dev.env nodemon src/server.js --ext js,graphql,env --exec babel-node",
-    "test": "jest --watch"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Revitalized-Playground/Back-End.git"
-  },
-  "author": "Alpha team wolf squadron",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Revitalized-Playground/Back-End/issues"
-  },
-  "homepage": "https://github.com/Revitalized-Playground/Back-End#readme",
-  "dependencies": {
-    "@babel/cli": "^7.6.0",
-    "@babel/core": "^7.6.0",
-    "@babel/node": "^7.6.1",
-    "@babel/polyfill": "^7.6.0",
-    "@babel/preset-env": "^7.6.0",
-    "@sentry/node": "^5.6.2",
-    "bcryptjs": "^2.4.3",
-    "bluebird": "^3.7.1",
-    "cloudinary": "^1.15.0",
-    "env-cmd": "^10.0.1",
-    "graphql-cli": "^3.0.14",
-    "graphql-yoga": "^1.18.3",
-    "iplocation": "^6.1.0",
-    "jsonwebtoken": "^8.5.1",
-    "node-geocoder": "^3.24.0",
-    "passport": "^0.4.0",
-    "passport-facebook": "^3.0.0",
-    "passport-google-oauth20": "^2.0.0",
-    "passport-twitter": "^1.0.4",
-    "prisma-client-lib": "^1.34.8",
-    "redis": "^2.8.0",
-    "stripe": "^7.9.1",
-    "zipcodes": "^8.0.0"
-  },
-  "devDependencies": {
-    "jest": "^24.9.0",
-    "nodemon": "^1.19.2"
-  },
-  "engines": {
-    "npm": "6.10.3",
-    "node": "10.16.3"
-  }
+	"name": "revitalize",
+	"version": "1.0.0",
+	"description": "Debt free tradeschool back-end",
+	"main": "server.js",
+	"scripts": {
+		"start": "node dist/server.js",
+		"heroku-postbuild": "babel src --out-dir dist --copy-files",
+		"deploy": "bash bin/deploy.sh",
+		"build": "babel src --out-dir dist --copy-files",
+		"dev": "env-cmd -f ./config/dev.env nodemon src/server.js --ext js,graphql,env --exec babel-node",
+		"test": "jest --watch",
+		"coverage": "jest --coverage --detectOpenHandles --forceExit || true"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Revitalized-Playground/Back-End.git"
+	},
+	"author": "Alpha team wolf squadron",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Revitalized-Playground/Back-End/issues"
+	},
+	"homepage": "https://github.com/Revitalized-Playground/Back-End#readme",
+	"dependencies": {
+		"@babel/cli": "^7.6.0",
+		"@babel/core": "^7.6.0",
+		"@babel/node": "^7.6.1",
+		"@babel/polyfill": "^7.6.0",
+		"@babel/preset-env": "^7.6.0",
+		"@sentry/node": "^5.6.2",
+		"bcryptjs": "^2.4.3",
+		"bluebird": "^3.7.1",
+		"cloudinary": "^1.15.0",
+		"env-cmd": "^10.0.1",
+		"graphql-cli": "^3.0.14",
+		"graphql-yoga": "^1.18.3",
+		"iplocation": "^6.1.0",
+		"jsonwebtoken": "^8.5.1",
+		"node-geocoder": "^3.24.0",
+		"passport": "^0.4.0",
+		"passport-facebook": "^3.0.0",
+		"passport-google-oauth20": "^2.0.0",
+		"passport-twitter": "^1.0.4",
+		"prisma-client-lib": "^1.34.8",
+		"redis": "^2.8.0",
+		"stripe": "^7.9.1",
+		"zipcodes": "^8.0.0"
+	},
+	"devDependencies": {
+		"jest": "^24.9.0",
+		"nodemon": "^1.19.2"
+	},
+	"engines": {
+		"npm": "6.10.3",
+		"node": "10.16.3"
+	}
 }
