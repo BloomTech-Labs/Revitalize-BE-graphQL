@@ -4,6 +4,10 @@
 	"description": "Debt free tradeschool back-end",
 	"main": "server.js",
 	"scripts": {
+		"docker-start": "docker-compose up --build",
+		"pgenerate": "prisma generate",
+		"pdeploy": "prisma deploy",
+		"preseed": "prisma delete && prisma generate && prisma deploy",
 		"start": "node dist/server.js",
 		"heroku-postbuild": "babel src --out-dir dist --copy-files",
 		"deploy": "bash bin/deploy.sh",
@@ -50,9 +54,5 @@
 	"devDependencies": {
 		"jest": "^24.9.0",
 		"nodemon": "^1.19.2"
-	},
-	"engines": {
-		"npm": "6.10.3",
-		"node": "10.16.3"
 	}
 }
