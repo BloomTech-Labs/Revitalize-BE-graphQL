@@ -8,7 +8,6 @@ import './services/passport';
 import { generateToken } from './utils/generateToken';
 
 import * as Sentry from '@sentry/node';
-import redis from '../config/redis';
 import { cache } from './cache';
 
 export const server = new GraphQLServer({
@@ -19,7 +18,6 @@ export const server = new GraphQLServer({
 		return {
 			prisma,
 			request,
-			redis,
 		};
 	},
 });
